@@ -1,0 +1,7 @@
+[user]
+	name = Andy Kluger
+	email = andykluger@gmail.com
+[credential]
+	helper = cache
+[push]
+	default = simple

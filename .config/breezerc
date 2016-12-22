@@ -1,0 +1,14 @@
+[Common]
+OutlineCloseButton=false
+ShadowStrength=89
+
+[Style]
+MnemonicsMode=MN_ALWAYS
+ScrollBarAddLineButtons=0
+ScrollBarSubLineButtons=0
+
+[Windeco]
+ButtonSize=ButtonSmall
+DrawBackgroundGradient=false
+DrawSizeGrip=false
+TitleAlignment=AlignLeft

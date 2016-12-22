@@ -1,0 +1,7 @@
+alias findy="~/Code/findy.py"
+alias locate="~/Code/locate.py"
+alias ulocate="sudo updatedb && ~/Code/locate.py"
+alias locateu="sudo updatedb && ~/Code/locate.py"
+alias llocate="/usr/bin/locate"
+alias locatee="/usr/bin/locate"
+alias updatedb="sudo updatedb"

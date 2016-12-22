@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=~/Code/grenadine/read.sh
+Name=Tab Files to Clipboard
+NoDisplay=true
+Type=Application
+Icon=document-import

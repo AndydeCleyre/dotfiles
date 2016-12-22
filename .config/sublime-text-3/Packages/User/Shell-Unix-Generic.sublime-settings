@@ -1,0 +1,8 @@
+{
+	"extensions":
+	[
+		"PKGBUILD",
+		"zshrc",
+		".zshrc"
+	]
+}

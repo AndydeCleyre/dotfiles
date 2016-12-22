@@ -41,6 +41,7 @@ alias copyfrom="xclip -sel clip"
 alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"
+fax () { grep -v '^#' $1 | tr -s '\n' }
 alias no="egrep -i -v"
 alias img="/usr/bin/gm"
 lines () { sed -n "$1p" "$2" } # lines first[,last] textfile

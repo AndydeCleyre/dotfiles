@@ -38,6 +38,7 @@ alias aw="wiki-search"
 configs () { /usr/bin/locate "$1" | egrep "($HOME/\.|/etc/)" }
 alias connect="nmtui"
 alias copyfrom="xclip -sel clip"
+clip() { echo "$@" | xclip -sel clip }
 alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"

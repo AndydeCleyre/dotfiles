@@ -16,7 +16,7 @@ cdf() {
 }
 lessf() {
     local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && less "${file}" || return 1
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && less -i "${file}" || return 1
 }
 catf() {
     local file

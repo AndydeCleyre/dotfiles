@@ -2,14 +2,14 @@ clear lock
 keycode 66=grave asciitilde
 keycode 49=asciitilde asciitilde
 
-keycode 10=exclam 1
-keycode 11=at 2
-keycode 12=numbersign 3
-keycode 13=dollar 4
-keycode 14=percent 5
-keycode 15=asciicircum 6
-keycode 16=ampersand 7
-keycode 17=asterisk 8
-keycode 18=parenleft 9
-keycode 19=parenright 0
-keycode 20=minus underscore
+!keycode 10=exclam 1
+!keycode 11=at 2
+!keycode 12=numbersign 3
+!keycode 13=dollar 4
+!keycode 14=percent 5
+!keycode 15=asciicircum 6
+!keycode 16=ampersand 7
+!keycode 17=asterisk 8
+!keycode 18=parenleft 9
+!keycode 19=parenright 0
+!keycode 20=minus underscore

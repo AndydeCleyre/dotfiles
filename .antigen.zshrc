@@ -9,7 +9,6 @@ antigen bundle mercurial
 antigen bundle nmap
 antigen bundle pip
 antigen bundle rsync  # rsync-{copy,move,synchronize,update}
-antigen bundle supervisor
 antigen bundle systemd  # sc-{start,stop,status,restart} [service]
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting

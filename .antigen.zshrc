@@ -1,5 +1,4 @@
 . /usr/share/zsh/scripts/antigen/antigen.zsh
-antigen use oh-my-zsh
 antigen bundle docker
 antigen bundle extract
 export ZSH_CACHE_DIR="$HOME/.cache/zsh"; mkdir -p "$ZSH_CACHE_DIR"; antigen bundle fasd; alias j="fasd_cd -d"
@@ -13,6 +12,7 @@ antigen bundle systemd  # sc-{start,stop,status,restart} [service]
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
+setopt promptsubst
 # antigen theme dpoggi
 # antigen theme avit  # minimal
 # antigen theme desyncr/zshrc themes/af-magic-mod

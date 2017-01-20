@@ -14,7 +14,5 @@ antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 setopt promptsubst
-# antigen theme dpoggi
 # antigen theme avit  # minimal
-# antigen theme desyncr/zshrc themes/af-magic-mod
 antigen theme ~/Code dpoggi-andy

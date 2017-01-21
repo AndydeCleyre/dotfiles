@@ -5,10 +5,10 @@
 	"caret_extra_bottom": 1,
 	"caret_extra_top": 1,
 	"caret_extra_width": 1,
-	"color_scheme": "Packages/User/SublimeLinter/CiapreBlack (Flake8Lint) (SL).tmTheme",
+	"color_scheme": "Packages/Ciapre Color Scheme/CiapreBlack.tmTheme",
 	"fade_fold_buttons": false,
 	"font_face": "iosevka",
-	"font_size": 23,
+	"font_size": 18,
 	"ignored_packages":
 	[
 		"RestructuredText",

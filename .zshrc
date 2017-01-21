@@ -10,7 +10,6 @@ export BROWSER=firefox
 . ~/.antigen.zshrc
 
 . ~/.ag.zshrc
-. ~/.cat.zshrc
 . ~/.cd.zshrc
 . ~/.diff.zshrc
 . ~/.docker.zshrc

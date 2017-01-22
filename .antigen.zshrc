@@ -2,7 +2,7 @@
 antigen bundle aws
 antigen bundle docker
 antigen bundle extract
-export ZSH_CACHE_DIR="$HOME/.cache/zsh"; mkdir -p "$ZSH_CACHE_DIR"; antigen bundle fasd; alias j="fasd_cd -d"
+antigen bundle fasd; alias j="fasd_cd -d"
 antigen bundle git
 antigen bundle git-flow-avh
 antigen bundle mercurial

@@ -33,6 +33,8 @@ export BROWSER=firefox
 . ~/.wttr.zshrc
 . ~/.xtouch.zshrc
 
+compdef yadm=git
+
 alias aw="wiki-search"
 configs () { /usr/bin/locate "$1" | egrep "($HOME/\.|/etc/)" }
 alias connect="nmtui"

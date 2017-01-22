@@ -1,3 +1,5 @@
+autoload -U colors && colors
+
 name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 host="%{$fg[cyan]%}%m%{$reset_color%}"
 console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"

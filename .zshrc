@@ -5,9 +5,9 @@ export BROWSER=firefox
 
 . /usr/share/doc/pkgfile/command-not-found.zsh
 
+. ~/.antigen.zshrc
 . ~/.zsh.zshrc
 . ~/.path.zshrc
-. ~/.antigen.zshrc
 
 . ~/.ag.zshrc
 . ~/.cd.zshrc

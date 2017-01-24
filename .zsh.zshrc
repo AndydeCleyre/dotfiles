@@ -1,6 +1,3 @@
-export ZSH_CACHE_DIR="$HOME/.cache/zsh"
-mkdir -p "$ZSH_CACHE_DIR"
-
 if [[ -z "$LS_COLORS" ]]; then (( $+commands[dircolors] )) && eval "$(dircolors -b)"; fi
 alias ls='ls --color=tty'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

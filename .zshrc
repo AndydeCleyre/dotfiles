@@ -9,7 +9,6 @@ export BROWSER=firefox
 . ~/.zsh.zshrc
 . ~/.path.zshrc
 
-. ~/.ag.zshrc
 . ~/.cd.zshrc
 . ~/.diff.zshrc
 . ~/.docker.zshrc
@@ -22,6 +21,7 @@ export BROWSER=firefox
 . ~/.plasma.zshrc
 . ~/.playerctl.zshrc
 . ~/.python.zshrc
+. ~/.rg.zshrc
 . ~/.steam.zshrc
 . ~/.sublime.zshrc
 . ~/.sudo.zshrc

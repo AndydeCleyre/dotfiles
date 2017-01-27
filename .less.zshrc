@@ -1,4 +1,5 @@
 export PAGER=less
 export LESS=FRXi
-export C_PYGMENTS_THEME=lovelace
-man () { /usr/bin/man "$1" || "$1" --help | c -- -l haskell }
+man () { /usr/bin/man "$1" || "$1" --help | highlight -O truecolor -s solarized-light -S lua | less }
+alias h="highlight -O truecolor -s solarized-light --force"
+alias hs="highlight -O truecolor -s solarized-light --force -S"

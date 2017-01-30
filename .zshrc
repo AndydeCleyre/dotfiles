@@ -10,7 +10,6 @@ export BROWSER=firefox
 . ~/.path.zshrc
 
 . ~/.cd.zshrc
-. ~/.diff.zshrc
 . ~/.docker.zshrc
 . ~/.fzf.zshrc
 . ~/.git.zshrc

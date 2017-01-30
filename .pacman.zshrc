@@ -4,4 +4,4 @@ alias y="yaourt"
 
 export AURUPGRADE=1
 export EDITFILES=0
-export DIFFEDITCMD="sudo -u $USER SUDO_EDITOR=meld sudoedit"
+export DIFFEDITCMD="sudo -u andy SUDO_EDITOR=meld sudoedit"

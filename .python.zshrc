@@ -19,7 +19,7 @@ envin2 () {
     pip-sync || pip install -r requirements.txt
 }
 
-pimp () { pip install -U pip ipython plumbum requests pip-tools structlog }
+pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
 
 envout () { deactivate }
 
@@ -27,3 +27,9 @@ freeze () {
     pip freeze | egrep -i "$@" >> requirements.in
     nano requirements.in
 }
+
+pipa () { echo "$@" >> requirements.in }
+pipc () { pip-compile }
+pips () { pip-sync }
+pipi () { pip-sync }
+pipu () { pip-compile -U }

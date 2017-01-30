@@ -48,4 +48,4 @@ alias zedit="nano ~/.zshrc && . ~/.zshrc"
 alias zedits="subl3 -w ~/.zshrc && . ~/.zshrc"
 alias sedit="subl3 -w ~/.zshrc && . ~/.zshrc"
 alias zsource=". ~/.zshrc"
-zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || "$PAGER" ~/.zshrc }
+zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || highlight -O truecolor -s solarized-light ~/.zshrc | "$PAGER" }

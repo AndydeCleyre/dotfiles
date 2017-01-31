@@ -56,5 +56,6 @@ recent () { ls -rt "$@" | tail -20 }
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
 alias serve="python -m http.server"
+alias smeld="SUDO_EDITOR=meld sudoedit"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
 alias txtnamer="~/Code/txtnamer.py"

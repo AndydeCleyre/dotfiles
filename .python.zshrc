@@ -19,17 +19,15 @@ envin2 () {
     pip-sync || pip install -r requirements.txt
 }
 
-pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
-
 envout () { deactivate }
 
-freeze () {
-    pip freeze | egrep -i "$@" >> requirements.in
-    nano requirements.in
-}
-
-pipa () { echo "$@" >> requirements.in }
-pipc () { pip-compile }
+pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
+pipc () { pip-compile --no-header }
+pipch () { pip-compile --no-header --generate-hashes }
 pips () { pip-sync }
-pipi () { pip-sync }
-pipu () { pip-compile -U }
+pipu () { [[ "$#" -gt 0 ]] && pip-compile -P $@ || pip-compile -U }
+
+pipi () { pip install -U $@ }
+pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
+freeze () { pip freeze | egrep -i "$@" }
+

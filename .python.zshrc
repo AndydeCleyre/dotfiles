@@ -22,8 +22,10 @@ envin2 () {
 envout () { deactivate }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
-pipc () { pip-compile --no-header }
-pipch () { pip-compile --no-header --generate-hashes }
+#pipc () { pip-compile --no-header }
+pipc () { pip-compile --no-header | highlight -O truecolor -s solarized-light -S py }
+#pipch () { pip-compile --no-header --generate-hashes }
+pipch () { pip-compile --no-header --generate-hashes | highlight -O truecolor -s solarized-light -S py }
 pips () { pip-sync }
 pipu () { [[ "$#" -gt 0 ]] && pip-compile -P $@ || pip-compile -U }
 

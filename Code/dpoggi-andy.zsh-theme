@@ -2,7 +2,8 @@ autoload -U colors && colors
 
 name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 host="%{$fg[cyan]%}%m%{$reset_color%}"
-console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
+console="%{$fg[cyan]%}$(echo $TMUX_PANE | cut -c 1 --complement)%{$reset_color%}"
+#console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
 directory="%{$fg[magenta]%}%~%{$reset_color%}"
 return_status="%(?..%{$fg[red]%}%? <- )%(?.%{$fg[green]%}.)%*%{$reset_color%}"
 
@@ -12,7 +13,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
 
 # copied from oh-my-zsh's git lib:
-# 
+#
 function git_prompt_info() {
   local ref
   if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then

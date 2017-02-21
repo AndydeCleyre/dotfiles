@@ -1,6 +1,7 @@
 precmd () { rehash }
 
-export EDITOR=nano
+export EDITOR=micro
+export MICRO_TRUECOLOR=1
 export BROWSER=firefox
 
 . /usr/share/doc/pkgfile/command-not-found.zsh
@@ -36,9 +37,9 @@ compdef yadm=git
 
 alias aw="wiki-search"
 configs () { /usr/bin/locate "$1" | egrep "($HOME/\.|/etc/)" }
-alias connect="nmtui"
 alias copyfrom="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
+alias e="$EDITOR"
 alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"

@@ -47,7 +47,7 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then bindkey "${terminfo[kcbt]}" reverse-men
 if [[ "${terminfo[kdch1]}" != "" ]]; then bindkey "${terminfo[kdch1]}" delete-char
 else bindkey "^[[3~" delete-char; bindkey "^[3;5~" delete-char; bindkey "\e[3~" delete-char; fi
 
-alias zedit="nano ~/.zshrc && . ~/.zshrc"
+alias zedit="$EDITOR ~/.zshrc && . ~/.zshrc"
 alias zedits="subl3 -w ~/.zshrc && . ~/.zshrc"
 alias sedit="subl3 -w ~/.zshrc && . ~/.zshrc"
 alias zsource=". ~/.zshrc"

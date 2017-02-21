@@ -1,3 +1,6 @@
+autoload -U compinit
+compinit
+
 if [[ -z "$LS_COLORS" ]]; then (( $+commands[dircolors] )) && eval "$(dircolors -b)"; fi
 alias ls='ls --color=tty'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"

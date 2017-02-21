@@ -2,8 +2,11 @@ autoload -U colors && colors
 
 name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 host="%{$fg[cyan]%}%m%{$reset_color%}"
-console="%{$fg[cyan]%}$(echo $TMUX_PANE | cut -c 1 --complement)%{$reset_color%}"
-#console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
+if [[ -v TMUX_PANE ]]; then
+  console="%{$fg[cyan]%}$(echo $TMUX_PANE | cut -c 1 --complement)%{$reset_color%}"
+else
+  console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
+fi
 directory="%{$fg[magenta]%}%~%{$reset_color%}"
 return_status="%(?..%{$fg[red]%}%? <- )%(?.%{$fg[green]%}.)%*%{$reset_color%}"
 

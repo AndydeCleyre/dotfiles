@@ -1,0 +1,32 @@
+{
+    "autoclose": true,
+    "autoindent": true,
+    "autosave": false,
+    "colorcolumn": 100,
+    "colorscheme": "atom-dark-tc",
+    "cursorline": true,
+    "eofnewline": true,
+    "ignorecase": true,
+    "indentchar": " ",
+    "infobar": true,
+    "keepautoindent": false,
+    "linter": true,
+    "pluginchannels": [
+        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
+    ],
+    "pluginrepos": [],
+    "rmtrailingws": true,
+    "ruler": true,
+    "savecursor": true,
+    "saveundo": false,
+    "scrollmargin": 3,
+    "scrollspeed": 2,
+    "softwrap": false,
+    "splitBottom": true,
+    "splitRight": true,
+    "statusline": true,
+    "syntax": true,
+    "tabsize": 4,
+    "tabstospaces": true,
+    "useprimary": true
+}

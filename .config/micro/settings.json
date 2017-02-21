@@ -3,7 +3,7 @@
     "autoindent": true,
     "autosave": false,
     "colorcolumn": 100,
-    "colorscheme": "atom-dark-tc",
+    "colorscheme": "solarized-tc",
     "cursorline": true,
     "eofnewline": true,
     "ignorecase": true,

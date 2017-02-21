@@ -1,0 +1,11 @@
+{
+    "CtrlBackslash":  "comment.comment",
+    "CtrlShiftUp":    "MoveLinesUp",
+    "CtrlShiftDown":  "MoveLinesDown",
+    "CtrlLeft":       "WordLeft",
+    "CtrlRight":      "WordRight",
+    "CtrlShiftRight": "SelectWordRight",
+    "CtrlShiftLeft":  "SelectWordLeft",
+    "CtrlBackspace":  "DeleteWordLeft",
+    "CtrlShiftD":     "DuplicateLine",
+}

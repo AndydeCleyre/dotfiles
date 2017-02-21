@@ -21,7 +21,7 @@
     "saveundo": false,
     "scrollmargin": 3,
     "scrollspeed": 2,
-    "softwrap": false,
+    "softwrap": true,
     "splitBottom": true,
     "splitRight": true,
     "statusline": true,

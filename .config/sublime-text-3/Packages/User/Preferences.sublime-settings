@@ -8,7 +8,7 @@
 	"color_scheme": "Packages/Ciapre Color Scheme/CiapreBlack.tmTheme",
 	"fade_fold_buttons": false,
 	"font_face": "iosevka",
-	"font_size": 18,
+	"font_size": 17,
 	"ignored_packages":
 	[
 		"RestructuredText",
@@ -30,5 +30,6 @@
 	"theme_sidebar_folder_arrow": true,
 	"theme_size_xl": true,
 	"theme_tab_selected_underlined": true,
+	"trim_trailing_white_space_on_save": true,
 	"update_check": false
 }

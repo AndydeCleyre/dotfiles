@@ -1,5 +1,5 @@
 {
-    "CtrlBackslash":  "comment.comment",
+    "CtrlUnderscore":  "comment.comment",
     "CtrlShiftUp":    "MoveLinesUp",
     "CtrlShiftDown":  "MoveLinesDown",
     "CtrlLeft":       "WordLeft",

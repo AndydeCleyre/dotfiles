@@ -1,5 +1,5 @@
 {
-    "CtrlUnderscore":  "comment.comment",
+    "CtrlUnderscore": "comment.comment",
     "CtrlShiftUp":    "MoveLinesUp",
     "CtrlShiftDown":  "MoveLinesDown",
     "CtrlLeft":       "WordLeft",
@@ -8,4 +8,5 @@
     "CtrlShiftLeft":  "SelectWordLeft",
     "CtrlBackspace":  "DeleteWordLeft",
     "CtrlShiftD":     "DuplicateLine",
+    "CtrlShiftK":     "CutLine"
 }

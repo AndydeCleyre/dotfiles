@@ -3,7 +3,7 @@
     "autoindent": true,
     "autosave": false,
     "colorcolumn": 100,
-    "colorscheme": "solarized-tc",
+    "colorscheme": "gruvbox-tc",
     "cursorline": true,
     "eofnewline": true,
     "ignorecase": true,

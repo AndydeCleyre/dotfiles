@@ -8,5 +8,17 @@
     "CtrlShiftLeft":  "SelectWordLeft",
     "CtrlBackspace":  "DeleteWordLeft",
     "CtrlShiftD":     "DuplicateLine",
-    "CtrlShiftK":     "CutLine"
+    "CtrlShiftK":     "CutLine",
+    "CtrlG":          "JumpLine",
+    "F3":             "FindNext",
+    "ShiftF3":        "FindPrevious",
+    "CtrlShiftEnd":   "SelectToEndOfLine",
+    "CtrlShiftHome":  "SelectToStartOfLine",
+    "CtrlShiftP":     "CommandMode",
+    "CtrlTab":        "NextSplit",
+    "AltRight":       "NextSplit",
+    "AltDown":        "NextSplit",
+    "AltLeft":        "PreviousSplit",
+    "AltUp":          "PreviousSplit",
+    "CtrlT":          "VSplit"
 }

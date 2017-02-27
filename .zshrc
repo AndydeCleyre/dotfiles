@@ -1,12 +1,11 @@
 precmd () { rehash }
 
-export EDITOR=micro
-export MICRO_TRUECOLOR=1
 export BROWSER=firefox
 
 . /usr/share/doc/pkgfile/command-not-found.zsh
 
 . ~/.antigen.zshrc
+. ~/.editor.zshrc
 . ~/.zsh.zshrc
 . ~/.path.zshrc
 
@@ -15,9 +14,9 @@ export BROWSER=firefox
 . ~/.fzf.zshrc
 . ~/.git.zshrc
 . ~/.hg.zshrc
-. ~/.less.zshrc
 . ~/.locate.zshrc
 . ~/.pacman.zshrc
+. ~/.pager.zshrc
 . ~/.plasma.zshrc
 . ~/.playerctl.zshrc
 . ~/.python.zshrc
@@ -39,7 +38,6 @@ alias aw="wiki-search"
 configs () { /usr/bin/locate "$1" | egrep "($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
-alias e="$EDITOR"
 alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"
@@ -57,6 +55,5 @@ recent () { ls -rt "$@" | tail -20 }
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
 alias serve="python -m http.server"
-alias smeld="SUDO_EDITOR=meld sudoedit"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
 alias txtnamer="~/Code/txtnamer.py"

@@ -1,6 +1,6 @@
 export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
-. /usr/share/zsh/scripts/antigen/antigen.zsh
+. /usr/share/zsh/share/antigen.zsh
 antigen bundle aws
 antigen bundle docker
 antigen bundle extract

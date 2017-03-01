@@ -2,6 +2,7 @@ export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
 . /usr/share/zsh/share/antigen.zsh
 antigen bundle aws
+antigen bundle colored-man-pages
 antigen bundle docker
 antigen bundle extract
 antigen bundle fasd; alias j="fasd_cd -d"

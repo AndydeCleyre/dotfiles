@@ -2,10 +2,10 @@ autoload -U colors && colors
 
 name="%(!.%{$fg[red]%}.%{$fg[green]%})%n%{$reset_color%}"
 host="%{$fg[cyan]%}%m%{$reset_color%}"
-if [[ -v TMUX_PANE ]]; then
-  console="%{$fg[cyan]%}$(echo $TMUX_PANE | cut -c 1 --complement)%{$reset_color%}"
+if [[ -n $TMUX_PANE ]]; then
+  console="%{$fg[cyan]%}$(tmux display-message -p '#I')%{$reset_color%}"
 else
-  console="%{$fg[cyan]%}$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
+  console="%{$fg[cyan]%}tty$(echo $TTY | egrep -o '\w+$')%{$reset_color%}"
 fi
 directory="%{$fg[magenta]%}%~%{$reset_color%}"
 return_status="%(?..%{$fg[red]%}%? <- )%(?.%{$fg[green]%}.)%*%{$reset_color%}"

@@ -2,6 +2,8 @@
     "CtrlUnderscore": "comment.comment",
     "CtrlShiftUp":    "MoveLinesUp",
     "CtrlShiftDown":  "MoveLinesDown",
+    "AltUp":          "MoveLinesUp",
+    "AltDown":        "MoveLinesDown",
     "CtrlLeft":       "WordLeft",
     "CtrlRight":      "WordRight",
     "CtrlShiftRight": "SelectWordRight",
@@ -12,13 +14,12 @@
     "CtrlG":          "JumpLine",
     "F3":             "FindNext",
     "ShiftF3":        "FindPrevious",
-    "CtrlShiftEnd":   "SelectToEndOfLine",
-    "CtrlShiftHome":  "SelectToStartOfLine",
+    "ShiftEnd":       "SelectToEndOfLine",
+    "ShiftHome":      "SelectToStartOfLine",
     "CtrlShiftP":     "CommandMode",
     "CtrlTab":        "NextSplit",
-    "AltRight":       "NextSplit",
-    "AltDown":        "NextSplit",
     "AltLeft":        "PreviousSplit",
-    "AltUp":          "PreviousSplit",
-    "CtrlT":          "VSplit"
+    "AltRight":       "NextSplit",
+    "CtrlT":          "VSplit",
+    "AltShift2":      "VSplit"
 }

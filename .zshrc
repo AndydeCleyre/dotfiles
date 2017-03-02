@@ -11,7 +11,6 @@ export BROWSER=firefox
 
 . ~/.cd.zshrc
 . ~/.docker.zshrc
-. ~/.fzf.zshrc
 . ~/.git.zshrc
 . ~/.hg.zshrc
 . ~/.locate.zshrc

@@ -2,7 +2,7 @@ precmd () { rehash }
 
 export BROWSER=firefox
 
-. /usr/share/doc/pkgfile/command-not-found.zsh
+[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && . /usr/share/doc/pkgfile/command-not-found.zsh
 
 . ~/.antigen.zshrc
 . ~/.editor.zshrc
@@ -27,7 +27,7 @@ export BROWSER=firefox
 . ~/.transfer.sh.zshrc
 . ~/.tree.zshrc
 . ~/.wine.zshrc
-. ~/.work.zshrc
+[[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc
 . ~/.xtouch.zshrc
 

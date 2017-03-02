@@ -27,7 +27,7 @@ pipc () { pip-compile --no-header | highlight -O truecolor -s solarized-light -S
 #pipch () { pip-compile --no-header --generate-hashes }
 pipch () { pip-compile --no-header --generate-hashes | highlight -O truecolor -s solarized-light -S py }
 pips () { pip-sync }
-pipu () { [[ "$#" -gt 0 ]] && pip-compile -P $@ || pip-compile -U }
+pipu () { [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ || pip-compile --no-header -U }
 
 pipi () { pip install -U $@ }
 pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }

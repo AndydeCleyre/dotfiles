@@ -1,4 +1,4 @@
-alias i="ipython3"
+i () { ipython }
 alias i2="ipython2"
 alias spip="sudo pip3"
 alias spip2="sudo pip2"

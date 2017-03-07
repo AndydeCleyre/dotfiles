@@ -1,10 +1,11 @@
-alias i="ipython3"
+i () { ipython }
 alias i2="ipython2"
 alias spip="sudo pip3"
 alias spip2="sudo pip2"
 
 envin () {
-    touch requirements.txt requirements.in
+    touch requirements.txt
+    [[ -s requirements.in ]] || echo "# python 3" >> requirements.in
     [[ -d ./venv ]] || python3 -m venv venv
     . ./venv/bin/activate
     pip install -U pip-tools
@@ -12,7 +13,8 @@ envin () {
 }
 
 envin2 () {
-    touch requirements.txt requirements.in
+    touch requirements.txt
+    [[ -s requirements.in ]] || echo "# python 2" >> requirements.in
     [[ -d ./venv2 ]] || virtualenv2 venv2
     . ./venv2/bin/activate
     pip install -U pip-tools

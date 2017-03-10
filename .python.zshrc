@@ -21,6 +21,15 @@ envin2 () {
     pip-sync || pip install -r requirements.txt
 }
 
+envinpypy () {
+    touch requirements.txt
+    [[ -s requirements.in ]] || echo "# pypy 3" >> requirements.in
+    [[ -d ./venvpypy ]] || pypy3 -m venv venvpypy
+    . ./venvpypy/bin/activate
+    pip install -U pip-tools
+    pip-sync || pip install -r requirements.txt
+}
+
 envout () { deactivate }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }

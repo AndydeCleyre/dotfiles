@@ -8,6 +8,11 @@ xnano () {
 	nano "$1"
 }
 
+xmicro () {
+	xtouch "$1"
+	micro "$1"
+}
+
 xsubl () {
 	xtouch "$1"
 	subl "$1"

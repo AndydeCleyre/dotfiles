@@ -21,7 +21,6 @@ export BROWSER=firefox
 . ~/.python.zshrc
 . ~/.rg.zshrc
 . ~/.steam.zshrc
-. ~/.sublime.zshrc
 . ~/.sudo.zshrc
 . ~/.systemd.zshrc
 . ~/.transfer.sh.zshrc
@@ -29,7 +28,6 @@ export BROWSER=firefox
 . ~/.wine.zshrc
 [[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc
-. ~/.xtouch.zshrc
 
 compdef yadm=git
 

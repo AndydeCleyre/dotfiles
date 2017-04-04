@@ -7,7 +7,7 @@ fix-plasma () {
     # fix slider bar color
 
     for level in high medium low muted; do
-        sudo ln -s /usr/share/icons/Papirus-Dark/24x24/panel/microphone-sensitivity-$level.svg /usr/share/icons/Papirus-Dark/24x24/panel/microphone-sensitivity-$level-panel.svg
+        sudo ln -sf /usr/share/icons/Papirus-Dark/24x24/panel/microphone-sensitivity-$level.svg /usr/share/icons/Papirus-Dark/24x24/panel/microphone-sensitivity-$level-panel.svg
     done
 
     kquitapp5 plasmashell && kstart5 plasmashell

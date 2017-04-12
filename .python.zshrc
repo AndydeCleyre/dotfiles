@@ -8,8 +8,8 @@ envin () {
     [[ -s requirements.in ]] || echo "# python 3" >> requirements.in
     [[ -d ./venv ]] || python3 -m venv venv
     . ./venv/bin/activate
-    pip install -U pip-tools
-    pip-sync || pip install -r requirements.txt
+    pip install -qU pip-tools
+    ./venv/bin/pip-sync || pip install -qr requirements.txt
 }
 
 envin2 () {
@@ -17,8 +17,8 @@ envin2 () {
     [[ -s requirements.in ]] || echo "# python 2" >> requirements.in
     [[ -d ./venv2 ]] || virtualenv2 venv2
     . ./venv2/bin/activate
-    pip install -U pip-tools
-    pip-sync || pip install -r requirements.txt
+    pip install -qU pip-tools
+    ./venv2/bin/pip-sync || pip install -qr requirements.txt
 }
 
 envinpypy () {
@@ -26,8 +26,8 @@ envinpypy () {
     [[ -s requirements.in ]] || echo "# pypy 3" >> requirements.in
     [[ -d ./venvpypy ]] || pypy3 -m venv venvpypy
     . ./venvpypy/bin/activate
-    pip install -U pip-tools
-    pip-sync || pip install -r requirements.txt
+    pip install -qU pip-tools
+    ./venvpypy/bin/pip-sync || pip install -qr requirements.txt
 }
 
 envout () { deactivate }

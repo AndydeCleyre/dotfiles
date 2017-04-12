@@ -11,10 +11,6 @@ fix-plasma () {
         sudo ln -sf $panel_icons/microphone-sensitivity-$level.svg $panel_icons/microphone-sensitivity-$level-panel.svg
     done
 
-    sudo sed -i -r 's/width: Math\.round\(parent\.width \* 0\.9\)/width: 24/g' /usr/share/plasma/plasmoids/org.kde.plasma.colorpicker/contents/ui/main.qml
-
-#    kquitapp5 plasmashell && kstart5 plasmashell
-
     pkill latte-dock && latte-dock &
     disown
 }

@@ -15,7 +15,7 @@ antigen bundle rsync  # rsync-{copy,move,synchronize,update}
 antigen bundle systemd  # sc-{start,stop,status,restart} [service]
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen apply
 setopt promptsubst
 # antigen theme avit  # minimal
 antigen theme ~/Code dpoggi-andy
+antigen apply

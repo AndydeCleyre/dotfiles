@@ -1,5 +1,6 @@
 {
 	"always_show_minimap_viewport": true,
+	"anaconda_gutter_theme": "bright",
 	"auto_complete_commit_on_tab": true,
 	"bold_folder_labels": true,
 	"caret_extra_bottom": 1,

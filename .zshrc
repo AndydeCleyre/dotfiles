@@ -28,13 +28,14 @@ export BROWSER=firefox
 . ~/.wine.zshrc
 [[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc
-
 compdef yadm=git
 
 alias aw="wiki-search"
+alias ariadone="~/Code/ariadone.py"
 alias CAPSOFF="python -c 'from ctypes import *; X11 = cdll.LoadLibrary(\"libX11.so.6\"); display = X11.XOpenDisplay(None); X11.XkbLockModifiers(display, c_uint(0x0100), c_uint(2), c_uint(0)); X11.XCloseDisplay(display)'"
 configs () { /usr/bin/locate "$1" | egrep "($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
+alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
 alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
@@ -50,6 +51,7 @@ alias open="xdg-open"
 alias ports="~/Code/ports.py"
 post () { curl -Ffile=@"$1" https://0x0.st }
 recent () { ls -rt "$@" | tail -20 }
+alias redact="sed -r 's/^(\s*\S*(user(name)?|password|key(_id)?|token|address|secret|blob) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
 alias serve="python -m http.server"

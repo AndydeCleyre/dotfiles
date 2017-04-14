@@ -1,7 +1,9 @@
 i () { ipython }
 alias i2="ipython2"
 alias spip="sudo pip3"
+spipi () { sudo pip install -U $@ }
 alias spip2="sudo pip2"
+spipi2 () { sudo pip2 install -U $@ }
 
 envin () {
     touch requirements.txt

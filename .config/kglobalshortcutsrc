@@ -27,12 +27,11 @@ display=Display,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
-{0391568e-82a3-4185-901e-4804287734db}=Ctrl+Alt+H,none,New Action
 {8c8d7771-e8f4-4d0f-826a-6b0a14e48213}=Alt+Z,none,Select And Translate
 {9755309f-20ba-4838-bc25-57cf52f03f42}=Print,none,Start Screenshot Tool
 {a9b06d49-6b98-4773-9858-a3380c83d3e9}=Meta+Print,none,Take Active Window Screenshot
 {eeaa382d-8257-4bd8-a68a-6127075d36b8}=Shift+Print,none,Take Full Screen Screenshot
-{fbfff6f2-5378-4235-8354-605aae8a2377}=Ctrl+Space,none,Toggle Konsole
+{fbfff6f2-5378-4235-8354-605aae8a2377}=Ctrl+Space,none,Toggle Terminal
 
 [kmix]
 _k_friendly_name=Audio Volume
@@ -57,15 +56,15 @@ Reboot Without Confirmation=none,none,Reboot Without Confirmation
 _k_friendly_name=ksmserver
 
 [kwin]
-Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Activate Window Demanding Attention
+Activate Window Demanding Attention=,Ctrl+Alt+A,Activate Window Demanding Attention
 ClearLastMouseMark=Meta+Shift+U,Meta+Shift+F12,Clear Last Mouse Mark
 ClearMouseMarks=Meta+Shift+C,Meta+Shift+F11,Clear All Mouse Marks
 Cube=Ctrl+F11\t,Ctrl+F11,Desktop Cube
 Cylinder=none,none,Desktop Cylinder
 Decrease Opacity=Alt+-,none,Decrease Opacity of Active Window by 5 %
-Expose=Ctrl+F9,Ctrl+F9,Toggle Present Windows (Current desktop)
+Expose=Ctrl+F9\tMeta+Esc,Ctrl+F9,Toggle Present Windows (Current desktop)
 ExposeAll=\tLaunch (C),Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
-ExposeClass=Ctrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+ExposeClass=Ctrl+F7\tMeta+Alt+Esc,Ctrl+F7,Toggle Present Windows (Window class)
 FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
 FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
 Increase Opacity=Alt+=,none,Increase Opacity of Active Window by 5 %
@@ -146,6 +145,7 @@ TILING: Toggle Floating=Meta+F,none,Toggle Floating
 TILING: Toggle Tiling=Meta+Shift+F11,none,Toggle Tiling
 Toggle Window Raise/Lower=none,none,Toggle Window Raise/Lower
 ToggleCurrentThumbnail=Meta+Ctrl+T,Meta+Ctrl+T,Toggle Thumbnail for Current Window
+TrackMouse=none,none,Track mouse
 Walk Through Desktop List=none,none,Walk Through Desktop List
 Walk Through Desktop List (Reverse)=none,none,Walk Through Desktop List (Reverse)
 Walk Through Desktops=none,none,Walk Through Desktops
@@ -193,7 +193,7 @@ Window Quick Tile Top Left=none,none,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,none,Quick Tile Window to the Top Right
 Window Raise=none,none,Raise Window
 Window Resize=Meta+R,none,Resize Window
-Window Shade=none,none,Shade Window
+Window Shade=Meta+[\tMeta+],none,Shade Window
 Window Shrink Horizontal=Meta+Shift+Left,none,Pack Shrink Window Horizontally
 Window Shrink Vertical=Meta+Shift+Up,none,Pack Shrink Window Vertically
 Window to Desktop 1=none,none,Window to Desktop 1
@@ -234,6 +234,22 @@ view_actual_size=Meta+0\tMeta+),Meta+0,Actual Size
 view_zoom_in=Meta+=,Meta+=,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
 
+[lattedock]
+_k_friendly_name=Latte Dock
+activate widget 12=Meta+C,none,Activate Event Calendar Widget
+activate widget 14=Meta+P,none,Activate Audio Volume (Win7 Mixer) Widget
+activate widget 16=Meta+D,none,Activate Downloads Widget
+activate widget 22=none,none,Activate System Tray Widget
+activate widget 33=none,none,Activate Application Menu Widget
+clear-history=none,none,Clear Clipboard History
+clipboard_action=,Ctrl+Alt+X,Enable Clipboard Actions
+cycleNextAction=none,none,Next History Item
+cyclePrevAction=none,none,Previous History Item
+edit_clipboard=none,none,Edit Contents...
+repeat_action=Ctrl+Alt+A,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
+show-barcode=none,none,Show Barcode...
+show-on-mouse-pos=Ctrl+Alt+V,none,Open Klipper at Mouse Position
+
 [mediacontrol]
 _k_friendly_name=Media Controller
 nextmedia=Media Next\tMeta+Alt+D,Media Next,Media playback next
@@ -255,7 +271,7 @@ activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
 activate widget 124=none,none,Activate Redshift Control Widget
 activate widget 125=none,none,Activate Weather Widget Widget
-activate widget 175=Meta+P,none,Activate Audio Volume (Win7 Mixer) Widget
+activate widget 175=,none,Activate Audio Volume (Win7 Mixer) Widget
 activate widget 196=none,none,Activate Now Dock Widget
 activate widget 234=none,none,Activate Application Menu Widget
 activate widget 245=none,none,Activate Now Dock Widget
@@ -272,5 +288,5 @@ previous activity=,none,Walk through activities (Reverse)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,none,Show Barcode...
-show-on-mouse-pos=Ctrl+Alt+V,none,Open Klipper at Mouse Position
+show-on-mouse-pos=,none,Open Klipper at Mouse Position
 stop current activity=Meta+S,Meta+S,Stop Current Activity

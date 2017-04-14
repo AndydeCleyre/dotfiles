@@ -54,6 +54,7 @@ recent () { ls -rt "$@" | tail -20 }
 alias redact="sed -r 's/^(\s*\S*(user(name)?|password|key(_id)?|token|address|secret|blob) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
+alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
 alias txtnamer="~/Code/txtnamer.py"

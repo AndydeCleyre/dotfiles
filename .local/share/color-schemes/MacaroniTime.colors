@@ -48,7 +48,7 @@ ForegroundVisited=186,185,114
 
 [Colors:Tooltip]
 BackgroundAlternate=56,60,74
-BackgroundNormal=31,36,51
+BackgroundNormal=34,34,34
 DecorationFocus=169,77,55
 DecorationHover=169,77,55
 ForegroundActive=109,148,141

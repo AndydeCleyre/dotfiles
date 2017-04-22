@@ -48,6 +48,7 @@ alias lynx="/usr/bin/lynx -accept_all_cookies"
 mkcd () { mkdir -p "$1" && cd "$1" }
 alias mounts="lsblk -f"
 alias open="xdg-open"
+alias o="xdg-open"
 alias ports="~/Code/ports.py"
 post () { curl -Ffile=@"$1" https://0x0.st }
 recent () { ls -rt "$@" | tail -20 }

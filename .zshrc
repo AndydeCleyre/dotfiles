@@ -20,6 +20,7 @@ export BROWSER=firefox
 . ~/.playerctl.zshrc
 . ~/.python.zshrc
 . ~/.rg.zshrc
+. ~/.s6.zshrc
 . ~/.steam.zshrc
 . ~/.sudo.zshrc
 . ~/.systemd.zshrc

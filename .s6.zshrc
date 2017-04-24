@@ -114,10 +114,5 @@ alias dsync="drudge_sync"
 alias denable="drudge_enable"
 alias ddisable="drudge_disable"
 
-_drudgery_complete() {
-    local completions
-    completions="$(ls $DRUDGEHOUSE)"
-    reply=( "${(ps:\n:)completions}" )
-}
-
+_drudgery_complete() { reply=( "${(ps:\n:)$(ls $DRUDGEHOUSE)}" ) }
 compctl -K _drudgery_complete drudge_status drudge_up drudge_down drudge_sync drudge_enable drudge_disable

@@ -46,3 +46,5 @@ pipi () { pip install -U $@ }
 pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
 freeze () { pip freeze | egrep -i "$@" }
 
+_pipa_complete() { reply=( "${(ps: :)$(cat $ZSH_PIP_CACHE_FILE)}" ) }
+compctl -K _pipa_complete pipa

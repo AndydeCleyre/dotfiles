@@ -29,7 +29,6 @@ export BROWSER=firefox
 . ~/.wine.zshrc
 [[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc
-compdef yadm=git
 
 alias aw="wiki-search"
 alias ariadone="~/Code/ariadone.py"

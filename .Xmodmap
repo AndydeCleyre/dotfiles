@@ -1,6 +1,7 @@
 clear lock
 keycode 66=grave asciitilde
 keycode 49=asciitilde asciitilde
+keycode 135=Super_R
 
 !keycode 10=exclam 1
 !keycode 11=at 2

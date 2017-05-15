@@ -25,7 +25,6 @@ export BROWSER=firefox
 . ~/.sudo.zshrc
 . ~/.systemd.zshrc
 . ~/.transfer.sh.zshrc
-. ~/.tree.zshrc
 . ~/.wine.zshrc
 [[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc
@@ -52,10 +51,11 @@ alias o="xdg-open"
 alias ports="~/Code/ports.py"
 post () { curl -Ffile=@"$1" https://0x0.st }
 recent () { ls -rt "$@" | tail -20 }
-alias redact="sed -r 's/^(\s*\S*(user(name)?|password|key(_id)?|token|address|secret|blob) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
+alias redact="sed -r 's/^(\s*\S*(user(name)?|passw(or)?d|key(_id)?|token|address|secret|blob|email|acct) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
 alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
+alias tree="tree -C"
 alias txtnamer="~/Code/txtnamer.py"

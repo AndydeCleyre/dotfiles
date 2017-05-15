@@ -1,6 +1,6 @@
 #!/bin/bash
 
-terminal=konsole
+terminal=terminator
 
 terminal_windows=`xdotool search --class $terminal`
 

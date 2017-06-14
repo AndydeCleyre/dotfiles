@@ -6,6 +6,7 @@
     "colorscheme": "gruvbox-tc",
     "cursorline": true,
     "eofnewline": true,
+    "ftoptions": true,
     "ignorecase": true,
     "indentchar": " ",
     "infobar": true,
@@ -26,7 +27,9 @@
     "splitRight": true,
     "statusline": true,
     "syntax": true,
+    "tabmovement": false,
     "tabsize": 4,
     "tabstospaces": true,
+    "termtitle": true,
     "useprimary": true
 }

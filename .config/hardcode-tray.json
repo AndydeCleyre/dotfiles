@@ -1,0 +1,7 @@
+{
+    "icons": {
+        "theme": "Papirus-Dark",
+        "size": 64
+    },
+    "nwjs": "/opt/nwjs-sdk/"
+}

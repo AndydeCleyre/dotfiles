@@ -14,8 +14,6 @@
 	{ "keys": ["alt+up"], 			"command": "swap_line_up" },
 	{ "keys": ["alt+down"], 		"command": "swap_line_down" },
 
-	{ "keys": ["ctrl+t"], 			"command": "new_file" },
-
 	{ "keys": ["alt+1"],			"command": "set_layout",
 		"args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] }
 	},

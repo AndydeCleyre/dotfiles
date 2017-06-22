@@ -29,6 +29,9 @@
     "syntax": true,
     "tabmovement": false,
     "tabsize": 4,
+    "*.yml": {
+      "tabsize": 2
+    },
     "tabstospaces": true,
     "termtitle": true,
     "useprimary": true

@@ -1,4 +1,13 @@
 {
+    "*.html": {
+        "tabsize": 2
+    },
+    "*.pug": {
+        "tabsize": 2
+    },
+    "*.yml": {
+        "tabsize": 2
+    },
     "autoclose": true,
     "autoindent": true,
     "autosave": false,
@@ -6,12 +15,15 @@
     "colorscheme": "gruvbox-tc",
     "cursorline": true,
     "eofnewline": true,
+    "fastdirty": true,
+    "fileformat": "unix",
     "ftoptions": true,
     "ignorecase": true,
     "indentchar": " ",
     "infobar": true,
     "keepautoindent": false,
     "linter": true,
+    "mouse": true,
     "pluginchannels": [
         "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
     ],
@@ -29,9 +41,6 @@
     "syntax": true,
     "tabmovement": false,
     "tabsize": 4,
-    "*.yml": {
-      "tabsize": 2
-    },
     "tabstospaces": true,
     "termtitle": true,
     "useprimary": true

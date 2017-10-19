@@ -7,5 +7,4 @@ xe () { touch "$@"; chmod +x "$@"; $EDITOR "$@" }
 
 alias smeld="SUDO_EDITOR=meld sudoedit"
 
-alias subl="subl3"
-xsubl () { touch "$@"; chmod +x "$@"; subl3 "$@" }
+xsubl () { touch "$@"; chmod +x "$@"; subl "$@" }

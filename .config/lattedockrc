@@ -1,0 +1,39 @@
+[Action_0]
+Automatic=true
+Description=Web URI
+Number of commands=1
+Regexp=https?://.+
+
+[Action_0/Command_0]
+Commandline[$e]=mpv --loop=inf %s
+Description=Play with MPV
+Enabled=true
+Icon=mpv
+Output=0
+
+[ActionsWidget]
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAABMgAAAAEAAAAAAAAD6AAAAABk
+
+[ConfigDialog]
+Height 1080=645
+Width 1920=729
+
+[EditActionDialog]
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAywAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAABNQAAAAEAAAAAAAAAoAAAAAEAAAAAAAABVwAAAAEAAAAAAAAD6AAAAABk
+Height 1080=533
+Width 1920=857
+
+[General]
+Number of Actions=1
+
+[ScreenConnectors]
+10=eDP1
+11=HDMI2
+
+[UniversalSettings]
+currentLayout=My Layout
+lastNonAssignedLayout=My Layout
+launchers=
+layoutsWindowSize=700,450
+showInfoWindow=true
+version=2

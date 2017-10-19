@@ -42,7 +42,7 @@ pipch () { pip-compile --no-header --generate-hashes | highlight -O truecolor -s
 pips () { pip-sync $@ }
 pipu () { [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ || pip-compile --no-header -U }
 
-pipacs () { pipa "$@"; pipc; pips }
+pipnow () { pipa "$@"; pipc; pips }
 
 pipi () { pip install -U $@ }
 pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
@@ -51,4 +51,4 @@ freeze () { pip freeze | egrep -i "$@" }
 _pipa_complete() { reply=( "${(ps: :)$(cat $ZSH_PIP_CACHE_FILE)}" ) }
 compctl -K _pipa_complete pipa
 
-unalias pip
+unalias pip 2> /dev/null || true

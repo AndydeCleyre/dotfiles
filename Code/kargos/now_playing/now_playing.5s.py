@@ -4,6 +4,7 @@ from contextlib import suppress
 from plumbum.cmd import playerctl
 from plumbum import ProcessExecutionError
 from requests import get
+from requests.exceptions import ConnectionError
 
 from vault import LASTFM_API_KEY, LASTFM_USER
 
@@ -17,20 +18,24 @@ def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
         return {detail: playerctl['metadata'](detail) for detail in ('title', 'artist', 'album')}
     except ProcessExecutionError:
         base = 'http://ws.audioscrobbler.com/2.0/'
-        r = get(base, params={
-            'format': 'json', 'api_key': api_key,
-            'method': 'user.getRecentTracks',
-            'user': user
-        })
-        if r.ok:
-            track = r.json()['recenttracks']['track'][0]
-            with suppress(KeyError):
-                if track['@attr']['nowplaying']:
-                    return {
-                        'title': track['name'],
-                        'artist': track['artist']['#text'],
-                        'album': track['album']['#text']
-                    }
+        try:
+            r = get(base, params={
+                'format': 'json', 'api_key': api_key,
+                'method': 'user.getRecentTracks',
+                'user': user
+            })
+        except ConnectionError:
+            pass
+        else:
+            if r.ok:
+                track = r.json()['recenttracks']['track'][0]
+                with suppress(KeyError):
+                    if track['@attr']['nowplaying']:
+                        return {
+                            'title': track['name'],
+                            'artist': track['artist']['#text'],
+                            'album': track['album']['#text']
+                        }
 
 
 def resize(txt, size, pre='» ', post=' «', ellipsis='center'):

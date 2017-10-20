@@ -49,7 +49,7 @@ if [[ "${terminfo[kdch1]}" != "" ]]; then bindkey "${terminfo[kdch1]}" delete-ch
 else bindkey "^[[3~" delete-char; bindkey "^[3;5~" delete-char; bindkey "\e[3~" delete-char; fi
 
 alias zedit="$EDITOR ~/.zshrc && . ~/.zshrc"
-alias zedits="subl3 -w ~/.zshrc && . ~/.zshrc"
-alias sedit="subl3 -w ~/.zshrc && . ~/.zshrc"
+alias zedits="subl -w ~/.zshrc && . ~/.zshrc"
+alias sedit="subl -w ~/.zshrc && . ~/.zshrc"
 alias zsource=". ~/.zshrc"
 zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || highlight -O truecolor -s solarized-light ~/.zshrc | "$PAGER" }

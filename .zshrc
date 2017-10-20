@@ -37,10 +37,10 @@ configs () { /usr/bin/locate "$1" | egrep "^($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
-alias excerpt="mpv --lua ~/Code/mpv-plugin-excerpt/excerpt.lua"
+alias excerpt="mpv --script ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"
-fax () { grep -v '^#' $1 | tr -s '\n' }
+fax () { grep -v '^\s*#' $1 | tr -s '\n' }
 alias no="egrep -i -v"
 alias img="/usr/bin/gm"
 lines () { sed -n "$1p" "$2" } # lines first[,last] textfile
@@ -52,7 +52,7 @@ alias pd="~/Code/playdelete.py"
 alias ports="~/Code/ports.py"
 post () { curl -Ffile=@"$1" https://0x0.st }
 recent () { ls -rt "$@" | tail -20 }
-alias redact="sed -r 's/^(\s*\S*(user(name)?|passw(or)?d|key(_id)?|token|address|secret|blob|email|acct) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
+alias redact="sed -r 's/^(\s*\S*(user(name)?|passw(or)?d|key(_id)?|token|address|secret|blob|email|acct|calendar_(id_)?list) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
 alias s="tmux a || tmux"
 alias t="tmux a || tmux"
 alias subs="subberthehut -nfsq"

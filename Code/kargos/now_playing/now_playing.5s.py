@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from contextlib import suppress
+import re
 
 from plumbum.cmd import playerctl
 from plumbum import ProcessExecutionError
@@ -57,6 +58,7 @@ if __name__ == '__main__':
     except TypeError:
         print(f"{fmt} iconName=spotify-indicator bash=spotify onclick=bash")
     else:
+        title = re.sub(r' - (Full Length )?(\d+ )?(Remastered|Single)( Version)?$', '', title)
         # size = len(artist)
         size = min(15, max(len(artist), len(title)))
         print(f"{resize(artist, size)}{fmt}")

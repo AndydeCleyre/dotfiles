@@ -40,6 +40,7 @@ clip() { echo "$@" | xclip -sel clip }
 alias excerpt="mpv --script ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"
+alias g="egrep --color=auto -i"
 fax () { grep -v '^\s*#' $1 | tr -s '\n' }
 alias no="egrep -i -v"
 alias img="/usr/bin/gm"

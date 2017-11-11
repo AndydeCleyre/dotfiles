@@ -335,26 +335,6 @@ class EssexNew(Application):
             runfile.chmod(0o755)
 
 
-# @Essex.subcommand('zsh')
-# class EssexZsh(Application):
-    # """Create a zsh completion file"""
-#
-    # def main(self, outfile='./_essex'):
-        # outfile = local.path(outfile)
-        # if outfile.is_dir():
-            # outpfile /= '_essex'
-        # if outfile.exists():
-            # if input(f"Really overwrite {outfile} ? [yN] ").lower() not in ('y', 'yes'):
-                # exit(1)
-        # txt = local['essex']('-h')
-        # subcmds = re.findall(r'^    (\w+) +(\w.*)$', txt, re.M)
-        descs = ' '.join(f"'{cmd}:{desc}'" for cmd, desc in subcmds)
-        descs = ' '.join(f"'{cmd}:{desc.replace('\'', r'\'')}'" for cmd, desc in subcmds)
-        descs = ' '.join(f"'{cmd}:" + desc.replace("'", r"\'") + "'" for cmd, desc in subcmds)
-        # descs = ' '.join(f"'{cmd}:" + desc.replace("'", '') + "'" for cmd, desc in subcmds)
-        # outfile.write(f"#compdef _essex\n_describe 'command' ({descs})\n")
-
-
 if __name__ == '__main__':
     for app in (
         EssexCat, EssexDisable, EssexEnable, EssexList, EssexLog,

@@ -10,7 +10,7 @@ from requests.exceptions import ConnectionError
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
-fmt = " | font='Iosevka Light' size=21"
+fmt = " | font='Iosevka Light' size=20"
 # event calendar clock height 34px
 
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     except TypeError:
         print(f"{fmt} iconName=spotify-indicator bash=spotify onclick=bash")
     else:
-        title = re.sub(r' - (Full Length )?(\d+ )?(Remastered|Single)( Version)?$', '', title)
+        title = re.sub(r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single)( Version)?$', '', title)
         # size = len(artist)
         size = min(15, max(len(artist), len(title)))
         print(f"{resize(artist, size)}{fmt}")

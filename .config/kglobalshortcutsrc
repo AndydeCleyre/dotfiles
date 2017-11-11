@@ -26,12 +26,12 @@ _k_friendly_name=Power Management
 display=Display\tMeta+P,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=System Settings Module
+_k_friendly_name=KDE Daemon
 {8c8d7771-e8f4-4d0f-826a-6b0a14e48213}=Alt+Z,none,Select And Translate
 {9755309f-20ba-4838-bc25-57cf52f03f42}=Print,none,Start Screenshot Tool
 {a9b06d49-6b98-4773-9858-a3380c83d3e9}=Meta+Print,none,Take Active Window Screenshot
 {b50c5f4c-bad9-4aa7-ba48-accbb13d4196}=Meta+Alt+A,none,Play/Pause Track
-{d03619b6-9b3c-48cc-9d9c-a2aadb485550}=none,none,Search
+{ce619deb-a084-467e-aa78-d4598ba6d727}=Meta+N,none,Close Notification
 {e6bdd811-6314-4c69-b5dc-24a45ee60528}=Meta+Alt+D,none,Skip Track
 {eeaa382d-8257-4bd8-a68a-6127075d36b8}=Shift+Print,none,Take Full Screen Screenshot
 {fbfff6f2-5378-4235-8354-605aae8a2377}=Ctrl+Space,none,Toggle Terminal
@@ -269,8 +269,9 @@ activate widget 10=Meta+D,none,Activate Downloads Widget
 activate widget 12=,none,Activate Event Calendar Widget
 activate widget 14=,none,Activate Audio Volume (Win7 Mixer) Widget
 activate widget 16=,none,Activate Downloads Widget
-activate widget 22=none,none,Activate System Tray Widget
-activate widget 27=Meta+N,none,Activate Notifications Widget
+activate widget 17=Meta+Shift+N,none,Activate Notifications Widget
+activate widget 22=Meta+B,none,Activate Bluetooth Widget
+activate widget 27=,none,Activate Notifications Widget
 activate widget 33=none,none,Activate Application Menu Widget
 activate widget 7=Meta+C,none,Activate Event Calendar Widget
 activate widget 9=Meta+V,none,Activate Audio Volume (Win7 Mixer) Widget

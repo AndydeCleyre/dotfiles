@@ -1,12 +1,15 @@
 [ActionPlugins][1]
 RightButton;NoModifier=org.kde.contextmenu
 
+[AppletGlobals][org.kde.plasma.notifications]
+popupPosition=0
+
 [Containments][1]
 activityId=
 dockWindowBehavior=true
 formfactor=3
 immutability=1
-lastScreen=-1
+lastScreen=11
 location=6
 onPrimary=true
 plugin=org.kde.latte.containment
@@ -24,7 +27,7 @@ plugin=org.kde.latte.plasmoid
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
 launchers=multi;*;2;file:///usr/share/applications/firefox.desktop;file:///usr/share/applications/org.kde.dolphin.desktop
-launchers59=applications:org.kde.dolphin.desktop,applications:telegram-desktop.desktop,applications:firefox.desktop,applications:jdownloader.desktop,applications:sublime_text.desktop,applications:spotify.desktop,applications:cantata.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
+launchers59=applications:org.kde.dolphin.desktop,applications:firefox.desktop,applications:telegram-desktop.desktop,applications:jdownloader.desktop,applications:sublime_text.desktop,applications:cantata.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
 
 [Containments][1][Applets][24]
 immutability=1
@@ -38,12 +41,24 @@ DialogWidth=1120
 currentDesktopSelected=ShowDesktop
 displayedText=Number
 
+[Containments][1][Applets][26]
+immutability=1
+plugin=org.kde.kargos
+
+[Containments][1][Applets][26][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][1][Applets][26][Configuration][General]
+command=~/Code/kargos/dash/dash.300s.py
+
 [Containments][1][ConfigDialog]
 DialogHeight=939
 DialogWidth=728
 
 [Containments][1][General]
-appletOrder=2;24
+advanced=true
+appletOrder=2;26;24
 dotsOnActive=true
 durationTime=x1
 iconSize=128
@@ -63,7 +78,7 @@ zoomLevel=0
 activityId=
 formfactor=2
 immutability=1
-lastScreen=-1
+lastScreen=11
 location=3
 plugin=org.kde.plasma.private.systemtray
 wallpaperplugin=org.kde.image
@@ -84,13 +99,16 @@ plugin=org.kde.kdeconnect
 immutability=1
 plugin=org.kde.plasma.notifications
 
+[Containments][12][Applets][17][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][12][Applets][17][Shortcuts]
+global=Meta+Shift+N
+
 [Containments][12][Applets][18]
 immutability=1
 plugin=org.kde.plasma.printmanager
-
-[Containments][12][Applets][20]
-immutability=1
-plugin=org.kde.plasma.battery
 
 [Containments][12][Applets][21]
 immutability=1
@@ -99,6 +117,9 @@ plugin=org.kde.plasma.networkmanagement
 [Containments][12][Applets][22]
 immutability=1
 plugin=org.kde.plasma.bluetooth
+
+[Containments][12][Applets][22][Shortcuts]
+global=Meta+B
 
 [Containments][12][Applets][23]
 immutability=1
@@ -114,6 +135,10 @@ DialogWidth=1120
 [Containments][12][Applets][23][Configuration][General]
 useDefaultIcons=false
 
+[Containments][12][Applets][25]
+immutability=1
+plugin=org.kde.plasma.battery
+
 [Containments][12][ConfigDialog]
 DialogHeight=840
 DialogWidth=1120
@@ -128,7 +153,7 @@ shownItems=TelegramDesktop,org.kde.plasma.clipboard,org.kde.plasma.battery,org.k
 activityId=
 formfactor=2
 immutability=1
-lastScreen=-1
+lastScreen=11
 location=3
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
@@ -264,6 +289,7 @@ panelPosition=Right
 panelSize=100
 panelTransparency=80
 proportionIconSize=4
+shrinkThickMargins=false
 zoomLevel=0
 
 [LayoutSettings]

@@ -1,0 +1,7 @@
+@font-face { font-family: 'FONT'; src: url('/usr/share/fonts/TTF/iosevka-custom-regular.ttf') format('truetype') }
+@-moz-document regexp("moz-extension://.+/sidebar/sidebar.html") {
+  .tab .label {
+    font-family: FONT !important;
+    font-size: 15pt !important;
+  }
+}

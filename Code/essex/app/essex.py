@@ -3,24 +3,27 @@ import sys
 import re
 from contextlib import suppress
 
-from plumbum import local, BG, FG
+from plumbum import local, BG, FG, CommandNotFound
 from plumbum.cli import Application, Flag, SwitchAttr
 from plumbum.colors import blue, dark_gray, green, red, yellow
 from plumbum.cmd import (
-    fdmove,
-    lsof,
-    pstree,
-    s6_log,
-    s6_svc,
-    s6_svscan,
-    s6_svscanctl,
-    s6_svstat,
-    tail
+    s6_log, s6_svc, s6_svscan, s6_svscanctl, s6_svstat,
+    fdmove, lsof, pstree, tail
 )
+
+
+try:
+    local['highlight']
+except CommandNotFound:
+    def highlight(doc):
+        print(doc.read())
+else:
+    def highlight(doc):
+        local['highlight']['--stdout', '-S', 'sh', '-O', 'truecolor', '-s', 'solarized-light', doc] & FG
 
 # .s6-svscan/crash  ?
 # .s6-svscan/finish ?
-SVCS_PATHS = ('./svcs', '../svcs', '~/svcs', '/etc/svcs', '/svcs')
+SVCS_PATHS = ('./svcs', '~/svcs', '/etc/svcs', '/svcs')
 
 
 class Essex(Application):
@@ -71,12 +74,14 @@ class EssexCat(Application):
             for file in ('run', 'finish'):
                 doc = (svc / file)
                 if doc.is_file():
-                    print(f"{doc | green}:")
-                    print(doc.read())
+                    line = '-' * (len(doc) + 1)
+                    print(f"{line}\n{doc | green}:\n{line}")
+                    highlight(doc)
             logger = svc / 'log' / 'run'
             if logger.is_file():
-                print(f"{logger | blue}:")
-                print(logger.read())
+                line = '-' * (len(logger) + 1)
+                print(f"{line}\n{logger | blue}:\n{line}")
+                highlight(logger)
 
 
 @Essex.subcommand('start')
@@ -211,7 +216,9 @@ class EssexOn(Application):
 
     def main(self):
         r, out, err = s6_svscanctl[self.parent.svcs].run(retcode=None)
-        if r == 100:
+        # if r == 100:
+        # temporary workaround till proper error codes are returned by svscanctl:
+        if r in (100, 111):
             (
                 fdmove['-c', '2', '1'][s6_svscan][self.parent.svcs] |
                 s6_log['T', self.parent.logs / '.svscan']

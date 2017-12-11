@@ -52,4 +52,4 @@ alias zedit="$EDITOR ~/.zshrc && . ~/.zshrc"
 alias zedits="subl -w ~/.zshrc && . ~/.zshrc"
 alias sedit="subl -w ~/.zshrc && . ~/.zshrc"
 alias zsource=". ~/.zshrc"
-zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || highlight -O truecolor -s solarized-light ~/.zshrc | "$PAGER" }
+zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || highlight -O truecolor -s solarized-light --stdout ~/.zshrc ~/.*.zshrc | tr -s '\n' | "$PAGER" }

@@ -21,6 +21,7 @@ else:
     def highlight(doc):
         local['highlight']['--stdout', '-S', 'sh', '-O', 'truecolor', '-s', 'solarized-light', doc] & FG
 
+# TODO: rescan for change run scripts (svc and log)
 # .s6-svscan/crash  ?
 # .s6-svscan/finish ?
 SVCS_PATHS = ('./svcs', '~/svcs', '/etc/svcs', '/svcs')
@@ -75,12 +76,12 @@ class EssexCat(Application):
                 doc = (svc / file)
                 if doc.is_file():
                     line = '-' * (len(doc) + 1)
-                    print(f"{line}\n{doc | green}:\n{line}")
+                    print(f"\n{doc | green}:\n{line}")
                     highlight(doc)
             logger = svc / 'log' / 'run'
             if logger.is_file():
                 line = '-' * (len(logger) + 1)
-                print(f"{line}\n{logger | blue}:\n{line}")
+                print(f"\n{logger | blue}:\n{line}")
                 highlight(logger)
 
 
@@ -333,7 +334,7 @@ class EssexNew(Application):
         logger = svc / 'log'
         logger.mkdir()
         runfile = logger / 'run'
-        runfile.write(f"#!/bin/execlineb -P\n{set_user}s6-log T {self.parent.logs / svc.name}")
+        runfile.write(f"#!/bin/execlineb -P\ns6-log T {self.parent.logs / svc.name}")
         runfile.chmod(0o755)
         (self.parent.logs / svc.name).mkdir()
         if self.on_finish:

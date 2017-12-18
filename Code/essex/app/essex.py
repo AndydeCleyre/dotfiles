@@ -324,22 +324,31 @@ class EssexNew(Application):
         if svc.exists():
             print(f"{svc} already exists!" | red, file=sys.stderr)
             sys.exit(1)
+        logger = svc / 'log'
+
         svc.mkdir()
+        logger.mkdir()
+        (self.parent.logs / svc.name).mkdir()
+
+        shebang = '#!/bin/execlineb -P\n'
         set_user = f's6-setuidgid {self.as_user} ' if self.as_user else ''
-        runfile = (svc / 'run')
-        runfile.write(f"#!/bin/execlineb -P\nfdmove -c 2 1 {set_user}{cmd}")
+        hash_run = 'foreground { redirfd -w 1 run.md5 md5sum run } '
+        err_to_out = 'fdmove -c 2 1 '
+
+        runfile = svc / 'run'
+        runfile.write(f"{shebang}{hash_run}{err_to_out}{set_user}{cmd}")
         runfile.chmod(0o755)
+
         if not self.enabled:
             (svc / 'down').touch()
-        logger = svc / 'log'
-        logger.mkdir()
+
         runfile = logger / 'run'
-        runfile.write(f"#!/bin/execlineb -P\ns6-log T {self.parent.logs / svc.name}")
+        runfile.write(f"{shebang}{hash_run}s6-log T {self.parent.logs / svc.name}")
         runfile.chmod(0o755)
-        (self.parent.logs / svc.name).mkdir()
+
         if self.on_finish:
-            runfile = (svc / 'finish')
-            runfile.write(f"#!/bin/execlineb\nfdmove -c 2 1 {set_user}{self.on_finish}")
+            runfile = svc / 'finish'
+            runfile.write(f"#!/bin/execlineb\n{err_to_out}{set_user}{self.on_finish}")
             runfile.chmod(0o755)
 
 

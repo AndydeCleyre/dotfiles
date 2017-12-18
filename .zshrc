@@ -8,6 +8,7 @@ export BROWSER=firefox
 . ~/.zsh.zshrc
 . ~/.antigen.zshrc
 . ~/.path.zshrc
+. ~/.theme.zshrc
 
 . ~/.cd.zshrc
 . ~/.docker.zshrc

@@ -10,7 +10,9 @@ from requests.exceptions import ConnectionError
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
-fmt = " | font='Iosevka Light' size=20"
+fmt = "| font='Iosevka'"
+# fmt = "| font='Iosevka Light'"
+# fmt = " | font='Iosevka Light' size=20"
 # event calendar clock height 34px
 
 
@@ -56,14 +58,14 @@ if __name__ == '__main__':
     try:
         title, artist, album = details['title'], details['artist'], details['album']
     except TypeError:
-        print(f"{fmt} iconName=spotify-indicator bash=spotify onclick=bash")
+        print(fmt, "iconName=spotify-indicator bash=spotify onclick=bash")
     else:
-        title = re.sub(r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single)( Version)?$', '', title)
+        title = re.sub(r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single|Stereo)( Version)?$', '', title)
         # size = len(artist)
         size = min(15, max(len(artist), len(title)))
-        print(f"{resize(artist, size)}{fmt}")
-        print(f"{resize(title,  size)}{fmt}")
+        print(resize(artist, size), fmt)
+        print(resize(title,  size), fmt)
         print('---')
-        print(f"{title} {fmt}", "iconName=media-album-track")
-        print(f"{artist}{fmt}", "iconName=view-media-artist")
-        print(f"{album} {fmt}", "iconName=media-album-cover")
+        print(title, fmt, "iconName=media-album-track")
+        print(artist, fmt, "iconName=view-media-artist")
+        print(album, fmt, "iconName=media-album-cover")

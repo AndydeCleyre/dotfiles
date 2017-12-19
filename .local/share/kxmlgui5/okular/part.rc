@@ -1,21 +1,22 @@
-<!DOCTYPE kpartgui>
-<kpartgui name="okular_part" version="37">
+<!DOCTYPE kpartgui SYSTEM 'kpartgui.dtd'>
+<kpartgui name="okular_part" version="38">
  <MenuBar>
-  <Menu name="file" noMerge="1">
-   <text translationDomain="okular">&amp;File</text>
-   <Action name="get_new_stuff" group="file_open"/>
-   <Action name="import_ps" group="file_open"/>
-   <Action name="file_save_as" group="file_save"/>
-   <Action name="file_save_copy" group="file_save"/>
-   <Action name="file_reload" group="file_save"/>
-   <Action name="file_print" group="file_print"/>
-   <Action name="file_print_preview" group="file_print"/>
-   <Action name="properties" group="file_print"/>
-   <Action name="embedded_files" group="file_print"/>
-   <Action name="file_export_as" group="file_print"/>
+  <Menu name="file">
+   <text>&amp;File</text>
+   <Action group="file_open" name="get_new_stuff"/>
+   <Action group="file_open" name="import_ps"/>
+   <Action group="file_save" name="file_save"/>
+   <Action group="file_save" name="file_save_as"/>
+   <Action group="file_save" name="file_reload"/>
+   <Action group="file_print" name="file_print"/>
+   <Action group="file_print" name="file_print_preview"/>
+   <Action group="file_print" name="properties"/>
+   <Action group="file_print" name="embedded_files"/>
+   <Action group="file_print" name="file_export_as"/>
+   <Action group="file_print" name="file_share"/>
   </Menu>
-  <Menu name="edit" noMerge="1">
-   <text translationDomain="okular">&amp;Edit</text>
+  <Menu name="edit">
+   <text>&amp;Edit</text>
    <Action name="edit_undo"/>
    <Action name="edit_redo"/>
    <Separator/>
@@ -27,8 +28,8 @@
    <Action name="edit_find_next"/>
    <Action name="edit_find_prev"/>
   </Menu>
-  <Menu name="view" noMerge="1">
-   <text translationDomain="okular">&amp;View</text>
+  <Menu name="view">
+   <text>&amp;View</text>
    <Action name="presentation"/>
    <Separator/>
    <Action name="view_zoom_in"/>
@@ -40,8 +41,8 @@
    <Action name="view_continuous"/>
    <Action name="view_render_mode"/>
    <Separator/>
-   <Menu name="view_orientation" noMerge="1">
-    <text translationDomain="okular">&amp;Orientation</text>
+   <Menu name="view_orientation">
+    <text>&amp;Orientation</text>
     <Action name="view_orientation_rotate_ccw"/>
     <Action name="view_orientation_rotate_cw"/>
     <Action name="view_orientation_original"/>
@@ -51,8 +52,8 @@
    <Separator/>
    <Action name="view_toggle_forms"/>
   </Menu>
-  <Menu name="go" noMerge="1">
-   <text translationDomain="okular">&amp;Go</text>
+  <Menu name="go">
+   <text>&amp;Go</text>
    <Action name="go_previous"/>
    <Action name="go_next"/>
    <Separator/>
@@ -64,8 +65,8 @@
    <Separator/>
    <Action name="go_goto_page"/>
   </Menu>
-  <Menu name="bookmarks" noMerge="1">
-   <text translationDomain="okular">&amp;Bookmarks</text>
+  <Menu name="bookmarks">
+   <text>&amp;Bookmarks</text>
    <Action name="bookmark_add"/>
    <Action name="rename_bookmark"/>
    <Action name="previous_bookmark"/>
@@ -73,8 +74,8 @@
    <Separator/>
    <ActionList name="bookmarks_currentdocument"/>
   </Menu>
-  <Menu name="tools" noMerge="1">
-   <text translationDomain="okular">&amp;Tools</text>
+  <Menu name="tools">
+   <text>&amp;Tools</text>
    <Action name="mouse_drag"/>
    <Action name="mouse_zoom"/>
    <Action name="mouse_select"/>
@@ -88,19 +89,19 @@
    <Action name="speak_current_page"/>
    <Action name="speak_stop_all"/>
   </Menu>
-  <Menu name="settings" noMerge="1">
-   <text translationDomain="okular">&amp;Settings</text>
-   <Action name="show_leftpanel" group="show_merge"/>
-   <Action name="show_bottombar" group="show_merge"/>
-   <Action name="options_configure_generators" group="configure_merge"/>
-   <Action name="options_configure" group="configure_merge"/>
+  <Menu name="settings">
+   <text>&amp;Settings</text>
+   <Action group="show_merge" name="show_leftpanel"/>
+   <Action group="show_merge" name="show_bottombar"/>
+   <Action group="configure_merge" name="options_configure_generators"/>
+   <Action group="configure_merge" name="options_configure"/>
   </Menu>
-  <Menu name="help" noMerge="1">
-   <text translationDomain="okular">&amp;Help</text>
-   <Action name="help_about_backend" group="about_merge"/>
+  <Menu name="help">
+   <text>&amp;Help</text>
+   <Action group="about_merge" name="help_about_backend"/>
   </Menu>
  </MenuBar>
- <ToolBar name="mainToolBar" noMerge="1">
+ <ToolBar noMerge="1" name="mainToolBar">
   <Action name="view_render_mode"/>
   <Action name="view_continuous"/>
   <text translationDomain="okular">Main Toolbar</text>
@@ -125,12 +126,12 @@
   <Action name="file_save_copy"/>
   <Action name="options_configure"/>
  </ToolBar>
- <ActionProperties scheme="Default">
-  <Action name="go_next" shortcut=""/>
-  <Action name="go_previous" shortcut=""/>
-  <Action name="show_leftpanel" shortcut="F7; Ctrl+Alt+S"/>
+ <ActionProperties>
+  <Action shortcut="" name="go_next"/>
+  <Action shortcut="" name="go_previous"/>
+  <Action name="mouse_drag" icon="cursor-arrow"/>
+  <Action shortcut="F7; Ctrl+Alt+S" name="show_leftpanel"/>
   <Action name="toggle_change_colors" icon="lighttable"/>
   <Action name="view_trim_mode" icon="image-crop"/>
-  <Action name="mouse_drag" icon="cursor-arrow"/>
  </ActionProperties>
 </kpartgui>

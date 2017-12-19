@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from contextlib import suppress
+from random import choice
 import re
 
 from plumbum.cmd import playerctl
@@ -11,9 +12,6 @@ from vault import LASTFM_API_KEY, LASTFM_USER
 
 
 fmt = "| font='Iosevka'"
-# fmt = "| font='Iosevka Light'"
-# fmt = " | font='Iosevka Light' size=20"
-# event calendar clock height 34px
 
 
 def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
@@ -41,8 +39,10 @@ def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
                         }
 
 
-def resize(txt, size, pre='» ', post=' «', ellipsis='center'):
+def resize(txt, size, pre='» ', post=' «', ellipsis='random'):
     free = size - len(txt)
+    if ellipsis == 'random':
+        ellipsis = choice(('center', 'end'))
     if free >= 0:
         a, b = divmod(free, 2)
         return f"{pre}{' ' * a}{txt}{' ' * (a + b)}{post}"

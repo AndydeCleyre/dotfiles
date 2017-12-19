@@ -11,7 +11,7 @@ envin () {
     [[ -d ./venv ]] || python3 -m venv venv
     . ./venv/bin/activate
     pip install -qU pip-tools
-    ./venv/bin/pip-sync || pip install -qr requirements.txt
+    ./venv/bin/pip-sync *requirements.txt || pip install -qr requirements.txt
 }
 
 envin2 () {
@@ -20,7 +20,7 @@ envin2 () {
     [[ -d ./venv2 ]] || virtualenv2 venv2
     . ./venv2/bin/activate
     pip install -qU pip-tools
-    ./venv2/bin/pip-sync || pip install -qr requirements.txt
+    ./venv2/bin/pip-sync *requirements.txt || pip install -qr requirements.txt
 }
 
 envinpypy () {
@@ -29,19 +29,19 @@ envinpypy () {
     [[ -d ./venvpypy ]] || pypy3 -m venv venvpypy
     . ./venvpypy/bin/activate
     pip install -qU pip-tools
-    ./venvpypy/bin/pip-sync || pip install -qr requirements.txt
+    ./venvpypy/bin/pip-sync *requirements.txt || pip install -qr requirements.txt
 }
 
 envout () { deactivate }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
-pipc () { pip-compile --no-header | highlight -O truecolor -s solarized-light -S py }
-pipch () { pip-compile --no-header --generate-hashes | highlight -O truecolor -s solarized-light -S py }
-pips () { pip-sync $@ }
+pipc () { pip-compile --no-header $@ | highlight -O truecolor -s solarized-light -S py }
+pipch () { pip-compile --no-header --generate-hashes $@ | highlight -O truecolor -s solarized-light -S py }
+pips () { pip-sync *requirements.txt }
 pipu () { [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ || pip-compile --no-header -U }
 pipuh () { [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ || pip-compile --no-header -U --generate-hashes }
 
-pipnow () { pipa "$@"; pipc; pips }
+pipnow () { pipa $@; pipc; pips }
 pipcs () { pipc; pips }
 pipchs () { pipch; pips }
 

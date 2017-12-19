@@ -4,7 +4,7 @@ import re
 from contextlib import suppress
 
 from plumbum import local, BG, FG, CommandNotFound
-from plumbum.cli import Application, Flag, SwitchAttr
+from plumbum.cli import Application, Flag, SwitchAttr, Range
 from plumbum.colors import blue, dark_gray, green, red, yellow
 from plumbum.cmd import (
     s6_log, s6_svc, s6_svscan, s6_svscanctl, s6_svstat,
@@ -319,6 +319,23 @@ class EssexNew(Application):
         help="command to run whenever the supervised process dies (must complete in under 5 seconds)"
     )
 
+    rotate_at = SwitchAttr(
+        ['r', 'rotate-at'], Range(4, 262143), argname='KIBIBYTES',
+        help="archive each log file when it reaches KIBIBYTES kibibytes",
+        default=5120
+    )
+
+    prune_at = SwitchAttr(
+        ['p', 'prune-at'], Range(0, 2 ** 10000), argname='KIBIBYTES',
+        help="keep up to KIBIBYTES kibibytes of logs before deleting the oldest; 0 means never prune",
+        default=51200
+    )
+
+    on_rotate = SwitchAttr(
+        ['o', 'on-rotate'], argname='PROCESSOR_CMD',
+        help="processor command to run when rotating logs; receives log via stdin; its stdout is archived; PROCESSOR_CMD will be double-quoted"
+    )
+
     def main(self, svc_name, cmd):
         svc = self.parent.svcs / svc_name
         if svc.exists():
@@ -342,8 +359,13 @@ class EssexNew(Application):
         if not self.enabled:
             (svc / 'down').touch()
 
+        logfile = self.parent.logs / svc.name
+        rotate = f's{self.rotate_at * 1024} '
+        prune = f'S{self.prune_at * 1024} '
+        process = f'!"{self.on_rotate}" ' if self.on_rotate else ''
+
         runfile = logger / 'run'
-        runfile.write(f"{shebang}{hash_run}s6-log T {self.parent.logs / svc.name}")
+        runfile.write(f"{shebang}{hash_run}s6-log T {rotate}{prune}{process}{logfile}")
         runfile.chmod(0o755)
 
         if self.on_finish:

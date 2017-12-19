@@ -9,7 +9,7 @@ else
     ZSH_THEME_CONSOLE="%F{cyan}tty$(echo $TTY | egrep -o '\w+$')%f"
 fi
 local ZSH_THEME_CWD="%F{magenta}%~%f"
-local ZSH_THEME_RETURN="%(?..%F{red}%? <- )%(?.%F{green}.)%*%f"
+local ZSH_THEME_RETURN="%(?..%F{red}%? <- )%F{green}%*%f"
 
 local ZSH_THEME_GIT_PROMPT_PREFIX="(%F{blue}"
 local ZSH_THEME_GIT_PROMPT_SUFFIX="%f)"

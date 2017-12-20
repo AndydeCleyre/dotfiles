@@ -4,7 +4,7 @@ antigen bundle aws
 antigen bundle colored-man-pages
 antigen bundle docker
 antigen bundle extract
-antigen bundle git; unalias g 2> /dev/null || true
+antigen bundle git
 antigen bundle git-flow-avh
 antigen bundle mercurial
 antigen bundle nmap
@@ -15,3 +15,6 @@ antigen bundle vault
 antigen bundle zsh-users/zsh-completions src
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
+
+unalias g 2> /dev/null || true
+unalias pip 2> /dev/null || true

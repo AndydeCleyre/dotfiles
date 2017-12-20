@@ -35,13 +35,13 @@ envinpypy () {
 envout () { deactivate }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
-pipc () { pip-compile --no-header $@ | highlight -O truecolor -s solarized-light -S py }
-pipch () { pip-compile --no-header --generate-hashes $@ | highlight -O truecolor -s solarized-light -S py }
+pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | highlight -O truecolor -s solarized-light -S py; done }
+pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | highlight -O truecolor -s solarized-light -S py; done }
 pips () { pip-sync *requirements.txt }
-pipu () { [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ || pip-compile --no-header -U }
-pipuh () { [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ || pip-compile --no-header -U --generate-hashes }
+pipu () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ "$reqs" || pip-compile --no-header -U "$reqs"; done }
+pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ "$reqs" || pip-compile --no-header -U --generate-hashes "$reqs"; done }
 
-pipnow () { pipa $@; pipc; pips }
+pipacs () { pipa $@; pipc; pips }
 pipcs () { pipc; pips }
 pipchs () { pipch; pips }
 
@@ -51,5 +51,3 @@ freeze () { pip freeze | egrep -i "$@" }
 
 _pipa_complete() { reply=( "${(ps: :)$(cat $ZSH_PIP_CACHE_FILE)}" ) }
 compctl -K _pipa_complete pipa
-
-unalias pip 2> /dev/null || true

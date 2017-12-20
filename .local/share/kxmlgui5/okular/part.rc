@@ -1,8 +1,8 @@
-<!DOCTYPE kpartgui SYSTEM 'kpartgui.dtd'>
-<kpartgui name="okular_part" version="38">
+<!DOCTYPE kpartgui>
+<kpartgui version="38" name="okular_part">
  <MenuBar>
-  <Menu name="file">
-   <text>&amp;File</text>
+  <Menu noMerge="1" name="file">
+   <text translationDomain="okular">&amp;File</text>
    <Action group="file_open" name="get_new_stuff"/>
    <Action group="file_open" name="import_ps"/>
    <Action group="file_save" name="file_save"/>
@@ -15,8 +15,8 @@
    <Action group="file_print" name="file_export_as"/>
    <Action group="file_print" name="file_share"/>
   </Menu>
-  <Menu name="edit">
-   <text>&amp;Edit</text>
+  <Menu noMerge="1" name="edit">
+   <text translationDomain="okular">&amp;Edit</text>
    <Action name="edit_undo"/>
    <Action name="edit_redo"/>
    <Separator/>
@@ -28,8 +28,8 @@
    <Action name="edit_find_next"/>
    <Action name="edit_find_prev"/>
   </Menu>
-  <Menu name="view">
-   <text>&amp;View</text>
+  <Menu noMerge="1" name="view">
+   <text translationDomain="okular">&amp;View</text>
    <Action name="presentation"/>
    <Separator/>
    <Action name="view_zoom_in"/>
@@ -41,8 +41,8 @@
    <Action name="view_continuous"/>
    <Action name="view_render_mode"/>
    <Separator/>
-   <Menu name="view_orientation">
-    <text>&amp;Orientation</text>
+   <Menu noMerge="1" name="view_orientation">
+    <text translationDomain="okular">&amp;Orientation</text>
     <Action name="view_orientation_rotate_ccw"/>
     <Action name="view_orientation_rotate_cw"/>
     <Action name="view_orientation_original"/>
@@ -52,8 +52,8 @@
    <Separator/>
    <Action name="view_toggle_forms"/>
   </Menu>
-  <Menu name="go">
-   <text>&amp;Go</text>
+  <Menu noMerge="1" name="go">
+   <text translationDomain="okular">&amp;Go</text>
    <Action name="go_previous"/>
    <Action name="go_next"/>
    <Separator/>
@@ -65,8 +65,8 @@
    <Separator/>
    <Action name="go_goto_page"/>
   </Menu>
-  <Menu name="bookmarks">
-   <text>&amp;Bookmarks</text>
+  <Menu noMerge="1" name="bookmarks">
+   <text translationDomain="okular">&amp;Bookmarks</text>
    <Action name="bookmark_add"/>
    <Action name="rename_bookmark"/>
    <Action name="previous_bookmark"/>
@@ -74,8 +74,8 @@
    <Separator/>
    <ActionList name="bookmarks_currentdocument"/>
   </Menu>
-  <Menu name="tools">
-   <text>&amp;Tools</text>
+  <Menu noMerge="1" name="tools">
+   <text translationDomain="okular">&amp;Tools</text>
    <Action name="mouse_drag"/>
    <Action name="mouse_zoom"/>
    <Action name="mouse_select"/>
@@ -89,15 +89,15 @@
    <Action name="speak_current_page"/>
    <Action name="speak_stop_all"/>
   </Menu>
-  <Menu name="settings">
-   <text>&amp;Settings</text>
+  <Menu noMerge="1" name="settings">
+   <text translationDomain="okular">&amp;Settings</text>
    <Action group="show_merge" name="show_leftpanel"/>
    <Action group="show_merge" name="show_bottombar"/>
    <Action group="configure_merge" name="options_configure_generators"/>
    <Action group="configure_merge" name="options_configure"/>
   </Menu>
-  <Menu name="help">
-   <text>&amp;Help</text>
+  <Menu noMerge="1" name="help">
+   <text translationDomain="okular">&amp;Help</text>
    <Action group="about_merge" name="help_about_backend"/>
   </Menu>
  </MenuBar>
@@ -122,6 +122,7 @@
   <Action name="presentation"/>
   <Action name="mouse_toggle_annotate"/>
   <Separator name="separator_4"/>
+  <Action name="file_save_as"/>
   <Action name="properties"/>
   <Action name="file_save_copy"/>
   <Action name="options_configure"/>
@@ -129,9 +130,9 @@
  <ActionProperties>
   <Action shortcut="" name="go_next"/>
   <Action shortcut="" name="go_previous"/>
-  <Action name="mouse_drag" icon="cursor-arrow"/>
+  <Action icon="cursor-arrow" name="mouse_drag"/>
   <Action shortcut="F7; Ctrl+Alt+S" name="show_leftpanel"/>
-  <Action name="toggle_change_colors" icon="lighttable"/>
-  <Action name="view_trim_mode" icon="image-crop"/>
+  <Action icon="lighttable" name="toggle_change_colors"/>
+  <Action icon="image-crop" name="view_trim_mode"/>
  </ActionProperties>
 </kpartgui>

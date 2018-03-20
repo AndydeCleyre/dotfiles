@@ -33,13 +33,16 @@ else:
 SVCS_PATHS = ('./svcs', '~/svcs', '/etc/svcs', '/svcs')
 
 
-class Essex(Application):
-    """Simply manage services"""
-
+class ColorApp(Application):
     PROGNAME = green
     VERSION = '0.1' | blue
     COLOR_USAGE = green
     COLOR_GROUPS = {'Meta-switches': dark_gray, 'Switches': yellow, 'Subcommands': blue}
+
+
+class Essex(ColorApp):
+    """Simply manage services"""
+
     SUBCOMMAND_HELPMSG = False
 
     svcs_dir = SwitchAttr(
@@ -75,7 +78,7 @@ class Essex(Application):
 
 
 @Essex.subcommand('cat')
-class EssexCat(Application):
+class EssexCat(ColorApp):
     """View services' run, finish, and log commands"""
 
     def main(self, svc_name, *extra_svc_names):
@@ -95,7 +98,7 @@ class EssexCat(Application):
 
 
 @Essex.subcommand('start')
-class EssexStart(Application):
+class EssexStart(ColorApp):
     """Start individual services"""
 
     def main(self, svc_name, *extra_svc_names):
@@ -106,7 +109,7 @@ class EssexStart(Application):
 
 
 @Essex.subcommand('stop')
-class EssexStop(Application):
+class EssexStop(ColorApp):
     """Stop individual services"""
 
     def main(self, svc_name, *extra_svc_names):
@@ -115,7 +118,7 @@ class EssexStop(Application):
 
 
 @Essex.subcommand('list')
-class EssexList(Application):
+class EssexList(ColorApp):
     """List all known services"""
 
     enabled_only = Flag(
@@ -132,7 +135,7 @@ class EssexList(Application):
 
 
 @Essex.subcommand('status')
-class EssexStatus(Application):
+class EssexStatus(ColorApp):
     """View the current states of services"""
 
     enabled_only = Flag(
@@ -180,7 +183,7 @@ def parse_statline(statline):
 
 
 @Essex.subcommand('tree')
-class EssexTree(Application):
+class EssexTree(ColorApp):
     """View the process tree from the supervision root"""
 
     def main(self):
@@ -191,7 +194,7 @@ class EssexTree(Application):
 
 
 @Essex.subcommand('enable')
-class EssexEnable(Application):
+class EssexEnable(ColorApp):
     """Configure individual services to be up, without actually starting them"""
 
     def main(self, svc_name, *extra_svc_names):
@@ -208,7 +211,7 @@ class EssexEnable(Application):
 
 
 @Essex.subcommand('disable')
-class EssexDisable(Application):
+class EssexDisable(ColorApp):
     """Configure individual services to be down, without actually stopping them"""
 
     def main(self, svc_name, *extra_svc_names):
@@ -225,7 +228,7 @@ class EssexDisable(Application):
 
 
 @Essex.subcommand('on')
-class EssexOn(Application):
+class EssexOn(ColorApp):
     """Start supervising all services"""
 
     def main(self):
@@ -245,7 +248,7 @@ class EssexOn(Application):
 
 
 @Essex.subcommand('off')
-class EssexOff(Application):
+class EssexOff(ColorApp):
     """Stop all services and their supervision"""
 
     def main(self):
@@ -254,7 +257,7 @@ class EssexOff(Application):
 
 
 @Essex.subcommand('sync')
-class EssexSync(Application):
+class EssexSync(ColorApp):
     """Start or stop services to match their configuration"""
 
     def main(self, *svc_names):
@@ -266,7 +269,7 @@ class EssexSync(Application):
 
 
 @Essex.subcommand('log')
-class EssexLog(Application):
+class EssexLog(ColorApp):
     """View a service's log"""
 
     lines = SwitchAttr(
@@ -293,7 +296,7 @@ class EssexLog(Application):
 # -O : mark the service to run once at most. iow: do not restart the supervised process when it dies. If it is down when the command is received, do not even start it.
 
 @Essex.subcommand('sig')
-class EssexSignal(Application):
+class EssexSignal(ColorApp):
     """Send a signal to a service"""
 
 # use plumbum's Set validator?
@@ -314,7 +317,7 @@ class EssexSignal(Application):
 
 
 @Essex.subcommand('new')
-class EssexNew(Application):
+class EssexNew(ColorApp):
     """Create a new service"""
 
     as_user = SwitchAttr(

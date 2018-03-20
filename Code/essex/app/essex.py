@@ -320,15 +320,15 @@ class EssexNew(Application):
     )
 
     rotate_at = SwitchAttr(
-        ['r', 'rotate-at'], Range(4, 262143), argname='KIBIBYTES',
-        help="archive each log file when it reaches KIBIBYTES kibibytes",
-        default=5120
+        ['r', 'rotate-at'], Range(1, 256), argname='MEBIBYTES',
+        help="archive each log file when it reaches MEBIBYTES mebibytes",
+        default=4
     )
 
     prune_at = SwitchAttr(
-        ['p', 'prune-at'], Range(0, 2 ** 10000), argname='KIBIBYTES',
-        help="keep up to KIBIBYTES kibibytes of logs before deleting the oldest; 0 means never prune",
-        default=51200
+        ['p', 'prune-at'], Range(0, 1024), argname='MEBIBYTES',
+        help="keep up to MEBIBYTES mebibytes of logs before deleting the oldest; 0 means never prune",
+        default=40
     )
 
     on_rotate = SwitchAttr(
@@ -360,8 +360,8 @@ class EssexNew(Application):
             (svc / 'down').touch()
 
         logfile = self.parent.logs / svc.name
-        rotate = f's{self.rotate_at * 1024} '
-        prune = f'S{self.prune_at * 1024} '
+        rotate = f's{self.rotate_at * 1024 ** 2} '
+        prune = f'S{self.prune_at * 1024 ** 2} '
         process = f'!"{self.on_rotate}" ' if self.on_rotate else ''
 
         runfile = logger / 'run'

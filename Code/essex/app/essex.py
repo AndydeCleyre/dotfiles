@@ -19,7 +19,13 @@ except CommandNotFound:
         print(doc.read())
 else:
     def highlight(doc):
-        local['highlight']['--stdout', '-S', 'sh', '-O', 'truecolor', '-s', 'solarized-light', doc] & FG
+        local['highlight'][
+            '--stdout',
+            '-S', 'sh',
+            '-O', 'truecolor',
+            '-s', 'solarized-light',
+            doc
+        ] & FG
 
 # TODO: rescan for change run scripts (svc and log)
 # .s6-svscan/crash  ?
@@ -38,7 +44,10 @@ class Essex(Application):
 
     svcs_dir = SwitchAttr(
         ['d', 'directory'], argname='SERVICES_DIRECTORY',
-        help=f"folder of services to manage; defaults to the first existing match from {SVCS_PATHS}",
+        help=(
+            "folder of services to manage; "
+            f"defaults to the first existing match from {SVCS_PATHS}"
+        ),
     )
 
     def main(self):
@@ -161,8 +170,12 @@ class EssexStatus(Application):
 
 
 def parse_statline(statline):
-    # ptrn = r'(?P<runstate>up|down) \((?P<pid_exitcode>pid|exitcode) (?P<pid_exitcode_num>\d+)\) \d+ seconds(, normally (?P<enabledstate>up|down))?(, ready \d+ seconds)?'
-    ptrn = r'(?P<runstate>up|down) \((?P<pid_exitcode>pid|exitcode) (?P<pid_exitcode_num>\d+)\) \d+ seconds(, normally (?P<enabledstate>up|down))?.*'
+    ptrn = (
+        r'(?P<runstate>up|down) '
+        r'\((?P<pid_exitcode>pid|exitcode) (?P<pid_exitcode_num>\d+)\) '
+        r'\d+ seconds'
+        r'(, normally (?P<enabledstate>up|down))?.*'
+    )
     return re.match(ptrn, statline).groupdict()
 
 

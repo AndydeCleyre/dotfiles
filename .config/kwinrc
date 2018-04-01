@@ -14,11 +14,11 @@ WindowsBlockCompositing=true
 XRenderSmoothScale=false
 
 [Desktops]
-Name_1=Top
-Name_2=Middle
+Name_1=High
+Name_2=Low
 Name_3=Bottom
 Number=2
-Rows=3
+Rows=2
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -61,7 +61,7 @@ TextureScale=false
 EnableFocusTracking=true
 InitialZoom=1
 MouseTracking=2
-ZoomFactor=1.8
+ZoomFactor=1.25
 
 [Effect-kwin4_effect_translucency]
 ComboboxPopups=96
@@ -195,7 +195,7 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 BorderSize=None
-ButtonsOnLeft=XLN
-ButtonsOnRight=SFX
+ButtonsOnLeft=XSN
+ButtonsOnRight=FLX
 CloseOnDoubleClickOnMenu=false
 library=org.kde.breeze

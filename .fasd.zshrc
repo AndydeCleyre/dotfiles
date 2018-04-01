@@ -5,5 +5,7 @@ if [ $commands[fasd] ]; then # check if fasd is installed
   fi
   source "$fasd_cache"
   unset fasd_cache
+  unalias a s d f sd sf z zz
   alias j="fasd_cd -d"
+  alias jj="fasd -d -i"
 fi

@@ -3,8 +3,6 @@ mkdir -p "$ZSH_CACHE_DIR"
 antigen bundle aws
 antigen bundle colored-man-pages
 antigen bundle docker
-antigen bundle extract
-antigen bundle git
 antigen bundle git-flow-avh
 antigen bundle mercurial
 antigen bundle nmap

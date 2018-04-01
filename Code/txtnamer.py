@@ -6,10 +6,7 @@ from sys import argv
 
 from plumbum import local
 from plumbum.colors import red, green
-try:
-    from plumbum.cmd import subl3 as subl
-except ImportError:
-    from plumbum.cmd import subl
+from plumbum.cmd import subl
 
 
 old_names = argv[1:]

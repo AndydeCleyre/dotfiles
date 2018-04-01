@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 from random import shuffle
+import shutil
 
 from plumbum import local, ProcessExecutionError
 from plumbum.cmd import mpv
@@ -40,7 +41,7 @@ class PlayDeleter(Application):
                 break
             try:
                 action = choose(
-                    f"\n{vid}:\n\n(Ctrl-c to quit)",
+                    f"\n{vid}:\n\n(Ctrl-c) quit",
                     ["let it be", "kill it dead", "replay", "move to . . ."],
                     "let it be"
                 )
@@ -55,7 +56,11 @@ class PlayDeleter(Application):
                 if not dest.is_dir():
                     print(dest, "not found.")
                 else:
-                    vid.move(local.path(dest))
+                    try:
+                        vid.move(local.path(dest))
+                    except shutil.Error as e:
+                        print(e)
+                        continue
                     print("WHOOSH!")
                     break
 

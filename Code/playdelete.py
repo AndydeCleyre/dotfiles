@@ -41,13 +41,15 @@ class PlayDeleter(Application):
                 break
             try:
                 action = choose(
-                    f"\n{vid}:\n\n(Ctrl-c) quit",
-                    ["let it be", "kill it dead", "replay", "move to . . ."],
+                    f"\n{vid}:\n\n",
+                    ["quit", "let it be", "kill it dead", "replay", "move to . . ."],
                     "let it be"
                 )
             except KeyboardInterrupt:
                 sys.exit(0)
-        if action == "kill it dead":
+        if action == "quit":
+            sys.exit(0)
+        elif action == "kill it dead":
             vid.delete()
             print("SPLAT!")
         elif action == "move to . . .":

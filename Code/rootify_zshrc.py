@@ -7,16 +7,16 @@ from plumbum.cmd import xdg_open, sudo, cp
 from plumbum.colors import red, green, blue, magenta
 
 
-def abortable_ask(choices_dict, allowed=None, append_abort=True):
+def abortable_ask(choices_dict, whitelist=None, append_abort=True):
     if append_abort:
         choices_dict['Ctrl-c'] = 'abort'
     try:
-        print(red | '\n'.join(['[{}] {}'.format(choice, consequence) for choice, consequence in choices_dict.items()]))
+        print(red | '\n'.join(f'[{choice}] {consequence}' for choice, consequence in choices_dict.items()))
         r = input()
     except KeyboardInterrupt:
         exit()
-    if allowed and r not in allowed:
-        return abortable_ask(choices_dict, allowed, False)
+    if whitelist and r not in whitelist:
+        return abortable_ask(choices_dict, whitelist, False)
     return r
 
 def make_suggestion(line, matching_subtring, replacement_dict):
@@ -34,7 +34,7 @@ def make_suggestion(line, matching_subtring, replacement_dict):
 
 def main():
     user_home = local.path('~')
-    print("Hello! We're going to clone {}'s .zshrc files for the root user, and maybe make some changes along the way.".format(user_home.name))
+    print(f"Hello! We're going to clone {user_home.name}'s .zshrc files for the root user, and maybe make some changes along the way.")
     abortable_ask(OD([('Enter', "begin")]), [''])
     for zshrc_file in [f.name for f in user_home // '.*zshrc']:
         user_zshrc = (user_home / zshrc_file).read('utf8')
@@ -49,11 +49,11 @@ def main():
             file = tmp / zshrc_file
             file.write(root_zshrc, 'utf8')
             # file.write(root_zshrc.encode())
-            print(magenta | '{} for root written to'.format(zshrc_file), file)
+            print(magenta | f'{zshrc_file} for root written to', file)
             print(green | 'Opening for your review and edits . . .')
             xdg_open(file)
-            abortable_ask(OD([('Enter', 'overwrite /root/{}'.format(zshrc_file))]), [''])
-            sudo[cp[file, '/root/{}'.format(zshrc_file)]]()
+            abortable_ask(OD([('Enter', f'overwrite /root/{zshrc_file}')]), [''])
+            sudo[cp[file, f'/root/{zshrc_file}']]()
 
 
 if __name__ == '__main__':

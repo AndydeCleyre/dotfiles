@@ -53,7 +53,7 @@ pipcs () { pipc; pips }
 pipchs () { pipch; pips }
 
 pipi () { pip install -U $@ }
-pimp () { pip install -U pip ipython plumbum requests pip-tools structlog ruamel-yaml }
+pimp () { pip install -U pip ipython plumbum requests pip-tools structlog strictyaml }
 freeze () { pip freeze | egrep -i "$@" }
 
 _pipa_complete() { reply=( "${(ps: :)$(cat $ZSH_PIP_CACHE_FILE)}" ) }

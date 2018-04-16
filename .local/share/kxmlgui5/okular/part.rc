@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui>
-<kpartgui version="38" name="okular_part">
+<kpartgui name="okular_part" version="38">
  <MenuBar>
   <Menu noMerge="1" name="file">
    <text translationDomain="okular">&amp;File</text>
@@ -102,24 +102,25 @@
   </Menu>
  </MenuBar>
  <ToolBar noMerge="1" name="mainToolBar">
-  <Action name="view_render_mode"/>
-  <Action name="view_continuous"/>
+  <Action name="toggle_change_colors"/>
+  <Action name="show_leftpanel"/>
   <text translationDomain="okular">Main Toolbar</text>
   <Separator name="separator_0"/>
+  <Action name="mouse_zoom"/>
   <Action name="view_zoom_in"/>
-  <Action name="view_zoom_out"/>
   <Action name="view_auto_fit"/>
+  <Action name="view_zoom_out"/>
   <Separator name="separator_1"/>
   <Action name="mouse_drag"/>
-  <Action name="mouse_zoom"/>
   <Action name="mouse_select"/>
   <Separator name="separator_2"/>
   <Action name="view_trim_mode"/>
   <Action name="view_orientation_rotate_cw"/>
   <Action name="view_orientation_rotate_ccw"/>
   <Separator name="separator_3"/>
-  <Action name="toggle_change_colors"/>
   <Action name="presentation"/>
+  <Action name="view_render_mode"/>
+  <Action name="view_continuous"/>
   <Action name="mouse_toggle_annotate"/>
   <Separator name="separator_4"/>
   <Action name="file_save_as"/>
@@ -128,11 +129,12 @@
   <Action name="options_configure"/>
  </ToolBar>
  <ActionProperties>
-  <Action shortcut="" name="go_next"/>
-  <Action shortcut="" name="go_previous"/>
+  <Action name="go_next" shortcut=""/>
+  <Action name="go_previous" shortcut=""/>
   <Action icon="cursor-arrow" name="mouse_drag"/>
-  <Action shortcut="F7; Ctrl+Alt+S" name="show_leftpanel"/>
-  <Action icon="lighttable" name="toggle_change_colors"/>
+  <Action name="show_leftpanel" shortcut="F7; Ctrl+Alt+S"/>
+  <Action icon="colormanagement" name="toggle_change_colors"/>
   <Action icon="image-crop" name="view_trim_mode"/>
+  <Action icon="zoom-original" name="view_auto_fit"/>
  </ActionProperties>
 </kpartgui>

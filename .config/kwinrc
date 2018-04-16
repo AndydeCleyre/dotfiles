@@ -138,7 +138,7 @@ ActivitiesMode=0
 ApplicationsMode=1
 BorderActivate=9
 BorderAlternativeActivate=9
-DesktopMode=1
+DesktopMode=0
 HighlightWindows=true
 LayoutName=big_icons
 MinimizedMode=0
@@ -150,7 +150,7 @@ SwitchingMode=0
 [TabBoxAlternative]
 ActivitiesMode=0
 ApplicationsMode=1
-DesktopMode=0
+DesktopMode=1
 HighlightWindows=true
 LayoutName=big_icons
 MinimizedMode=0
@@ -190,7 +190,7 @@ SeparateScreenFocus=false
 ShadeHover=true
 ShadeHoverInterval=250
 SnapOnlyWhenOverlapping=false
-TitlebarDoubleClickCommand=Maximize (horizontal only)
+TitlebarDoubleClickCommand=Maximize (vertical only)
 WindowSnapZone=10
 
 [org.kde.kdecoration2]

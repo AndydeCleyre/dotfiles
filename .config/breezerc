@@ -11,4 +11,5 @@ ScrollBarSubLineButtons=0
 ButtonSize=ButtonSmall
 DrawBackgroundGradient=false
 DrawSizeGrip=false
+DrawTitleBarSeparator=false
 TitleAlignment=AlignLeft

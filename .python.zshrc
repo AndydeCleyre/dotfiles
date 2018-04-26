@@ -48,9 +48,12 @@ pips () { pip-sync *requirements.txt }
 pipu () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ "$reqs" || pip-compile --no-header -U "$reqs"; done }
 pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ "$reqs" || pip-compile --no-header -U --generate-hashes "$reqs"; done }
 
-pipacs () { pipa $@; pipc; pips }
 pipcs () { pipc; pips }
 pipchs () { pipch; pips }
+pipacs () { pipa $@; pipcs }
+pipachs () { pipa $@; pipchs }
+pipus () { pipu $@; pips }
+pipuhs () { pipuh $@; pips }
 
 pipi () { pip install -U $@ }
 pimp () { pip install -U pip ipython plumbum requests pip-tools structlog strictyaml }

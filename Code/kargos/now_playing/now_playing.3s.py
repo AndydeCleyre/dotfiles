@@ -11,13 +11,22 @@ from requests.exceptions import ConnectionError
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
-fmt = "| font='Iosevka'"
+fmt = "| font='Iosevka Custom' size=15"
 
 
 def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
     try:
-        return {detail: playerctl['metadata'](detail) for detail in ('title', 'artist', 'album')}
-    except ProcessExecutionError:
+        player = [
+            *filter(
+                lambda p: not p.startswith('Gwenview'),
+                playerctl('--list-all').split()
+            )
+        ][0]
+        return {
+            detail: playerctl['-p', player, 'metadata'](detail)
+            for detail in ('title', 'artist', 'album')
+        }
+    except (IndexError, ProcessExecutionError):
         base = 'http://ws.audioscrobbler.com/2.0/'
         try:
             r = get(base, params={
@@ -60,11 +69,15 @@ if __name__ == '__main__':
     except TypeError:
         print(fmt, "iconName=spotify-indicator bash=spotify onclick=bash")
     else:
-        title = re.sub(r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single|Stereo)( Version)?$', '', title)
+        title = re.sub(
+            r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single|Stereo)( Version)?$',
+            '',
+            title
+        )
         # size = len(artist)
-        size = min(15, max(len(artist), len(title)))
+        size = min(17, max(len(artist), len(title)))
         print(resize(artist, size), fmt)
-        print(resize(title,  size), fmt)
+        print(resize(title, size), fmt)
         print('---')
         print(title, fmt, "iconName=media-album-track")
         print(artist, fmt, "iconName=view-media-artist")

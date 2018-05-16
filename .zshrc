@@ -6,7 +6,6 @@ export BROWSER=firefox
 
 . ~/.editor.zshrc
 . ~/.zsh.zshrc
-. ~/.antigen.zshrc
 . ~/.path.zshrc
 . ~/.theme.zshrc
 

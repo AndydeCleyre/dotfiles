@@ -37,12 +37,14 @@ envinpypy () {
 
 envout () { deactivate }
 
+type highlight &> /dev/null && hpype () { highlight -O truecolor -s solarized-light -S py } || hpype () { cat - }
+
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
-pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | highlight -O truecolor -s solarized-light -S py; done }
-pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | highlight -O truecolor -s solarized-light -S py; done }
+pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | hpype; done }
+pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | hpype; done }
 pips () { pip-sync *requirements.txt }
-pipu () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ "$reqs" || pip-compile --no-header -U "$reqs"; done }
-pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ "$reqs" || pip-compile --no-header -U --generate-hashes "$reqs"; done }
+pipu () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header -P $@ "$reqs" | hpype || pip-compile --no-header -U "$reqs" | hpype; done }
+pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }
 
 pipcs () { pipc; pips }
 pipchs () { pipch; pips }

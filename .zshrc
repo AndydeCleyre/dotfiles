@@ -60,3 +60,5 @@ alias serve="python -m http.server"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
 alias tree="tree -C"
 alias txtnamer="~/Code/txtnamer.py"
+alias x="~/Code/x.py"
+alias arglines="xargs -d '\n'"

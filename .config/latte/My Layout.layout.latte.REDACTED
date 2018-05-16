@@ -94,7 +94,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][12][Applets][15][Configuration]
-PreloadWeight=0
+PreloadWeight=65
 
 [Containments][12][Applets][16]
 immutability=1
@@ -129,14 +129,14 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][12][Applets][21][Configuration]
-PreloadWeight=64
+PreloadWeight=13
 
 [Containments][12][Applets][22]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][12][Applets][22][Configuration]
-PreloadWeight=13
+PreloadWeight=0
 
 [Containments][12][Applets][22][Shortcuts]
 global=Meta+B
@@ -166,6 +166,10 @@ plugin=org.kde.plasma.battery
 [Containments][12][Applets][27][Configuration]
 PreloadWeight=0
 
+[Containments][12][Applets][27][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
 [Containments][12][Applets][29]
 immutability=1
 plugin=org.kde.plasma.vault
@@ -178,7 +182,7 @@ immutability=1
 plugin=org.kde.plasma.volumewin7mixer
 
 [Containments][12][Applets][31][Configuration]
-PreloadWeight=100
+PreloadWeight=0
 
 [Containments][12][Applets][31][Configuration][Applet]
 volumeChangeFeedback=false
@@ -222,7 +226,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][4][Applets][11][Configuration]
-PreloadWeight=100
+PreloadWeight=92
 SystrayContainmentId=12
 
 [Containments][4][Applets][26]
@@ -277,7 +281,7 @@ immutability=1
 plugin=org.kde.plasma.kicker
 
 [Containments][4][Applets][40][Configuration]
-PreloadWeight=25
+PreloadWeight=0
 
 [Containments][4][Applets][40][Configuration][General]
 favoritesPortedToKAstats=true
@@ -287,12 +291,15 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][4][Applets][7][Configuration]
-PreloadWeight=5
+PreloadWeight=0
 
 [Containments][4][Applets][7][Configuration][Agenda]
 agenda_breakup_multiday_events=true
+agenda_fontSize=21
+agenda_weather_icon_height=12
 
 [Containments][4][Applets][7][Configuration][Calendar]
+month_cell_radius=0.1
 month_eventbadge_type=dots
 month_show_border=false
 month_today_style=bigNumber
@@ -311,7 +318,7 @@ widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=3472799810
+access_token_expires_at=958952783
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -319,7 +326,7 @@ events_pollinterval=60
 refresh_token=[redacted]
 
 [Containments][4][Applets][7][Configuration][Weather]
-weather_city_id=5110302
+weather_city_id=[redacted]
 
 [Containments][4][Applets][7][Shortcuts]
 global=Meta+C
@@ -381,32 +388,22 @@ immutability=1
 plugin=org.kde.plasma.taskmanager
 
 [Containments][41][Applets][44][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][41][Applets][44][Configuration][ConfigDialog]
 DialogHeight=840
 DialogWidth=1120
 
-[Containments][41][Applets][45]
-immutability=1
-plugin=com.github.zren.presentwindows
-
-[Containments][41][Applets][45][Configuration]
-PreloadWeight=10
-
-[Containments][41][Applets][45][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][41][Applets][45][Configuration][General]
-icon=view-grid
+[Containments][41][Applets][44][Configuration][General]
+highlightWindows=true
+showToolTips=false
 
 [Containments][41][Applets][46]
 immutability=1
 plugin=org.kde.plasma.analogclock
 
 [Containments][41][Applets][46][Configuration]
-PreloadWeight=10
+PreloadWeight=0
 
 [Containments][41][Applets][46][Configuration][ConfigDialog]
 DialogHeight=840
@@ -417,17 +414,17 @@ DialogHeight=980
 DialogWidth=830
 
 [Containments][41][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][41][General]
 advanced=true
-appletOrder=45;44;46
+appletOrder=44;46
 durationTime=x3
 iconSize=128
 lockedZoomApplets=44
 maxLength=60
 panelSize=100
-panelTransparency=90
+panelTransparency=65
 proportionIconSize=10
 shadowSize=55
 shadows=None

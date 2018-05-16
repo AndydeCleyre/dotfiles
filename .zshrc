@@ -1,5 +1,3 @@
-precmd () { rehash }
-
 export BROWSER=firefox
 
 [[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && . /usr/share/doc/pkgfile/command-not-found.zsh

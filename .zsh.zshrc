@@ -1,3 +1,5 @@
+precmd () { rehash }
+
 export ZSH_CACHE_DIR="$HOME/.cache/zsh"
 autoload -U compinit
 compinit

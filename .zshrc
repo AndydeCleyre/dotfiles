@@ -53,11 +53,11 @@ alias pd="~/Code/playdelete.py"
 alias ports="~/Code/ports.py"
 post () { curl -Ffile=@"$1" https://0x0.st }
 recent () { ls -rt "$@" | tail -20 }
-alias redact="sed -r 's/^(\s*\S*(user(name)?|passw(or)?d|key(_id)?|token|address|secret|blob|email|acct|calendar_(id_)?list) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
-alias s="tmux a || tmux"
-alias t="tmux a || tmux"
+alias redact="sed -r 's/^(\s*\S*(user(name)?|_id|passw(or)?d|key|token|address|secret|blob|email|acct|calendar_(id_)?list) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
+alias routerbounce="ssh 192.168.1.1 reboot || echo 'Try connecting to the main network first.'"
 alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
+alias t="tmux a || tmux"
 stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
 alias tree="tree -C"
 alias txtnamer="~/Code/txtnamer.py"

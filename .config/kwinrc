@@ -36,6 +36,10 @@ UseWindowMoving=true
 [Effect-DesktopGrid]
 BorderActivate=3
 
+[Effect-DimInactive]
+DimByGroup=false
+Strength=33
+
 [Effect-FlipSwitch]
 TabBox=false
 TabBoxAlternative=false
@@ -66,7 +70,11 @@ ZoomFactor=1.25
 [Effect-kwin4_effect_translucency]
 ComboboxPopups=96
 Dialogs=96
+DropdownMenus=80
+IndividualMenuConfig=true
 Menus=96
+PopupMenus=81
+TornOffMenus=80
 
 [ElectricBorders]
 Bottom=None
@@ -109,7 +117,10 @@ glideEnabled=true
 highlightwindowEnabled=true
 invertEnabled=true
 kwin-script-tilingEnabled=false
+kwin4_effect_dialogparentEnabled=false
+kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadedesktopEnabled=false
+kwin4_effect_windowapertureEnabled=false
 minimizeallEnabled=false
 mousemarkEnabled=true
 quarter-tilingEnabled=false
@@ -138,6 +149,8 @@ ActivitiesMode=0
 ApplicationsMode=1
 BorderActivate=9
 BorderAlternativeActivate=9
+DesktopLayout=org.kde.breeze.desktop
+DesktopListLayout=org.kde.breeze.desktop
 DesktopMode=0
 HighlightWindows=true
 LayoutName=big_icons

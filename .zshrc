@@ -9,7 +9,6 @@ export BROWSER=firefox
 
 . ~/.buildah.zshrc
 . ~/.cd.zshrc
-. ~/.docker.zshrc
 . ~/.fasd.zshrc
 . ~/.git.zshrc
 . ~/.hg.zshrc

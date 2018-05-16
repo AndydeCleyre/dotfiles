@@ -36,6 +36,7 @@ configs () { /usr/bin/locate "$1" | egrep "^($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
+alias define="/home/andy/.local/share/venvs/20e54bbaef52d3ebd44d4119e901f673/venv/bin/define"
 alias excerpt="mpv --script ~/Code/mpv-plugin-excerpt/excerpt.lua"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"

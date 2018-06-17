@@ -2,10 +2,10 @@
 Color=56,56,56
 ColorAmount=0
 ColorEffect=0
-ContrastAmount=0.65000000000000002
+ContrastAmount=0.65
 ContrastEffect=1
-IntensityAmount=0.10000000000000001
-IntensityEffect=2
+IntensityAmount=0.1
+IntensityEffect=0
 
 [ColorEffects:Inactive]
 ChangeSelectionColor=true
@@ -16,7 +16,7 @@ ContrastAmount=0.1
 ContrastEffect=0
 Enable=true
 IntensityAmount=0.45
-IntensityEffect=2
+IntensityEffect=0
 
 [Colors:Button]
 BackgroundAlternate=64,69,82

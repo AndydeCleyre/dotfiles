@@ -10,6 +10,14 @@ vpy () {
     "$(venv_path $(dirname $(realpath $1)))/venv/bin/python" "$@"
 }
 
+vpy2 () {
+    "$(venv_path $(dirname $(realpath $1)))/venv2/bin/python" "$@"
+}
+
+vpypy () {
+    "$(venv_path $(dirname $(realpath $1)))/venvpypy/bin/python" "$@"
+}
+
 envin () {
     venv="$(venv_path)/venv"
     [[ -d $venv ]] || python3 -m venv $venv

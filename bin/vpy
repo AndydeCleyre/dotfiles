@@ -1,0 +1,3 @@
+#!/bin/sh
+reqspath="$(dirname $(realpath $1))"
+"$HOME/.local/share/venvs/$(echo -n $reqspath | md5sum | cut -d ' ' -f 1)/venv/bin/python" "$@"

@@ -2,7 +2,8 @@ i () { ipython }
 i2 () { ipython2 }
 
 venv_path () {
-    echo "$HOME/.local/share/venvs/$(pwd|md5sum|cut -d ' ' -f 1)"
+    [[ "$#" -gt 0 ]] && reqspath="$(realpath $1)" || reqspath="$(pwd)"
+    echo "$HOME/.local/share/venvs/$(echo -n $reqspath | md5sum | cut -d ' ' -f 1)"
 }
 
 envin () {
@@ -37,7 +38,7 @@ envinpypy () {
 
 envout () { deactivate }
 
-type highlight &> /dev/null && hpype () { highlight -O truecolor -s solarized-light -S py } || hpype () { cat - }
+type highlight &> /dev/null && hpype () { highlight -O truecolor -s lucretia -S py } || hpype () { cat - }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
 pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | hpype; done }

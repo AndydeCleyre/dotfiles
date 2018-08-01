@@ -6,6 +6,10 @@ venv_path () {
     echo "$HOME/.local/share/venvs/$(echo -n $reqspath | md5sum | cut -d ' ' -f 1)"
 }
 
+vpy () {
+    "$(venv_path $(dirname $(realpath $1)))/venv/bin/python" "$@"
+}
+
 envin () {
     venv="$(venv_path)/venv"
     [[ -d $venv ]] || python3 -m venv $venv

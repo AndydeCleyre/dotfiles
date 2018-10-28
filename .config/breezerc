@@ -3,6 +3,7 @@ OutlineCloseButton=false
 ShadowStrength=89
 
 [Style]
+MenuOpacity=80
 MnemonicsMode=MN_ALWAYS
 ScrollBarAddLineButtons=0
 ScrollBarSubLineButtons=0

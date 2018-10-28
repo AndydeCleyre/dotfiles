@@ -2,8 +2,8 @@ i () { ipython }
 i2 () { ipython2 }
 
 venv_path () {
-    [[ "$#" -gt 0 ]] && reqspath="$(realpath $1)" || reqspath="$(pwd)"
-    echo "$HOME/.local/share/venvs/$(echo -n $reqspath | md5sum | cut -d ' ' -f 1)"
+    [[ "$#" -gt 0 ]] && reqsdir="$(realpath $1)" || reqsdir="$(pwd)"
+    echo "$HOME/.local/share/venvs/$(echo -n $reqsdir | md5sum | cut -d ' ' -f 1)"
 }
 
 vpy () {
@@ -50,7 +50,17 @@ envinpypy () {
 
 envout () { deactivate }
 
-type highlight &> /dev/null && hpype () { highlight -O truecolor -s lucretia -S py } || hpype () { cat - }
+if [ "$(command -v bat)" ]
+then
+    hpype () { bat -l py }
+elif [ "$(command -v highlight)" ]
+then
+    hpype () { highlight -O truecolor -s lucretia -S py }
+else
+    hpype () { cat - }
+fi
+
+# todo: flush/delete venv
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
 pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | hpype; done }

@@ -42,7 +42,7 @@ class PlayDeleter(Application):
             try:
                 action = choose(
                     f"\n{vid}:\n\n",
-                    ["quit", "let it be", "kill it dead", "replay", "move to . . ."],
+                    ["let it be", "quit", "kill it dead", "replay", "move to . . ."],
                     "let it be"
                 )
             except KeyboardInterrupt:

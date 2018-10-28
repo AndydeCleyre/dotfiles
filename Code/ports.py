@@ -27,10 +27,9 @@ colors = {n: c for n, c in zip(
     cycle([blue, cyan, green, red, magenta, yellow, white, black])
 )}
 for port in sorted(ports):
-    name = ','.join(sorted(ports[port]['name']))
-    line = '{:<7}{:<16}{:<10}{}'.format(
-        port, name,
-        ','.join(sorted(ports[port]['proto'])),
-        ','.join(sorted(ports[port]['address']))
+    name, protos, addrs = map(
+        lambda k: ','.join(sorted(ports[port][k])),
+        ('name', 'proto', 'address')
     )
+    line = f"{port:<7}{name:<16}{protos:<10}{addrs}"
     print(colors[name] | line)

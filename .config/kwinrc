@@ -1,5 +1,8 @@
+[$Version]
+update_info=kwin.upd:replace-scalein-with-scale
+
 [Compositing]
-AnimationSpeed=2
+AnimationSpeed=1
 Backend=OpenGL
 Enabled=true
 GLColorCorrection=false
@@ -19,6 +22,9 @@ Name_2=Low
 Name_3=Bottom
 Number=2
 Rows=2
+
+[Effect-Blur]
+BlurStrength=4
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -71,8 +77,6 @@ ZoomFactor=1.25
 ComboboxPopups=96
 Dialogs=96
 DropdownMenus=80
-IndividualMenuConfig=true
-Menus=96
 PopupMenus=81
 TornOffMenus=80
 
@@ -120,6 +124,7 @@ kwin-script-tilingEnabled=false
 kwin4_effect_dialogparentEnabled=false
 kwin4_effect_eyeonscreenEnabled=true
 kwin4_effect_fadedesktopEnabled=false
+kwin4_effect_translucencyEnabled=false
 kwin4_effect_windowapertureEnabled=false
 minimizeallEnabled=false
 mousemarkEnabled=true
@@ -127,7 +132,8 @@ quarter-tilingEnabled=false
 sheetEnabled=true
 slideEnabled=false
 slidebackEnabled=true
-sticky-window-snappingEnabled=true
+sticky-window-snapping-zrenEnabled=true
+sticky-window-snappingEnabled=false
 synchronizeskipswitcherEnabled=false
 videowallEnabled=false
 windowgeometryEnabled=true

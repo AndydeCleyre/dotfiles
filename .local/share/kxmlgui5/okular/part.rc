@@ -3,17 +3,17 @@
  <MenuBar>
   <Menu noMerge="1" name="file">
    <text translationDomain="okular">&amp;File</text>
-   <Action name="get_new_stuff" group="file_open"/>
-   <Action name="import_ps" group="file_open"/>
-   <Action name="file_save" group="file_save"/>
-   <Action name="file_save_as" group="file_save"/>
-   <Action name="file_reload" group="file_save"/>
-   <Action name="file_print" group="file_print"/>
-   <Action name="file_print_preview" group="file_print"/>
-   <Action name="properties" group="file_print"/>
-   <Action name="embedded_files" group="file_print"/>
-   <Action name="file_export_as" group="file_print"/>
-   <Action name="file_share" group="file_print"/>
+   <Action group="file_open" name="get_new_stuff"/>
+   <Action group="file_open" name="import_ps"/>
+   <Action group="file_save" name="file_save"/>
+   <Action group="file_save" name="file_save_as"/>
+   <Action group="file_save" name="file_reload"/>
+   <Action group="file_print" name="file_print"/>
+   <Action group="file_print" name="file_print_preview"/>
+   <Action group="file_print" name="properties"/>
+   <Action group="file_print" name="embedded_files"/>
+   <Action group="file_print" name="file_export_as"/>
+   <Action group="file_print" name="file_share"/>
   </Menu>
   <Menu noMerge="1" name="edit">
    <text translationDomain="okular">&amp;Edit</text>
@@ -91,14 +91,14 @@
   </Menu>
   <Menu noMerge="1" name="settings">
    <text translationDomain="okular">&amp;Settings</text>
-   <Action name="show_leftpanel" group="show_merge"/>
-   <Action name="show_bottombar" group="show_merge"/>
-   <Action name="options_configure_generators" group="configure_merge"/>
-   <Action name="options_configure" group="configure_merge"/>
+   <Action group="show_merge" name="show_leftpanel"/>
+   <Action group="show_merge" name="show_bottombar"/>
+   <Action group="configure_merge" name="options_configure_generators"/>
+   <Action group="configure_merge" name="options_configure"/>
   </Menu>
   <Menu noMerge="1" name="help">
    <text translationDomain="okular">&amp;Help</text>
-   <Action name="help_about_backend" group="about_merge"/>
+   <Action group="about_merge" name="help_about_backend"/>
   </Menu>
  </MenuBar>
  <ToolBar noMerge="1" name="mainToolBar">
@@ -106,10 +106,10 @@
   <Action name="show_leftpanel"/>
   <text translationDomain="okular">Main Toolbar</text>
   <Separator name="separator_0"/>
-  <Action name="view_zoom_in"/>
-  <Action name="view_zoom_out"/>
   <Action name="mouse_zoom"/>
   <Action name="view_auto_fit"/>
+  <Action name="view_zoom_in"/>
+  <Action name="view_zoom_out"/>
   <Separator name="separator_1"/>
   <Action name="mouse_drag"/>
   <Action name="mouse_select"/>
@@ -131,10 +131,10 @@
  <ActionProperties>
   <Action name="go_next" shortcut=""/>
   <Action name="go_previous" shortcut=""/>
-  <Action name="mouse_drag" icon="cursor-arrow"/>
+  <Action icon="cursor-arrow" name="mouse_drag"/>
   <Action name="show_leftpanel" shortcut="F7; Ctrl+Alt+S"/>
-  <Action name="toggle_change_colors" icon="colormanagement"/>
-  <Action name="view_trim_mode" icon="image-crop"/>
-  <Action name="view_auto_fit" icon="zoom-original"/>
+  <Action icon="colormanagement" name="toggle_change_colors"/>
+  <Action icon="image-crop" name="view_trim_mode"/>
+  <Action icon="zoom-original" name="view_auto_fit"/>
  </ActionProperties>
 </kpartgui>

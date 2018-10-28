@@ -1,39 +1,52 @@
+[$Version]
+update_info=powerdevil_move_shortcuts.upd:powerdevil_move_shortcuts
+
+[ActivityManager]
+_k_friendly_name=Activity Manager
+switch-to-activity-43e9b1d1-d344-47dd-a04e-44a83e541d68=none,none,Switch to activity "1"
+switch-to-activity-538ebee3-9432-4d9b-9ec7-8c868cefa643=none,none,Switch to activity "2"
+switch-to-activity-88e841ee-45ae-4aa4-89c4-76bc63c00841=none,none,Switch to activity "3"
+switch-to-activity-ded19345-93ad-45b4-983d-421f0e817dda=none,none,Switch to activity "4"
+switch-to-activity-ff7d7479-8b36-4e2f-b9ce-60619293283d=none,none,Switch to activity "Desktop"
+
 [KDE Keyboard Layout Switcher]
+Switch keyboard layout to English (US)=none,none,Switch keyboard layout to English (US)
+Switch keyboard layout to English (Workman)=none,none,Switch keyboard layout to English (Workman)
 Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Switch to Next Keyboard Layout
 _k_friendly_name=KDE Daemon
+
+[PlayBar]
+_k_friendly_name=PlayBar
+next=,Media Next,Next track
+play-pause=,Media Play,Play/Pause
+previous=,Media Previous,Previous track
+stop=,Media Stop,Stop
+toggle-mediaplayer=none,none,Toggle window media player
 
 [kaccess]
 Toggle Screen Reader On and Off=,Meta+Alt+S,Toggle Screen Reader On and Off
 _k_friendly_name=Accessibility
 
 [kcm_touchpad]
-Disable Touchpad=Meta+T,Touchpad Off,Disable Touchpad
-Enable Touchpad=Meta+Shift+T,Touchpad On,Enable Touchpad
-Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Toggle Touchpad
+Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
+Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
+Toggle Touchpad=Touchpad Toggle\tMeta+T,Touchpad Toggle,Toggle Touchpad
 _k_friendly_name=KDE Daemon
 
 [kded5]
-Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
-Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Decrease Screen Brightness
-Hibernate=Hibernate,Hibernate,Hibernate
-Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Increase Keyboard Brightness
-Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Increase Screen Brightness
-PowerOff=Power Off,Power Off,Power Off
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Show System Activity
-Sleep=Sleep,Sleep,Suspend
-Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
-_k_friendly_name=Power Management
-display=Display\tMeta+P,Display\tMeta+P,Switch Display
+_k_friendly_name=KDE Daemon
+display=Display\tMeta+D,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
+{0601c1af-9558-4a9d-983c-46b0709d4434}=Ctrl+Print,none,Take Screenshot After 3s
+{27a6c229-64a3-4d54-8be2-ea3bf805bf35}=Print,none,Take Screenshot
 {8c8d7771-e8f4-4d0f-826a-6b0a14e48213}=Alt+Z,none,Select And Translate
-{9755309f-20ba-4838-bc25-57cf52f03f42}=Print,none,Start Screenshot Tool
 {a9b06d49-6b98-4773-9858-a3380c83d3e9}=Meta+Print,none,Take Active Window Screenshot
 {b50c5f4c-bad9-4aa7-ba48-accbb13d4196}=Meta+Alt+A,none,Play/Pause Track
 {ce619deb-a084-467e-aa78-d4598ba6d727}=Meta+N,none,Close Notification
 {e6bdd811-6314-4c69-b5dc-24a45ee60528}=Meta+Alt+D,none,Skip Track
-{eeaa382d-8257-4bd8-a68a-6127075d36b8}=Shift+Print,none,Take Full Screen Screenshot
 {fbfff6f2-5378-4235-8354-605aae8a2377}=Ctrl+Space,none,Toggle Terminal
 
 [kmix]
@@ -76,18 +89,18 @@ ExposeClass=Ctrl+F7\tMeta+Alt+Esc,Ctrl+F7,Toggle Present Windows (Window class)
 FlipSwitchAll=none,none,Toggle Flip Switch (All desktops)
 FlipSwitchCurrent=none,none,Toggle Flip Switch (Current desktop)
 Increase Opacity=Alt+=,none,Increase Opacity of Active Window by 5 %
-Invert=Meta+Ctrl+I\tMeta+Shift+I,Meta+Ctrl+I,Toggle Invert Effect
+Invert=Meta+Shift+I,Meta+Ctrl+I,Toggle Invert Effect
 Invert Screen Colors=none,none,Invert Screen Colors
-InvertWindow=Meta+Ctrl+U\tMeta+I,Meta+Ctrl+U,Toggle Invert Effect on Window
+InvertWindow=Meta+I,Meta+Ctrl+U,Toggle Invert Effect on Window
 KWin Script: Sticky Window Snapping: enable/disable=Meta+Shift+S,none,KWin Script: Sticky Window Snapping: enable/disable
 KWin Script: Sticky Window Snapping: enable/disable temporarily=Ctrl+Shift+S,none,KWin Script: Sticky Window Snapping: enable/disable temporarily
 Kill Window=Ctrl+Alt+Esc,Ctrl+Alt+Esc,Kill Window
 MoveMouseToCenter=Meta+F6,Meta+F6,Move Mouse to Center
 MoveMouseToFocus=Meta+F5,Meta+F5,Move Mouse to Focus
-MoveZoomDown=Meta+Ctrl+Down,Meta+Down,Move Zoomed Area Downwards
-MoveZoomLeft=Meta+Ctrl+Left,Meta+Left,Move Zoomed Area to Left
-MoveZoomRight=Meta+Ctrl+Right,Meta+Right,Move Zoomed Area to Right
-MoveZoomUp=Meta+Ctrl+Up,Meta+Up,Move Zoomed Area Upwards
+MoveZoomDown=Meta+Ctrl+Down,none,Move Zoomed Area Downwards
+MoveZoomLeft=Meta+Ctrl+Left,none,Move Zoomed Area to Left
+MoveZoomRight=Meta+Ctrl+Right,none,Move Zoomed Area to Right
+MoveZoomUp=Meta+Ctrl+Up,none,Move Zoomed Area Upwards
 Quarter: + Gap Size=,none,Quarter: + Gap Size
 Quarter: + Window Size=Meta++,none,Quarter: + Window Size
 Quarter: - Gap Size=,none,Quarter: - Gap Size
@@ -101,7 +114,7 @@ Quarter: Move Up=,none,Quarter: Move Up
 Quarter: Reset Layout=,none,Quarter: Reset Layout
 Remove Window From Group=none,none,Remove Window From Group
 Setup Window Shortcut=none,none,Setup Window Shortcut
-Show Desktop=none,none,Show Desktop
+Show Desktop=Meta+Shift+D,none,Show Desktop
 ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Show Desktop Grid
 Sphere=none,none,Desktop Sphere
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
@@ -182,16 +195,16 @@ Walk Through Windows of Current Application Alternative (Reverse)=Meta+~,none,Wa
 Window Above Other Windows=Meta+A,none,Keep Window Above Others
 Window Below Other Windows=none,none,Keep Window Below Others
 Window Close=Alt+F4,Alt+F4,Close Window
-Window Fullscreen=Meta+Return,none,Make Window Fullscreen
+Window Fullscreen=Meta+Shift+Return,none,Make Window Fullscreen
 Window Grow Horizontal=Meta+Shift+Right,none,Pack Grow Window Horizontally
 Window Grow Vertical=Meta+Shift+Down,none,Pack Grow Window Vertically
 Window Lower=none,none,Lower Window
-Window Maximize=Meta+Space,none,Maximize Window
-Window Maximize Horizontal=Meta+Ctrl+Space,none,Maximize Window Horizontally
+Window Maximize=Meta+Space,Meta+PgUp,Maximize Window
+Window Maximize Horizontal=Meta+Alt+Space\tMeta+Ctrl+Space,none,Maximize Window Horizontally
 Window Maximize Vertical=Meta+Shift+Space,none,Maximize Window Vertically
-Window Minimize=none,none,Minimize Window
+Window Minimize=none,Meta+PgDown,Minimize Window
 Window Move=Meta+M,none,Move Window
-Window No Border=none,none,Hide Window Border
+Window No Border=Meta+Return,none,Hide Window Border
 Window On All Desktops=Meta+Shift+A,none,Keep Window on All Desktops
 Window One Desktop Down=none,none,Window One Desktop Down
 Window One Desktop Up=none,none,Window One Desktop Up
@@ -202,12 +215,12 @@ Window Pack Down=Meta+Down,none,Pack Window Down
 Window Pack Left=Meta+Left,none,Pack Window to the Left
 Window Pack Right=Meta+Right,none,Pack Window to the Right
 Window Pack Up=Meta+Up,none,Pack Window Up
-Window Quick Tile Bottom=Meta+Alt+Down,none,Quick Tile Window to the Bottom
+Window Quick Tile Bottom=Meta+Alt+Down,Meta+Down,Quick Tile Window to the Bottom
 Window Quick Tile Bottom Left=Meta+Alt+Shift+Left,none,Quick Tile Window to the Bottom Left
 Window Quick Tile Bottom Right=Meta+Alt+Shift+Right,none,Quick Tile Window to the Bottom Right
-Window Quick Tile Left=Meta+Alt+Left,none,Quick Tile Window to the Left
-Window Quick Tile Right=Meta+Alt+Right,none,Quick Tile Window to the Right
-Window Quick Tile Top=Meta+Alt+Up,none,Quick Tile Window to the Top
+Window Quick Tile Left=Meta+Alt+Left,Meta+Left,Quick Tile Window to the Left
+Window Quick Tile Right=Meta+Alt+Right,Meta+Right,Quick Tile Window to the Right
+Window Quick Tile Top=Meta+Alt+Up,Meta+Up,Quick Tile Window to the Top
 Window Quick Tile Top Left=none,none,Quick Tile Window to the Top Left
 Window Quick Tile Top Right=none,none,Quick Tile Window to the Top Right
 Window Raise=none,none,Raise Window
@@ -235,9 +248,9 @@ Window to Desktop 6=none,none,Window to Desktop 6
 Window to Desktop 7=none,none,Window to Desktop 7
 Window to Desktop 8=none,none,Window to Desktop 8
 Window to Desktop 9=none,none,Window to Desktop 9
-Window to Next Desktop=Ctrl+Alt+Shift+Right\tCtrl+Alt+Shift+Space,none,Window to Next Desktop
+Window to Next Desktop=Meta+Ctrl+Alt+Right\tMeta+Ctrl+Alt+Space,none,Window to Next Desktop
 Window to Next Screen=none,none,Window to Next Screen
-Window to Previous Desktop=Ctrl+Alt+Shift+Left\tCtrl+Alt+Shift+Up,none,Window to Previous Desktop
+Window to Previous Desktop=Meta+Ctrl+Alt+Left\tMeta+Ctrl+Alt+Up,none,Window to Previous Desktop
 Window to Previous Screen=none,none,Window to Previous Screen
 Window to Screen 0=none,none,Window to Screen 0
 Window to Screen 1=none,none,Window to Screen 1
@@ -255,6 +268,25 @@ view_zoom_out=Meta+-,Meta+-,Zoom Out
 
 [lattedock]
 _k_friendly_name=Latte Dock
+activate entry 1=,Meta+1,Activate Entry 1
+activate entry 10=,Meta+0,Activate Entry 10
+activate entry 11=Meta+Z,Meta+Z,Activate Entry 11
+activate entry 12=Meta+X,Meta+X,Activate Entry 12
+activate entry 13=,Meta+C,Activate Entry 13
+activate entry 14=,Meta+V,Activate Entry 14
+activate entry 15=,Meta+B,Activate Entry 15
+activate entry 16=,Meta+N,Activate Entry 16
+activate entry 17=,Meta+M,Activate Entry 17
+activate entry 18=Meta+\\,,Meta+\\,,Activate Entry 18
+activate entry 19=Meta+.,Meta+.,Activate Entry 19
+activate entry 2=,Meta+2,Activate Entry 2
+activate entry 3=,Meta+3,Activate Entry 3
+activate entry 4=,Meta+4,Activate Entry 4
+activate entry 5=,Meta+5,Activate Entry 5
+activate entry 6=,Meta+6,Activate Entry 6
+activate entry 7=,Meta+7,Activate Entry 7
+activate entry 8=,Meta+8,Activate Entry 8
+activate entry 9=,Meta+9,Activate Entry 9
 activate task manager entry 1=,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=,Meta+0,Activate Task Manager Entry 10
 activate task manager entry 2=,Meta+2,Activate Task Manager Entry 2
@@ -272,15 +304,37 @@ activate widget 16=,none,Activate Downloads Widget
 activate widget 17=Meta+Shift+N,none,Activate Notifications Widget
 activate widget 22=Meta+B,none,Activate Bluetooth Widget
 activate widget 27=,none,Activate Notifications Widget
-activate widget 30=Meta+D,none,Activate Downloads Widget
+activate widget 30=,none,Activate Downloads Widget
+activate widget 31=Meta+V,none,Activate Audio Volume (Win7 Mixer) Widget
 activate widget 33=none,none,Activate Application Menu Widget
+activate widget 40=none,none,Activate Application Menu Widget
+activate widget 53=none,none,Activate Application Launcher Widget
+activate widget 58=Meta+W,none,Activate Weather Widget Widget
 activate widget 7=Meta+C,none,Activate Event Calendar Widget
-activate widget 9=Meta+V,none,Activate Audio Volume (Win7 Mixer) Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
 cyclePrevAction=none,none,Previous History Item
 edit_clipboard=none,none,Edit Contents...
+new instance for entry 1=,Meta+Ctrl+1,New Instance for Entry 1
+new instance for entry 10=,Meta+Ctrl+0,New Instance for Entry 10
+new instance for entry 11=Meta+Ctrl+Z,Meta+Ctrl+Z,New Instance for Entry 11
+new instance for entry 12=Meta+Ctrl+X,Meta+Ctrl+X,New Instance for Entry 12
+new instance for entry 13=Meta+Ctrl+C,Meta+Ctrl+C,New Instance for Entry 13
+new instance for entry 14=Meta+Ctrl+V,Meta+Ctrl+V,New Instance for Entry 14
+new instance for entry 15=Meta+Ctrl+B,Meta+Ctrl+B,New Instance for Entry 15
+new instance for entry 16=Meta+Ctrl+N,Meta+Ctrl+N,New Instance for Entry 16
+new instance for entry 17=Meta+Ctrl+M,Meta+Ctrl+M,New Instance for Entry 17
+new instance for entry 18=Meta+Ctrl+\\,,Meta+Ctrl+\\,,New Instance for Entry 18
+new instance for entry 19=Meta+Ctrl+.,Meta+Ctrl+.,New Instance for Entry 19
+new instance for entry 2=,Meta+Ctrl+2,New Instance for Entry 2
+new instance for entry 3=,Meta+Ctrl+3,New Instance for Entry 3
+new instance for entry 4=,Meta+Ctrl+4,New Instance for Entry 4
+new instance for entry 5=,Meta+Ctrl+5,New Instance for Entry 5
+new instance for entry 6=,Meta+Ctrl+6,New Instance for Entry 6
+new instance for entry 7=,Meta+Ctrl+7,New Instance for Entry 7
+new instance for entry 8=,Meta+Ctrl+8,New Instance for Entry 8
+new instance for entry 9=,Meta+Ctrl+9,New Instance for Entry 9
 new instance for task manager entry 1=Meta+Ctrl+1,Meta+Ctrl+1,New Instance for Task Manager Entry 1
 new instance for task manager entry 10=Meta+Ctrl+0,Meta+Ctrl+0,New Instance for Task Manager Entry 10
 new instance for task manager entry 2=Meta+Ctrl+2,Meta+Ctrl+2,New Instance for Task Manager Entry 2
@@ -292,16 +346,32 @@ new instance for task manager entry 7=Meta+Ctrl+7,Meta+Ctrl+7,New Instance for T
 new instance for task manager entry 8=Meta+Ctrl+8,Meta+Ctrl+8,New Instance for Task Manager Entry 8
 new instance for task manager entry 9=Meta+Ctrl+9,Meta+Ctrl+9,New Instance for Task Manager Entry 9
 repeat_action=Ctrl+Alt+A,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
-show latte dock=,Meta+`,Show Latte Dock
+show dock settings=,Meta+A,Show Dock Settings
+show latte dock=,Meta+`,Show Dock
+show latte universal settings=Meta+E,Meta+E,Show Latte Settings
+show layout settings=none,Meta+W,Show Layout Settings
 show-barcode=none,none,Show Barcode...
 show-on-mouse-pos=Ctrl+Alt+V,none,Open Klipper at Mouse Position
 
 [mediacontrol]
 _k_friendly_name=Media Controller
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Media Next\t,Media Next,Media playback next
 playpausemedia=Media Play\t,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
+
+[org_kde_powerdevil]
+Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Decrease Keyboard Brightness
+Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Decrease Screen Brightness
+Hibernate=Hibernate,Hibernate,Hibernate
+Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Increase Keyboard Brightness
+Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Increase Screen Brightness
+PowerOff=Power Off,Power Off,Power Off
+Sleep=Sleep,Sleep,Suspend
+Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
+_k_friendly_name=Power Management
 
 [plasmashell]
 _k_friendly_name=Plasma
@@ -335,4 +405,4 @@ repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
 show-barcode=none,none,Show Barcode...
 show-on-mouse-pos=,none,Open Klipper at Mouse Position
-stop current activity=Meta+S,Meta+S,Stop Current Activity
+stop current activity=,Meta+S,Stop Current Activity

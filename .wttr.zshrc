@@ -1,3 +1,3 @@
 alias wttr="curl -s wttr.in/11215\?m | head -17"
-alias wttrnext="curl -s wttr.in/11215\?m | tail --lines=+18 | head --lines=-3"
-alias moon="curl -s wttr.in/Moon | head --lines=-4"
+alias wttrnext="curl -s wttr.in/11215\?m | tail -n +18 | head -n -2"
+alias moon="curl -s wttr.in/Moon | head -n -4"

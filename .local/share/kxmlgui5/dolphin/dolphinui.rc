@@ -1,11 +1,11 @@
 <!DOCTYPE kpartgui SYSTEM 'kpartgui.dtd'>
-<kpartgui version="19" name="dolphin">
+<kpartgui version="21" name="dolphin">
  <MenuBar>
   <Menu name="file">
    <Action name="new_menu"/>
-   <Action name="new_window"/>
+   <Action name="file_new"/>
    <Action name="new_tab"/>
-   <Action name="close_tab"/>
+   <Action name="file_close"/>
    <Action name="undo_close_tab"/>
    <Separator/>
    <Action name="renamefile"/>
@@ -17,12 +17,12 @@
    <Action name="properties"/>
   </Menu>
   <Menu name="edit">
-   <Action name="select_all"/>
+   <Action name="edit_select_all"/>
    <Action name="invert_selection"/>
   </Menu>
   <Menu name="view">
-   <Action name="view_mode"/>
    <Action name="sort"/>
+   <Action name="view_mode"/>
    <Action name="additional_info"/>
    <Action name="show_preview"/>
    <Action name="show_in_groups"/>
@@ -30,7 +30,7 @@
    <Separator/>
    <Action name="split_view"/>
    <Action name="split_stash"/>
-   <Action name="reload"/>
+   <Action name="redisplay"/>
    <Action name="stop"/>
    <Separator/>
    <Action name="panels"/>
@@ -115,28 +115,28 @@
   </disable>
  </State>
  <ActionProperties scheme="Default">
-  <Action icon="view-more-horizontal" name="additional_info"/>
-  <Action iconText="List" name="compact" shortcut="Ctrl+3" priority="0"/>
-  <Action name="create_dir" shortcut="F10; Ctrl+Shift+N" priority="0"/>
-  <Action iconText="Tree" name="details" shortcut="Ctrl+1" priority="0"/>
+  <Action name="additional_info" icon="view-more-horizontal"/>
+  <Action name="compact" priority="0" iconText="List" shortcut="Ctrl+3"/>
+  <Action name="create_dir" priority="0" shortcut="F10; Ctrl+Shift+N"/>
+  <Action name="details" priority="0" iconText="Tree" shortcut="Ctrl+1"/>
   <Action name="edit_copy" priority="0"/>
-  <Action name="edit_cut" shortcut="Ctrl+X" priority="0"/>
+  <Action name="edit_cut" priority="0" shortcut="Ctrl+X"/>
   <Action name="edit_find" shortcut="Ctrl+S; Ctrl+Shift+F"/>
   <Action name="edit_paste" priority="0"/>
   <Action name="go_back" priority="0"/>
   <Action name="go_forward" priority="0"/>
   <Action name="go_home" priority="0"/>
   <Action name="go_up" priority="0"/>
-  <Action iconText="Icon" name="icons" shortcut="Ctrl+2" priority="0"/>
+  <Action name="icons" priority="0" iconText="Icon" shortcut="Ctrl+2"/>
   <Action name="new_tab" shortcut="Ctrl+T; "/>
   <Action name="reload" priority="0"/>
-  <Action name="show_filter_bar" shortcut="Ctrl+I; Ctrl+F"/>
-  <Action iconText="Bunch" name="show_in_groups" priority="0"/>
-  <Action icon="help-info" name="show_information_panel" shortcut="Space; Ctrl+Shift+P"/>
-  <Action name="show_places_panel" shortcut="F9; Ctrl+Alt+S" priority="0"/>
-  <Action name="show_preview" shortcut="Ctrl+P" priority="0"/>
-  <Action icon="cm_runterm" name="show_terminal_panel" priority="0"/>
-  <Action iconText="Sort" icon="view-sort-ascending" name="sort" priority="0"/>
+  <Action name="show_filter_bar" shortcut="/; Ctrl+F"/>
+  <Action name="show_in_groups" priority="0" iconText="Bunch"/>
+  <Action name="show_information_panel" icon="help-info" shortcut="Space; Ctrl+Shift+P"/>
+  <Action name="show_places_panel" priority="0" shortcut="F9; Ctrl+Alt+S"/>
+  <Action name="show_preview" priority="0" shortcut="Ctrl+P"/>
+  <Action name="show_terminal_panel" priority="0" icon="cm_runterm"/>
+  <Action name="sort" priority="0" iconText="Sort" icon="view-sort-ascending"/>
   <Action name="split_view" priority="0"/>
   <Action name="stop" priority="0"/>
   <Action name="view_zoom_in" priority="0"/>

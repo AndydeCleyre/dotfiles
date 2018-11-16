@@ -30,13 +30,15 @@ export BROWSER=firefox
 
 alias aw="wiki-search"
 alias ariadone="~/Code/ariadone.py"
-alias CAPSOFF="python -c 'from ctypes import *; X11 = cdll.LoadLibrary(\"libX11.so.6\"); display = X11.XOpenDisplay(None); X11.XkbLockModifiers(display, c_uint(0x0100), c_uint(2), c_uint(0)); X11.XCloseDisplay(display)'"
-configs () { /usr/bin/locate "$1" | egrep "^($HOME/\.|/etc/)" }
+# configs () { /usr/bin/locate -i "$1" | grep "^($HOME/\.|/etc/)" | grep --color=auto "/[^/]*$" }
+configs () { /usr/bin/locate -i "$1" | grep "^($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
-alias define="/home/andy/.local/share/venvs/20e54bbaef52d3ebd44d4119e901f673/venv/bin/define"
-alias excerpt="mpv --script ~/Code/mpv-plugin-excerpt/excerpt.lua"
+alias cuts="cut -d ' '"
+alias decrypt="xclip -sel clip -o | gpg --decrypt"
+alias define="/home/andy/.local/share/venvs/23689963cd6571d2a4488a6e27452cee/venv/bin/define"
+alias downthese="aria2c -i downthese.txt"
 alias get="~/Code/clown/get.py"
 alias grep="egrep --color=auto -i"
 alias g="egrep --color=auto -i"

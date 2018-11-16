@@ -1,5 +1,5 @@
 [ActionPlugins][1]
-RightButton;NoModifier=org.kde.contextmenu
+RightButton;NoModifier=org.kde.latte.contextmenu
 
 [AppletGlobals][org.kde.plasma.notifications]
 popupPosition=0
@@ -7,6 +7,7 @@ popupPosition=0
 [Containments][1]
 activityId=
 dockWindowBehavior=true
+enableKWinEdges=true
 formfactor=3
 immutability=1
 lastScreen=11
@@ -30,25 +31,10 @@ PreloadWeight=0
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
 launchers=multi;*;2;file:///usr/share/applications/firefox.desktop;file:///usr/share/applications/org.kde.dolphin.desktop
-launchers59=applications:org.kde.dolphin.desktop,applications:firefox.desktop,applications:telegramdesktop.desktop,applications:jdownloader.desktop,applications:sublime_text.desktop,applications:cantata.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
-
-[Containments][1][Applets][24]
-immutability=1
-plugin=org.kde.plasma.pager
-
-[Containments][1][Applets][24][Configuration]
-PreloadWeight=0
-
-[Containments][1][Applets][24][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][1][Applets][24][Configuration][General]
-currentDesktopSelected=ShowDesktop
-displayedText=Number
+launchers59=applications:org.kde.dolphin.desktop,applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:jdownloader.desktop,applications:qbittorrent.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
 
 [Containments][1][ConfigDialog]
-DialogHeight=980
+DialogHeight=845
 DialogWidth=830
 
 [Containments][1][Configuration]
@@ -56,7 +42,7 @@ PreloadWeight=0
 
 [Containments][1][General]
 advanced=true
-appletOrder=2;24
+appletOrder=2
 dotsOnActive=true
 durationTime=x1
 iconSize=128
@@ -74,6 +60,7 @@ useThemePanel=false
 zoomLevel=0
 
 [Containments][12]
+PreloadWeight=0
 activityId=
 formfactor=2
 immutability=1
@@ -94,7 +81,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][12][Applets][15][Configuration]
-PreloadWeight=65
+PreloadWeight=0
 
 [Containments][12][Applets][16]
 immutability=1
@@ -129,7 +116,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][12][Applets][21][Configuration]
-PreloadWeight=13
+PreloadWeight=2
 
 [Containments][12][Applets][22]
 immutability=1
@@ -159,17 +146,6 @@ DialogWidth=1120
 [Containments][12][Applets][23][Configuration][General]
 useDefaultIcons=false
 
-[Containments][12][Applets][27]
-immutability=1
-plugin=org.kde.plasma.battery
-
-[Containments][12][Applets][27][Configuration]
-PreloadWeight=0
-
-[Containments][12][Applets][27][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
 [Containments][12][Applets][29]
 immutability=1
 plugin=org.kde.plasma.vault
@@ -185,14 +161,60 @@ plugin=org.kde.plasma.volumewin7mixer
 PreloadWeight=0
 
 [Containments][12][Applets][31][Configuration][Applet]
+mediaControllerLocation=top
+showOsd=false
+showVisualFeedback=false
 volumeChangeFeedback=false
 
 [Containments][12][Applets][31][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
+DialogHeight=1035
+DialogWidth=1179
 
 [Containments][12][Applets][31][Shortcuts]
 global=Meta+V
+
+[Containments][12][Applets][48]
+immutability=1
+plugin=org.kde.discovernotifier
+
+[Containments][12][Applets][48][Configuration]
+PreloadWeight=0
+
+[Containments][12][Applets][58]
+immutability=1
+plugin=org.kde.weatherWidget
+
+[Containments][12][Applets][58][Configuration]
+PreloadWeight=0
+
+[Containments][12][Applets][58][Configuration][Appearance]
+layoutType=Compact
+renderMeteogram=true
+
+[Containments][12][Applets][58][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][12][Applets][58][Configuration][General]
+lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1542334126810}
+places=[{"placeAlias":"New York","placeIdentifier":"USA/New_York/New_York","providerId":"yrno"}]
+
+[Containments][12][Applets][58][Configuration][Units]
+windSpeedType=mph
+
+[Containments][12][Applets][58][Shortcuts]
+global=Meta+W
+
+[Containments][12][Applets][59]
+immutability=1
+plugin=org.kde.plasma.keyboardindicator
+
+[Containments][12][Applets][59][Configuration]
+PreloadWeight=0
+
+[Containments][12][Applets][60]
+immutability=1
+plugin=org.kde.plasma.battery
 
 [Containments][12][ConfigDialog]
 DialogHeight=840
@@ -202,17 +224,20 @@ DialogWidth=1120
 PreloadWeight=0
 
 [Containments][12][General]
-extraItems=org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.redshiftControl,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer
-hiddenItems=org.kde.redshiftControl,org.kde.kdeconnect,org.kde.plasma.vault
-knownItems=org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer
+extraItems=org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.redshiftControl,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer,org.kde.discovernotifier,org.kde.weatherWidget,org.kde.plasma.keyboardindicator
+hiddenItems=org.kde.redshiftControl,org.kde.kdeconnect,org.kde.plasma.vault,KDE Daemon,org.kde.plasma.weather,org.kde.weatherWidget
+knownItems=org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer,org.kde.plasma.keyboardindicator,org.kde.discovernotifier
 shownItems=TelegramDesktop,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.networkmanagement,KGpg,org.kde.plasma.volumewin7mixer
 
 [Containments][4]
 activityId=
+dockWindowBehavior=true
+enableKWinEdges=true
 formfactor=2
 immutability=1
 lastScreen=11
 location=3
+onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
 raiseOnDesktopChange=false
@@ -226,7 +251,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][4][Applets][11][Configuration]
-PreloadWeight=92
+PreloadWeight=0
 SystrayContainmentId=12
 
 [Containments][4][Applets][26]
@@ -267,24 +292,47 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][4][Applets][32][Configuration][General]
+icon=folder-yellow-activities
 iconSize=5
 previewPlugins=stage_key_thumbnail,audiothumbnail,comicbookthumbnail,djvuthumbnail,marble_thumbnail_shp,exrthumbnail,directorythumbnail,fontthumbnail,marble_thumbnail_geojson,marble_thumbnail_gpx,htmlthumbnail,imagethumbnail,jpegthumbnail,karbon_karbon1x_thumbnail,marble_thumbnail_kmz,marble_thumbnail_kml,stage_kpr_thumbnail,kraorathumbnail,sheets_xlsx_thumbnail,sheets_excel_thumbnail,stage_pptx_thumbnail,stage_powerpoint_thumbnail,flow_vsdx_thumbnail,windowsexethumbnail,windowsimagethumbnail,words_docx_thumbnail,words_msword_thumbnail,words_wps_thumbnail,calligra_odg_thumbnail,stage_odp_thumbnail,sheets_ods_thumbnail,words_odt_thumbnail,marble_thumbnail_osm,gsthumbnail,rawthumbnail,words_rtf_thumbnail,flow_wpg_thumbnail,karbon_wpg_thumbnail,karbon_xfig_thumbnail
+previews=false
 sortDesc=true
 sortDirsFirst=false
 sortMode=2
 toolTips=true
 url=file:///home/andy/Downloads
-viewMode=1
+useCustomIcon=true
 
-[Containments][4][Applets][40]
+[Containments][4][Applets][50]
 immutability=1
-plugin=org.kde.plasma.kicker
+plugin=org.kde.plasma.pager
 
-[Containments][4][Applets][40][Configuration]
+[Containments][4][Applets][50][Configuration]
 PreloadWeight=0
 
-[Containments][4][Applets][40][Configuration][General]
+[Containments][4][Applets][50][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][4][Applets][50][Configuration][General]
+currentDesktopSelected=ShowDesktop
+
+[Containments][4][Applets][53]
+immutability=1
+plugin=org.kde.plasma.kickoff
+
+[Containments][4][Applets][53][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][53][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][4][Applets][53][Configuration][General]
 favoritesPortedToKAstats=true
+menuItems=application:t,leave:f,oftenUsed:f,bookmark:f,computer:f,used:f
+showAppsByName=true
+useExtraRunners=false
 
 [Containments][4][Applets][7]
 immutability=1
@@ -296,7 +344,7 @@ PreloadWeight=0
 [Containments][4][Applets][7][Configuration][Agenda]
 agenda_breakup_multiday_events=true
 agenda_fontSize=21
-agenda_weather_icon_height=12
+agenda_weather_icon_height=48
 
 [Containments][4][Applets][7][Configuration][Calendar]
 month_cell_radius=0.1
@@ -305,20 +353,20 @@ month_show_border=false
 month_today_style=bigNumber
 
 [Containments][4][Applets][7][Configuration][ConfigDialog]
-DialogHeight=840
+DialogHeight=1035
 DialogWidth=1120
 
 [Containments][4][Applets][7][Configuration][General]
 clock_24h=true
 clock_fontfamily=Iosevka Custom
 clock_maxheight=26
-clock_timeformat=h:mma ddd d\s
+clock_timeformat=h:mma ddd d
 widget_show_meteogram=false
 widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=958952783
+access_token_expires_at=2762297514
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -350,15 +398,17 @@ command=/home/andy/Code/kargos/now_playing/now_playing.3s.py
 rotation=8
 
 [Containments][4][ConfigDialog]
-DialogHeight=980
-DialogWidth=830
+DialogHeight=982
+DialogWidth=848
 
 [Containments][4][Configuration]
 PreloadWeight=0
 
 [Containments][4][General]
+activeIndicator=None
 advanced=true
-appletOrder=7;8;11;26;40;32
+appletOrder=50;7;11;8;26;53;32
+autoDecreaseIconSize=false
 durationTime=x1
 iconSize=32
 maxLength=42
@@ -367,17 +417,22 @@ panelPosition=Right
 panelSize=100
 panelTransparency=65
 proportionIconSize=3
+shadows=None
+solidBackgroundForMaximized=true
 zoomLevel=0
 
 [Containments][41]
 activityId=
+dockWindowBehavior=true
+enableKWinEdges=true
 formfactor=2
 immutability=1
 lastScreen=11
 location=4
+onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=true
-raiseOnDesktopChange=false
+raiseOnDesktopChange=true
 timerHide=700
 timerShow=200
 visibility=2
@@ -395,8 +450,7 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][41][Applets][44][Configuration][General]
-highlightWindows=true
-showToolTips=false
+showOnlyCurrentDesktop=true
 
 [Containments][41][Applets][46]
 immutability=1
@@ -410,7 +464,7 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][41][ConfigDialog]
-DialogHeight=980
+DialogHeight=879
 DialogWidth=830
 
 [Containments][41][Configuration]
@@ -446,8 +500,14 @@ url=file:///home/andy/Downloads
 useCustomIcon=true
 
 [LayoutSettings]
+activities=
+background=
 color=blue
+disableBordersForMaximizedWindows=false
+lastUsedActivity=ded19345-93ad-45b4-983d-421f0e817dda
+launchers=
 showInMenu=true
+textColor=fcfcfc
 version=2
 
 [ScreenMapping]

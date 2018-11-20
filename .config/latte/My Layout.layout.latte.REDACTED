@@ -116,7 +116,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][12][Applets][21][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][12][Applets][22]
 immutability=1
@@ -196,7 +196,7 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][12][Applets][58][Configuration][General]
-lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1542334126810}
+lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1542689320185}
 places=[{"placeAlias":"New York","placeIdentifier":"USA/New_York/New_York","providerId":"yrno"}]
 
 [Containments][12][Applets][58][Configuration][Units]
@@ -212,9 +212,12 @@ plugin=org.kde.plasma.keyboardindicator
 [Containments][12][Applets][59][Configuration]
 PreloadWeight=0
 
-[Containments][12][Applets][60]
+[Containments][12][Applets][63]
 immutability=1
 plugin=org.kde.plasma.battery
+
+[Containments][12][Applets][63][Configuration]
+PreloadWeight=26
 
 [Containments][12][ConfigDialog]
 DialogHeight=840
@@ -253,20 +256,6 @@ plugin=org.kde.plasma.systemtray
 [Containments][4][Applets][11][Configuration]
 PreloadWeight=0
 SystrayContainmentId=12
-
-[Containments][4][Applets][26]
-immutability=1
-plugin=org.kde.kargos
-
-[Containments][4][Applets][26][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][26][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][26][Configuration][General]
-command=~/Code/kargos/dash/dash.300s.py
 
 [Containments][4][Applets][32]
 activityId=
@@ -334,6 +323,40 @@ menuItems=application:t,leave:f,oftenUsed:f,bookmark:f,computer:f,used:f
 showAppsByName=true
 useExtraRunners=false
 
+[Containments][4][Applets][61]
+immutability=1
+plugin=com.github.zren.commandoutput
+
+[Containments][4][Applets][61][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][61][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][4][Applets][61][Configuration][General]
+command=/home/andy/Code/panel_scripts/dash/price.py
+fontFamily=Iosevka TermLig Custom Light
+fontSize=21
+interval=300000
+
+[Containments][4][Applets][62]
+immutability=1
+plugin=com.github.zren.commandoutput
+
+[Containments][4][Applets][62][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][62][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][4][Applets][62][Configuration][General]
+command=/home/andy/Code/panel_scripts/now_playing/track.py oneline nofmt
+fontFamily=Iosevka TermLig Custom Light
+fontSize=21
+interval=3000
+
 [Containments][4][Applets][7]
 immutability=1
 plugin=org.kde.plasma.eventcalendar
@@ -358,7 +381,7 @@ DialogWidth=1120
 
 [Containments][4][Applets][7][Configuration][General]
 clock_24h=true
-clock_fontfamily=Iosevka Custom
+clock_fontfamily=Iosevka TermLig Custom
 clock_maxheight=26
 clock_timeformat=h:mma ddd d
 widget_show_meteogram=false
@@ -366,7 +389,7 @@ widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=2762297514
+access_token_expires_at=462626861
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -379,24 +402,6 @@ weather_city_id=[redacted]
 [Containments][4][Applets][7][Shortcuts]
 global=Meta+C
 
-[Containments][4][Applets][8]
-immutability=1
-plugin=org.kde.kargos
-
-[Containments][4][Applets][8][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][8][Configuration][Appearance]
-height=300
-
-[Containments][4][Applets][8][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][8][Configuration][General]
-command=/home/andy/Code/kargos/now_playing/now_playing.3s.py
-rotation=8
-
 [Containments][4][ConfigDialog]
 DialogHeight=982
 DialogWidth=848
@@ -407,7 +412,7 @@ PreloadWeight=0
 [Containments][4][General]
 activeIndicator=None
 advanced=true
-appletOrder=50;7;11;8;26;53;32
+appletOrder=7;11;62;61;53;32;50
 autoDecreaseIconSize=false
 durationTime=x1
 iconSize=32

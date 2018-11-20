@@ -11,28 +11,23 @@ from requests.exceptions import ConnectionError
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
-fmt = "| font='Iosevka Custom' size=15"
-
-
-def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
+def now_playing(
+    api_key=LASTFM_API_KEY,
+    user=LASTFM_USER,
+    player_blacklist=('Gwenview', 'plasma-browser-integration', 'mpv')
+):
     try:
-        player = [
-            *filter(
-                lambda p: not p.startswith('Gwenview'),
-                playerctl('--list-all').split()
-            )
-        ][0]
+        player = next(filter(lambda p: p not in player_blacklist, playerctl('--list-all').split()))
         return {
             detail: playerctl['-p', player, 'metadata'](detail)
             for detail in ('title', 'artist', 'album')
         }
-    except (IndexError, ProcessExecutionError):
+    except (StopIteration, ProcessExecutionError):
         base = 'http://ws.audioscrobbler.com/2.0/'
         try:
             r = get(base, params={
                 'format': 'json', 'api_key': api_key,
-                'method': 'user.getRecentTracks',
-                'user': user
+                'method': 'user.getRecentTracks', 'user': user
             })
         except ConnectionError:
             pass
@@ -48,7 +43,7 @@ def now_playing(api_key=LASTFM_API_KEY, user=LASTFM_USER):
                         }
 
 
-def resize(txt, size, pre='» ', post=' «', ellipsis='random'):
+def resize(txt, size, pre='{ ', post=' }', ellipsis='random'):
     free = size - len(txt)
     if ellipsis == 'random':
         ellipsis = choice(('center', 'end'))
@@ -67,18 +62,12 @@ if __name__ == '__main__':
     try:
         title, artist, album = details['title'], details['artist'], details['album']
     except TypeError:
-        print(fmt, "iconName=spotify-indicator bash=spotify onclick=bash")
+        print('🙉')
     else:
         title = re.sub(
             r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single|Stereo)( Version)?$',
-            '',
-            title
+            '', title
         )
         # size = len(artist)
         size = min(17, max(len(artist), len(title)))
-        print(resize(artist, size), fmt)
-        print(resize(title, size), fmt)
-        print('---')
-        print(title, fmt, "iconName=media-album-track")
-        print(artist, fmt, "iconName=view-media-artist")
-        print(album, fmt, "iconName=media-album-cover")
+        print(resize(choice((artist, title)), size))

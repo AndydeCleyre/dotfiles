@@ -1,25 +1,25 @@
 i () { ipython }
 i2 () { ipython2 }
 
-venv_path () {
+venvs_path () {
     [[ "$#" -gt 0 ]] && reqsdir="$(realpath $1)" || reqsdir="$(pwd)"
     echo "$HOME/.local/share/venvs/$(echo -n $reqsdir | md5sum | cut -d ' ' -f 1)"
 }
 
 vpy () {
-    "$(venv_path $(dirname $(realpath $1)))/venv/bin/python" "$@"
+    "$(venvs_path $(dirname $(realpath $1)))/venv/bin/python" "$@"
 }
 
 vpy2 () {
-    "$(venv_path $(dirname $(realpath $1)))/venv2/bin/python" "$@"
+    "$(venvs_path $(dirname $(realpath $1)))/venv2/bin/python" "$@"
 }
 
 vpypy () {
-    "$(venv_path $(dirname $(realpath $1)))/venvpypy/bin/python" "$@"
+    "$(venvs_path $(dirname $(realpath $1)))/venvpypy/bin/python" "$@"
 }
 
 envin () {
-    venv="$(venv_path)/venv"
+    venv="$(venvs_path)/venv"
     [[ -d $venv ]] || python3 -m venv $venv
     touch requirements.txt
     [[ -s requirements.in ]] || echo "# python 3" >> requirements.in
@@ -29,7 +29,7 @@ envin () {
 }
 
 envin2 () {
-    venv="$(venv_path)/venv2"
+    venv="$(venvs_path)/venv2"
     [[ -d $venv ]] || virtualenv2 $venv
     touch requirements.txt
     [[ -s requirements.in ]] || echo "# python 2" >> requirements.in
@@ -39,7 +39,7 @@ envin2 () {
 }
 
 envinpypy () {
-    venv="$(venv_path)/venvPyPy"
+    venv="$(venvs_path)/venvPyPy"
     [[ -d $venv ]] || pypy3 -m venv $venv
     touch requirements.txt
     [[ -s requirements.in ]] || echo "# pypy3" >> requirements.in
@@ -50,17 +50,13 @@ envinpypy () {
 
 envout () { deactivate }
 
-if [ "$(command -v bat)" ]
-then
-    hpype () { bat -l py }
-elif [ "$(command -v highlight)" ]
-then
-    hpype () { highlight -O truecolor -s lucretia -S py }
-else
-    hpype () { cat - }
-fi
+hpype () {
+    [[ "$(command -v bat)" ]] && bat -l py -p ||
+    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s lucretia -S py ||
+    cat -
+}
 
-# todo: flush/delete venv
+pyfmt () { black - 2>&1 | head -n -3 | hpype }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
 pipc () { for reqs in *requirements.in; do pip-compile --no-header "$reqs" | hpype; done }
@@ -79,6 +75,3 @@ pipuhs () { pipuh $@; pips }
 pipi () { pip install -U $@ }
 pimp () { pip install -U pip ipython plumbum requests pip-tools structlog strictyaml }
 freeze () { pip freeze | egrep -i "$@" }
-
-_pipa_complete() { reply=( "${(ps: :)$(cat $ZSH_PIP_CACHE_FILE)}" ) }
-compctl -K _pipa_complete pipa

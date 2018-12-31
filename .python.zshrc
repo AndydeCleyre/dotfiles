@@ -29,7 +29,7 @@ envout () { deactivate }
 hpype () {
     [[ "$(command -v highlight)" ]] && highlight -O truecolor -s lucretia -S py ||
     [[ "$(command -v bat)"       ]] && bat -l py -p                             ||
-    cat -
+                                       cat -
 }
 
 pips () { pip-sync *requirements.txt }
@@ -49,7 +49,6 @@ pipus  ()  { pipu  $@; pips }
 pipuhs ()  { pipuh $@; pips }
 
 pipi () { pip install -U $@ }
-freeze () { pip freeze | egrep -i "$@" }
 
-pimp () { pipi ipython plumbum requests structlog strictyaml }
+pimp    () { pipi   ipython plumbum requests structlog strictyaml }
 pimpacs () { pipacs ipython plumbum requests structlog strictyaml }

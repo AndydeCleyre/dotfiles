@@ -43,8 +43,8 @@ pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
 pipacs  () { pipa $@; pipcs  }
 pipachs () { pipa $@; pipchs }
 
-pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P $@ "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }
-pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P $@ "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }
+pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }
+pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }
 pipus  ()  { pipu  $@; pips }
 pipuhs ()  { pipuh $@; pips }
 

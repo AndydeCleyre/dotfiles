@@ -17,7 +17,8 @@ _envin () {
     touch requirements.txt
     [[ -s requirements.in ]] || echo "# $3" >> requirements.in
     . $venv/bin/activate
-    curl -I https://pypi.org/ &> /dev/null && pip install -qU pip pip-tools
+    # curl -I https://pypi.org/ &> /dev/null && pip install -qU pip pip-tools
+    pip install -qU pip pip-tools
     $venv/bin/pip-sync *requirements.txt || pip install -qr requirements.txt
 }
 envin     () { _envin venv     "python3 -m venv" "Python 3" }

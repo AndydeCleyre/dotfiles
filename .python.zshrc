@@ -33,14 +33,14 @@ hpype () {
                                        cat -
 }
 
-pips () { pip-sync *requirements.txt }
+pips () { [[ "$#" -gt 0 ]] && pip-sync $@ || pip-sync *requirements.txt }
 
 pipc  () { for reqs in *requirements.in; do pip-compile --no-header                   "$reqs" | hpype; done }
 pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | hpype; done }
 pipcs  ()  { pipc ; pips }
 pipchs ()  { pipch; pips }
 
-pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in }
+pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in | hpype }
 pipacs  () { pipa $@; pipcs  }
 pipachs () { pipa $@; pipchs }
 

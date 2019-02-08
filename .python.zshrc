@@ -28,7 +28,7 @@ envinpypy () { _envin venvPyPy "pypy3 -m venv"   "PyPy 3"   }
 envout () { deactivate }
 
 hpype () {
-    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s lucretia -S py ||
+    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s moria -S py ||
     [[ "$(command -v bat)"       ]] && bat -l py -p                             ||
                                        cat -
 }

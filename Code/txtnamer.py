@@ -6,15 +6,14 @@ from sys import argv
 
 from plumbum import local
 from plumbum.colors import red, green
-from plumbum.cmd import konsole
+from plumbum.cmd import micro
 
 
-edit = konsole['-e', 'micro']
 old_names = argv[1:] or local.path().list()
 with local.tempdir() as tmp:
     name_file = tmp / 'txtnamer_names'
     name_file.write('\n'.join(old_names), 'utf8')
-    edit(name_file)
+    micro(name_file)
     new_names = name_file.read('utf8').strip().splitlines()
 if len(new_names) == len(old_names):
     for old_path, new_path in zip(

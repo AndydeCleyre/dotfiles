@@ -41,7 +41,7 @@ pipcs  ()  { pipc ; pips }
 pipchs ()  { pipch; pips }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in | hpype }
-pipacs  () { pipa $@; pipcs  }
+pipacs  () { pipa $@; echo; pipcs  }
 pipachs () { pipa $@; pipchs }
 
 pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }

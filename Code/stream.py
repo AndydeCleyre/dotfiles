@@ -3,7 +3,7 @@
 import sys
 
 from requests import get
-from plumbum import local
+from plumbum import local, ProcessExecutionError
 from plumbum.cli.terminal import ask
 from plumbum.cmd import peerflix, xclip, mpv
 
@@ -16,7 +16,10 @@ for uri in uris:
         location = r.json()['Answer'].split('>')[1].split('<')[0]
         if ask(f"Your IP address indicates you're in {location}. Connect to VPN?", True):
             vpn['up', 'us'].run_fg()
-        peerflix['-kdr', uri].run_fg()
+        try:
+            peerflix['-kdf', local.path('~/Downloads/peerflix'), uri, '--', '--no-resume-playback'].run_fg()
+        except (ProcessExecutionError, KeyboardInterrupt) as e:
+            print(e, file=sys.stderr)
         if ask(f"Disconnect from VPN?", True):
             vpn['down'].run_fg()
     else:

@@ -11,7 +11,7 @@ enableKWinEdges=true
 formfactor=3
 immutability=1
 isPreferredForShortcuts=false
-lastScreen=11
+lastScreen=13
 location=6
 onPrimary=true
 plugin=org.kde.latte.containment
@@ -32,7 +32,7 @@ PreloadWeight=0
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
 launchers=multi;*;2;file:///usr/share/applications/firefox.desktop;file:///usr/share/applications/org.kde.dolphin.desktop
-launchers59=applications:org.kde.dolphin.desktop,applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:jdownloader.desktop,applications:qbittorrent.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
+launchers59=applications:org.kde.dolphin.desktop,applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:jdownloader.desktop,applications:qbittorrent.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:color-picker.desktop,applications:systemsettings.desktop
 
 [Containments][1][ConfigDialog]
 DialogHeight=845
@@ -65,7 +65,7 @@ PreloadWeight=0
 activityId=
 formfactor=2
 immutability=1
-lastScreen=11
+lastScreen=13
 location=3
 plugin=org.kde.plasma.private.systemtray
 wallpaperplugin=org.kde.image
@@ -75,7 +75,7 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][12][Applets][14][Configuration]
-PreloadWeight=0
+PreloadWeight=5
 
 [Containments][12][Applets][15]
 immutability=1
@@ -190,7 +190,7 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][12][Applets][58][Configuration][General]
-lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1546973694132}
+lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1551151989720}
 places=[{"placeAlias":"New York","placeIdentifier":"USA/New_York/New_York","providerId":"yrno"}]
 
 [Containments][12][Applets][58][Configuration][Units]
@@ -206,6 +206,10 @@ plugin=org.kde.plasma.keyboardindicator
 [Containments][12][Applets][59][Configuration]
 PreloadWeight=0
 
+[Containments][12][Applets][59][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
 [Containments][12][Applets][78]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
@@ -213,7 +217,7 @@ plugin=org.kde.plasma.networkmanagement
 [Containments][12][Applets][78][Configuration]
 PreloadWeight=0
 
-[Containments][12][Applets][80]
+[Containments][12][Applets][84]
 immutability=1
 plugin=org.kde.plasma.battery
 
@@ -237,7 +241,7 @@ enableKWinEdges=true
 formfactor=2
 immutability=1
 isPreferredForShortcuts=false
-lastScreen=11
+lastScreen=13
 location=3
 onPrimary=true
 plugin=org.kde.latte.containment
@@ -291,37 +295,6 @@ toolTips=true
 url=file:///home/andy/Downloads
 useCustomIcon=true
 
-[Containments][4][Applets][50]
-immutability=1
-plugin=org.kde.plasma.pager
-
-[Containments][4][Applets][50][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][50][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][50][Configuration][General]
-currentDesktopSelected=ShowDesktop
-
-[Containments][4][Applets][53]
-immutability=1
-plugin=org.kde.plasma.kickoff
-
-[Containments][4][Applets][53][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][53][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][53][Configuration][General]
-favoritesPortedToKAstats=true
-menuItems=application:t,leave:f,oftenUsed:f,bookmark:f,computer:f,used:f
-showAppsByName=true
-useExtraRunners=false
-
 [Containments][4][Applets][61]
 immutability=1
 plugin=com.github.zren.commandoutput
@@ -368,7 +341,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][4][Applets][7][Configuration]
-PreloadWeight=5
+PreloadWeight=0
 
 [Containments][4][Applets][7][Configuration][Agenda]
 agenda_breakup_multiday_events=true
@@ -395,7 +368,7 @@ widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=789103537
+access_token_expires_at=211735495
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -454,20 +427,30 @@ PreloadWeight=0
 DialogHeight=840
 DialogWidth=1120
 
+[Containments][4][Applets][81]
+immutability=1
+plugin=org.kde.plasma.simplemenu
+
+[Containments][4][Applets][81][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][81][Configuration][General]
+favoritesPortedToKAstats=true
+
 [Containments][4][ConfigDialog]
-DialogHeight=967
-DialogWidth=835
+DialogHeight=982
+DialogWidth=848
 
 [Containments][4][Configuration]
 PreloadWeight=0
 
 [Containments][4][General]
 advanced=true
-appletOrder=72;7;68;62;70;61;73;11;74;53;32;79;50;75
+appletOrder=72;7;68;62;70;61;73;11;74;81;32;79;75
 durationTime=x1
 iconSize=32
 maxLength=42
-offset=6
+offset=8
 panelPosition=Right
 panelSize=100
 panelTransparency=80
@@ -483,7 +466,7 @@ enableKWinEdges=true
 formfactor=2
 immutability=1
 isPreferredForShortcuts=false
-lastScreen=11
+lastScreen=13
 location=4
 onPrimary=true
 plugin=org.kde.latte.containment
@@ -520,8 +503,24 @@ PreloadWeight=0
 DialogHeight=840
 DialogWidth=1120
 
+[Containments][41][Applets][83]
+immutability=1
+plugin=org.kde.plasma.pager
+
+[Containments][41][Applets][83][Configuration]
+PreloadWeight=0
+
+[Containments][41][Applets][83][Configuration][ConfigDialog]
+DialogHeight=840
+DialogWidth=1120
+
+[Containments][41][Applets][83][Configuration][General]
+currentDesktopSelected=ShowDesktop
+displayedText=Number
+showWindowIcons=true
+
 [Containments][41][ConfigDialog]
-DialogHeight=879
+DialogHeight=864
 DialogWidth=830
 
 [Containments][41][Configuration]
@@ -529,7 +528,7 @@ PreloadWeight=0
 
 [Containments][41][General]
 advanced=true
-appletOrder=44;46
+appletOrder=83;44;46
 durationTime=x3
 iconSize=128
 lockedZoomApplets=44

@@ -16,7 +16,11 @@ for line in sudo(netstat['-lnptu']).split('\n'):
                 pid_name = ' '.join((word, pid_name))
                 if pid_name[0].isdigit():
                     break
-        pid, name = pid_name.split('/', 1)
+        try:
+            pid, name = pid_name.split('/', 1)
+        except ValueError:
+            pid, name = '--'
+            # pid, name = (pid_name,) * 2
         address, port = address_port.rsplit(':', 1)
         port = int(port)
         ports[port]['name'].add(name)

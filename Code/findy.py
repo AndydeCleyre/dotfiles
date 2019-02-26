@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-from sys import stdout
+import sys
 from contextlib import suppress
 
 from plumbum.cmd import find, grep
-from plumbum import ProcessExecutionError, BG, cli
+from plumbum import ProcessExecutionError, cli
 
 
 class Finder(cli.Application):
@@ -14,16 +14,14 @@ class Finder(cli.Application):
     )
 
     def main(self, *args):
+        cmd = find['-L', '.', '-iname', f'*{args[0]}*']
         if self.null:
-            cmd = find['-L', '.', '-iname', '*{}*'.format(args[0]), '-print0']
-            # cmd = cmd['-print0']
-        else:
-            cmd = find['-L', '.', '-iname', '*{}*'.format(args[0])]
+            cmd = cmd['-print0']
         for term in args[1:]:
             cmd = (cmd | grep['-i', term])
         with suppress(ProcessExecutionError):
-            (cmd & BG(stdout=stdout)).wait()
+            (cmd.run_bg(stdout=sys.stdout)).wait()
 
 
 if __name__ == '__main__':
-    Finder.run()
+    Finder()

@@ -3,7 +3,8 @@ export MICRO_TRUECOLOR=1
 
 alias e="$EDITOR"
 alias se="sudoedit"
-xe () { touch "$@"; chmod +x "$@"; $EDITOR "$@" }
+xt () { touch "$@"; chmod +x "$@" }
+xe () { xt "$@"; $EDITOR "$@" }
 
 alias smeld="SUDO_EDITOR=meld sudoedit"
 

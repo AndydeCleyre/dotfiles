@@ -9,7 +9,8 @@ else
     ZSH_THEME_CONSOLE="%F{cyan}tty$(echo $TTY | egrep -o '\w+$')%f"
 fi
 local ZSH_THEME_CWD="%F{magenta}%~%f"
-local ZSH_THEME_RETURN="%(?..%F{red}%? <- )%F{green}%*%f"
+local ZSH_THEME_RETURN="%(?..%F{red}%? <- )"
+local ZSH_THEME_CLOCK="%F{green}%*%f"
 
 local ZSH_THEME_GIT_PROMPT_PREFIX="(%F{blue}"
 local ZSH_THEME_GIT_PROMPT_SUFFIX="%f)"
@@ -32,7 +33,7 @@ function parse_git_dirty() {
     fi
 }
 
-PROMPT='${ZSH_THEME_USER}@${ZSH_THEME_HOST}.${ZSH_THEME_CONSOLE}:${ZSH_THEME_CWD}$(git_prompt_info)
-%F{red}%(!.#.⣿)%f '
+PROMPT='${ZSH_THEME_RETURN}${ZSH_THEME_USER}@${ZSH_THEME_HOST}.${ZSH_THEME_CONSOLE}:${ZSH_THEME_CWD}$(git_prompt_info)
+%F{red}%(!.#.$)%f '
 PROMPT2='%F{red}\ %f'
-RPROMPT='${ZSH_THEME_RETURN}'
+RPROMPT='${ZSH_THEME_CLOCK}'

@@ -1,4 +1,4 @@
-for cmd in start stop restart; do
+for cmd in start stop restart enable disable mask; do
   alias sc-$cmd="sudo systemctl $cmd"
 done
 alias sc-dr="sudo systemctl daemon-reload"

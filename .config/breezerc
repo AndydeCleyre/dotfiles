@@ -1,6 +1,6 @@
 [Common]
 OutlineCloseButton=false
-ShadowStrength=89
+ShadowSize=ShadowMedium
 
 [Style]
 MenuOpacity=80
@@ -12,5 +12,4 @@ ScrollBarSubLineButtons=0
 ButtonSize=ButtonSmall
 DrawBackgroundGradient=false
 DrawSizeGrip=false
-DrawTitleBarSeparator=false
 TitleAlignment=AlignLeft

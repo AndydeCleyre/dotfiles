@@ -1,12 +1,12 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js
 
 [Compositing]
 AnimationSpeed=1
 Backend=OpenGL
 Enabled=true
 GLColorCorrection=false
-GLCore=true
+GLCore=false
 GLPlatformInterface=glx
 GLPreferBufferSwap=a
 GLTextureFilter=2
@@ -17,9 +17,8 @@ WindowsBlockCompositing=true
 XRenderSmoothScale=false
 
 [Desktops]
-Name_1=High
-Name_2=Low
-Name_3=Bottom
+Id_1=1aa2f323-b76b-46b0-bd7b-b06bc99a5628
+Id_2=773b0475-d91f-4e0c-84f2-382475a12737
 Number=2
 Rows=2
 
@@ -54,7 +53,7 @@ TabBoxAlternative=false
 GlideAngle=0
 
 [Effect-MouseMark]
-Color=128,128,128
+Color=255,128,0
 LineWidth=10
 
 [Effect-PresentWindows]
@@ -69,14 +68,14 @@ TextureScale=false
 
 [Effect-Zoom]
 EnableFocusTracking=true
-InitialZoom=1
-MouseTracking=2
-ZoomFactor=1.25
+MouseTracking=1
+ZoomFactor=1.05
 
 [Effect-kwin4_effect_translucency]
 ComboboxPopups=96
 Dialogs=96
 DropdownMenus=80
+Menus=90
 PopupMenus=81
 TornOffMenus=80
 
@@ -89,6 +88,9 @@ Right=None
 Top=None
 TopLeft=None
 TopRight=None
+
+[ModifierOnlyShortcuts]
+Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
 
 [MouseBindings]
 CommandActiveTitlebar1=Raise
@@ -108,11 +110,14 @@ CommandWindow2=Activate and pass click
 CommandWindow3=Activate and pass click
 CommandWindowWheel=Scroll
 
+[PlasmaRunnerManager]
+LaunchCounts=
+
 [Plugins]
+activatelattelaunchermenuEnabled=false
 blurEnabled=true
 contrastEnabled=false
 coverswitchEnabled=true
-cubeslideEnabled=true
 desktopchangeosdEnabled=true
 diminactiveEnabled=true
 enforcedecoEnabled=true
@@ -122,15 +127,11 @@ highlightwindowEnabled=true
 invertEnabled=true
 kwin-script-tilingEnabled=false
 kwin4_effect_dialogparentEnabled=false
-kwin4_effect_eyeonscreenEnabled=true
-kwin4_effect_fadedesktopEnabled=false
-kwin4_effect_translucencyEnabled=false
-kwin4_effect_windowapertureEnabled=false
+kwinOverviewEnabled=false
 minimizeallEnabled=false
 mousemarkEnabled=true
 quarter-tilingEnabled=false
 sheetEnabled=true
-slideEnabled=false
 slidebackEnabled=true
 sticky-window-snapping-zrenEnabled=true
 sticky-window-snappingEnabled=false
@@ -155,6 +156,7 @@ ActivitiesMode=0
 ApplicationsMode=1
 BorderActivate=9
 BorderAlternativeActivate=9
+DelayTime=0
 DesktopLayout=org.kde.breeze.desktop
 DesktopListLayout=org.kde.breeze.desktop
 DesktopMode=0
@@ -214,7 +216,8 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 BorderSize=None
-ButtonsOnLeft=XSN
-ButtonsOnRight=FLX
+ButtonsOnLeft=X
+ButtonsOnRight=SFLX
 CloseOnDoubleClickOnMenu=false
 library=org.kde.breeze
+theme=

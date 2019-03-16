@@ -1,7 +1,7 @@
 <!DOCTYPE kpartgui>
-<kpartgui version="38" name="okular_part">
+<kpartgui version="39" name="okular_part">
  <MenuBar>
-  <Menu noMerge="1" name="file">
+  <Menu name="file" noMerge="1">
    <text translationDomain="okular">&amp;File</text>
    <Action group="file_open" name="get_new_stuff"/>
    <Action group="file_open" name="import_ps"/>
@@ -15,7 +15,7 @@
    <Action group="file_print" name="file_export_as"/>
    <Action group="file_print" name="file_share"/>
   </Menu>
-  <Menu noMerge="1" name="edit">
+  <Menu name="edit" noMerge="1">
    <text translationDomain="okular">&amp;Edit</text>
    <Action name="edit_undo"/>
    <Action name="edit_redo"/>
@@ -28,12 +28,13 @@
    <Action name="edit_find_next"/>
    <Action name="edit_find_prev"/>
   </Menu>
-  <Menu noMerge="1" name="view">
+  <Menu name="view" noMerge="1">
    <text translationDomain="okular">&amp;View</text>
    <Action name="presentation"/>
    <Separator/>
    <Action name="view_zoom_in"/>
    <Action name="view_zoom_out"/>
+   <Action name="view_actual_size"/>
    <Action name="view_fit_to_width"/>
    <Action name="view_fit_to_page"/>
    <Action name="view_auto_fit"/>
@@ -41,7 +42,7 @@
    <Action name="view_continuous"/>
    <Action name="view_render_mode"/>
    <Separator/>
-   <Menu noMerge="1" name="view_orientation">
+   <Menu name="view_orientation" noMerge="1">
     <text translationDomain="okular">&amp;Orientation</text>
     <Action name="view_orientation_rotate_ccw"/>
     <Action name="view_orientation_rotate_cw"/>
@@ -52,7 +53,7 @@
    <Separator/>
    <Action name="view_toggle_forms"/>
   </Menu>
-  <Menu noMerge="1" name="go">
+  <Menu name="go" noMerge="1">
    <text translationDomain="okular">&amp;Go</text>
    <Action name="go_previous"/>
    <Action name="go_next"/>
@@ -65,7 +66,7 @@
    <Separator/>
    <Action name="go_goto_page"/>
   </Menu>
-  <Menu noMerge="1" name="bookmarks">
+  <Menu name="bookmarks" noMerge="1">
    <text translationDomain="okular">&amp;Bookmarks</text>
    <Action name="bookmark_add"/>
    <Action name="rename_bookmark"/>
@@ -74,7 +75,7 @@
    <Separator/>
    <ActionList name="bookmarks_currentdocument"/>
   </Menu>
-  <Menu noMerge="1" name="tools">
+  <Menu name="tools" noMerge="1">
    <text translationDomain="okular">&amp;Tools</text>
    <Action name="mouse_drag"/>
    <Action name="mouse_zoom"/>
@@ -89,52 +90,54 @@
    <Action name="speak_current_page"/>
    <Action name="speak_stop_all"/>
   </Menu>
-  <Menu noMerge="1" name="settings">
+  <Menu name="settings" noMerge="1">
    <text translationDomain="okular">&amp;Settings</text>
    <Action group="show_merge" name="show_leftpanel"/>
    <Action group="show_merge" name="show_bottombar"/>
    <Action group="configure_merge" name="options_configure_generators"/>
    <Action group="configure_merge" name="options_configure"/>
   </Menu>
-  <Menu noMerge="1" name="help">
+  <Menu name="help" noMerge="1">
    <text translationDomain="okular">&amp;Help</text>
    <Action group="about_merge" name="help_about_backend"/>
   </Menu>
  </MenuBar>
- <ToolBar noMerge="1" name="mainToolBar">
-  <Action name="toggle_change_colors"/>
-  <Action name="show_leftpanel"/>
-  <text translationDomain="okular">Main Toolbar</text>
+ <ToolBar name="mainToolBar" noMerge="1">
+  <Action name="file_save_as"/>
   <Separator name="separator_0"/>
-  <Action name="mouse_zoom"/>
+  <Action name="show_leftpanel"/>
+  <Action name="toggle_change_colors"/>
+  <Separator name="separator_1"/>
+  <Action name="view_render_mode"/>
+  <text translationDomain="okular">Main Toolbar</text>
   <Action name="view_auto_fit"/>
+  <Action name="view_trim_margins"/>
+  <Separator name="separator_2"/>
   <Action name="view_zoom_in"/>
   <Action name="view_zoom_out"/>
-  <Separator name="separator_1"/>
-  <Action name="mouse_drag"/>
-  <Action name="mouse_select"/>
-  <Separator name="separator_2"/>
-  <Action name="view_trim_mode"/>
-  <Action name="view_orientation_rotate_cw"/>
-  <Action name="view_orientation_rotate_ccw"/>
   <Separator name="separator_3"/>
-  <Action name="presentation"/>
-  <Action name="view_render_mode"/>
-  <Action name="view_continuous"/>
+  <Action name="mouse_drag"/>
+  <Action name="mouse_zoom"/>
+  <Action name="mouse_textselect"/>
   <Action name="mouse_toggle_annotate"/>
   <Separator name="separator_4"/>
-  <Action name="file_save_as"/>
-  <Action name="properties"/>
+  <Action name="view_orientation_rotate_cw"/>
+  <Action name="view_orientation_rotate_ccw"/>
+  <Separator name="separator_5"/>
+  <Action name="presentation"/>
+  <Separator name="separator_6"/>
+  <Action name="show_bottombar"/>
   <Action name="file_save_copy"/>
-  <Action name="options_configure"/>
  </ToolBar>
  <ActionProperties>
   <Action name="go_next" shortcut=""/>
   <Action name="go_previous" shortcut=""/>
-  <Action icon="cursor-arrow" name="mouse_drag"/>
+  <Action name="mouse_drag" icon="cursor-arrow"/>
   <Action name="show_leftpanel" shortcut="F7; Ctrl+Alt+S"/>
-  <Action icon="colormanagement" name="toggle_change_colors"/>
-  <Action icon="image-crop" name="view_trim_mode"/>
-  <Action icon="zoom-original" name="view_auto_fit"/>
+  <Action name="toggle_change_colors" shortcut="Ctrl+I" icon="lighttable-symbolic"/>
+  <Action name="view_auto_fit" icon="zoom-original"/>
+  <Action name="view_trim_mode" icon="image-crop"/>
+  <Action name="view_trim_margins" icon="image-crop"/>
+  <Action name="show_bottombar" icon="kt-show-statusbar"/>
  </ActionProperties>
 </kpartgui>

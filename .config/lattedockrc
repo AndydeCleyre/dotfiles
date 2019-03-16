@@ -1,8 +1,8 @@
 [Action_0]
 Automatic=true
 Description=Web URI
-Number of commands=1
-Regexp=https?://.+
+Number of commands=3
+Regexp=^https?://.+
 
 [Action_0/Command_0]
 Commandline[$e]=mpv --loop=inf %s
@@ -11,29 +11,111 @@ Enabled=true
 Icon=mpv
 Output=0
 
+[Action_0/Command_1]
+Commandline[$e]=/bin/cd ~/Downloads youtube-dl %s
+Description=Download with youtube-dl
+Enabled=true
+Icon=
+Output=0
+
+[Action_0/Command_2]
+Commandline[$e]=gwenview %s
+Description=View with Gwenview
+Enabled=true
+Icon=gwenview
+Output=0
+
+[Action_1]
+Automatic=true
+Description=Magnet link
+Number of commands=1
+Regexp=^magnet:\\?xt=urn:btih:.+
+
+[Action_1/Command_0]
+Commandline[$e]=cool-retro-term -T "stream.py" -e /home/andy/Code/stream.py %s
+Description=Stream torrent
+Enabled=true
+Icon=cool-retro-term
+Output=0
+
+[Action_2]
+Automatic=true
+Description=Multi-line content
+Number of commands=1
+Regexp=.+\\n.+
+
+[Action_2/Command_0]
+Commandline[$e]=sed 's/^/    /g' <<< "%s"
+Description=Indent 4 spaces
+Enabled=true
+Icon=
+Output=2
+
+[Action_3]
+Automatic=true
+Description=Absolute path
+Number of commands=1
+Regexp=^/[^\\n]+
+
+[Action_3/Command_0]
+Commandline[$e]=gwenview %s
+Description=View with Gwenview
+Enabled=true
+Icon=gwenview
+Output=0
+
 [ActionsWidget]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAABMgAAAAEAAAAAAAAD6AAAAABk
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAw0AAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAABnwAAAAEAAAAAAAABbgAAAAEAAAAAAAAD6AAAAABk
 
 [ConfigDialog]
-Height 1080=645
-Width 1920=729
+Height 1080=1035
+Width 1920=960
 
 [EditActionDialog]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAywAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAABNQAAAAEAAAAAAAAAoAAAAAEAAAAAAAABVwAAAAEAAAAAAAAD6AAAAABk
-Height 1080=533
-Width 1920=857
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA18AAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAABpgAAAAEAAAAAAAAAswAAAAEAAAAAAAABBgAAAAEAAAAAAAAD6AAAAABk
+Height 1080=505
+Width 1920=437
+
+[FileDialogSize]
+Height 1080=1035
+Width 1920=1254
 
 [General]
-Number of Actions=1
+Number of Actions=4
+
+[KFileDialog Settings]
+Recent Files[$e]=folder_open.svg,file:///usr/share/icons/Papirus-Dark/16x16/places/folder_open.svg
+Recent URLs[$e]=file:///usr/share/icons/Papirus-Dark/,file:///usr/share/icons/Papirus-Dark/16x16/places/
+
+[KPropertiesDialog]
+Height 1080=567
+Width 1920=927
+
+[PlasmaRunnerManager]
+LaunchCounts=1 services_flameshot.desktop
+pluginWhiteList=Dictionary,services,shell,org.kde.windowedwidgets,org.kde.datetime,baloosearch,locations,unitconverter
+
+[PlasmaThemeExtended]
+userSetPlasmaThemeRoundness=0
 
 [ScreenConnectors]
 10=eDP1
 11=HDMI2
+12=eDP-1
+13=HDMI-2
 
 [UniversalSettings]
+canDisableBorders=false
 currentLayout=My Layout
+downloadWindowSize=800,550
 lastNonAssignedLayout=My Layout
 launchers=
-layoutsWindowSize=700,450
+layoutsColumnWidths=126,109,89,0
+layoutsWindowSize=700,608
+memoryUsage=0
+metaPressAndHoldEnabled=true
+mouseSensitivity=2
+screenTrackerInterval=2500
 showInfoWindow=true
+unifiedGlobalShortcuts=true
 version=2

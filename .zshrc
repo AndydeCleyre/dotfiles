@@ -23,7 +23,6 @@ export BROWSER=firefox
 . ~/.steam.zshrc
 . ~/.sudo.zshrc
 . ~/.systemd.zshrc
-. ~/.transfer.sh.zshrc
 . ~/.wine.zshrc
 [[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
 . ~/.wttr.zshrc

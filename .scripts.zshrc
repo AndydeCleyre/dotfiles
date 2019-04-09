@@ -1,6 +1,9 @@
-. ~/.locate.zshrc
 alias ariadone="vpy ~/Code/ariadone.py"
+alias findy="vpy ~/Code/findy.py"
 alias get="vpy ~/Code/clown/get.py"
+alias locate="vpy ~/Code/locate.py"
+alias locateu="sudo updatedb && vpy ~/Code/locate.py"
+alias ulocate="sudo updatedb && vpy ~/Code/locate.py"
 alias pd="vpy ~/Code/playdelete.py"
 alias ports="vpy ~/Code/ports.py"
 alias tsplit="vpy ~/Code/tsplit.py"

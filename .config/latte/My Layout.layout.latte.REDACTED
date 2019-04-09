@@ -72,6 +72,13 @@ location=3
 plugin=org.kde.plasma.private.systemtray
 wallpaperplugin=org.kde.image
 
+[Containments][12][Applets][106]
+immutability=1
+plugin=org.kde.plasma.battery
+
+[Containments][12][Applets][106][Configuration]
+PreloadWeight=0
+
 [Containments][12][Applets][14]
 immutability=1
 plugin=org.kde.plasma.clipboard
@@ -169,38 +176,6 @@ DialogWidth=1179
 [Containments][12][Applets][31][Shortcuts]
 global=Meta+V
 
-[Containments][12][Applets][48]
-immutability=1
-plugin=org.kde.discovernotifier
-
-[Containments][12][Applets][48][Configuration]
-PreloadWeight=0
-
-[Containments][12][Applets][58]
-immutability=1
-plugin=org.kde.weatherWidget
-
-[Containments][12][Applets][58][Configuration]
-PreloadWeight=0
-
-[Containments][12][Applets][58][Configuration][Appearance]
-layoutType=Compact
-renderMeteogram=true
-
-[Containments][12][Applets][58][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][12][Applets][58][Configuration][General]
-lastReloadedMsJson={"cache_5a5440a6c6026f3e61c6aee598cae8dc":1538803087453,"cache_bd766d65c3cdaa5c758846ae894a8422":1552707678648}
-places=[{"placeAlias":"New York","placeIdentifier":"USA/New_York/New_York","providerId":"yrno"}]
-
-[Containments][12][Applets][58][Configuration][Units]
-windSpeedType=mph
-
-[Containments][12][Applets][58][Shortcuts]
-global=
-
 [Containments][12][Applets][59]
 immutability=1
 plugin=org.kde.plasma.keyboardindicator
@@ -219,12 +194,12 @@ plugin=org.kde.plasma.networkmanagement
 [Containments][12][Applets][78][Configuration]
 PreloadWeight=0
 
-[Containments][12][Applets][93]
+[Containments][12][Applets][94]
 immutability=1
-plugin=org.kde.plasma.battery
+plugin=org.kde.kscreen
 
-[Containments][12][Applets][93][Configuration]
-PreloadWeight=2
+[Containments][12][Applets][94][Configuration]
+PreloadWeight=0
 
 [Containments][12][ConfigDialog]
 DialogHeight=840
@@ -234,10 +209,10 @@ DialogWidth=1120
 PreloadWeight=0
 
 [Containments][12][General]
-extraItems=org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.redshiftControl,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer,org.kde.discovernotifier,org.kde.weatherWidget,org.kde.plasma.keyboardindicator
-hiddenItems=org.kde.redshiftControl,org.kde.kdeconnect,org.kde.plasma.vault,KDE Daemon,org.kde.plasma.weather
+extraItems=org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.redshiftControl,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer,org.kde.plasma.keyboardindicator,org.kde.kscreen
+hiddenItems=org.kde.redshiftControl,org.kde.kdeconnect,org.kde.plasma.vault,KDE Daemon,org.kde.kscreen
 knownItems=org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.plasma.printmanager,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.bluetooth,org.kde.kdeconnect,org.kde.plasma.vault,org.kde.plasma.volumewin7mixer,org.kde.plasma.keyboardindicator,org.kde.discovernotifier
-shownItems=TelegramDesktop,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.networkmanagement,KGpg,org.kde.plasma.volumewin7mixer,vokoscreen,org.kde.weatherWidget
+shownItems=TelegramDesktop,org.kde.plasma.clipboard,org.kde.plasma.battery,org.kde.plasma.networkmanagement,KGpg,org.kde.plasma.volumewin7mixer,vokoscreen,org.kde.weatherWidget,org.kde.plasma.weather,meteo-qt
 
 [Containments][4]
 activityId=
@@ -259,6 +234,50 @@ timerShow=200
 viewType=0
 visibility=5
 wallpaperplugin=org.kde.image
+
+[Containments][4][Applets][100]
+immutability=1
+plugin=audoban.applet.separator
+
+[Containments][4][Applets][100][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][101]
+immutability=1
+plugin=audoban.applet.separator
+
+[Containments][4][Applets][101][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][102]
+immutability=1
+plugin=audoban.applet.separator
+
+[Containments][4][Applets][102][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][103]
+immutability=1
+plugin=audoban.applet.separator
+
+[Containments][4][Applets][103][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][105]
+immutability=1
+plugin=org.kde.windowtitle
+
+[Containments][4][Applets][105][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][105][Configuration][ConfigDialog]
+DialogHeight=720
+DialogWidth=960
+
+[Containments][4][Applets][105][Configuration][General]
+containmentType=Plasma
+filterActivityInfo=true
+style=NoText
 
 [Containments][4][Applets][11]
 immutability=1
@@ -344,7 +363,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][4][Applets][7][Configuration]
-PreloadWeight=0
+PreloadWeight=5
 
 [Containments][4][Applets][7][Configuration][Agenda]
 agenda_breakup_multiday_events=true
@@ -364,14 +383,14 @@ DialogWidth=1516
 [Containments][4][Applets][7][Configuration][General]
 clock_24h=true
 clock_fontfamily=Iosevka Custom
-clock_maxheight=26
-clock_timeformat='<font>'d ddd h:mm'<'ap'></font>'
+clock_maxheight=28
+clock_timeformat='<font>'h:mm ddd d'<'ap'></font>'
 widget_show_meteogram=false
 widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=940653511
+access_token_expires_at=60146445
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -383,44 +402,6 @@ weather_city_id=[redacted]
 
 [Containments][4][Applets][7][Shortcuts]
 global=Meta+C
-
-[Containments][4][Applets][79]
-immutability=1
-plugin=org.kde.plasma.windowlist
-
-[Containments][4][Applets][79][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][79][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][79][Shortcuts]
-global=Meta+W
-
-[Containments][4][Applets][85]
-immutability=1
-plugin=org.kde.windowappmenu
-
-[Containments][4][Applets][85][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][85][Configuration][ConfigDialog]
-DialogHeight=720
-DialogWidth=960
-
-[Containments][4][Applets][85][Configuration][General]
-compactView=true
-
-[Containments][4][Applets][85][Shortcuts]
-global=Meta+F
-
-[Containments][4][Applets][90]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][90][Configuration]
-PreloadWeight=0
 
 [Containments][4][Applets][91]
 immutability=1
@@ -434,7 +415,7 @@ immutability=1
 plugin=org.kde.plasma.tiledmenu
 
 [Containments][4][Applets][92][Configuration]
-PreloadWeight=10
+PreloadWeight=0
 
 [Containments][4][Applets][92][Configuration][ConfigDialog]
 DialogHeight=720
@@ -453,6 +434,23 @@ tileModel=W3sieCI6MCwieSI6MCwidyI6MiwiaCI6MiwidXJsIjoic29sLmRlc2t0b3AifSx7IngiOj
 [Containments][4][Applets][92][Shortcuts]
 global=Alt+F1
 
+[Containments][4][Applets][98]
+immutability=1
+plugin=com.github.zren.commandoutput
+
+[Containments][4][Applets][98][Configuration]
+PreloadWeight=0
+
+[Containments][4][Applets][98][Configuration][ConfigDialog]
+DialogHeight=720
+DialogWidth=960
+
+[Containments][4][Applets][98][Configuration][General]
+command=/home/andy/Code/panel_scripts/weather/weather.py
+fontFamily=Iosevka Custom
+fontSize=21
+interval=60000
+
 [Containments][4][ConfigDialog]
 DialogHeight=903
 DialogWidth=779
@@ -462,7 +460,7 @@ PreloadWeight=0
 
 [Containments][4][General]
 advanced=true
-appletOrder=85;79;32;92;11;61;90;62;91;7
+appletOrder=105;7;101;32;92;103;11;100;98;102;61;91;62
 durationTime=x1
 iconSize=32
 maxLength=92

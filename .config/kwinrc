@@ -89,9 +89,6 @@ Top=None
 TopLeft=None
 TopRight=None
 
-[ModifierOnlyShortcuts]
-Meta=org.kde.lattedock,/Latte,org.kde.LatteDock,activateLauncherMenu
-
 [MouseBindings]
 CommandActiveTitlebar1=Raise
 CommandActiveTitlebar2=Shade
@@ -121,7 +118,6 @@ coverswitchEnabled=true
 desktopchangeosdEnabled=true
 diminactiveEnabled=true
 enforcedecoEnabled=true
-flipswitchEnabled=true
 glideEnabled=true
 highlightwindowEnabled=true
 invertEnabled=true
@@ -170,10 +166,10 @@ SwitchingMode=0
 
 [TabBoxAlternative]
 ActivitiesMode=0
-ApplicationsMode=1
+ApplicationsMode=0
 DesktopMode=1
 HighlightWindows=true
-LayoutName=big_icons
+LayoutName=present_windows
 MinimizedMode=0
 MultiScreenMode=0
 ShowDesktopMode=0
@@ -216,7 +212,7 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 BorderSize=None
-ButtonsOnLeft=X
+ButtonsOnLeft=XN
 ButtonsOnRight=SFLX
 CloseOnDoubleClickOnMenu=false
 library=org.kde.breeze

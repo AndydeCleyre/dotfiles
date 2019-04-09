@@ -35,13 +35,15 @@ _k_friendly_name=KDE Daemon
 [kded5]
 Show System Activity=none,Ctrl+Esc,Show System Activity
 _k_friendly_name=KDE Daemon
-display=Meta+Shift+D,Display\tMeta+P,Switch Display
+display=Meta+S,Display\tMeta+P,Switch Display
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
 {0601c1af-9558-4a9d-983c-46b0709d4434}=Ctrl+Print,none,Take Screenshot After 3s
+{1915dfa1-2f5e-42a1-a779-8396f0f0c136}=Meta+P,none,Stream
 {27a6c229-64a3-4d54-8be2-ea3bf805bf35}=Print,none,Take Screenshot
 {397b61b9-bd50-4426-b3ad-ad2dbcb940c2}=Meta+Z,none,Zoombox Activate
+{700d3245-0bf0-491b-b915-70f3bec04608}=Meta+C,none,Rotate Plasma Colors
 {8479d6db-38c6-429d-9c28-51c78605923e}=Meta+Shift+Z,none,Zoombox Deactivate
 {8c8d7771-e8f4-4d0f-826a-6b0a14e48213}=Alt+Z,none,Select And Translate
 {8d81cebe-c140-4cb4-be4b-bb30e96e5d6d}=Meta+Ctrl+Z,none,Zoombox Tracking
@@ -59,6 +61,11 @@ increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Increase Mi
 increase_volume=Volume Up\tMeta+Alt+W,Volume Up,Increase Volume
 mic_mute=Microphone Mute,Microphone Mute,Mute Microphone
 mute=Volume Mute\tMeta+Alt+X,Volume Mute,Mute
+
+[konversation]
+_k_friendly_name=Konversation
+next_active_tab=none,none,Next Active Tab
+toggle_mainwindow_visibility=none,none,Show/Hide Konversation
 
 [krunner]
 _k_friendly_name=Run Command
@@ -268,9 +275,7 @@ activate task manager entry 9=,Meta+9,Activate Task Manager Entry 9
 activate widget 17=Meta+Shift+N,none,Activate Notifications Widget
 activate widget 22=Meta+B,none,Activate Bluetooth Widget
 activate widget 31=Meta+V,none,Activate Audio Volume (Win7 Mixer) Widget
-activate widget 7=Meta+C,none,Activate Event Calendar Widget
-activate widget 79=Meta+W,none,Activate Window list Widget
-activate widget 85=Meta+F,none,Activate Window AppMenu Widget
+activate widget 7=,none,Activate Event Calendar Widget
 activate widget 92=Alt+F1,none,Activate Tiled Menu Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Enable Clipboard Actions

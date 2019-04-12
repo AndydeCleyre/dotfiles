@@ -11,9 +11,9 @@ sed -i 's/c2b790/a94d37/' telegram-attention-panel.svg
 
 inkscape -z -e icon_22_0.png -w 256 -h 256 telegram-panel.svg
 inkscape -z -e icon_22_1.png -w 256 -h 256 telegram-attention-panel.svg
-ln -s icon_22_0.png iconmute_22_0.png
 inkscape -z -e iconmute_22_1.png -w 256 -h 256 telegram-mute-panel.svg
 rm -rf *.svg
 
+ln -s icon_22_0.png iconmute_22_0.png
 for f in {2..2000}; do ln -s icon_22_1.png icon_22_$f.png; done
 for f in {2..2000}; do ln -s iconmute_22_1.png iconmute_22_$f.png; done

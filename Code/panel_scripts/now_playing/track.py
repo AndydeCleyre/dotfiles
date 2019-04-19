@@ -11,23 +11,40 @@ from requests.exceptions import ConnectionError
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
+MAX_WIDTH = 19
+COLOR = '6d948d'
+
+
+def colorize(text, colorhex=COLOR):
+    return text
+    # return f'<font color="#{colorhex}">{text}</font>'
+
+
 def now_playing(
     api_key=LASTFM_API_KEY,
     user=LASTFM_USER,
     player_blacklist=('Gwenview', 'plasma-browser-integration', 'mpv')
 ):
     try:
-        player = next(filter(lambda p: p not in player_blacklist, playerctl('--list-all').split()))
+        player = next(filter(
+            lambda p: not any(
+                p.startswith(name)
+                for name in player_blacklist
+            ),
+            playerctl('--list-all').split()
+        ))
         return {
-            detail: playerctl['-p', player, 'metadata'](detail)
+            detail: playerctl['-p', player, 'metadata'](detail).strip()
             for detail in ('title', 'artist', 'album')
         }
     except (StopIteration, ProcessExecutionError):
         base = 'http://ws.audioscrobbler.com/2.0/'
         try:
-            r = get(base, params={
-                'format': 'json', 'api_key': api_key,
-                'method': 'user.getRecentTracks', 'user': user
+            r = get(base, {
+                'format': 'json',
+                'api_key': api_key,
+                'method': 'user.getRecentTracks',
+                'user': user
             })
         except ConnectionError:
             pass
@@ -43,7 +60,7 @@ def now_playing(
                         }
 
 
-def resize(txt, size, pre='{ ', post=' }', ellipsis='random'):
+def resize(txt, size, pre='~', post='~', ellipsis='random'):
     free = size - len(txt)
     if ellipsis == 'random':
         ellipsis = choice(('center', 'end'))
@@ -62,12 +79,17 @@ if __name__ == '__main__':
     try:
         title, artist, album = details['title'], details['artist'], details['album']
     except TypeError:
-        print('🙉')
+        print(colorize('~~~'))
     else:
         title = re.sub(
-            r' - (Full Length )?(\d+ (- )?)?(Digital )?(Remaster(ed)?|Single|Stereo)( Version)?$',
+            r' - (Full Length )?'
+               r'(\d{4} (- )?)?'
+               r'(Digital )?'
+               r'(Remix Version(; )?)?'
+               r'(Remaster(ed)?( \d{4})?|Single|Stereo|Mono|Re-Recording|Acoustic|.*[Rr]emix)?'
+               r'(.* Version)?$',
             '', title
         )
-        # size = len(artist)
-        size = min(17, max(len(artist), len(title)))
-        print(resize(choice((artist, title)), size))
+        title = re.sub(r' \(feat\. [^\)]+\)$', '', title)
+        size = min(MAX_WIDTH, max(len(artist), len(title)))
+        print(colorize(resize(choice((artist, title)), size)))

@@ -89,6 +89,9 @@ Top=None
 TopLeft=None
 TopRight=None
 
+[ModifierOnlyShortcuts]
+Alt=com.github.zren.PlasmaHUD,/PlasmaHUD,com.github.zren.PlasmaHUD,toggleHUD
+
 [MouseBindings]
 CommandActiveTitlebar1=Raise
 CommandActiveTitlebar2=Shade

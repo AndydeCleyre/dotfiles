@@ -11,6 +11,11 @@ vpy   () { _vpy venv     "$@" }
 vpy2  () { _vpy venv2    "$@" }
 vpypy () { _vpy venvPyPy "$@" }
 
+_vpyshebang  () { printf "#!$(venvs_path $(dirname $(realpath $2)))/$1/bin/python" "${@:2}" }
+vpyshebang   () { _vpyshebang venv     "$@" }
+vpy2shebang  () { _vpyshebang venv2    "$@" }
+vpypyshebang () { _vpyshebang venvPyPy "$@" }
+
 _envin () {
     venv="$(venvs_path)/$1"
     [[ -d $venv ]] || eval $2 $venv
@@ -53,3 +58,34 @@ pipi () { pip install -U $@ }
 
 pimp    () { pipi   ipython plumbum requests structlog strictyaml }
 pimpacs () { pipacs ipython plumbum requests structlog strictyaml }
+
+pypc () {
+    pip install plumbum tomlkit
+    python -c "
+from plumbum import local
+import tomlkit
+
+
+suffix = 'requirements.in'
+pyproject = local.cwd.up() / 'pyproject.toml'
+
+
+if pyproject.is_file():
+    toml_data = tomlkit.parse(pyproject.read())
+    for reqsin in local.cwd // f'*{suffix}':
+        pyproject_reqs = [
+            line
+            for line in reqsin.read().splitlines()
+            if line.strip() and not line.startswith('#')
+        ]
+        extras_catg = reqsin.name.rsplit(suffix, 1)[0].rstrip('-.')
+        if not extras_catg:
+            toml_data['tool']['flit']['metadata']['requires'] = pyproject_reqs
+        else:
+            # toml_data['tool']['flit']['metadata'].setdefault('requires-extra', {})  # enable on close of https://github.com/sdispater/tomlkit/issues/49
+            if 'requires-extra' not in toml_data['tool']['flit']['metadata']:         # remove when #49 is fixed
+                toml_data['tool']['flit']['metadata']['requires-extra'] = {}          # remove when #49 is fixed
+            toml_data['tool']['flit']['metadata']['requires-extra'][extras_catg] = pyproject_reqs
+    pyproject.write(tomlkit.dumps(toml_data))
+"
+}

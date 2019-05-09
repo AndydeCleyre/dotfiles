@@ -21,6 +21,7 @@ def route(*uris):
             uri.startswith('magnet:?xt=urn:btih:'),
             uri.endswith('.torrent'),
             '://www.youtube.com/watch' in uri,
+            # v.reddit
         )):
             local['~/Code/stream.sh'](uri)
         elif any((
@@ -28,7 +29,10 @@ def route(*uris):
             uri.startswith('https://i.redd.it/'),
         )):
             gwenview[uri] & BG(stderr=sys.stderr)
-        elif uri.startswith('https://imgur.com/a/'):
+        elif any((
+            uri.startswith('https://imgur.com/a/'),
+            uri.startswith('https://imgur.com/gallery/'),
+        )):
             r = get(uri)
             soup = BeautifulSoup(r.text)
             for img in soup.find_all(attrs={'class': 'post-image-container'}):

@@ -28,7 +28,7 @@ for line in sudo(netstat['-lnptu']).split('\n'):
         ports[port]['address'].add(address)
 colors = {n: c for n, c in zip(
     {','.join(sorted(ports[p]['name'])) for p in ports},
-    cycle([blue, cyan, green, red, magenta, yellow, white, black])
+    cycle([blue, cyan, green, red, magenta, yellow, white])
 )}
 for port in sorted(ports):
     name, protos, addrs = map(

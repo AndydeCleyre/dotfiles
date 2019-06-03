@@ -69,12 +69,12 @@ import tomlkit
 
 
 suffix = 'requirements.in'
-pyproject = local.cwd.up() / 'pyproject.toml'
-
-
+pyproject, reqsins = local.cwd / 'pyproject.toml', local.cwd // f'*/*{suffix}'
+if not pyproject.is_file():
+    pyproject, reqsins = local.cwd.up() / 'pyproject.toml', local.cwd // f'*{suffix}'
 if pyproject.is_file():
     toml_data = tomlkit.parse(pyproject.read())
-    for reqsin in local.cwd // f'*{suffix}':
+    for reqsin in reqsins:
         pyproject_reqs = [
             line
             for line in reqsin.read().splitlines()

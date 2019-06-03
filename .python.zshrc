@@ -42,17 +42,19 @@ pips () { [[ "$#" -gt 0 ]] && pip-sync $@ || pip-sync *requirements.txt }
 
 pipc  () { for reqs in *requirements.in; do pip-compile --no-header                   "$reqs" | hpype; done }
 pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | hpype; done }
-pipcs  ()  { pipc ; pips }
-pipchs ()  { pipch; pips }
+pipcs  () { pipc ; pips }
+pipchs () { pipch; pips }
 
 pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in | hpype }
-pipacs  () { pipa $@; echo; pipcs  }
-pipachs () { pipa $@; pipchs }
+pipac   () { pipa  $@; echo; pipc }
+pipacs  () { pipac $@; pips       }
+pipach  () { pipa   $@; pipch }
+pipachs () { pipach $@; pips  }
 
 pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }
 pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }
-pipus  ()  { pipu  $@; pips }
-pipuhs ()  { pipuh $@; pips }
+pipus  () { pipu  $@; pips }
+pipuhs () { pipuh $@; pips }
 
 pipi () { pip install -U $@ }
 

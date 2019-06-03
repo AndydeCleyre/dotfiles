@@ -34,7 +34,7 @@ envout () { deactivate }
 
 hpype () {
     [[ "$(command -v highlight)" ]] && highlight -O truecolor -s moria -S py ||
-    [[ "$(command -v bat)"       ]] && bat -l py -p                             ||
+    [[ "$(command -v bat)"       ]] && bat -l py -p                          ||
                                        cat -
 }
 

@@ -10,6 +10,7 @@
 . ~/.fasd.zshrc
 . ~/.git.zshrc
 . ~/.hg.zshrc
+. ~/.ls.zshrc
 . ~/.pacman.zshrc
 . ~/.pager.zshrc
 . ~/.plasma.zshrc
@@ -43,19 +44,18 @@ fax () { grep -v '^\s*#' $1 | tr -s '\n' }
 alias no="egrep -i -v"
 alias img="/usr/bin/gm"
 lines () { sed -n "$1p" "$2" } # lines first[,last] textfile
-[[ "$(command -v exa)" ]] && alias ls="exa -l" || alias ls="ls --color=auto"
 alias lynx="/usr/bin/lynx -accept_all_cookies"
 mkcd () { mkdir -p "$1" && cd "$1" }
 alias mounts="lsblk -f"
 o () { for f in "$@"; do xdg-open "$f"; done }
 alias p="xclip -sel clip -o"
 post () { curl -Ffile=@"$1" https://0x0.st }
-recent () { /bin/ls -rt "$@" | tail -20 }
+alias pt="papertrail"
 alias redact="sed -r 's/^(\s*\S*(user(name)?|_id|passw(or)?d|key|token|address|secret|blob|email|acct|calendar_(id_)?list) ?[=:] ?)(\S+)$/\1[redacted]/gim'"
 alias repeaterbounce="ssh 192.168.2.1 reboot || echo 'Try connecting to the repeater network first.'"
 alias routerbounce="ssh 192.168.1.1 reboot || echo 'Try connecting to the main network first.'"
 alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
 alias t="tmux a || tmux"
-stalj () { ssh "$1" tail -f /var/log/nginx/access.log | logstalgia -f -x -u 1 }
-alias tree="tree -C"
+
+stty -ixon

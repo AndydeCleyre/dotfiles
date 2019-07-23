@@ -21,12 +21,31 @@ vpyshebang   () { _vpyshebang venv     "$@" }  # <script> [args]
 vpy2shebang  () { _vpyshebang venv2    "$@" }  # <script> [args]
 vpypyshebang () { _vpyshebang venvPyPy "$@" }  # <script> [args]
 
+# specify the venv interpreter in a new or existing sublime text project file
+vpysubl () {
+    pip install -qU plumbum
+    python -c "
+from plumbum import local
+from json import loads, dumps
+try:
+    spfile = [f for f in local.cwd.list() if f.endswith('.sublime-project')].pop()
+except IndexError:
+    spfile = local.cwd / f'{local.cwd.name}.sublime-project'
+    spfile.write('{}')
+sp = loads(spfile.read())
+sp.setdefault('settings', {})
+sp['settings']['python_interpreter'] = '$(venvs_path)/venv/bin/python'
+spfile.write(dumps(sp))
+    "
+}
+
 # activate venv for the current folder and install requirements, creating venv if necessary
 _envin () {  # <venvname> <venvinitcmd>
     venv="$(venvs_path)/$1"
     [[ -d $venv ]] || eval $2 $venv
     . $venv/bin/activate
-    pip install -qU pip pip-tools
+    # pip install -qU pip pip-tools
+    pip install -qU 'pip<19.2' pip-tools  # pip<19.2 until https://github.com/jazzband/pip-tools/issues/853 is closed
     [[ ! -f requirements.txt ]] || $venv/bin/pip-sync *requirements.txt
 }
 envin     () { _envin venv     "python3 -m venv" }
@@ -74,7 +93,7 @@ pipuhs () { pipuh $@; pips }  # [req...]
 # run either from the folder with pyproject.toml, or one below
 # to categorize, name files <category>-requirements.in
 pypc () {
-    pip install plumbum tomlkit
+    pip install -qU plumbum tomlkit
     python -c "
 from plumbum import local
 import tomlkit
@@ -102,5 +121,5 @@ if pyproject.is_file():
                 toml_data['tool']['flit']['metadata']['requires-extra'] = {}          # remove when #49 is fixed
             toml_data['tool']['flit']['metadata']['requires-extra'][extras_catg] = pyproject_reqs
     pyproject.write(tomlkit.dumps(toml_data))
-"
+    "
 }

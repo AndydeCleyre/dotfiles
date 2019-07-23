@@ -28,13 +28,12 @@
 
 alias arglines="xargs -d '\n'"
 alias aw="wiki-search"
-# configs () { /usr/bin/locate -i "$1" | grep "^($HOME/\.|/etc/)" | grep --color=auto "/[^/]*$" }
 configs () { /usr/bin/locate -i "$1" | grep "^($HOME/\.|/etc/)" }
 alias copyfrom="xclip -sel clip"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
 alias cuts="cut -d ' '"
-alias ddg="BROWSER=lynx ddgr -n 3"
+alias ddg="ddgr -n 3"
 alias decrypt="xclip -sel clip -o | gpg --decrypt"
 alias define="/home/andy/.local/share/venvs/23689963cd6571d2a4488a6e27452cee/venv/bin/define"
 alias downthese="aria2c -i downthese.txt"

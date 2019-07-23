@@ -14,6 +14,9 @@ alias diffh="dh"
 alias b="bat -p"
 alias bs="bat -p -l"
 
+alias jqq="jq -R -r '. as \$line | try fromjson catch \$line'"
+alias jqqq="jq -R 'fromjson?'"
+
 function man() {
  env \
   LESS_TERMCAP_mb=$(printf "\e[1;31m") \

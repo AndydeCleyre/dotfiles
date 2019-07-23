@@ -1,3 +1,4 @@
+export BROWSER="$HOME/Code/browser.py"
 alias ariadone="vpy ~/Code/ariadone.py"
 alias findy="vpy ~/Code/findy.py"
 alias get="vpy ~/Code/clown/get.py"

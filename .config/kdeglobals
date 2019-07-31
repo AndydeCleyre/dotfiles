@@ -1,0 +1,311 @@
+[$Version]
+update_info=fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,filepicker.upd:filepicker-remove-old-previews-entry
+
+[Appmenu Style]
+Style=Decoration
+
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=56,56,56
+ColorAmount=0
+ColorEffect=0
+ContrastAmount=0.65
+ContrastEffect=1
+Enable=
+IntensityAmount=0.1
+IntensityEffect=0
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=112,111,110
+ColorAmount=1
+ColorEffect=0
+ContrastAmount=0.1
+ContrastEffect=0
+Enable=false
+IntensityAmount=0.45
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=64,69,82
+BackgroundNormal=34,34,34
+DecorationFocus=169,77,55
+DecorationHover=169,77,55
+ForegroundActive=222,160,80
+ForegroundInactive=103,103,103
+ForegroundLink=222,160,80
+ForegroundNegative=230,73,118
+ForegroundNeutral=168,123,96
+ForegroundNormal=194,183,144
+ForegroundPositive=112,157,61
+ForegroundVisited=186,185,114
+
+[Colors:Complementary]
+BackgroundAlternate=59,64,69
+BackgroundNormal=49,54,59
+DecorationFocus=30,146,255
+DecorationHover=61,174,230
+ForegroundActive=246,116,0
+ForegroundInactive=175,176,179
+ForegroundLink=61,174,230
+ForegroundNegative=237,21,21
+ForegroundNeutral=201,206,59
+ForegroundNormal=239,240,241
+ForegroundPositive=17,209,22
+ForegroundVisited=61,174,230
+
+[Colors:Selection]
+BackgroundAlternate=29,153,243
+BackgroundNormal=120,54,39
+DecorationFocus=169,77,55
+DecorationHover=169,77,55
+ForegroundActive=222,160,80
+ForegroundInactive=103,103,103
+ForegroundLink=222,160,80
+ForegroundNegative=230,73,118
+ForegroundNeutral=168,123,96
+ForegroundNormal=194,183,144
+ForegroundPositive=112,157,61
+ForegroundVisited=186,185,114
+
+[Colors:Tooltip]
+BackgroundAlternate=56,60,74
+BackgroundNormal=34,34,34
+DecorationFocus=169,77,55
+DecorationHover=169,77,55
+ForegroundActive=222,160,80
+ForegroundInactive=103,103,103
+ForegroundLink=222,160,80
+ForegroundNegative=230,73,118
+ForegroundNeutral=168,123,96
+ForegroundNormal=194,183,144
+ForegroundPositive=112,157,61
+ForegroundVisited=186,185,114
+
+[Colors:View]
+BackgroundAlternate=29,29,29
+BackgroundNormal=34,34,34
+DecorationFocus=169,77,55
+DecorationHover=169,77,55
+ForegroundActive=222,160,80
+ForegroundInactive=103,103,103
+ForegroundLink=222,160,80
+ForegroundNegative=230,73,118
+ForegroundNeutral=168,123,96
+ForegroundNormal=194,183,144
+ForegroundPositive=112,157,61
+ForegroundVisited=186,185,114
+
+[Colors:Window]
+BackgroundAlternate=56,60,74
+BackgroundNormal=38,44,46
+DecorationFocus=169,77,55
+DecorationHover=169,77,55
+ForegroundActive=222,160,80
+ForegroundInactive=103,103,103
+ForegroundLink=222,160,80
+ForegroundNegative=230,73,118
+ForegroundNeutral=168,123,96
+ForegroundNormal=194,183,144
+ForegroundPositive=112,157,61
+ForegroundVisited=186,185,114
+
+[DesktopIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=togamma
+ActiveSemiTransparent=false
+ActiveValue=0.699999988079071
+Animated=true
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=48
+
+[DialogIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=none
+ActiveSemiTransparent=false
+ActiveValue=1
+Animated=false
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=32
+
+[DirSelect Dialog]
+DirSelectDialog Size=1920,1025
+
+[Emoticons]
+emoticonsTheme=EmojiOne
+parseMode=2
+
+[General]
+BrowserApplication[$e]=!~/bin/vpy /home/andy/Code/browser.py
+ColorScheme=MacaroniTime
+Name=MacaroniTime
+XftHintStyle=
+XftSubPixel=
+dbfile=/home/andy/.mozilla/firefox/472s686v.ashestocandy/places.sqlite
+fixed=Iosevka Custom,15,-1,5,50,0,0,0,0,0
+font=Convergence,14,-1,5,50,0,0,0,0,0
+menuFont=Share,16,-1,5,50,0,0,0,0,0
+shadeSortColumn=true
+smallestReadableFont=Share Tech,13,-1,5,50,0,0,0,0,0
+toolBarFont=Share Tech,16,-1,5,50,0,0,0,0,0
+widgetStyle=breeze
+
+[Icons]
+Theme=Papirus
+
+[KDE]
+ColorScheme=Breeze
+DoubleClickInterval=400
+LookAndFeelPackage=Dark Macaroni Breeze plugin
+ShowDeleteCommand=false
+ShowIconsInMenuItems=true
+ShowIconsOnPushButtons=true
+SingleClick=true
+StartDragDist=4
+StartDragTime=500
+WheelScrollLines=3
+contrast=4
+widgetStyle=breeze
+
+[KDE Action Restrictions]
+action/start_new_session=false
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=false
+Decoration position=0
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Preview Width=245
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=true
+Show Speedbar=true
+Show hidden files=false
+Sort by=Date
+Sort directories first=false
+Sort reversed=true
+Speedbar Width=231
+View Style=Detail
+detailedViewIconSize=0
+listViewIconSize=0
+
+[KShortcutsDialog Settings]
+Dialog Size=960,1035
+
+[MainToolbarIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=none
+ActiveSemiTransparent=false
+ActiveValue=1
+Animated=false
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=16
+
+[PanelIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=none
+ActiveSemiTransparent=false
+ActiveValue=0.699999988079071
+Animated=false
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=128
+
+[PreviewSettings]
+MaximumRemoteSize=0
+
+[SmallIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=none
+ActiveSemiTransparent=false
+ActiveValue=1
+Animated=false
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=16
+
+[Toolbar style]
+ToolButtonStyle=TextBesideIcon
+ToolButtonStyleOtherToolbars=TextBesideIcon
+
+[ToolbarIcons]
+ActiveColor=169,156,255
+ActiveColor2=0,0,0
+ActiveEffect=none
+ActiveSemiTransparent=false
+ActiveValue=1
+Animated=false
+DefaultColor=144,128,248
+DefaultColor2=0,0,0
+DefaultEffect=none
+DefaultSemiTransparent=false
+DefaultValue=1
+DisabledColor=34,202,0
+DisabledColor2=0,0,0
+DisabledEffect=togray
+DisabledSemiTransparent=true
+DisabledValue=1
+Size=16
+
+[Translations]
+LANGUAGE=en_US
+
+[WM]
+activeBackground=38,44,46
+activeBlend=194,183,144
+activeFont=Share,18,-1,5,50,0,0,0,0,0
+activeForeground=222,160,80
+inactiveBackground=38,44,46
+inactiveBlend=38,44,46
+inactiveForeground=109,148,141

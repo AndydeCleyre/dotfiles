@@ -10,6 +10,20 @@ ScrollBarSubLineButtons=0
 
 [Windeco]
 ButtonSize=ButtonSmall
-DrawBackgroundGradient=false
+DrawBackgroundGradient=true
 DrawSizeGrip=false
+MacOSButtons=false
 TitleAlignment=AlignLeft
+TitleBarFont=Share,18,-1,5,50,0,0,0,0,0
+
+[Windeco Exception 0]
+BorderSize=1
+Enabled=true
+ExceptionPattern=konsole
+ExceptionType=0
+FlatTitleBar=false
+HideTitleBar=false
+IsDialog=false
+Mask=0
+OpacityOverride=90
+OpaqueTitleBar=false

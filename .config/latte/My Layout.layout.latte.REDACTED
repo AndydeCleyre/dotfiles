@@ -18,11 +18,50 @@ onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
 raiseOnDesktopChange=false
+settingsComplexity=0
 timerHide=700
 timerShow=200
 viewType=0
 visibility=2
 wallpaperplugin=org.kde.image
+
+[Containments][1][Applets][113]
+activityId=
+formfactor=0
+immutability=1
+lastScreen=-1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=
+
+[Containments][1][Applets][113][Configuration]
+PreloadWeight=8
+activityId=
+formfactor=0
+immutability=1
+lastScreen=-1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=
+
+[Containments][1][Applets][113][Configuration][ConfigDialog]
+DialogHeight=720
+DialogWidth=960
+
+[Containments][1][Applets][113][Configuration][General]
+icon=org.kde.dolphin
+iconSize=5
+labelWidth=2
+previewPlugins=appimagethumbnail,stage_key_thumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,karbon_karbon1x_thumbnail,stage_kpr_thumbnail,kraorathumbnail,sheets_xlsx_thumbnail,sheets_excel_thumbnail,stage_pptx_thumbnail,stage_powerpoint_thumbnail,flow_vsdx_thumbnail,windowsexethumbnail,windowsimagethumbnail,words_docx_thumbnail,words_msword_thumbnail,words_wps_thumbnail,mobithumbnail,opendocumentthumbnail,calligra_odg_thumbnail,stage_odp_thumbnail,sheets_ods_thumbnail,words_odt_thumbnail,gsthumbnail,rawthumbnail,words_rtf_thumbnail,svgthumbnail,textthumbnail,ffmpegthumbs,karbon_wmf_thumbnail,words_wpd_thumbnail,karbon_wpg_thumbnail,flow_wpg_thumbnail,karbon_xfig_thumbnail
+sortDesc=true
+sortDirsFirst=false
+sortMode=2
+toolTips=true
+url=file:///home/andy/Downloads
+useCustomIcon=true
+
+[Containments][1][Applets][113][Shortcuts]
+global=Meta+D
 
 [Containments][1][Applets][2]
 immutability=1
@@ -34,18 +73,18 @@ PreloadWeight=0
 [Containments][1][Applets][2][Configuration][General]
 isInLatteDock=true
 launchers=multi;*;2;file:///usr/share/applications/firefox.desktop;file:///usr/share/applications/org.kde.dolphin.desktop
-launchers59=applications:org.kde.dolphin.desktop,applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:qbittorrent.desktop,applications:spotify.desktop,applications:org.kde.konversation.desktop,applications:color-picker.desktop,applications:systemsettings.desktop
+launchers59=applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:spotify.desktop,applications:org.qbittorrent.qBittorrent.desktop,applications:org.kde.konversation.desktop,applications:color-picker.desktop,applications:systemsettings.desktop
 
 [Containments][1][ConfigDialog]
-DialogHeight=845
-DialogWidth=830
+DialogHeight=828
+DialogWidth=690
 
 [Containments][1][Configuration]
 PreloadWeight=0
 
 [Containments][1][General]
 advanced=true
-appletOrder=2
+appletOrder=113;2
 dotsOnActive=true
 durationTime=x1
 iconSize=128
@@ -62,6 +101,13 @@ titleTooltips=true
 useThemePanel=false
 zoomLevel=0
 
+[Containments][1][Indicator]
+customType=
+enabled=true
+enabledForApplets=true
+padding=0.07999999821186066
+type=org.kde.latte.default
+
 [Containments][12]
 PreloadWeight=0
 activityId=
@@ -72,12 +118,12 @@ location=3
 plugin=org.kde.plasma.private.systemtray
 wallpaperplugin=org.kde.image
 
-[Containments][12][Applets][106]
+[Containments][12][Applets][117]
 immutability=1
 plugin=org.kde.plasma.battery
 
-[Containments][12][Applets][106][Configuration]
-PreloadWeight=0
+[Containments][12][Applets][117][Configuration]
+PreloadWeight=47
 
 [Containments][12][Applets][14]
 immutability=1
@@ -194,6 +240,10 @@ plugin=org.kde.plasma.networkmanagement
 [Containments][12][Applets][78][Configuration]
 PreloadWeight=0
 
+[Containments][12][Applets][78][Configuration][ConfigDialog]
+DialogHeight=720
+DialogWidth=960
+
 [Containments][12][Applets][94]
 immutability=1
 plugin=org.kde.kscreen
@@ -228,40 +278,12 @@ onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
 raiseOnDesktopChange=false
-settingsComplexity=4
+settingsComplexity=0
 timerHide=700
 timerShow=200
 viewType=0
 visibility=5
 wallpaperplugin=org.kde.image
-
-[Containments][4][Applets][100]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][100][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][101]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][101][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][102]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][102][Configuration]
-PreloadWeight=0
-
-[Containments][4][Applets][103]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][103][Configuration]
-PreloadWeight=0
 
 [Containments][4][Applets][105]
 immutability=1
@@ -275,7 +297,7 @@ DialogHeight=720
 DialogWidth=960
 
 [Containments][4][Applets][105][Configuration][General]
-containmentType=Plasma
+containmentType=Latte
 filterActivityInfo=true
 style=NoText
 
@@ -287,42 +309,19 @@ plugin=org.kde.plasma.systemtray
 PreloadWeight=0
 SystrayContainmentId=12
 
-[Containments][4][Applets][32]
-activityId=
-formfactor=0
+[Containments][4][Applets][118]
 immutability=1
-lastScreen=-1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=
+plugin=org.kde.latte.separator
 
-[Containments][4][Applets][32][Configuration]
-PreloadWeight=0
-activityId=
-formfactor=0
+[Containments][4][Applets][118][Configuration]
+PreloadWeight=42
+
+[Containments][4][Applets][119]
 immutability=1
-lastScreen=-1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=
+plugin=org.kde.latte.separator
 
-[Containments][4][Applets][32][Configuration][ConfigDialog]
-DialogHeight=840
-DialogWidth=1120
-
-[Containments][4][Applets][32][Configuration][General]
-icon=folder-yellow-downloads
-iconSize=5
-previewPlugins=stage_key_thumbnail,audiothumbnail,comicbookthumbnail,djvuthumbnail,marble_thumbnail_shp,exrthumbnail,directorythumbnail,fontthumbnail,marble_thumbnail_geojson,marble_thumbnail_gpx,htmlthumbnail,imagethumbnail,jpegthumbnail,karbon_karbon1x_thumbnail,marble_thumbnail_kmz,marble_thumbnail_kml,stage_kpr_thumbnail,kraorathumbnail,sheets_xlsx_thumbnail,sheets_excel_thumbnail,stage_pptx_thumbnail,stage_powerpoint_thumbnail,flow_vsdx_thumbnail,windowsexethumbnail,windowsimagethumbnail,words_docx_thumbnail,words_msword_thumbnail,words_wps_thumbnail,calligra_odg_thumbnail,stage_odp_thumbnail,sheets_ods_thumbnail,words_odt_thumbnail,marble_thumbnail_osm,gsthumbnail,rawthumbnail,words_rtf_thumbnail,flow_wpg_thumbnail,karbon_wpg_thumbnail,karbon_xfig_thumbnail
-previews=false
-sortDesc=true
-sortDirsFirst=false
-sortMode=2
-toolTips=true
-url=file:///home/andy/Downloads
-
-[Containments][4][Applets][32][Shortcuts]
-global=Meta+D
+[Containments][4][Applets][119][Configuration]
+PreloadWeight=42
 
 [Containments][4][Applets][61]
 immutability=1
@@ -338,7 +337,7 @@ DialogWidth=1120
 [Containments][4][Applets][61][Configuration][General]
 command=/home/andy/Code/panel_scripts/dash/price.py
 fontFamily=Iosevka Custom
-fontSize=21
+fontSize=22
 interval=300000
 
 [Containments][4][Applets][62]
@@ -353,17 +352,18 @@ DialogHeight=840
 DialogWidth=1120
 
 [Containments][4][Applets][62][Configuration][General]
+clickCommand=notify-send -a "`playerctl status`" "`playerctl metadata title`\nby `playerctl metadata artist`\non `playerctl metadata album`"
 command=/home/andy/Code/panel_scripts/now_playing/track.py
 fontFamily=Iosevka Custom
-fontSize=21
-interval=3000
+fontSize=22
+interval=2000
 
 [Containments][4][Applets][7]
 immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][4][Applets][7][Configuration]
-PreloadWeight=5
+PreloadWeight=0
 
 [Containments][4][Applets][7][Configuration][Agenda]
 agenda_breakup_multiday_events=true
@@ -383,14 +383,14 @@ DialogWidth=1516
 [Containments][4][Applets][7][Configuration][General]
 clock_24h=true
 clock_fontfamily=Iosevka Custom
-clock_maxheight=28
-clock_timeformat='<font>'h:mm ddd d'<'ap'></font>'
+clock_maxheight=29
+clock_timeformat='<font color="#dea050">'h:mm ddd d'<'ap'></font>'
 widget_show_meteogram=false
 widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=60146445
+access_token_expires_at=1158801970
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -402,13 +402,6 @@ weather_city_id=[redacted]
 
 [Containments][4][Applets][7][Shortcuts]
 global=Meta+C
-
-[Containments][4][Applets][91]
-immutability=1
-plugin=audoban.applet.separator
-
-[Containments][4][Applets][91][Configuration]
-PreloadWeight=0
 
 [Containments][4][Applets][92]
 immutability=1
@@ -443,35 +436,42 @@ PreloadWeight=0
 
 [Containments][4][Applets][98][Configuration][ConfigDialog]
 DialogHeight=720
-DialogWidth=960
+DialogWidth=1236
 
 [Containments][4][Applets][98][Configuration][General]
 command=/home/andy/Code/panel_scripts/weather/weather.py
 fontFamily=Iosevka Custom
-fontSize=21
+fontSize=22
 interval=60000
 
 [Containments][4][ConfigDialog]
-DialogHeight=903
-DialogWidth=779
+DialogHeight=801
+DialogWidth=690
 
 [Containments][4][Configuration]
 PreloadWeight=0
 
 [Containments][4][General]
-advanced=true
-appletOrder=105;7;101;32;92;103;11;100;98;102;61;91;62
+appletOrder=105;7;118;98;119;61;11;92;62
+dragActiveWindowEnabled=true
 durationTime=x1
 iconSize=32
 maxLength=92
 offset=8
 panelPosition=Right
 panelSize=100
-panelTransparency=80
+panelTransparency=60
 proportionIconSize=3
 shadows=None
-shrinkThickMargins=false
+shrinkThickMargins=true
 zoomLevel=0
+
+[Containments][4][Indicator]
+customType=
+enabled=true
+enabledForApplets=true
+padding=0.07999999821186066
+type=org.kde.latte.default
 
 [Containments][41]
 activityId=
@@ -487,6 +487,7 @@ onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=true
 raiseOnDesktopChange=true
+settingsComplexity=4
 timerHide=700
 timerShow=200
 viewType=0
@@ -536,8 +537,8 @@ displayedText=Number
 showWindowIcons=true
 
 [Containments][41][ConfigDialog]
-DialogHeight=887
-DialogWidth=765
+DialogHeight=789
+DialogWidth=690
 
 [Containments][41][Configuration]
 PreloadWeight=0
@@ -545,18 +546,25 @@ PreloadWeight=0
 [Containments][41][General]
 advanced=true
 appletOrder=83;44;46
-durationTime=x3
+durationTime=x1
 iconSize=128
 lockedZoomApplets=83;44
 maxLength=80
 panelSize=100
-panelTransparency=80
+panelTransparency=60
 proportionIconSize=10
 shadowSize=55
 shadows=None
 showToolTips=true
 threeColorsWindows=true
 zoomLevel=0
+
+[Containments][41][Indicator]
+customType=
+enabled=true
+enabledForApplets=true
+padding=0.07999999821186066
+type=org.kde.latte.default
 
 [Containments4Appletsts][30][Configuration][General]
 icon=folder-yellow-downloads

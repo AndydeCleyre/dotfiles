@@ -71,38 +71,52 @@ Enabled=true
 Icon=gwenview
 Output=0
 
+[Action_4]
+Automatic=true
+Description=HTTP GitHub Repo
+Number of commands=1
+Regexp=^https?://github.com/.+/.+
+
+[Action_4/Command_0]
+Commandline[$e]=sed -E 's-^https?://github.com/-git@github.com:-' <<< "%s"
+Description=HTTPS GitHub Repo URI to SSH URI
+Enabled=true
+Icon=
+Output=1
+
 [ActionsWidget]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmAAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAABnwAAAAEAAAAAAAAAwQAAAAEAAAAAAAAD6AAAAABk
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0cAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAB+QAAAAEAAAAAAAABTgAAAAEAAAAAAAAD6AAAAABk
 
 [ConfigDialog]
-Height 1080=589
-Width 1920=787
+Height 1080=594
+Width 1920=1038
 
 [EditActionDialog]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB1MAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAABpgAAAAEAAAAAAAAAswAAAAEAAAAAAAAE+gAAAAEAAAAAAAAD6AAAAABk
-Height 1080=495
-Width 1920=1920
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzIAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAAB0QAAAAEAAAAAAAAAswAAAAEAAAAAAAAArgAAAAEAAAAAAAAD6AAAAABk
+Height 1080=505
+Width 1920=863
 
 [FileDialogSize]
 Height 1080=1035
 Width 1920=1254
 
 [General]
-Number of Actions=4
+Number of Actions=5
 
 [KFileDialog Settings]
 Recent Files[$e]=folder_open.svg,file:///usr/share/icons/Papirus-Dark/16x16/places/folder_open.svg
 Recent URLs[$e]=file:///usr/share/icons/Papirus-Dark/,file:///usr/share/icons/Papirus-Dark/16x16/places/
 
 [KPropertiesDialog]
-Height 1080=567
-Width 1920=927
+Height 1080=521
+Width 1920=469
 
 [PlasmaRunnerManager]
 LaunchCounts=1 services_flameshot.desktop
 pluginWhiteList=Dictionary,services,shell,org.kde.windowedwidgets,org.kde.datetime,baloosearch,locations,unitconverter
 
 [PlasmaThemeExtended]
+outlineWidth=1
 userSetPlasmaThemeRoundness=0
 
 [ScreenConnectors]
@@ -112,6 +126,7 @@ userSetPlasmaThemeRoundness=0
 13=HDMI-2
 
 [UniversalSettings]
+badges3DStyle=false
 canDisableBorders=false
 currentLayout=My Layout
 downloadWindowSize=800,550

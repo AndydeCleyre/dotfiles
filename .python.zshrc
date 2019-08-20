@@ -97,6 +97,14 @@ pipach  () { pipa   $@; echo; pipch }  # <req> [req...]
 pipacs  () { pipac  $@; pips }  # <req> [req...]
 pipachs () { pipach $@; pips }  # <req> [req...]
 
+# add loose requirements to <category>-requirements.in
+_pipa () { printf "%s\n" "${@:2}" >> "$1-requirements.in" && hpype < "$1-requirements.in" }  # <category> <req> [req...]
+pipabuild   () { _pipa build   $@ }  # <req> [req...]
+pipadev     () { _pipa dev     $@ }  # <req> [req...]
+pipadoc     () { _pipa doc     $@ }  # <req> [req...]
+pipapublish () { _pipa publish $@ }  # <req> [req...]
+pipatest    () { _pipa test    $@ }  # <req> [req...]
+
 # recompile with upgraded versions of all or specified packages (upgrade)
 pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }  # [req...]
 pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }  # [req...]

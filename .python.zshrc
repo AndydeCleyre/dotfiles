@@ -5,18 +5,18 @@ pipi () { pip install -U $@ }  # <req> [req...]
 
 # get path of folder containing all venvs for the current folder or specified project path
 venvs_path () {  # [projectpath]
-    [[ "$#" -gt 0 ]] && reqsdir="$(realpath $1)" || reqsdir="$(pwd)"
-    echo "$HOME/.local/share/venvs/$(echo -n $reqsdir | md5sum | cut -d ' ' -f 1)"
+    [[ "$#" -gt 0 ]] && reqsdir="$(realpath "$1")" || reqsdir="$(pwd)"
+    echo "$HOME/.local/share/venvs/$(echo -n "$reqsdir" | md5sum | cut -d ' ' -f 1)"
 }
 
 # run script with its venv
-_vpy  () { "$(venvs_path $(dirname $(realpath $2)))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
+_vpy  () { "$(venvs_path $(dirname $(realpath "$2")))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
 vpy   () { _vpy venv     "$@" }  # <script> [args]
 vpy2  () { _vpy venv2    "$@" }  # <script> [args]
 vpypy () { _vpy venvPyPy "$@" }  # <script> [args]
 
 # generate a shebang line for running a specified script with its venv
-_vpyshebang  () { printf "#!$(venvs_path $(dirname $(realpath $2)))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
+_vpyshebang  () { printf "#!$(venvs_path $(dirname $(realpath "$2")))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
 vpyshebang   () { _vpyshebang venv     "$@" }  # <script> [args]
 vpy2shebang  () { _vpyshebang venv2    "$@" }  # <script> [args]
 vpypyshebang () { _vpyshebang venvPyPy "$@" }  # <script> [args]

@@ -89,7 +89,7 @@ pipcs  () { pipc ; pips }
 pipchs () { pipch; pips }
 
 # add loose requirements to requirements.in (add)
-pipa () { printf "%s\n" $@ >> requirements.in && cat requirements.in | hpype }  # <req> [req...]
+pipa () { printf "%s\n" $@ >> requirements.in && hpype < requirements.in }  # <req> [req...]
 # add, then compile
 pipac   () { pipa   $@; echo; pipc  }  # <req> [req...]
 pipach  () { pipa   $@; echo; pipch }  # <req> [req...]

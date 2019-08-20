@@ -61,8 +61,7 @@ _envin () {  # <venvname> <venvinitcmd>
     venv="$(venvs_path)/$1"
     [[ -d $venv ]] || eval $2 $venv
     . $venv/bin/activate
-    # pip install -qU pip pip-tools
-    pip install -qU 'pip<19.2' pip-tools  # pip<19.2 until https://github.com/jazzband/pip-tools/issues/853 is closed
+    pip install -qU pip pip-tools
     [[ ! -f requirements.txt ]] || $venv/bin/pip-sync *requirements.txt
 }
 envin     () { _envin venv     "python3 -m venv" }

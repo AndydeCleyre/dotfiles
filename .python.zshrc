@@ -117,23 +117,25 @@ pipuhs () { pipuh $@; pips }  # [req...]
 # run either from the folder with pyproject.toml, or one below
 # to categorize, name files <category>-requirements.in
 pypc () {
-    pip install -qU plumbum tomlkit
+    pip install -qU tomlkit || echo "You probably want to activate a venv with 'envin', first"
     python -c "
-from plumbum import local
+from pathlib import Path
+
 import tomlkit
 
 
 suffix = 'requirements.in'
-pyproject = local.cwd / 'pyproject.toml'
+cwd = Path().absolute()
+pyproject = cwd / 'pyproject.toml'
 if not pyproject.is_file():
-    pyproject = local.cwd.up() / 'pyproject.toml'
-reqsins = pyproject.up() // f'*/*{suffix}' + pyproject.up() // f'*{suffix}'
+    pyproject = cwd.parent / 'pyproject.toml'
+reqsins = [*pyproject.parent.glob(f'*/*{suffix}')] + [*pyproject.parent.glob(f'*{suffix}')]
 if pyproject.is_file():
-    toml_data = tomlkit.parse(pyproject.read())
+    toml_data = tomlkit.parse(pyproject.read_text())
     for reqsin in reqsins:
         pyproject_reqs = [
             line
-            for line in reqsin.read().splitlines()
+            for line in reqsin.read_text().splitlines()
             if line.strip() and not line.startswith('#')
         ]
         extras_catg = reqsin.name.rsplit(suffix, 1)[0].rstrip('-.')
@@ -144,6 +146,6 @@ if pyproject.is_file():
             if 'requires-extra' not in toml_data['tool']['flit']['metadata']:         # remove when #49 is fixed
                 toml_data['tool']['flit']['metadata']['requires-extra'] = {}          # remove when #49 is fixed
             toml_data['tool']['flit']['metadata']['requires-extra'][extras_catg] = pyproject_reqs
-    pyproject.write(tomlkit.dumps(toml_data))
+    pyproject.write_text(tomlkit.dumps(toml_data))
     "
 }

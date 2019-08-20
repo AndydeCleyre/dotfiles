@@ -21,22 +21,39 @@ vpyshebang   () { _vpyshebang venv     "$@" }  # <script> [args]
 vpy2shebang  () { _vpyshebang venv2    "$@" }  # <script> [args]
 vpypyshebang () { _vpyshebang venvPyPy "$@" }  # <script> [args]
 
-# specify the venv interpreter in a new or existing sublime text project file
-vpysubl () {
-    pip install -qU plumbum
+# get a new or existing sublime text project file for the working folder
+_get_sublp () {
     python -c "
-from plumbum import local
-from json import loads, dumps
+from pathlib import Path
+
+cwd = Path().absolute()
 try:
-    spfile = [f for f in local.cwd.list() if f.endswith('.sublime-project')].pop()
-except IndexError:
-    spfile = local.cwd / f'{local.cwd.name}.sublime-project'
-    spfile.write('{}')
-sp = loads(spfile.read())
-sp.setdefault('settings', {})
-sp['settings']['python_interpreter'] = '$(venvs_path)/venv/bin/python'
-spfile.write(dumps(sp))
+    spfile = next(cwd.glob('*.sublime-project'))
+except StopIteration:
+    spfile = cwd / f'{cwd.name}.sublime-project'
+    spfile.write_text('{}')
+print(spfile, end='')
     "
+}
+
+# specify the venv interpreter in a new or existing sublime text project file
+vpysublp () {
+    python -c "
+from pathlib import Path
+from json import loads, dumps
+
+spfile = Path('''$(_get_sublp)''')
+sp = loads(spfile.read_text())
+sp.setdefault('settings', {})
+sp['settings']['python_interpreter'] = '''$(venvs_path)/venv/bin/python'''
+spfile.write_text(dumps(sp))
+    "
+}
+
+# launch a new or existing working dir's sublime text project with venv interpreter set
+sublp () {
+    vpysublp
+    subl --project "$(_get_sublp)" .
 }
 
 # activate venv for the current folder and install requirements, creating venv if necessary

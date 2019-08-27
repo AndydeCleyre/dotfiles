@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-from sys import argv
+import sys
 from time import sleep
 
 from requests import get
 from requests.exceptions import ConnectionError
 
 
-def colorize(text, colorhex='6d948d'):
-    return text
-    # return f'<font color="#{colorhex}">{text}</font>'
+def colorize(text, colorhex='#dea050'):
+    return f"<font color=\"#{colorhex.lstrip('#')}\">{text}</font>"
 
 
-if len(argv) > 1:
+if len(sys.argv) > 1:
     print(colorize("---"))
 else:
     API_BASE = 'https://min-api.cryptocompare.com'

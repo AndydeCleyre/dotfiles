@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import html
 import re
 import sys
 from contextlib import suppress
@@ -104,11 +105,16 @@ def notify(details):
         notify_send('-a', "Music", "Nothing playing")
 
 
+def colorize(text, colorhex='#B8BB26'):
+    return f"<font color=\"#{colorhex.lstrip('#')}\">{html.escape(text)}</font>"
+
+
 def display(details):
     title, artist = simplify_title(details['title']), details['artist']
     size = min(MAX_WIDTH, max(len(artist), len(title)))
     rotation = [w for w in (artist, title) if w]
     print(resize(choice(rotation), size))
+    # print(colorize(resize(choice(rotation), size)))  # https://github.com/Zren/plasma-applet-commandoutput/issues/12
 
 
 if __name__ == '__main__':

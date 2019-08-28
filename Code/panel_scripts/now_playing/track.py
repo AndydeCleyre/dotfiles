@@ -79,7 +79,8 @@ def resize(txt, size, pre='~', post='~', ellipsis='random'):
 def simplify_title(title):
     title = re.sub(
         r'( \(feat\. [^\)]+\))?'
-        r'( \(Instrumental\))?',
+        r'( \(Instrumental\))?'
+        r'( \(.*Mix\))?',
         '', title
     )
     return re.sub(

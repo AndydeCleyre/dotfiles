@@ -1,1 +1,4 @@
-from plumbum import local
+try:
+    from plumbum import local
+except ModuleNotFoundError:
+    pass

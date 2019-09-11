@@ -1,25 +1,207 @@
-i  () { ipython  }
-i2 () { ipython2 }
-
-pipi () { pip install -U $@ }  # <req> [req...]
-
 # get path of folder containing all venvs for the current folder or specified project path
-venvs_path () {  # [projectpath]
-    [[ "$#" -gt 0 ]] && reqsdir="$(realpath "$1")" || reqsdir="$(pwd)"
-    echo "$HOME/.local/share/venvs/$(echo -n "$reqsdir" | md5sum | cut -d ' ' -f 1)"
+venvs_path () {  # [proj-dir]
+    echo "$HOME/.local/share/venvs/$(echo -n "${${1:-$(pwd)}:P}" | md5sum | cut -d ' ' -f 1)"
 }
 
-# run script with its venv
-_vpy  () { "$(venvs_path $(dirname $(realpath "$2")))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
-vpy   () { _vpy venv     "$@" }  # <script> [args]
-vpy2  () { _vpy venv2    "$@" }  # <script> [args]
-vpypy () { _vpy venvPyPy "$@" }  # <script> [args]
+# pipe pythonish syntax through this to make it colorful
+hpype () {
+    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s moria -S py ||
+    [[ "$(command -v bat)"       ]] && bat -l py -p                          ||
+                                       cat -
+}
 
-# generate a shebang line for running a specified script with its venv
-_vpyshebang  () { printf "#!$(venvs_path $(dirname $(realpath "$2")))/$1/bin/python" "${@:2}" }  # <venvname> <script> [args]
-vpyshebang   () { _vpyshebang venv     "$@" }  # <script> [args]
-vpy2shebang  () { _vpyshebang venv2    "$@" }  # <script> [args]
-vpypyshebang () { _vpyshebang venvPyPy "$@" }  # <script> [args]
+# start REPL
+alias i="ipython"
+alias i2="ipython2"
+
+# install packages
+alias pipi="pip install -U"  # <req> [req...]
+
+# compile requirements.txt files from all found or specified requirements.in files (compile)
+pipc () {  # [reqs-in...]
+    for reqsin in ${@:-*requirements.in(N)}; do
+        print -P "%F{cyan}> compiling $reqsin -> ${reqsin:r}.txt . . .%f"
+        pip-compile --no-header "$reqsin" 2>&1 | hpype
+    done
+}
+# compile with hashes
+pipch () {  # [reqs-in...]
+    for reqsin in ${@:-*requirements.in(N)}; do
+        print -P "%F{cyan}> compiling $reqsin -> ${reqsin:r}.txt . . .%f"
+        pip-compile --no-header --generate-hashes "$reqsin" 2>&1 | hpype
+    done
+}
+
+# install packages according to all found or specified requirements.txt files (sync)
+pips () {  # [reqs-txt...]
+    print -P "%F{cyan}> syncing env to" ${@:-*requirements.txt(N)} ". . .%f"
+    pip-sync ${@:-*requirements.txt(N)}
+}
+
+# compile, then sync
+pipcs () {  # [reqs-in...]
+    pipc $@
+    pips ${^@:r}.txt
+}
+# compile with hashes, then sync
+pipchs () {  # [reqs-in...]
+    pipch $@
+    pips ${^@:r}.txt
+}
+
+# add loose requirements to [<category>-]requirements.in (add)
+_pipa () {  # <category> <req> [req...]
+    local reqsin="requirements.in"
+    [[ $1 ]] && reqsin="$1-requirements.in"
+    print -P "%F{cyan}> appending to $reqsin . . .%f"
+    printf "%s\n" "${@:2}" >> "$reqsin"
+    hpype < "$reqsin"
+}
+alias pipa="_pipa ''"  # <req> [req...]
+alias pipabuild="_pipa build"  # <req> [req...]
+alias pipadev="_pipa dev"  # <req> [req...]
+alias pipadoc="_pipa doc"  # <req> [req...]
+alias pipapublish="_pipa publish"  # <req> [req...]
+alias pipatest="_pipa test"  # <req> [req...]
+
+# add to requirements.in and compile it to requirements.txt
+pipac () {  # <req> [req...]
+    pipa $@
+    pipc requirements.in
+}
+# add to requirements.in and compile it with hashes to requirements.txt
+pipach () {  # <req> [req...]
+    pipa $@
+    pipch requirements.in
+}
+# add to requirements.in and compile it to requirements.txt, then sync to that
+pipacs () {  # <req> [req...]
+    pipac $@
+    pips requirements.txt
+}
+# add to requirements.in and compile it with hashes to requirements.txt, then sync to that
+pipachs () {  # <req> [req...]
+    pipach $@
+    pips requirements.txt
+}
+
+# recompile *requirements.txt with upgraded versions of all or specified packages (upgrade)
+pipu () {  # [req...]
+    for reqsin in *requirements.in; do
+        print -P "%F{cyan}> upgrading ${reqsin:r}.txt from $reqsin . . .%f"
+        if [[ "$#" -gt 0 ]]; then
+            # pip-compile --no-header "-P ${^@}" "$reqsin" 2>&1 | hpype
+            pip-compile --no-header ${^@}(P:-P:) $reqsin 2>&1 | hpype
+        else
+            pip-compile --no-header -U $reqsin 2>&1 | hpype
+        fi
+    done
+}
+# upgrade with hashes
+pipuh () {  # [req...]
+    for reqsin in *requirements.in; do
+        print -P "%F{cyan}> upgrading ${reqsin:r}.txt from $reqsin . . .%f"
+        if [[ "$#" -gt 0 ]]; then
+            # pip-compile --no-header --generate-hashes "-P ${^@}" "$reqsin" 2>&1 | hpype
+            pip-compile --no-header --generate-hashes ${^@}(P:-P:) $reqsin 2>&1 | hpype
+        else
+            pip-compile --no-header -U --generate-hashes $reqsin 2>&1 | hpype
+        fi
+    done
+}
+
+# upgrade, then sync
+pipus () {  # [req...]
+    pipu $@
+    pips
+}
+pipuhs () {  # [req...]
+    pipuh $@
+    pips
+}
+
+# activate venv for the current folder and install requirements, creating venv if necessary
+_envin () {  # <venv-name> <venv-init-cmd> [reqs-txt...]
+    local vpath="$(venvs_path)"
+    local venv="$vpath/$1"
+    print -P "%F{cyan}> entering venv at $venv . . .%f"
+    [[ -d $venv ]] || eval $2 $venv
+    ln -sfn "$(pwd)" "$vpath/project"
+    . $venv/bin/activate
+    pip install -qU pip pip-tools
+    rehash
+    pips "${@:3}"
+}
+alias envin="_envin venv 'python3 -m venv'"  # [reqs-txt...]
+alias envin2="_envin venv2 virtualenv2"  # [reqs-txt...]
+alias envinpypy="_envin venvPyPy 'pypy3 -m venv'"  # [reqs-txt...]
+
+# activate without installing anything
+activate () { . $(venvs_path)/venv/bin/activate }
+# deactivate
+envout () { deactivate }
+
+# run script with its folder's associated venv
+_vpy () {  # <venv-name> <script> [script-arg...]
+    "$(venvs_path "${2:P:h}")/$1/bin/python" "${@:2}"
+}
+alias vpy="_vpy venv"  # <script> [script-arg...]
+alias vpy2="_vpy venv2"  # <script> [script-arg...]
+alias vpypy="_vpy venvPyPy"  # <script> [script-arg...]
+
+# generate a shebang line for running a specified script with its folder's associated venv
+_vpyshebang () {  # <venv-name> <script> [script-arg...]
+    printf "#!$(venvs_path "${2:P:h}")/$1/bin/python" "${@:2}"
+}
+alias vpyshebang="_vpyshebang venv"  # <script> [script-arg...]
+alias vpy2shebang="_vpyshebang venv2"  # <script> [script-arg...]
+alias vpypyshebang="_vpyshebang venvPyPy"  # <script> [script-arg...]
+
+# run venv-installed script from a given project folder's associated venv
+_vpybin () {  # <venv-name> <proj-dir> <script-name> [script-arg...]
+    "$(venvs_path "${2:P}")/$1/bin/$3" ${@:4}
+}
+alias vpybin="_vpybin venv"  # <proj-dir> <script-name> [script-arg...]
+alias vpy2bin="_vpybin venv2"  # <proj-dir> <script-name> [script-arg...]
+alias vpypybin="_vpybin venvPyPy"  # <proj-dir> <script-name> [script-arg...]
+
+# inject loose requirements.in dependencies into pyproject.toml
+# run either from the folder housing pyproject.toml, or one below
+# to categorize, name files <category>-requirements.in
+pypc () {
+    pip install -qU tomlkit || print -P "%F{cyan}> You probably want to activate a venv with 'envin', first%f"
+    python -c "
+from pathlib import Path
+
+import tomlkit
+
+
+suffix = 'requirements.in'
+cwd = Path().absolute()
+pyproject = cwd / 'pyproject.toml'
+if not pyproject.is_file():
+    pyproject = cwd.parent / 'pyproject.toml'
+reqsins = [*pyproject.parent.glob(f'*/*{suffix}')] + [*pyproject.parent.glob(f'*{suffix}')]
+if pyproject.is_file():
+    toml_data = tomlkit.parse(pyproject.read_text())
+    for reqsin in reqsins:
+        print(f'\033[96m> injecting {reqsin} -> {pyproject} . . .\033[00m')
+        pyproject_reqs = [
+            line
+            for line in reqsin.read_text().splitlines()
+            if line.strip() and not (line.startswith('#') or line.startswith('-r'))
+        ]
+        extras_catg = reqsin.name.rsplit(suffix, 1)[0].rstrip('-.')
+        if not extras_catg:
+            toml_data['tool']['flit']['metadata']['requires'] = pyproject_reqs
+        else:
+            # toml_data['tool']['flit']['metadata'].setdefault('requires-extra', {})  # enable on close of https://github.com/sdispater/tomlkit/issues/49
+            if 'requires-extra' not in toml_data['tool']['flit']['metadata']:         # remove when #49 is fixed
+                toml_data['tool']['flit']['metadata']['requires-extra'] = {}          # remove when #49 is fixed
+            toml_data['tool']['flit']['metadata']['requires-extra'][extras_catg] = pyproject_reqs
+    pyproject.write_text(tomlkit.dumps(toml_data))
+    "
+}
 
 # get a new or existing sublime text project file for the working folder
 _get_sublp () {
@@ -50,102 +232,8 @@ spfile.write_text(dumps(sp))
     "
 }
 
-# launch a new or existing working dir's sublime text project with venv interpreter set
-sublp () {
+# launch a new or existing sublime text project, setting venv interpreter
+sublp () {  # [subl-arg...]
     vpysublp
-    subl --project "$(_get_sublp)" .
-}
-
-# activate venv for the current folder and install requirements, creating venv if necessary
-_envin () {  # <venvname> <venvinitcmd>
-    venv="$(venvs_path)/$1"
-    [[ -d $venv ]] || eval $2 $venv
-    . $venv/bin/activate
-    pip install -qU pip pip-tools
-    [[ ! -f requirements.txt ]] || $venv/bin/pip-sync *requirements.txt
-}
-envin     () { _envin venv     "python3 -m venv" }
-envin2    () { _envin venv2    "virtualenv2"     }
-envinpypy () { _envin venvPyPy "pypy3 -m venv"   }
-activate  () { . $(venvs_path)/venv/bin/activate }  # activate without installing anything
-envout    () { deactivate                        }
-
-# pipe pythonish syntax through this to make it colorful
-hpype () {
-    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s moria -S py ||
-    [[ "$(command -v bat)"       ]] && bat -l py -p                          ||
-                                       cat -
-}
-
-# install packages according to all found or specified requirements.txt files (sync)
-pips () { [[ "$#" -gt 0 ]] && pip-sync $@ || pip-sync *requirements.txt }  # [reqstxt...]
-
-# compile requirements.txt files from all found requirements.in files (compile)
-pipc  () { for reqs in *requirements.in; do pip-compile --no-header                   "$reqs" | hpype; done }
-pipch () { for reqs in *requirements.in; do pip-compile --no-header --generate-hashes "$reqs" | hpype; done }
-
-# compile, then sync
-pipcs  () { pipc ; pips }
-pipchs () { pipch; pips }
-
-# add loose requirements to requirements.in (add)
-pipa () { printf "%s\n" $@ >> requirements.in && hpype < requirements.in }  # <req> [req...]
-# add, then compile
-pipac   () { pipa   $@; echo; pipc  }  # <req> [req...]
-pipach  () { pipa   $@; echo; pipch }  # <req> [req...]
-# add, then compile, then sync
-pipacs  () { pipac  $@; pips }  # <req> [req...]
-pipachs () { pipach $@; pips }  # <req> [req...]
-
-# add loose requirements to <category>-requirements.in
-_pipa () { printf "%s\n" "${@:2}" >> "$1-requirements.in" && hpype < "$1-requirements.in" }  # <category> <req> [req...]
-pipabuild   () { _pipa build   $@ }  # <req> [req...]
-pipadev     () { _pipa dev     $@ }  # <req> [req...]
-pipadoc     () { _pipa doc     $@ }  # <req> [req...]
-pipapublish () { _pipa publish $@ }  # <req> [req...]
-pipatest    () { _pipa test    $@ }  # <req> [req...]
-
-# recompile with upgraded versions of all or specified packages (upgrade)
-pipu  () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header                   -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U                   "$reqs" | hpype; done }  # [req...]
-pipuh () { for reqs in *requirements.in; do [[ "$#" -gt 0 ]] && pip-compile --no-header --generate-hashes -P ${(z)${(j: -P :)@}} "$reqs" | hpype || pip-compile --no-header -U --generate-hashes "$reqs" | hpype; done }  # [req...]
-
-# upgrade, then sync
-pipus  () { pipu  $@; pips }  # [req...]
-pipuhs () { pipuh $@; pips }  # [req...]
-
-# inject loose requirements.in dependencies into pyproject.toml
-# run either from the folder with pyproject.toml, or one below
-# to categorize, name files <category>-requirements.in
-pypc () {
-    pip install -qU tomlkit || echo "You probably want to activate a venv with 'envin', first"
-    python -c "
-from pathlib import Path
-
-import tomlkit
-
-
-suffix = 'requirements.in'
-cwd = Path().absolute()
-pyproject = cwd / 'pyproject.toml'
-if not pyproject.is_file():
-    pyproject = cwd.parent / 'pyproject.toml'
-reqsins = [*pyproject.parent.glob(f'*/*{suffix}')] + [*pyproject.parent.glob(f'*{suffix}')]
-if pyproject.is_file():
-    toml_data = tomlkit.parse(pyproject.read_text())
-    for reqsin in reqsins:
-        pyproject_reqs = [
-            line
-            for line in reqsin.read_text().splitlines()
-            if line.strip() and not line.startswith('#')
-        ]
-        extras_catg = reqsin.name.rsplit(suffix, 1)[0].rstrip('-.')
-        if not extras_catg:
-            toml_data['tool']['flit']['metadata']['requires'] = pyproject_reqs
-        else:
-            # toml_data['tool']['flit']['metadata'].setdefault('requires-extra', {})  # enable on close of https://github.com/sdispater/tomlkit/issues/49
-            if 'requires-extra' not in toml_data['tool']['flit']['metadata']:         # remove when #49 is fixed
-                toml_data['tool']['flit']['metadata']['requires-extra'] = {}          # remove when #49 is fixed
-            toml_data['tool']['flit']['metadata']['requires-extra'][extras_catg] = pyproject_reqs
-    pyproject.write_text(tomlkit.dumps(toml_data))
-    "
+    subl --project "$(_get_sublp)" . $@
 }

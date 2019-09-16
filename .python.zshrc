@@ -1,13 +1,14 @@
 # get path of folder containing all venvs for the current folder or specified project path
 venvs_path () {  # [proj-dir]
-    echo "$HOME/.local/share/venvs/$(echo -n "${${1:-$(pwd)}:P}" | md5sum | cut -d ' ' -f 1)"
+    ([[ $(command -v md5sum) ]] && echo "$HOME/.local/share/venvs/$(printf "${${1:-$(pwd)}:P}" | md5sum | cut -d ' ' -f 1)") ||
+                                   echo "$HOME/.local/share/venvs/$(md5 -qs "${${1:-$(pwd)}:P}")"
 }
 
 # pipe pythonish syntax through this to make it colorful
 hpype () {
-    [[ "$(command -v highlight)" ]] && highlight -O truecolor -s moria -S py ||
-    [[ "$(command -v bat)"       ]] && bat -l py -p                          ||
-                                       cat -
+    ([[ $(command -v highlight) ]] && highlight -O truecolor -s moria -S py) ||
+    ([[ $(command -v bat)       ]] && bat -l py -p)                          ||
+                                      cat -
 }
 
 # start REPL
@@ -34,8 +35,13 @@ pipch () {  # [reqs-in...]
 
 # install packages according to all found or specified requirements.txt files (sync)
 pips () {  # [reqs-txt...]
-    print -P "%F{cyan}> syncing env to" ${@:-*requirements.txt(N)} ". . .%f"
-    pip-sync ${@:-*requirements.txt(N)}
+    if [[ $(echo ${@:-*requirements.txt(N)}) ]]; then
+        print -P "%F{cyan}> syncing env to" ${@:-*requirements.txt(N)} ". . .%f"
+        pip-sync ${@:-*requirements.txt(N)}
+        for reqstxt in ${@:-*requirements.txt}; do  # can remove if https://github.com/jazzband/pip-tools/issues/896 gets implemented
+            pip install -qr $reqstxt                #
+        done                                        #
+    fi
 }
 
 # compile, then sync
@@ -90,8 +96,7 @@ pipu () {  # [req...]
     for reqsin in *requirements.in; do
         print -P "%F{cyan}> upgrading ${reqsin:r}.txt from $reqsin . . .%f"
         if [[ "$#" -gt 0 ]]; then
-            # pip-compile --no-header "-P ${^@}" "$reqsin" 2>&1 | hpype
-            pip-compile --no-header ${^@}(P:-P:) $reqsin 2>&1 | hpype
+            pip-compile --no-header "-P ${^@}" $reqsin 2>&1 | hpype
         else
             pip-compile --no-header -U $reqsin 2>&1 | hpype
         fi
@@ -102,8 +107,7 @@ pipuh () {  # [req...]
     for reqsin in *requirements.in; do
         print -P "%F{cyan}> upgrading ${reqsin:r}.txt from $reqsin . . .%f"
         if [[ "$#" -gt 0 ]]; then
-            # pip-compile --no-header --generate-hashes "-P ${^@}" "$reqsin" 2>&1 | hpype
-            pip-compile --no-header --generate-hashes ${^@}(P:-P:) $reqsin 2>&1 | hpype
+            pip-compile --no-header --generate-hashes "-P ${^@}" $reqsin 2>&1 | hpype
         else
             pip-compile --no-header -U --generate-hashes $reqsin 2>&1 | hpype
         fi
@@ -141,29 +145,40 @@ activate () { . $(venvs_path)/venv/bin/activate }
 # deactivate
 envout () { deactivate }
 
+# get path of python for the given script's folder's associated venv
+_whichpy () {  # <venv-name> <script>
+    echo "$(venvs_path ${2:P:h})/$1/bin/python"
+}
+
 # run script with its folder's associated venv
 _vpy () {  # <venv-name> <script> [script-arg...]
-    "$(venvs_path "${2:P:h}")/$1/bin/python" "${@:2}"
+    $(_whichpy $1 $2) ${@:2}
 }
 alias vpy="_vpy venv"  # <script> [script-arg...]
 alias vpy2="_vpy venv2"  # <script> [script-arg...]
 alias vpypy="_vpy venvPyPy"  # <script> [script-arg...]
 
-# generate a shebang line for running a specified script with its folder's associated venv
-_vpyshebang () {  # <venv-name> <script> [script-arg...]
-    printf "#!$(venvs_path "${2:P:h}")/$1/bin/python" "${@:2}"
+# prepend a script with a shebang for its folder's associated venv python
+# if vpy exists in the PATH, #!/path/to/vpy will be used instead
+# also ensure the script is executable
+_vpyshebang () {  # <venv-name> <script>
+    chmod +x $2
+    local vpybin
+    vpybin=$(whence -p vpy) || vpybin="$(_whichpy $1 $2)"
+    sed -i'' "1i\
+#!${vpybin}" $2
 }
-alias vpyshebang="_vpyshebang venv"  # <script> [script-arg...]
-alias vpy2shebang="_vpyshebang venv2"  # <script> [script-arg...]
-alias vpypyshebang="_vpyshebang venvPyPy"  # <script> [script-arg...]
+alias vpyshebang="_vpyshebang venv"  # <script>
+alias vpy2shebang="_vpyshebang venv2"  # <script>
+alias vpypyshebang="_vpyshebang venvPyPy"  # <script>
 
-# run venv-installed script from a given project folder's associated venv
-_vpybin () {  # <venv-name> <proj-dir> <script-name> [script-arg...]
-    "$(venvs_path "${2:P}")/$1/bin/$3" ${@:4}
+# run script from a given project folder's associated venv's bin folder
+_vpyfrom () {  # <venv-name> <proj-dir> <script-name> [script-arg...]
+    $(venvs_path $2)/$1/bin/$3 ${@:4}
 }
-alias vpybin="_vpybin venv"  # <proj-dir> <script-name> [script-arg...]
-alias vpy2bin="_vpybin venv2"  # <proj-dir> <script-name> [script-arg...]
-alias vpypybin="_vpybin venvPyPy"  # <proj-dir> <script-name> [script-arg...]
+alias vpyfrom="_vpyfrom venv"  # <proj-dir> <script-name> [script-arg...]
+alias vpy2from="_vpyfrom venv2"  # <proj-dir> <script-name> [script-arg...]
+alias vpypyfrom="_vpyfrom venvPyPy"  # <proj-dir> <script-name> [script-arg...]
 
 # inject loose requirements.in dependencies into pyproject.toml
 # run either from the folder housing pyproject.toml, or one below

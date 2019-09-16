@@ -53,6 +53,6 @@ zle -N history-beginning-search-forward-end  history-search-end
 if [[ "${terminfo[kcuu1]}" != "" ]]; then bindkey "${terminfo[kcuu1]}" history-beginning-search-backward-end; fi
 if [[ "${terminfo[kcud1]}" != "" ]]; then bindkey "${terminfo[kcud1]}" history-beginning-search-forward-end; fi
 
-zcheck () { [[ "$#" -gt 0 ]] && (egrep --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || tail -vn +1 ~/.zshrc ~/.*.zshrc }
+zcheck () { [[ "$#" -gt 0 ]] && (grep -E --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || tail -vn +1 ~/.zshrc ~/.*.zshrc }
 
 [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

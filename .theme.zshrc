@@ -1,39 +1,36 @@
 setopt promptsubst
 
-local ZSH_THEME_USER="%(!.%F{red}.%F{green})%n%f"
-local ZSH_THEME_HOST="%F{cyan}%m%f"
-local ZSH_THEME_CONSOLE
-if [[ -n $TMUX_PANE ]]; then
-    ZSH_THEME_CONSOLE="%F{cyan}$(tmux display-message -p '#I')%f"
+local retcode="%(?..%F{red}%? <- )"
+local user="%(!.%F{red}.%F{green})%n%f"
+local host="%F{cyan}%m%f"
+if [[ $TMUX_PANE ]]; then
+    local console="%F{cyan}$(tmux display-message -p '#I')%f"
 else
-    ZSH_THEME_CONSOLE="%F{cyan}tty$(echo $TTY | egrep -o '\w+$')%f"
+    local console="%F{cyan}tty$(echo $TTY | grep -E -o '\w+$')%f"
 fi
-local ZSH_THEME_CWD="%F{magenta}%~%f"
-local ZSH_THEME_RETURN="%(?..%F{red}%? <- )"
-local ZSH_THEME_CLOCK="%F{green}%*%f"
-
-local ZSH_THEME_GIT_PROMPT_PREFIX="(%F{blue}"
-local ZSH_THEME_GIT_PROMPT_SUFFIX="%f)"
-local ZSH_THEME_GIT_PROMPT_CLEAN=""
-local ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}*%f"
+local cwd="%F{magenta}%~%f"
+local clock="%F{green}%*%f"
 
 function git_prompt_info() {
-    local ref
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
+    local gitref=$(git symbolic-ref HEAD 2> /dev/null)
+    [[ $gitref ]] || gitref=$(git rev-parse --short HEAD 2> /dev/null)
+    [[ $gitref ]] && gitref="%F{blue}${gitref#refs/heads/}%f"
+    if [[ $gitref ]]; then
+        local gitroot=$(git rev-parse --show-toplevel 2> /dev/null)
+        [[ $gitroot ]] && gitroot=$(realpath --relative-to=. $gitroot 2> /dev/null)
+        gitroot="${gitroot:#.}"
+        [[ $gitroot ]] && gitroot="${gitroot}:"
 
-function parse_git_dirty() {
-    local STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
-    if [[ -n $STATUS ]]; then
-        echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+        local gitdirty=$(git status --porcelain 2> /dev/null | tail -n1)
+        [[ $gitdirty ]] && gitdirty="%F{red}*%f"
+
+        local gitinfo=" ${gitroot}${gitref}${gitdirty} "
+        echo "${gitinfo:/  / }"
     else
-        echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+        echo " "
     fi
 }
 
-PROMPT='${ZSH_THEME_RETURN}${ZSH_THEME_USER}@${ZSH_THEME_HOST}.${ZSH_THEME_CONSOLE}:${ZSH_THEME_CWD}$(git_prompt_info)
-%F{red}%(!.#.$)%f '
-PROMPT2='%F{red}\ %f'
-RPROMPT='${ZSH_THEME_CLOCK}'
+PROMPT='%U${retcode}${user}@${host}.${console}:${cwd}$(git_prompt_info)${clock}%u
+%F{magenta}%(!.#.$)%f '
+PROMPT2='%F{red}… %f'

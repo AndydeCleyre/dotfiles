@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=Rename multiple files with micro
-Exec=/home/andy/Code/txtnamer.py %U
+Exec=/home/andy/Code/txtnamer/txtnamer.py %U
 Icon=pyrenamer
 Name=txtnamer
 StartupNotify=false

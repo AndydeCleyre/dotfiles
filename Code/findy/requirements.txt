@@ -1,0 +1,3 @@
+plumbum==1.6.7 \
+    --hash=sha256:d143f079bfb60b11e9bec09a49695ce2e55ce5ca0246877bdb0818ab7c7fc312 \
+    --hash=sha256:df96a5facf621db4a6d682bdc93afa5ed6b107a8667c73c3f0a0f0fab4217c81

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Google Maps
+Comment=Google Maps (Ice SSB)
+Exec=firefox --class ICE-SSB-googlemaps --profile /home/andy/.local/share/ice/firefox/googlemaps --no-remote https://www.google.com/maps
+IceFirefox=googlemaps
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=maps
+Categories=GTK;Network;
+MimeType=text/html;text/xml;application/xhtml_xml;
+StartupWMClass=ICE-SSB-googlemaps
+StartupNotify=true

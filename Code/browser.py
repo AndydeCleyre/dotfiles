@@ -1,6 +1,9 @@
+#!/home/andy/bin/vpy
 #!/usr/bin/env python3
 import re
 import sys
+from configparser import ConfigParser
+from shlex import split
 
 from bs4 import BeautifulSoup
 from plumbum import local, FG, BG
@@ -15,13 +18,20 @@ from plumbum.cmd import (
 from requests import get
 
 
+def get_ice_cmd(appname):
+    cp = ConfigParser()
+    cp.read(local.path('~') / f".local/share/applications/{appname}.desktop")
+    parts = split(cp['Desktop Entry']['exec'])
+    return local[parts[0]][parts[1:-1]]
+
+
 def route(*uris):
     for uri in uris:
         uri = re.sub(r'^browser:/?/?', '', uri)
         if any((
-            re.match(r'https?://(.+\.)?gfycat\.com/.+\.webm', uri),
-            re.match(r'https?://(www\.)?(youtube|vrv)\.com?/(watch|embed)', uri),
-            re.match(r'https?://i\.imgur\.com/', uri) and uri.endswith('v.jpg'),
+            re.match(r'^https?://(.+\.)?gfycat\.com/.+\.webm', uri),
+            re.match(r'^https?://(www\.)?(youtube|vrv)\.com?/(watch|embed)', uri),
+            re.match(r'^https?://i\.imgur\.com/', uri) and uri.endswith('v.jpg'),
             uri.endswith('.torrent'),
             uri.startswith('magnet:?xt=urn:btih:'),
             # v.reddit
@@ -35,13 +45,20 @@ def route(*uris):
         )):
             notify_send('-a', "browser.py", "Opening image . . .")
             gwenview[uri] & BG(stderr=sys.stderr)
-        elif re.match(r'https://imgur\.com/(a|gallery)/', uri):
+        elif re.match(r'^https://imgur\.com/(a|gallery)/', uri):
             notify_send('-a', "browser.py", "Splitting imgur album . . .")
             r = get(uri)
             soup = BeautifulSoup(r.text)
             for img in soup.find_all(attrs={'class': 'post-image-container'}):
                 route(f"https://i.imgur.com/{img.attrs['id']}.jpg")
-        elif sys.stdin.isatty() and local.env.get('_') not in ('/bin/rtv', '/bin/ddgr'):
+        elif uri.startswith('https://www.google.com/maps/'):
+            get_ice_cmd('googlemaps')[uri] & BG(stderr=sys.stderr)
+        elif any((
+            uri.startswith('https://photos.google.com/'),
+            uri.startswith('https://photos.app.goo.gl/')
+        )):
+            get_ice_cmd('googlephotos')[uri] & BG(stderr=sys.stderr)
+        elif sys.stdin.isatty() and local.env.get('_') not in ('/bin/rtv',):
             if uri.startswith('https://www.reddit.com/r/'):
                 notify_send('-a', "browser.py", "Using rtv in existing TTY . . .")
                 rtv[uri] & FG

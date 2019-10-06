@@ -1,9 +1,10 @@
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || true
+
 precmd () { rehash }
 
 autoload -U compinit
 compinit
 
-unsetopt menu_complete
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
@@ -23,36 +24,114 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt share_history
 
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-    function zle-line-init()   { echoti smkx }
-    function zle-line-finish() { echoti rmkx }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-fi
+multibind () {  # cmd in-string [in-string...]
+    for instr in ${@:2}; do
+        bindkey $instr $1
+    done
+}
 
 bindkey ' ' magic-space
-if [[ "${terminfo[kcbt]}"  != "" ]]; then bindkey "${terminfo[kcbt]}"  reverse-menu-complete; fi
-if [[ "${terminfo[kdch1]}" != "" ]]; then bindkey "${terminfo[kdch1]}" delete-char
-else bindkey "^[[3~" delete-char; bindkey "^[3;5~" delete-char; bindkey "\e[3~" delete-char; fi
+bindkey '^[[Z' reverse-menu-complete
+# multibind delete-char '^[[3~' "^[3'5~" '\e[3~'  # see Selection below
 
-if [[ "${terminfo[khome]}" != "" ]]; then bindkey "${terminfo[khome]}" beginning-of-line; fi
-if [[ "${terminfo[kend]}"  != "" ]]; then bindkey "${terminfo[kend]}"  end-of-line; fi
-if [[ "${terminfo[kpp]}"   != "" ]]; then bindkey "${terminfo[kpp]}"   backward-word; fi
-if [[ "${terminfo[knp]}"   != "" ]]; then bindkey "${terminfo[knp]}"   forward-word; fi
+multibind beginning-of-line '^[[1;5A' '^[[H' '^[[1~'
+multibind end-of-line '^[[1;5B' '^[[F' '^[[4~'
 
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
+# multibind backward-word '^[[1;5D' '^[[5~'  # see Selection below
+# multibind forward-word '^[[1;5C' '^[[6~'  # see Selection below
 
 push-line-and-clear() { zle .push-line; zle .clear-screen }
 zle -N push-line-and-clear
 bindkey '^L' push-line-and-clear
 
+expand-aliases() {  # https://unix.stackexchange.com/a/150737
+    unset 'functions[_expand-aliases]'
+    functions[_expand-aliases]=$BUFFER
+    (($+functions[_expand-aliases])) &&
+        BUFFER=${functions[_expand-aliases]#$'\t'} &&
+        CURSOR=$#BUFFER
+}
+zle -N expand-aliases
+bindkey '\e^E' expand-aliases
+
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end  history-search-end
-if [[ "${terminfo[kcuu1]}" != "" ]]; then bindkey "${terminfo[kcuu1]}" history-beginning-search-backward-end; fi
-if [[ "${terminfo[kcud1]}" != "" ]]; then bindkey "${terminfo[kcud1]}" history-beginning-search-forward-end; fi
+multibind history-beginning-search-backward-end '^[OA' '^[[A'
+multibind history-beginning-search-forward-end  '^[OB' '^[[B'
 
-zcheck () { [[ "$#" -gt 0 ]] && (grep -E --color=auto -i "$@" ~/.*zshrc || (which "$@" || true) ) || tail -vn +1 ~/.zshrc ~/.*.zshrc }
+bindkey -r '^s'
 
-[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zcheck () {
+    if [[ "$#" -gt 0 ]]; then
+        grep -E --color=auto -i "$@" ~/.*zshrc || which "$@"
+    else
+        tail -vn +1 ~/.zshrc ~/.*.zshrc
+    fi
+}
+
+# Selection: https://stackoverflow.com/a/30899296
+r-delregion() {
+    if ((REGION_ACTIVE)); then
+        zle kill-region
+    else
+        local widget_name=$1
+        shift
+        zle $widget_name -- $@
+    fi
+}
+
+r-deselect() {
+    ((REGION_ACTIVE = 0))
+    local widget_name=$1
+    shift
+    zle $widget_name -- $@
+}
+
+r-select() {
+    ((REGION_ACTIVE)) || zle set-mark-command
+    local widget_name=$1
+    shift
+    zle $widget_name -- $@
+}
+
+key-left () { r-deselect backward-char $@ }
+zle -N key-left
+bindkey '^[[D' key-left
+
+key-right () { r-deselect forward-char $@ }
+zle -N key-right
+bindkey '^[[C' key-right
+
+key-cleft () { r-deselect backward-word $@ }
+zle -N key-cleft
+multibind key-cleft '^[[1;5D' '^[[5~'
+
+key-cright () { r-deselect forward-word $@ }
+zle -N key-cright
+multibind key-cright '^[[1;5C' '^[[6~'
+
+key-sleft () { r-select backward-char $@ }
+zle -N key-sleft
+bindkey '^[[1;2D' key-sleft   # no good without tmux
+
+key-sright () { r-select forward-char $@ }
+zle -N key-sright
+bindkey '^[[1;2C' key-sright  # no good without tmux
+
+key-bs () { r-delregion backward-delete-char $@ }
+zle -N key-bs
+bindkey '^?' key-bs
+
+key-del () { r-delregion delete-char $@ }
+zle -N key-del
+multibind key-del '^[[3~' "^[3'5~" '\e[3~'
+
+key-csleft () { r-select backward-word $@ }
+zle -N key-csleft
+bindkey '^[[1;6D' key-csleft  # no good without tmux
+
+key-csright () { r-select forward-word $@ }
+zle -N key-csright
+bindkey '^[[1;6C' key-csright # no good without tmux
+# ^ Selection ^

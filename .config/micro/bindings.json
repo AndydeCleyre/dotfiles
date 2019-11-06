@@ -1,25 +1,26 @@
 {
-    "CtrlUnderscore": "comment.comment",
-    "CtrlShiftUp":    "MoveLinesUp",
-    "CtrlShiftDown":  "MoveLinesDown",
-    "AltUp":          "MoveLinesUp",
-    "AltDown":        "MoveLinesDown",
-    "CtrlLeft":       "WordLeft",
-    "CtrlRight":      "WordRight",
+    "AltDown": "MoveLinesDown",
+    "AltUp": "MoveLinesUp",
+
+    "CtrlL": "SelectLine",
+    "ShiftEnd": "SelectToEndOfLine",
+    "ShiftHome": "SelectToStartOfLine",
+
+    "CtrlLeft": "WordLeft",
+    "CtrlRight": "WordRight",
+    "CtrlShiftLeft": "SelectWordLeft",
     "CtrlShiftRight": "SelectWordRight",
-    "CtrlShiftLeft":  "SelectWordLeft",
-    "CtrlBackspace":  "DeleteWordLeft",
-    "CtrlShiftD":     "DuplicateLine",
-    "CtrlShiftK":     "CutLine",
-    "CtrlG":          "JumpLine",
-    "F3":             "FindNext",
-    "ShiftF3":        "FindPrevious",
-    "ShiftEnd":       "SelectToEndOfLine",
-    "ShiftHome":      "SelectToStartOfLine",
-    "CtrlShiftP":     "CommandMode",
-    "CtrlTab":        "NextSplit",
-    "AltLeft":        "PreviousSplit",
-    "AltRight":       "NextSplit",
-    "CtrlT":          "VSplit",
-    "AltShift2":      "VSplit"
+    "CtrlBackspace": "DeleteWordLeft",
+
+    "Esc": "RemoveAllMultiCursors",
+
+    "F3": "FindNext",
+    "ShiftF3": "FindPrevious",
+    "CtrlG": "JumpLine",
+
+    "Alt2": "VSplit",
+    "AltRight": "NextSplit",
+    "AltLeft": "PreviousSplit",
+
+    "CtrlUnderscore": "comment.comment"
 }

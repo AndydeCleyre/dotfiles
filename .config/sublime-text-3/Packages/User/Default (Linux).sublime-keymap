@@ -1,26 +1,21 @@
 [
-	{ "keys": ["ctrl+alt+s"], 		"command": "toggle_side_bar" },
+    { "keys": ["ctrl+e"],           "command": "show_overlay", "args": {"overlay": "command_palette"} },
+    { "keys": ["ctrl+alt+s"],       "command": "toggle_side_bar" },
 
-	{ "keys": ["alt+left"], 		"command": "focus_neighboring_group",
-		"args": {"forward": false}
-	},
-	{ "keys": ["alt+shift+left"], 	"command": "move_to_neighboring_group",
-		"args": {"forward": false}
-	},
+    { "keys": ["alt+up"],           "command": "swap_line_up" },
+    { "keys": ["alt+down"],         "command": "swap_line_down" },
+    { "keys": ["ctrl+d"],           "command": "duplicate_line" },
 
-	{ "keys": ["alt+right"], 		"command": "focus_neighboring_group" },
-	{ "keys": ["alt+shift+right"], 	"command": "move_to_neighboring_group" },
+    { "keys": ["alt+m"],            "command": "split_selection_into_lines" },
+    { "keys": ["alt+n"],            "command": "find_under_expand" },
+    { "keys": ["alt+x"],            "command": "find_under_expand_skip" },
 
-	{ "keys": ["alt+up"], 			"command": "swap_line_up" },
-	{ "keys": ["alt+down"], 		"command": "swap_line_down" },
+    { "keys": ["alt+1"],            "command": "set_layout", "args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] } },
+    { "keys": ["alt+2"],            "command": "set_layout", "args": { "cols": [0.0, 0.5, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1]] } },
+    { "keys": ["alt+3"],            "command": "set_layout", "args": { "cols": [0.0, 0.33, 0.66, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]] } },
 
-	{ "keys": ["alt+1"],			"command": "set_layout",
-		"args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] }
-	},
-	{ "keys": ["alt+2"],			"command": "set_layout",
-		"args": { "cols": [0.0, 0.5, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1]] }
-	},
-	{ "keys": ["alt+3"], 			"command": "set_layout",
-		"args": { "cols": [0.0, 0.33, 0.66, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]] }
-	},
+    { "keys": ["alt+right"],        "command": "focus_neighboring_group" },
+    { "keys": ["alt+shift+right"],  "command": "move_to_neighboring_group" },
+    { "keys": ["alt+left"],         "command": "focus_neighboring_group", "args": {"forward": false} },
+    { "keys": ["alt+shift+left"],   "command": "move_to_neighboring_group", "args": {"forward": false} }
 ]

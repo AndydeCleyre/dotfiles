@@ -1,33 +1,36 @@
 #!/home/andy/bin/vpy
 #!/usr/bin/env python3
+import os
 import re
 import sys
 from configparser import ConfigParser
 from dataclasses import dataclass
 from shlex import split
-from typing import Callable, Any
+
+from typing import Callable, List, Any
+from plumbum.machines.local import LocalCommand
 
 from bs4 import BeautifulSoup
 from plumbum import local, FG, BG
 from plumbum.cmd import (
     firefox,
-    gwenview,
     lynx,
     notify_send,
+    ps,
     rtv,
     xclip,
 )
 from requests import get
 
 
-def get_ice_cmd(appname):
+def get_ice_cmd(appname: str) -> LocalCommand:
     cp = ConfigParser()
     cp.read(local.path('~') / f".local/share/applications/{appname}.desktop")
     parts = split(cp['Desktop Entry']['exec'])
     return local[parts[0]][parts[1:-1]]
 
 
-def get_imgur_album_images(uri):
+def get_imgur_album_image_uris(uri: str) -> List[str]:
     r = get(uri)
     soup = BeautifulSoup(r.text)
     return [
@@ -67,14 +70,21 @@ imager = Browser(
         uri.startswith('https://i.imgur.com/'),
         uri.startswith('https://i.redd.it/'),
     )),
-    lambda uri: gwenview[uri] & BG(stderr=sys.stderr)
+    lambda uri: local.get('qview', 'gwenview')[uri] & BG(stderr=sys.stderr)
 )
 
 
 imgur_splitter = Browser(
     "Splitting imgur album . . .",
     lambda uri: re.match(r'^https://imgur\.com/(a|gallery)/', uri),
-    lambda uri: route(*get_imgur_album_images(uri))
+    lambda uri: route(*get_imgur_album_image_uris(uri))
+)
+
+
+gcalendar = Browser(
+    "Opening calendar . . .",
+    lambda uri: uri.startswith('https://calendar.google.com/'),
+    lambda uri: get_ice_cmd('googlecalendar')[uri] & BG(stderr=sys.stderr)
 )
 
 
@@ -97,22 +107,44 @@ gphotos = Browser(
 
 ttyreddit = Browser(
     "Using rtv in existing TTY . . .",
-    lambda uri: uri.startswith('https://www.reddit.com/r/') and sys.stdin.isatty() and local.env.get('_') not in ('/bin/rtv',),
-    lambda uri: rtv[uri] & FG
+    lambda uri: uri.startswith('https://www.reddit.com/r/') and sys.stdin.isatty(),
+    lambda uri: (
+        rtv[
+            ['-s', [*filter(None, uri.split('/'))][-1]]
+            if re.match(r'^https://www\.reddit\.com/r/[^/]+/?$', uri)
+            else uri
+        ] & FG
+    )
 )
 
 
 ttyweb = Browser(
     "Using lynx in existing TTY . . .",
-    lambda uri: sys.stdin.isatty() and local.env.get('_') not in ('/bin/rtv',),
+    lambda uri: (
+        sys.stdin.isatty() and
+        (
+            ps('ocmd=', os.getppid()).split()[0].split('/')[-1] in ('ddgr', 'zsh', '-zsh')
+            # ps('ocmd=', os.getppid()).split()[1].split('/')[-1] in ('ddgr', 'zsh', '-zsh')
+        )
+    ),
     lambda uri: lynx['-accept_all_cookies', uri] & FG
 )
 
 
-def route(*uris):
+def route(*uris: str):
     for uri in uris:
         uri = re.sub(r'^browser:/{0,2}', '', uri)
-        for browser in (streamer, imager, imgur_splitter, gmaps, gphotos, ttyreddit, ttyweb):
+        for browser in (
+            streamer,
+            imager,
+            imgur_splitter,
+            gmaps,
+            gphotos,
+            ttyreddit,
+            ttyweb,
+            gcalendar,
+        ):
+            # notify_send('-a', "browser.py debugging", '_'+ps('ocmd=', os.getppid()), os.getppid())
             if browser.match(uri):
                 notify_send('-a', "browser.py", browser.notice, uri)
                 browser.run(uri)

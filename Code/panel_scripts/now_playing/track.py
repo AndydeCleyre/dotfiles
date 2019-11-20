@@ -1,3 +1,4 @@
+#!/home/andy/bin/vpy
 #!/usr/bin/env python3
 import html
 import re
@@ -14,7 +15,7 @@ from vault import LASTFM_API_KEY, LASTFM_USER
 
 
 PLAYER_BLACKLIST = ('Gwenview', 'plasma-browser-integration', 'mpv', 'chromium.instance')
-MAX_WIDTH = 19
+MAX_WIDTH = 24
 
 
 def now_playing_locally(player_blacklist=()):
@@ -33,12 +34,16 @@ def now_playing_locally(player_blacklist=()):
 def now_playing_lastfm(api_key, user):
     base = 'http://ws.audioscrobbler.com/2.0/'
     try:
-        r = get(base, {
-            'api_key': api_key,
-            'format': 'json',
-            'method': 'user.getRecentTracks',
-            'user': user
-        })
+        r = get(
+            base,
+            {
+                'api_key': api_key,
+                'format': 'json',
+                'method': 'user.getRecentTracks',
+                'user': user
+            },
+            timeout=6
+        )
     except ConnectionError:
         pass
     else:
@@ -66,8 +71,7 @@ def resize(txt, size, pre='~', post='~', ellipsis='random'):
     if ellipsis == 'random':
         ellipsis = choice(('center', 'end'))
     if free >= 0:
-        a, b = divmod(free, 2)
-        body = f"{' ' * a}{txt}{' ' * (a + b)}"
+        body = f"{txt:^{size}}"
     elif ellipsis == 'end':
         body = f"{txt[:size - 1]}…"
     elif ellipsis == 'center':
@@ -77,30 +81,35 @@ def resize(txt, size, pre='~', post='~', ellipsis='random'):
 
 
 def simplify_title(title):
-    title = re.sub(
-        r'( \(feat\. [^\)]+\))?'
-        r'( \(Instrumental\))?'
-        r'( \(.*Mix\))?',
-        '', title
-    )
-    return re.sub(
-        r' - '
-        r'(Live)?'
-        r'(Full Length )?'
-        r'(\d{4} (- )?)?'
-        r'(Digital(ly)? )?'
-        r'(Remix Version(; )?)?'
-        r'(Remaster(ed)?( \d{4})?|Single|Stereo|Mono|Re-Record(ed|ing)|Acoustic|.*[Rr]emix)?'
-        r'(.* (Version|Mix))?',
-        ' - ', title
-    ).rstrip('- ')
+    stabilized = title
+    while True:
+        title = re.sub(
+            r'( \(?feat(\.|uring) [^\)]+(\)|$))?'
+            r'( \(with [^\)]+\))?'
+            r'( \(Instrumental\))?'
+            r'( \(.*Edit\))?'
+            r'( \(.*[Mm]ix\))?'
+            r'( \[[^\]]+ vs\. [^\]]+\])?'
+            r'$', '', title
+        )
+        title = re.sub(
+            r' +- +(.*('
+                r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|Bonus Track|Edit'
+                r'|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|Instrumental|Rework|Vocals?|\d{4}'
+            r'))?', ' - ', title
+        ).rstrip('- ')
+        if title == stabilized:
+            break
+        stabilized = title
+    return title
 
 
 def notify(details):
     if details:
         notify_send(
             '-a', details['status'],
-            f"{details['title']}\nby {details['artist']}\non {details['album']}"
+            details['title'],
+            f"by {details['artist']}\non {details['album']}"
         )
     else:
         notify_send('-a', "Music", "Nothing playing")
@@ -113,8 +122,12 @@ def colorize(text, colorhex='#B8BB26'):
 def display(details):
     title, artist = simplify_title(details['title']), details['artist']
     size = min(MAX_WIDTH, max(len(artist), len(title)))
-    rotation = [w for w in (artist, title) if w]
+
+    # print(f"{resize(title, size)}\n\n{resize(artist, size)}")
+
+    rotation = [artist] + [title] * 2
     print(resize(choice(rotation), size))
+
     # print(colorize(resize(choice(rotation), size)))  # https://github.com/Zren/plasma-applet-commandoutput/issues/12
 
 

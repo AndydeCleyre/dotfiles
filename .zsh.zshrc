@@ -57,7 +57,7 @@ expand-aliases() {  # https://unix.stackexchange.com/a/150737
         CURSOR=$#BUFFER
 }
 zle -N expand-aliases
-bindkey '\e^E' expand-aliases
+bindkey '^X' expand-aliases
 
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end

@@ -20,7 +20,7 @@ PROMPT='\
 %F{white}%U${console}%u \
 %B%F{magenta}%U%~%u%b \
 %U$(git_prompt_info)%u${$(git rev-parse HEAD 2> /dev/null):+ }\
-%F{green}%U%*%u
+%F{green}%U%D{%L:%M:%S}%u
 %B%F{white}%(!.#.>>)%f%b '
 PROMPT2='%B%F{red}………%f%b '
 [[ $distro = "Arch Linux" ]] || RPROMPT="%F{white}${distro}%f"

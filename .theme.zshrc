@@ -10,7 +10,7 @@ function git_prompt_info() {
     local gitroot=$(git rev-parse --show-toplevel 2> /dev/null)
     gitroot=${$(realpath --relative-to=. $gitroot 2> /dev/null):#.}
     gitroot=${gitroot:#$PWD}
-    echo "%F{magenta}${gitroot}%F{white}${gitroot:+:}%F{blue}${gitref}%F{red}${$(git status --porcelain 2> /dev/null):+*}%f"
+    print -P "%F{magenta}${gitroot}%F{white}${gitroot:+:}%F{blue}${gitref}%F{red}${$(git status --porcelain 2> /dev/null):+*}%f"
 }
 
 PROMPT='\

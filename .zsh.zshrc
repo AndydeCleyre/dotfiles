@@ -2,6 +2,11 @@
 
 precmd () { rehash }
 
+autoload -U zargs
+setopt extendedglob
+setopt globdots
+
+fpath=(~/.local/share/zsh/site-functions $fpath)
 autoload -U compinit
 compinit
 

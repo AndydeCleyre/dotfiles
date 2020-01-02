@@ -32,7 +32,7 @@ def colorize(text, colorhex='#B8BB26'):
 def notify():
     try:
         r = get(
-            f"{API_BASE}",
+            API_BASE,
             params={
                 'exclude': 'currently,daily,alerts,flags',
                 'units': 'uk2'

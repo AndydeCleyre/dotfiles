@@ -36,7 +36,8 @@ def notify():
             params={
                 'exclude': 'currently,daily,alerts,flags',
                 'units': 'uk2'
-            }
+            },
+            timeout=6
         )
     except ConnectionError as e:
         notify_send('-a', "Weather", e)
@@ -60,7 +61,8 @@ def display():
                 params={
                     'exclude': 'minutely,hourly,daily,alerts,flags',
                     'units': 'uk2'
-                }
+                },
+                timeout=6
             )
         except ConnectionError:
             sleep(6)
@@ -70,6 +72,8 @@ def display():
             icon = ICONS[current['icon']]
             print(colorize(f"{temp}°{icon}"))
             break
+    else:
+        print(colorize("~~~"))
 
 
 if __name__ == '__main__':

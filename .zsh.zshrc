@@ -1,4 +1,6 @@
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2> /dev/null || true
+. /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null \
+|| . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null \
+|| true
 
 precmd () { rehash }
 
@@ -52,9 +54,9 @@ bindkey '^L' push-line-and-clear
 expand-aliases() {  # https://unix.stackexchange.com/a/150737
     unset 'functions[_expand-aliases]'
     functions[_expand-aliases]=$BUFFER
-    (($+functions[_expand-aliases])) &&
-        BUFFER=${functions[_expand-aliases]#$'\t'} &&
-        CURSOR=$#BUFFER
+    (( $+functions[_expand-aliases] )) \
+    && BUFFER=${functions[_expand-aliases]#$'\t'} \
+    && CURSOR=$#BUFFER
 }
 zle -N expand-aliases
 bindkey '^X' expand-aliases

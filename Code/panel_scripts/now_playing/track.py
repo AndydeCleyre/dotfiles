@@ -1,4 +1,4 @@
-#!/home/andy/bin/vpy
+#!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 import html
 import re
@@ -87,15 +87,18 @@ def simplify_title(title):
             r'( \(?feat(\.|uring) [^\)]+(\)|$))?'
             r'( \(with [^\)]+\))?'
             r'( \(Instrumental\))?'
+            r'( \[Extended\])?'
             r'( \(.*Edit\))?'
+            r'( \(.*Version\))?'
             r'( \(.*[Mm]ix\))?'
             r'( \[[^\]]+ vs\. [^\]]+\])?'
             r'$', '', title
         )
         title = re.sub(
             r' +- +(.*('
-                r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|Bonus Track|Edit'
-                r'|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|Instrumental|Rework|Vocals?|\d{4}'
+                r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|'
+                r'Bonus Track|Edit|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|'
+                r'Instrumental|Rework|Take|Vocals?|\d{4}'
             r'))?', ' - ', title
         ).rstrip('- ')
         if title == stabilized:
@@ -123,9 +126,7 @@ def display(details):
     title, artist = simplify_title(details['title']), details['artist']
     size = min(MAX_WIDTH, max(len(artist), len(title)))
 
-    # print(f"{resize(title, size)}\n\n{resize(artist, size)}")
-
-    rotation = [artist] + [title] * 2
+    rotation = [artist] * 2 + [title] * 3
     print(resize(choice(rotation), size))
 
     # print(colorize(resize(choice(rotation), size)))  # https://github.com/Zren/plasma-applet-commandoutput/issues/12

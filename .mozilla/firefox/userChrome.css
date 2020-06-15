@@ -1,20 +1,3 @@
-@font-face { font-family: 'FONT'; src: url('/usr/share/fonts/TTF/iosevka-custom-regular.ttf') format('truetype') }
-* { font-family: FONT !important; }
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header { display: none; }
+* { font-family: Share !important; font-size: 15pt !important; }
 #TabsToolbar { visibility: collapse !important; }
-#nav-bar { background: #262C2E !important; border-top: #262C2E !important; }
-
-
-
-
-/* Tree Style Tab
-
-.tab.unread .label { color: darkorange !important; }
-.tab.discarded { opacity: 0.93; }
-:root { --tab-height: 30px !important; }
-.tab:not(.pinned) { height: var(--tab-height) !important; }
-:root.left #tabbar { direction: ltr; }
-.tab.private-browsing .label:before { content: "🕶"; }
-.tab { font-size: 14pt !important; }
-
-*/
+#fill-login, #fill-login-generated-password, #fill-login-and-generated-password-separator { display:none !important; }

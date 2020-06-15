@@ -1,0 +1,17 @@
+#!/bin/execlineb -P
+fdmove -c 2 1                                   # Send stderr to stdout
+foreground { redirfd -w 1 run.md5 md5sum run }  # Generate hashfile, to detect changes since launch
+importas HOME HOME
+foreground {
+    inotifywait
+        -e modify
+        -e attrib
+        -e move
+        -e move_self
+        -e create
+        -e delete
+        -e delete_self
+        -e unmount
+        -r ${HOME}/.config/espanso ${HOME}/.local/share/espanso/packages
+}
+s6-svc -t ${HOME}/svcs/espanso

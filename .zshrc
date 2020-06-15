@@ -35,6 +35,7 @@ ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 . $zshzpath 2>/dev/null
 . ~/.zsh.zshrc
 . ~/.path.zshrc
 
+. ~/.awk.zshrc
 . ~/.buildah.zshrc
 . ~/.cd.zshrc
 . ~/.git.zshrc

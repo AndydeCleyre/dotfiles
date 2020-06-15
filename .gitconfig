@@ -1,7 +1,17 @@
 [user]
-	name = Andy Kluger
-	email = andykluger@gmail.com
+    name = Andy Kluger
+    email = andykluger@gmail.com
 [credential]
-	helper = cache
+    helper = cache
 [push]
-	default = simple
+    default = simple
+[ghi]
+    token = [redacted]
+[core]
+    pager = delta | less --tabs=4 -FRXij.5
+[interactive]
+    diffFilter = delta --color-only
+[color]
+    ui = true
+[github]
+	user = andydecleyre

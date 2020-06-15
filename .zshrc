@@ -38,6 +38,7 @@ ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 . $zshzpath 2>/dev/null
 . ~/.buildah.zshrc
 . ~/.cd.zshrc
 . ~/.git.zshrc
+. ~/.grep.zshrc
 . ~/.hg.zshrc
 . ~/.ls.zshrc
 . ~/.pacman.zshrc
@@ -52,40 +53,45 @@ ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 . $zshzpath 2>/dev/null
 . ~/.sudo.zshrc
 . ~/.systemd.zshrc
 . ~/.wine.zshrc
-[[ -e ~/.work.zshrc ]] && . ~/.work.zshrc
+. ~/.work.zshrc 2>/dev/null
 . ~/.wttr.zshrc
 
 alias arglines="xargs -d '\n'"
 alias aw="wiki-search"
-configs () { /usr/bin/locate -i "$1" | grep "^($HOME/\.|/etc/)" }
-alias copyfrom="xclip -sel clip"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
-alias cuts="cut -d ' '"
 alias ddg="ddgr -n 3 -x --show-browser-logs"
 alias decrypt="xclip -sel clip -o | gpg --decrypt"
-alias diffr="diffr --colors 'added:background:black' --colors 'refine-added:background:black'"
 alias downthese="aria2c -i downthese.txt"
-alias g="grep -P --color=auto -i"
-alias ge="grep -E --color=auto -i"
-fax () { grep -v '^\s*#' $1 | tr -s '\n' }
-alias leaves="grep -E --color=auto '[^/]+$'"
-alias no="grep -P -i -v"
-alias img="/usr/bin/gm"
-lines () { sed -n "$1p" "$2" } # lines first[,last] textfile
+alias fz="fzf --reverse -m -0"
+logit () {  # [logdir]
+    s6-log t s4194304 S41943040 ${${1:-log-${$(s6-clock)#@}}:a}
+}
 alias lynx="/usr/bin/lynx -accept_all_cookies"
 mkcd () { mkdir -p "$1" && cd "$1" }
 alias mounts="lsblk -f"
+alias mz="mansnip zshall"
 o () { for f in "$@"; do xdg-open "$f"; done }
 alias p="xclip -sel clip -o"
 post () { curl -Ffile=@"$1" https://0x0.st }
 alias pt="papertrail"
 redact () {
-    sed -E 's/^(\s*\S*(user(name)?|_id|passw(or)?d|key|token|address|secret|blob|email|acct|History Items\[\$e\]|calendar_(id_)?list) ?[=:] ?)(\S+)$/\1[redacted]/gim' $@ \
-    | sed -E 's-(.+://[^:]+:)([^@]+)(@.+)-\1[redacted]\3-g'
+    local secret_assignment=('^(\s*\S*('
+        'user(name)?|_id|acct'
+        '|passw(or)?d|key|token|secret'
+        '|address|email'
+        '|blob|data'
+        '|History Items\[\$e\]'
+        '|calendar_(id_)?list'
+    ') ?[=:] ?)(\S+)$')
+    sed -E "s/${(j::)secret_assignment}/\1[redacted]/gim" $@ \
+    | sed -E 's-(.+://[^:]+:)([^@]+)(@.+)-\1[redacted]\3-g' \
+    | sed -E 's/(.*: )?(.*)\\$/\1[redacted]/g' \
+    | sed -E 's/^[^"]+"$/[redacted]/g'
 }
 alias repeaterbounce="ssh 192.168.2.1 reboot || echo 'Try connecting to the repeater network first.'"
 alias routerbounce="ssh 192.168.1.1 reboot || echo 'Try connecting to the main network first.'"
+
 alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
 alias t="tmux a || tmux"

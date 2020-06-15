@@ -1,0 +1,61 @@
+---
+# https://espanso.org/docs/
+backend: Clipboard
+fast_inject: false
+# inject_delay: 10
+# backspace_delay: 10
+matches:
+
+  - trigger: :``
+    replace: |
+      ```
+      $|$
+      ```
+
+  - trigger: :ten
+    replace: Ŧ
+  - trigger: :lem
+    replace: Ł
+  - trigger: :/20
+    replace: ŧ
+
+  - trigger: :klong
+    replace: >-
+      Hello! Please, absolutely no fish/shellfish/shrimp/oyster/clam sauce
+      or ingredients in this. Thanks!
+
+  - trigger: :ip
+    replace: "{{address}}"
+    vars:
+      - name: address
+        type: shell
+        params:
+          cmd: >
+            json="$(https ipinfo.io)" &&
+            notify-send 'IP Provider' "$(jello -r '"\n".join((_["org"], ", ".join((_["city"], _["region"], _["country"]))))' <<<$json)" &&
+            jello -r '_["ip"]' <<<$json
+
+  - trigger: ::ip
+    replace: "{{address}}"
+    vars:
+      - name: address
+        type: script
+        params:
+          args:
+            - zsh
+            - -c
+            - 'json=$(mktemp);
+               https ipinfo.io > $json;
+               notify-send -a "IP Provider"
+               "$(yaml-get -p org $json)"
+               "$(yaml-get -p city $json), $(yaml-get -p region $json), $(yaml-get -p country $json)";
+               print -n $(yaml-get -p ip $json);
+               rm $json'
+
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%m/%d/%Y"

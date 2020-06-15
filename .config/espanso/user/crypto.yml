@@ -1,0 +1,18 @@
+name: crypto
+parent: default
+
+matches:
+  - trigger: :dash
+    replace: "${{price}}"
+    vars:
+      - name: price
+        type: shell
+        params:
+          cmd: http --ignore-stdin https://min-api.cryptocompare.com/data/price fsym=DASH tsyms=USD | jq .USD
+  - trigger: :neo
+    replace: "${{price}}"
+    vars:
+      - name: price
+        type: shell
+        params:
+          cmd: http --ignore-stdin https://min-api.cryptocompare.com/data/price fsym=NEO tsyms=USD | jq .USD

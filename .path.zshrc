@@ -1,11 +1,9 @@
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+path=(~/bin ~/.local/bin /usr/local/bin $path)
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+GOPATH=~/go
+path+=($GOPATH/bin)
 
-export ANDROID_HOME=$HOME/Android/Sdk
-export FLUTTER_HOME=/opt/flutter
-export PATH=$PATH:$FLUTTER_HOME/bin:$FLUTTER_HOME/bin/cache/dart-sdk/bin
+ANDROID_HOME=~/Android/Sdk
 
 typeset -U PATH
 

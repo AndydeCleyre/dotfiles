@@ -6,10 +6,9 @@ local console=${${TMUX_PANE:+$(tmux display-message -p '#I')}:-tty${TTY##*/}}
 local distro=$(head -n 1 /etc/os-release | cut -d '"' -f 2) 2> /dev/null
 
 function git_prompt_info() {
-    local gitref=${${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/}:-$(git rev-parse --short HEAD 2> /dev/null)}
-    local gitroot=$(git rev-parse --show-toplevel 2> /dev/null)
-    gitroot=${$(realpath --relative-to=. $gitroot 2> /dev/null):#.}
-    gitroot=${gitroot:#$PWD}
+    local gitref=${$(git branch --show-current 2>/dev/null):-$(git rev-parse --short HEAD 2>/dev/null)}
+    local gitroot=$(git rev-parse --show-toplevel 2>/dev/null)
+    gitroot=${${$(realpath --relative-to=. $gitroot 2>/dev/null):#.}:#$PWD}
     print -P "%F{magenta}${gitroot}%F{white}${gitroot:+:}%F{blue}${gitref}%F{red}${$(git status --porcelain 2> /dev/null):+*}%f"
 }
 

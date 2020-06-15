@@ -1,15 +1,15 @@
-. /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null \
-|| . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null \
-|| true
-
 precmd () { rehash }
 
-autoload -U zargs
+autoload -Uz url-quote-magic bracketed-paste-magic
+zle -N self-insert url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+autoload -Uz zargs
 setopt extendedglob
 setopt globdots
 
 fpath=(~/.local/share/zsh/site-functions $fpath)
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 setopt auto_menu
@@ -19,9 +19,14 @@ setopt always_to_end
 (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 zstyle ':completion:*'           list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:*:*:*:*'   menu select
-zstyle ':completion:*'           matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-zstyle ':completion::complete:*' use-cache 1
+
+zstyle ':completion:*'           matcher-list 'm:{a-z}={A-Za-z}' '+l:|=* r:|=*'
+zstyle ':completion:*'           accept-exact-dirs 'yes'
+
+zstyle ':completion:*'           group-name ''
+zstyle ':completion:*'           format '%F{blue}%U%B->> %d:%b%u%f'
 zstyle ':completion::complete:*' cache-path "$HOME/.cache/zsh"; mkdir -p "$HOME/.cache/zsh"
+zstyle ':completion::complete:*' use-cache 1
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
@@ -30,6 +35,8 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_verify
 setopt share_history
+
+WORDCHARS=${WORDCHARS//[\/]}
 
 multibind () {  # cmd in-string [in-string...]
     for instr in ${@:2}; do
@@ -51,7 +58,7 @@ push-line-and-clear() { zle .push-line; zle .clear-screen }
 zle -N push-line-and-clear
 bindkey '^L' push-line-and-clear
 
-expand-aliases() {  # https://unix.stackexchange.com/a/150737
+expand-aliases () {  # https://unix.stackexchange.com/a/150737
     unset 'functions[_expand-aliases]'
     functions[_expand-aliases]=$BUFFER
     (( $+functions[_expand-aliases] )) \
@@ -61,7 +68,21 @@ expand-aliases() {  # https://unix.stackexchange.com/a/150737
 zle -N expand-aliases
 bindkey '^X' expand-aliases
 
-autoload -U history-search-end
+insert-subshell () {
+    BUFFER=${BUFFER[1,$CURSOR]}'$()'${BUFFER[$((CURSOR+1)),-1]}
+    CURSOR=$((CURSOR+2))
+}
+zle -N insert-subshell
+bindkey '^[.' insert-subshell
+
+insert-varexp () {
+    BUFFER=${BUFFER[1,$CURSOR]}'${}'${BUFFER[$((CURSOR+1)),-1]}
+    CURSOR=$((CURSOR+2))
+}
+zle -N insert-varexp
+bindkey '^[,' insert-varexp
+
+autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end  history-search-end
 multibind history-beginning-search-backward-end '^[OA' '^[[A'

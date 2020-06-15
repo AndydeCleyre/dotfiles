@@ -57,7 +57,6 @@ ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 . $zshzpath 2>/dev/null
 . ~/.work.zshrc 2>/dev/null
 . ~/.wttr.zshrc
 
-alias arglines="xargs -d '\n'"
 alias aw="wiki-search"
 alias c="xclip -sel clip"
 clip() { echo "$@" | xclip -sel clip }
@@ -95,11 +94,65 @@ alias routerbounce="ssh 192.168.1.1 reboot || echo 'Try connecting to the main n
 
 alias subs="subberthehut -nfsq"
 alias serve="python -m http.server"
+alias spleet="spleeter separate -o . -i"
 alias t="tmux a || tmux"
+tmerge () {
+    tmux splitw
+    tmux selectp -t 0
+    tmux send -l "diff -u ${(q-)1} ${(q-)2} | diff-so-fancy | $PAGER"; tmux send Enter
+    tmux selectp -t 1
+    # tmux send -l "$EDITOR ${(q-)1} ${(q-)2}"; tmux send Enter
+    tmux send -l "$EDITOR ${(q-)2}"; tmux send Enter
+}
 vidcut () {  # sourcevid start [end]
-    local _end=${3:-$(ffprobe -v -8 -show_entries format=duration -of csv=p=0 $1)}
-    local _vidname="${1:r}--cut-${2//:/_}-${_end//:/_}.${1:e}"
-    ffmpeg -i "$1" -ss "$2" -to "$_end" -c copy "$_vidname"
+    local end=${3:-$(ffprobe -v -8 -show_entries format=duration -of csv=p=0 $1)}
+    local vidname="${1:r}--cut-${2//:/_}-${end//:/_}.${1:e}"
+    ffmpeg -i "$1" -ss "$2" -to "$end" -c copy -map 0 "$vidname"
+}
+vidgif () {  # sourcevid [gif-filename]
+    ffmpeg -i $1 -vf "fps=10,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" ${2:-${1:r}.gif}
+}
+vidtg () {  # sourcevid [video-encoder=copy [audo-encoder=copy]]
+# TODO: fzf multi-choosing streams and codecs
+    local vidname="${1:r}--tg.mp4"
+    # ffmpeg -i "$1" -an -c:v libx264 "$vidname"
+    # ffmpeg -i "$1" -an -c:v libx264 "$vidname"
+    ffmpeg -i "$1" -c:v "${2:-copy}" -c:a "${3:-copy}" -c:s mov_text -map 0 "$vidname"
+}
+voices () {  # [text]
+    for voice in ${(z)"$(mimic -lv)"#*: }; do
+        print "Testing voice: $voice . . ."
+        mimic -t "$1; This voice is called $voice" -voice $voice \
+        || print "%F{red}ERROR testing $voice%f"
+    done
+}
+say () {  # <text...>
+    mimic -voice awb -t "${(j: :)@}"
+}
+alias xdn="xargs -d '\n'"
+
+cleansubs () {
+    local patterns=(
+        '^Advertise your prod.*'
+        '^Support us and become.*'
+        '.*OpenSub.*'
+    )
+    for pattern in $patterns; do
+        if rg -S -C 2 $pattern *srt; then
+            if read -q "?Delete matches [yN]? "; then
+                sed -i "s/${pattern}//g" *srt
+            fi
+            print '\n'
+        fi
+    done
 }
 
-bindkey -s '^f' '`fzf --reverse`\n'
+pw () {  # [<filter-word>...]
+    rbw login
+    local fzf_args=(--reverse -0)
+    if [[ $1 ]]; then
+        fzf_args+=(-q "${(j: :)@}")
+    fi
+    # rbw doesn't currently work for getting usernames...
+    rbw get "$(rbw ls | fzf $fzf_args)" | xclip -sel clip
+}

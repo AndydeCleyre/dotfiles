@@ -1,13 +1,42 @@
-. /usr/share/doc/pkgfile/command-not-found.zsh 2> /dev/null || true
+p10kpath=/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# p10kpath=~/Code/powerlevel10k/powerlevel10k.zsh-theme
+if [[ -r $p10kpath ]]; then
+    . ~/.cache/p10k-instant-prompt-$USERNAME.zsh 2>/dev/null
+    . $p10kpath
+    . ~/.p10k.zsh 2>/dev/null
+    POWERLEVEL9K_VIRTUALENV_GENERIC_NAMES=()
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs pyenv virtualenv background_jobs vpn_ip time command_execution_time newline prompt_char)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+    POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='%B>>%b'
+    POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_CONTENT_EXPANSION='%B>>%b'
+    PROMPT2='%B%F{yellow}……%f%b '
+    POWERLEVEL9K_SHORTEN_DELIMITER=…
+    POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=3
+    POWERLEVEL9K_DIR_MAX_LENGTH=80
+    POWERLEVEL9K_STATUS_ERROR=true
+    POWERLEVEL9K_VIRTUALENV_FOREGROUND=5
+    POWERLEVEL9K_PYENV_FOREGROUND=5
+    POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
+    POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true
+    POWERLEVEL9K_TIME_FORMAT='%D{%L:%M:%S}'
+else
+    . ~/.theme.zshrc
+fi
+
+. /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
+
+zshzpath=/usr/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh
+ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 . $zshzpath 2>/dev/null
+
+. /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null \
+|| . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 . ~/.editor.zshrc
 . ~/.zsh.zshrc
 . ~/.path.zshrc
-. ~/.theme.zshrc
 
 . ~/.buildah.zshrc
 . ~/.cd.zshrc
-. ~/.fasd.zshrc
 . ~/.git.zshrc
 . ~/.hg.zshrc
 . ~/.ls.zshrc

@@ -1,77 +1,127 @@
+#!/home/andy/.local/bin/vpy --no-env
 #!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
-import html
 import re
 import sys
+
+from collections import defaultdict
 from contextlib import suppress
 from random import choice
 
-from plumbum.cmd import playerctl, notify_send
-from plumbum import ProcessExecutionError
-from requests import get
-from requests.exceptions import ConnectionError
+import httpx
+from plumbum import CommandNotFound, ProcessExecutionError, local
+from plumbum.cmd import notify_send, playerctl
 
 from vault import LASTFM_API_KEY, LASTFM_USER
 
 
-PLAYER_BLACKLIST = ('Gwenview', 'plasma-browser-integration', 'mpv', 'chromium.instance')
 MAX_WIDTH = 24
 
+PLAYER_BLACKLIST_REGEXP = r'Gwenview|plasma-browser-integration|mpv|chromium\.instance'
 
-def now_playing_locally(player_blacklist=()):
-    player = next(filter(
-        lambda p: not any(p.startswith(name) for name in player_blacklist),
-        playerctl('--list-all').split()
-    ))
-    details = {
-        detail: playerctl['-p', player, 'metadata'](detail).strip()
-        for detail in ('title', 'artist', 'album')
-    }
-    details['status'] = playerctl('-p', player, 'status').strip()
-    return details
+STATUS_ICONS = {
+    'Playing': '▶',
+    # 'Playing': '⏵',
+    # 'Playing': '',
+    # 'Playing': '契',
+    # 'Playing': '',
+    # 'Playing': '',
+    # 'Playing': '奈',
+    # 'Playing': '',
+    # 'Playing': '金',
+    # 'Playing': '喇',
+
+    'Paused': '⏸',
+    # 'Paused': '',
+    # 'Paused': '',
+    # 'Paused': '懶',
+    # 'Paused': '',
+    # 'Paused': '',
+    # 'Paused': '',
+    # 'Paused': '',
+    # 'Paused': '',
+    # 'Paused': '',
+
+    'Stopped': '⏹',
+    # 'Stopped': '栗',
+    # 'Stopped': '',
+    # 'Stopped': '',
+    # 'Stopped': '',
+    # 'Stopped': 'ﭥ',
+    # 'Stopped': 'ﭦ',
+
+    'Last.fm': '',
+    # 'Last.fm': '',
+    # 'Last.fm': '',
+
+    'NetworkError': '',
+}
+
+
+def now_playing_locally(player_blacklist_regexp=r'$'):
+    try:
+        player = next(
+            name for name in playerctl('--list-all').split()
+            if not re.match(player_blacklist_regexp, name)
+        )
+    except StopIteration:
+        return None
+    try:
+        details = {
+            detail: playerctl['-p', player, 'metadata'](detail).strip()
+            for detail in ('title', 'artist', 'album')
+        }
+        details['status'] = playerctl('-p', player, 'status').strip()
+    except ProcessExecutionError as e:
+        pass
+        # notify_send('-a', "Music", "Error", e)
+    else:
+        return details
 
 
 def now_playing_lastfm(api_key, user):
-    base = 'http://ws.audioscrobbler.com/2.0/'
     try:
-        r = get(
-            base,
-            {
+        with suppress(CommandNotFound):
+            local['nm-online']('-x')
+    except ProcessExecutionError as e:
+        return defaultdict(str, status="NetworkError", error=str(e))
+    else:
+        base = 'http://ws.audioscrobbler.com/2.0/'
+        try:
+            r = httpx.get(base, params={
                 'api_key': api_key,
                 'format': 'json',
                 'method': 'user.getRecentTracks',
                 'user': user
-            },
-            timeout=6
-        )
-    except ConnectionError:
-        pass
-    else:
-        if r.ok:
-            track = r.json()['recenttracks']['track'][0]
-            with suppress(KeyError):
-                if track['@attr']['nowplaying']:
-                    return {
-                        'title': track['name'],
-                        'artist': track['artist']['#text'],
-                        'album': track['album']['#text'],
-                        'status': "Last.fm"
-                    }
+            })
+        except httpx.exceptions.NetworkError as e:
+            return defaultdict(str, status="NetworkError", error=str(e))
+        else:
+            if r.status_code == httpx.codes.OK:
+                track = r.json()['recenttracks']['track'][0]
+                with suppress(KeyError):
+                    if track['@attr']['nowplaying']:
+                        return {
+                            'title': track['name'],
+                            'artist': track['artist']['#text'],
+                            'album': track['album']['#text'],
+                            'status': "Last.fm"
+                        }
 
 
-def now_playing(lfm_api_key=LASTFM_API_KEY, lfm_user=LASTFM_USER, player_blacklist=PLAYER_BLACKLIST):
-    try:
-        return now_playing_locally(player_blacklist)
-    except (StopIteration, ProcessExecutionError):
-        return now_playing_lastfm(lfm_api_key, lfm_user)
+def now_playing(lfm_api_key=LASTFM_API_KEY, lfm_user=LASTFM_USER, player_blacklist_regexp=PLAYER_BLACKLIST_REGEXP):
+    return now_playing_locally(player_blacklist_regexp) or now_playing_lastfm(lfm_api_key, lfm_user)
 
 
-def resize(txt, size, pre='~', post='~', ellipsis='random'):
+def resize(txt, size, pre='~', post='~', ellipsis='random', placement='center'):
     free = size - len(txt)
     if ellipsis == 'random':
         ellipsis = choice(('center', 'end'))
     if free >= 0:
-        body = f"{txt:^{size}}"
+        if placement == 'center':
+            body = f"{txt:^{size}}"
+        elif placement == 'end':
+            body = f"{txt:>{size}}"
     elif ellipsis == 'end':
         body = f"{txt[:size - 1]}…"
     elif ellipsis == 'center':
@@ -84,13 +134,15 @@ def simplify_title(title):
     stabilized = title
     while True:
         title = re.sub(
+            r'( \[?feat(\.|uring) [^\]]+(\]|$))?'
             r'( \(?feat(\.|uring) [^\)]+(\)|$))?'
             r'( \(with [^\)]+\))?'
             r'( \(Instrumental\))?'
             r'( \[Extended\])?'
-            r'( \(.*Edit\))?'
-            r'( \(.*Version\))?'
-            r'( \(.*[Mm]ix\))?'
+            r'( \([^\)]*Edit\))?'
+            r'( \([^\)]*Version\))?'
+            r'( \([^\)]*[Mm]ix\))?'
+            r'( \[[^\]]*[Mm]ix\])?'
             r'( \[[^\]]+ vs\. [^\]]+\])?'
             r'$', '', title
         )
@@ -98,7 +150,7 @@ def simplify_title(title):
             r' +- +(.*('
                 r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|'
                 r'Bonus Track|Edit|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|'
-                r'Instrumental|Rework|Take|Vocals?|\d{4}'
+                r'Instrumental|Rework|Take|Vocals?|\d{4}|Dub'
             r'))?', ' - ', title
         ).rstrip('- ')
         if title == stabilized:
@@ -110,33 +162,42 @@ def simplify_title(title):
 def notify(details):
     if details:
         notify_send(
-            '-a', details['status'],
-            details['title'],
-            f"by {details['artist']}\non {details['album']}"
+            '-a', "Music",
+            details['status'],
+            '\n'.join(filter(None, (
+                details['title'],
+                (f"\nby {details['artist']}") if details['artist'] else '',
+                (f"\non {details['album']}") if details['album'] else ''
+            )))
         )
     else:
         notify_send('-a', "Music", "Nothing playing")
 
 
-def colorize(text, colorhex='#B8BB26'):
-    return f"<font color=\"#{colorhex.lstrip('#')}\">{html.escape(text)}</font>"
-
-
 def display(details):
-    title, artist = simplify_title(details['title']), details['artist']
-    size = min(MAX_WIDTH, max(len(artist), len(title)))
-
+    if not details:
+        print(STATUS_ICONS['Stopped'])
+        return
+    title = (
+        simplify_title(details['title'])
+        or STATUS_ICONS.get(details['status'], details['status'])
+    )
+    artist = (
+        details['artist']
+        or STATUS_ICONS.get(details['status'], details['status'])
+    )
     rotation = [artist] * 2 + [title] * 3
-    print(resize(choice(rotation), size))
-
-    # print(colorize(resize(choice(rotation), size)))  # https://github.com/Zren/plasma-applet-commandoutput/issues/12
+    size = min(MAX_WIDTH, max(len(artist), len(title)))
+    pre = (
+        STATUS_ICONS.get(details['status'], '~') + ' '
+        if size > 1 else ''
+    )
+    print(resize(choice(rotation), size, pre=pre, post=''))
 
 
 if __name__ == '__main__':
     details = now_playing()
     if '--click' in sys.argv[1:]:
         notify(details)
-    elif details:
-        display(details)
     else:
-        print('~~~')
+        display(details)

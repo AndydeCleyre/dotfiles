@@ -4,7 +4,7 @@ import sys
 from time import sleep
 
 from plumbum import FG, local, CommandNotFound
-from plumbum.cli.terminal import choose
+from plumbum.cli.terminal import choose, ask
 from plumbum.cmd import aria2c
 from plumbum.colors import blue, green, magenta, yellow
 from rarbgapi import RarbgAPI
@@ -52,20 +52,44 @@ def choose_result(results):
     return None if uri == "Nothing" else uri
 
 
+def show_connection():
+    try:
+        local['mullvad']['status', '-l'] &FG
+    except CommandNotFound:
+        try:
+            (local['nmcli']['-o'] | local['grep']['-E', '^[^ ]+: connected']) &FG
+        except CommandNotFound:
+            try:
+                local['https']['--body', 'ipinfo.io'] &FG
+            except CommandNotFound:
+                try:
+                    local['curl']['ipinfo.io'] &FG
+                except CommandNotFound:
+                    local['wget']['-qO', '-', 'ipinfo.io'] &FG
+
+
 def main():
-    results = get_results(mk_search_args())
+    try:
+        results = get_results(mk_search_args())
+    except KeyboardInterrupt:
+        results = None
     if not results:
         sys.exit(1)
+
     uri = choose_result(results)
     if uri is None:
         sys.exit()
+
     try:
         (((
             local['xclip']['-sel', 'clip'] > sys.stdout
         ) >= sys.stderr) << uri)()
     except CommandNotFound:
         print(uri)
-    aria2c['--seed-time=0', uri] & FG
+
+    show_connection()
+    if ask("Begin download with aria2?", True):
+        aria2c['--seed-time=0', uri] &FG
 
 
 if __name__ == '__main__':

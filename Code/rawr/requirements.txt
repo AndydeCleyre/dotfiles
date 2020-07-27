@@ -2,6 +2,6 @@ certifi==2020.6.20        # via requests
 chardet==3.0.4            # via requests
 idna==2.10                # via requests
 plumbum==1.6.9            # via -r requirements.in
-rarbgapi==0.3.1           # via -r requirements.in
+rarbgapi==0.4.1           # via -r requirements.in
 requests==2.24.0          # via rarbgapi
-urllib3==1.25.9           # via requests
+urllib3==1.25.10          # via requests

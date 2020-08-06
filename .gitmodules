@@ -4,3 +4,6 @@
 [submodule "Code/plugins/agkozak-zsh-prompt"]
 	path = Code/plugins/agkozak-zsh-prompt
 	url = git@github.com:agkozak/agkozak-zsh-prompt
+[submodule "Code/plugins/powerlevel10k"]
+	path = Code/plugins/powerlevel10k
+	url = git@github.com:romkatv/powerlevel10k

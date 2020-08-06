@@ -1,3 +1,6 @@
 [submodule "Code/plugins/extrakto"]
 	path = Code/plugins/extrakto
 	url = git@github.com:laktak/extrakto
+[submodule "Code/plugins/agkozak-zsh-prompt"]
+	path = Code/plugins/agkozak-zsh-prompt
+	url = git@github.com:agkozak/agkozak-zsh-prompt

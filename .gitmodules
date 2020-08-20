@@ -7,3 +7,7 @@
 [submodule "Code/plugins/powerlevel10k"]
 	path = Code/plugins/powerlevel10k
 	url = git@github.com:romkatv/powerlevel10k
+[submodule "Code/plugins/zpy"]
+	path = Code/plugins/zpy
+	url = git@github.com:andydecleyre/zpy
+	branch = develop

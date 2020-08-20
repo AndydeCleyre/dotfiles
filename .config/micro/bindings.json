@@ -1,26 +1,22 @@
 {
+    "Alt-/": "lua:comment.comment",
+    "Alt2": "VSplit",
     "AltDown": "MoveLinesDown",
+    "AltLeft": "PreviousSplit",
+    "AltRight": "NextSplit",
     "AltUp": "MoveLinesUp",
-
+    "CtrlBackspace": "DeleteWordLeft",
+    "CtrlG": "command-edit:goto ",
+    "CtrlK": "DeleteLine",
     "CtrlL": "SelectLine",
-    "ShiftEnd": "SelectToEndOfLine",
-    "ShiftHome": "SelectToStartOfLine",
-
     "CtrlLeft": "WordLeft",
     "CtrlRight": "WordRight",
     "CtrlShiftLeft": "SelectWordLeft",
     "CtrlShiftRight": "SelectWordRight",
-    "CtrlBackspace": "DeleteWordLeft",
-
+    "CtrlUnderscore": "lua:comment.comment",
     "Esc": "RemoveAllMultiCursors",
-
     "F3": "FindNext",
+    "ShiftEnd": "SelectToEndOfLine",
     "ShiftF3": "FindPrevious",
-    "CtrlG": "JumpLine",
-
-    "Alt2": "VSplit",
-    "AltRight": "NextSplit",
-    "AltLeft": "PreviousSplit",
-
-    "CtrlUnderscore": "comment.comment"
+    "ShiftHome": "SelectToStartOfLine"
 }

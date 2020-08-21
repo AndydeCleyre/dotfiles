@@ -6,7 +6,7 @@ l () {
     less ${linenum:++${linenum}} ${linenum:+-N} ${@[1,-2]} ${doc}
 }
 
-export HIGHLIGHT_OPTIONS='-O truecolor -s darkplus -t 4 --force --stdout'
+export HIGHLIGHT_OPTIONS='-O truecolor -s aiseered -t 4 --force --stdout'
 alias h="highlight"  # <file>
 alias hs="h -S"  # <syntax> <file>; <cmd> | hs <syntax>
 
@@ -37,6 +37,24 @@ alias jqq="jq -R -r '. as \$line | try fromjson catch \$line'"
 alias jqqq="jq -R 'fromjson?'"
 
 alias gconfig="hs ini .git/config"
+
+d () {
+    if (( $+commands[delta] )); then
+        diff -u $1 $2 | delta $@[3,-1]
+    elif (( $+commands[diff-so-fancy] )); then
+        diff -u $1 $2 | diff-so-fancy
+    elif (( $+commands[diff-highlight] )); then
+        diff -u $1 $2 | diff-highlight
+    elif (( $+commands[highlight] )); then
+        diff -u $1 $2 | hs diff
+    elif (( $+commands[bat] )); then
+        diff -u $1 $2 | bs diff
+    elif (( $+commands[batcat] )); then
+        diff -u $1 $2 | bat -p --pager never --color always -l diff
+    else
+        diff -u $1 $2
+    fi
+}
 
 .zhelp () {  # (<zshrc>|<function>|<alias>)
     if [[ -f $1 ]]; then

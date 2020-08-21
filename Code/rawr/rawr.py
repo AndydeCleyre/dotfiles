@@ -26,16 +26,24 @@ def mk_search_args():
 
 def get_results(search_args):
     results = None
-    results = {
-        ' '.join((
-            r.filename,
-            str(r.seeders) | green,
-            str(r.leechers) | yellow,
-            f"{r.size / 1024**3:.2f} GiB" | blue,
-            r.pubdate.split()[0] | magenta
-        )): r.download
-        for r in RarbgAPI(retries=3).search(**search_args)
-    }
+    max_attempts = 6
+    attempts = max_attempts
+    while attempts and not results:
+        if attempts < max_attempts:
+            print(f"Retrying . . .")
+            sleep(1)
+        results = {
+            ' '.join((
+                r.filename,
+                str(r.seeders) | green,
+                str(r.leechers) | yellow,
+                f"{r.size / 1024**3:.2f} GiB" | blue,
+                r.pubdate.split()[0] | magenta
+            )): r.download
+            for r in RarbgAPI().search(**search_args)
+            # for r in RarbgAPI(retries=12).search(**search_args)
+        }
+        attempts -= 1
     return results
 
 
@@ -61,6 +69,13 @@ def show_connection():
                     print(local['wget']('-qO', '-', 'ipinfo.io') | yellow)
 
 
+def clip(text):
+    try:
+        (((local['xclip']['-sel', 'clip'] > sys.stdout) >= sys.stderr) << text)()
+    except CommandNotFound:
+        (((local['pbcopy'] > sys.stdout) >= sys.stderr) << text)()
+
+
 def main():
     try:
         results = get_results(mk_search_args())
@@ -68,21 +83,16 @@ def main():
         results = None
     if not results:
         sys.exit(1)
-
     print(f"{df('-h', '-P', '.').splitlines()[-1].split()[3]} available" | yellow)
     uri = choose_result(results)
     if uri is None:
         sys.exit()
-
     try:
-        (((
-            local['xclip']['-sel', 'clip'] > sys.stdout
-        ) >= sys.stderr) << uri)()
+        clip(uri)
     except CommandNotFound:
         print(uri | blue)
     else:
         print("Magnet URI copied to clipboard" | green)
-
     show_connection()
     if ask("Begin download with aria2" | magenta, True):
         aria2c['--seed-time=0', uri] &FG

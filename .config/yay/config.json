@@ -1,6 +1,7 @@
 {
     "answerclean": "None",
     "answerdiff": "All",
+    "batchinstall": true,
     "buildDir": "/home/andy/Code/yaytmp/",
     "combinedupgrade": true,
     "makepkgbin": "/usr/bin/makepkg",

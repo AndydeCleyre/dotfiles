@@ -1,33 +1,26 @@
-if (( $+commands[lsd] )); then
-    alias ls="lsd"
+if (( $+commands[exa] )); then
+    alias ls="exa -b --git"
+    alias recent="exa -b --git -snew"
     tree () {
         local depth dirsonly
         while [[ $1 == -L || $1 == -d ]]; do
             if [[ $1 == -L ]]; then
-                depth=(--depth $2)
+                depth=(-L $2)
                 shift 2
             fi
             if [[ $1 == -d ]]; then
-                dirsonly=1
+                dirsonly=-D
                 shift
             fi
         done
-        if [[ $dirsonly ]]; then
-            lsd --tree $depth --icon always --color always $@ | grep 
-        else
-            lsd --tree $depth $@
-        fi
+        exa -bT --git $depth $dirsonly $@
     }
 else
     alias ls="ls --color=auto"
     alias tree="tree -C"
+    alias recent="ls -rt"
 fi
 
 alias lsa="ls -a"
-alias recent="ls -rt"
 
-if (( $+commands[exa] )); then
-    alias lsl="exa -lb --git"
-else
-    alias lsl="ls -l"
-fi
+alias lsl="ls -l"

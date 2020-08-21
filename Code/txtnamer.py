@@ -1,4 +1,4 @@
-#!/home/andy/bin/vpy
+#!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 """Rename multiple files with any text editor."""
 

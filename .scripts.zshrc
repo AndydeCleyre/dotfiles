@@ -1,12 +1,10 @@
 BROWSER=~/Code/browser.py
 alias   browse="~/Code/browser.py"
-alias   define="cambrinary -w"
 alias      get="~/Code/clown/get.py"
 alias       pd="~/Code/playdelete.py"
 alias    ports="~/Code/ports.py"
 alias   stream="~/Code/stream.py"
 alias   tsplit="~/Code/tsplit.py"
 alias txtnamer="~/Code/txtnamer.py"
-alias      vpn="~/Code/vpn.py"
 alias        x="~/Code/x.py"
 alias     rawr="~/Code/rawr/rawr.py"

@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
-
 from collections import defaultdict
 
 from plumbum.cmd import mount
 from plumbum.colors import green, red, magenta
 
-
 blacklist = {
-    'fs': [
-        'cgroup'
-    ],
-    'point': [
-        '/boot/efi', '/sys', '/sys/kernel/security', '/sys/fs/pstore',
-        '/proc', '/dev/mqueue', '/sys/fs/cgroup', '/run/user/1000',
-        '/run', '/dev/shm', '/dev/hugepages', '/sys/firmware/efi/efivars',
-        '/dev', '/dev/pts', '/sys/kernel/debug', '/sys/kernel/config',
-        '/proc/sys/fs/binfmt_misc'
-    ],
+    'fs': ['cgroup'],
+    'point':
+        [
+            '/boot/efi', '/sys', '/sys/kernel/security', '/sys/fs/pstore',
+            '/proc', '/dev/mqueue', '/sys/fs/cgroup', '/run/user/1000', '/run',
+            '/dev/shm', '/dev/hugepages', '/sys/firmware/efi/efivars', '/dev',
+            '/dev/pts', '/sys/kernel/debug', '/sys/kernel/config',
+            '/proc/sys/fs/binfmt_misc'
+        ],
     'device': []
 }
 
@@ -27,11 +24,11 @@ for line in mount().strip().splitlines():
     mount_point not in blacklist['point'] and \
     device not in blacklist['device']:
         options = options.strip('()').split(',')
-        filesystems[filesystem].append('{}: {} [{}]'.format(
-            red | mount_point,
-            green | device,
-            magenta | ', '.join(options)
-        ))
+        filesystems[filesystem].append(
+            '{}: {} [{}]'.format(
+                mount_point | red, device | green, ', '.join(options) | magenta
+            )
+        )
 print()
 for filesystem in sorted(filesystems):
     print(green | '{}'.format(filesystem), '-' * len(filesystem), sep='\n')

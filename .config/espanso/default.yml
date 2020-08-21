@@ -1,23 +1,29 @@
 ---
-# https://espanso.org/docs/
 backend: Clipboard
 fast_inject: false
-# inject_delay: 10
-# backspace_delay: 10
+enable_passive: true
+passive_key: CTRL
+
 matches:
 
-  - trigger: :``
-    replace: |
-      ```
-      $|$
-      ```
+  - trigger: :spotify
+    replace: "{{uri}}"
+    vars:
+      - name: uri
+        type: shell
+        params:
+          cmd: >
+            xclip -sel clip -o |
+            sed -E 's-^https?://open\.spotify\.com/(.*)-\1-g' |
+            sed 's-/-:-g' | sed 's/\?.*//g'
 
-  - trigger: :ten
-    replace: Ŧ
-  - trigger: :lem
-    replace: Ł
-  - trigger: :/20
-    replace: ŧ
+  - trigger: :paste
+    replace: "{{clipboard}}"
+    vars:
+      - name: clipboard
+        type: shell
+        params:
+          cmd: xclip -sel clip -o
 
   - trigger: :klong
     replace: >-
@@ -32,25 +38,37 @@ matches:
         params:
           cmd: >
             json="$(https ipinfo.io)" &&
-            notify-send 'IP Provider' "$(jello -r '"\n".join((_["org"], ", ".join((_["city"], _["region"], _["country"]))))' <<<$json)" &&
-            jello -r '_["ip"]' <<<$json
+            jsonpath_ng ip <<<$json &&
+            notify-send -a "IP Provider"
+            "$(jsonpath_ng org <<<$json)"
+            "$(jsonpath_ng city <<<$json), $(jsonpath_ng region <<<$json), $(jsonpath_ng country <<<$json)"
+            || true
 
-  - trigger: ::ip
+# TODO: jsonpath_ng city,region,country
+# with ', ' separator for output. can jpng do that?
+# or should I use shell to split on newlines, then join with ', '?
+
+  # - trigger: :ip
+    # replace: "{{address}}"
+    # vars:
+      # - name: address
+        # type: shell
+        # params:
+          # cmd: >
+            # json="$(https ipinfo.io)" &&
+            # notify-send 'IP Provider' "$(jello -r '"\n".join((_["org"], ", ".join((_["city"], _["region"], _["country"]))))' <<<$json)" &&
+            # jello -r '_["ip"]' <<<$json
+
+  - trigger: :local
     replace: "{{address}}"
     vars:
       - name: address
-        type: script
+        type: shell
         params:
-          args:
-            - zsh
-            - -c
-            - 'json=$(mktemp);
-               https ipinfo.io > $json;
-               notify-send -a "IP Provider"
-               "$(yaml-get -p org $json)"
-               "$(yaml-get -p city $json), $(yaml-get -p region $json), $(yaml-get -p country $json)";
-               print -n $(yaml-get -p ip $json);
-               rm $json'
+          debug: true
+          cmd: 'ip addr | pcre2grep -M -O ''$2'' ''^\d: wlan0: (.*\n[^\d])*.* inet ((\d+\.){3}\d+)/'''
+          # shell: bash
+          # cmd: 'nmcli device show wlan0 | pcre2grep -M -O ''$1'' ''^IP4.ADDRESS\[1\]: *(.*)/.*'''
 
   - trigger: ":date"
     replace: "{{mydate}}"
@@ -59,3 +77,18 @@ matches:
         type: date
         params:
           format: "%m/%d/%Y"
+
+  - trigger: :pf
+    replace: 'printf ''%s\n'' '
+
+  - trigger: :fzf
+    replace: fzf --reverse -m -0
+
+  - trigger: :gr
+    replace: '"$(git rev-parse --show-toplevel)"'
+
+  - trigger: :here
+    replace: '"$(dirname "$0")"'
+
+  - trigger: :adc
+    replace: andydecleyre

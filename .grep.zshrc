@@ -1,4 +1,10 @@
-(( $+commands[pcregrep] )) && alias g="pcregrep --color -i" || alias g="grep -P --color -i"
+if (( $+commands[pcre2grep] )); then
+    alias g="pcre2grep --color -i"
+elif (( $+commands[pcregrep] )); then
+    alias g="pcregrep --color -i"
+else
+    alias g="grep -P --color -i"
+fi
 alias ge="grep -E --color -i"
 alias no="grep -Piv"
 fax () { grep -Ev '^(\s*#|$)' $1 }

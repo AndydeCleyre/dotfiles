@@ -1,20 +1,11 @@
 #!/bin/bash
 
-terminal=konsole
-
-terminal_windows=`xdotool search --class $terminal`
-
-if [[ `echo $terminal_windows | grep $(xdotool getactivewindow)` ]]
-then
-  for i in $terminal_windows
-  do
-    xdotool windowminimize $i
-  done
+terminal=${1:-konsole}
+# terminal=${1:-alacritty}
+if [[ $(xprop -id $(xdotool getactivewindow) WM_CLASS) =~ \"$terminal\" ]]; then
+    xdotool getactivewindow windowminimize
 else
-  for i in $terminal_windows
-  do
-    xdotool windowactivate $i
-  done
+    wmctrl -xR $terminal
 fi
 
 pgrep -u "$(whoami)" -x $terminal || exec $terminal &

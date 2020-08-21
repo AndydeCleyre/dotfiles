@@ -15,3 +15,7 @@
     ui = true
 [github]
 	user = andydecleyre
+[pull]
+	rebase = false
+[merge]
+	tool = meld

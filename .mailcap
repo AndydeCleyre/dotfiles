@@ -7,9 +7,7 @@
 
 # Note that rtv returns a list of urls for imgur albums, so we don't put quotes
 # around the `%s`
-image/x-imgur-album; firefox %s; test=test -n "$DISPLAY"
 image/gif; mpv '%s' --loop=inf; test=test -n "$DISPLAY"
 image/gifv; mpv '%s' --loop=inf; test=test -n "$DISPLAY"
-image/*; gwenview '%s'; test=test -n "$DISPLAY"
 
 video/*; mpv '%s' --loop=inf; test=test -n "$DISPLAY"

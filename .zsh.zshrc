@@ -10,8 +10,7 @@ setopt globdots
 
 fpath=(~/.local/share/zsh/site-functions $fpath)
 autoload -Uz compinit
-compinit
-
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
@@ -133,7 +132,21 @@ bindkey '^[[C' key-right
 
 key-cleft () { r-deselect backward-word $@ }
 zle -N key-cleft
-multibind key-cleft '^[[1;5D' '^[[5~'
+bindkey '^[[1;5D' key-cleft
+
+
+tmux-copy-mode-or-key-cleft() {
+    if [[ $TMUX_PANE ]]; then
+        zle .push-line
+        BUFFER=' tmux copy-mode'
+        zle .accept-line
+    else
+        key-cleft
+    fi
+}
+zle -N tmux-copy-mode-or-key-cleft
+bindkey '^[[5~' tmux-copy-mode-or-key-cleft
+
 
 key-cright () { r-deselect forward-word $@ }
 zle -N key-cright

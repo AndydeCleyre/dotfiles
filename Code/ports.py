@@ -1,3 +1,4 @@
+#!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 
 from itertools import cycle
@@ -23,7 +24,7 @@ for line in sudo(netstat['-lnptu']).split('\n'):
             # pid, name = (pid_name,) * 2
         address, port = address_port.rsplit(':', 1)
         port = int(port)
-        ports[port]['name'].add(name)
+        ports[port]['name'].add(name.replace(' ', '_'))
         ports[port]['proto'].add(proto)
         ports[port]['address'].add(address)
 colors = {n: c for n, c in zip(

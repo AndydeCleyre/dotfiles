@@ -1,6 +1,7 @@
-#!/home/andy/bin/vpy
+#!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 
+# TODO: re-implement in zsh
 import os
 import re
 import sys
@@ -15,6 +16,7 @@ from plumbum.cli.terminal import ask
 from plumbum.cmd import (
     kill,
     mpv,
+    mullvad,
     pgrep,
     ps,
     s6_log,
@@ -25,7 +27,6 @@ from plumbum.cmd import (
 from plumbum.colors import green, yellow, blue, red
 
 
-vpn = local['~/Code/vpn.py']
 try:
     tree = local['lsd']['--tree']
 except CommandNotFound:
@@ -96,16 +97,17 @@ def transmission_stream(uri):
             continue
         print(
             f"Looks like you want to watch {video.name | yellow}",
-            f"({round(video.stat().st_size / 1048576)} MiB) now."
+            f"({round(video.stat().st_size / 1048576)} MiB)."
         )
-        if ask("\nIs that right" | green, False):
+        if ask("\nPlay now" | green, False):
             try:
                 mpv[video] & FG
                 replay = False
             except ProcessExecutionError as e:
                 print(e, file=sys.stderr)
                 replay = True
-            if ask("\nTry to play again" | green, replay):
+            # if ask("\nTry to play again" | green, replay):
+            if not ask("\nQuit streaming now" | red, not replay):
                 continue
             break
     tail['-n', 1, logs / 'current'] & FG
@@ -113,15 +115,12 @@ def transmission_stream(uri):
 
 
 def suggest_vpn(disconnect=False):
-    r = get('https://api.duckduckgo.com', {'q': 'ip', 'format': 'json'})
-    location = r.json()['Answer'].split('>')[1].split('<')[0]
-    print(f"Your IP address indicates you're in {location | yellow}.")
-    print(vpn('status').strip() | blue)
+    print(mullvad('status', '-l') | blue, file=sys.stderr)
     if disconnect:
         if ask(f"\nDisconnect from VPN" | green, True):
-            vpn['down'] & FG
+            mullvad['disconnect'] & FG
     elif ask(f"\nConnect to VPN" | green, True):
-        vpn['up', 'us'] & FG
+        mullvad['connect'] & FG
 
 
 def main():
@@ -129,8 +128,10 @@ def main():
     for uri in uris:
         uri = re.sub(r'^stream:/?/?', '', uri)
         if not (uri.startswith('magnet:?xt=urn:btih:') or uri.endswith('.torrent')):
-            mpv[uri] & FG
-            sys.exit()
+            try:
+                mpv[uri] & FG
+            finally:
+                sys.exit()
         suggest_vpn()
         try:
             transmission_stream(uri)
@@ -139,7 +140,12 @@ def main():
         finally:
             tm = guess_tm_proc()
             folder = uri_folder(uri)
-            if ask(f"\nKill <{tm.cmd | yellow}> ({tm.pid | yellow}) now", True):
+            if ask(
+                "\nKill <" +
+                (re.sub(r'(magnet:).*&dn=([^& ]+)[^ ]*(.*)', r'\1\2\3', tm.cmd) | yellow) +
+                f"> ({tm.pid | yellow}) now",
+                True
+            ):
                 kill(tm.pid)
         suggest_vpn(disconnect=True)
         if ask(
@@ -150,6 +156,10 @@ def main():
             folder.delete()
 
 
-
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(e, file=sys.stderr)
+        tm = guess_tm_proc()
+        kill(tm.pid)

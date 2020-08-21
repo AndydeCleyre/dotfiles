@@ -20,7 +20,6 @@ gcp () {  # <branch> <file>
 }
 alias gd="git diff --submodule=diff"
 alias gitgraph="git log --graph --all --decorate --oneline"
-# alias gl="git pull --recurse-submodules --all"
 alias gl="git pull --recurse-submodules"
 gls () {  # [<branch> [<git ls-tree arg>...]]
     git ls-tree -r --name-only ${1:-$(git branch --show-current)} ${@[2,-1]}
@@ -36,4 +35,10 @@ hotfixed () {
     git checkout develop && git push
     git checkout master && git push
     git push --tags
+}
+
+alias tigy="GIT_DIR=~/.config/yadm/repo.git tig"
+
+gist () {
+    gh gist create --public $@
 }

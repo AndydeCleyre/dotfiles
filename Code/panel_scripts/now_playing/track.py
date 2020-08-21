@@ -1,4 +1,3 @@
-#!/home/andy/.local/bin/vpy --no-env
 #!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 import re
@@ -42,8 +41,8 @@ STATUS_ICONS = {
     # 'Paused': '',
     # 'Paused': '',
 
-    'Stopped': '⏹',
-    # 'Stopped': '栗',
+    # 'Stopped': '⏹',
+    'Stopped': '栗',
     # 'Stopped': '',
     # 'Stopped': '',
     # 'Stopped': '',
@@ -161,6 +160,8 @@ def simplify_title(title):
 
 def notify(details):
     if details:
+        # TODO: use notify-send.py so we can use --action
+        # TODO: action: launch lyrics in new konsole window
         notify_send(
             '-a', "Music",
             details['status'],

@@ -1,0 +1,10 @@
+name: chars
+parent: default
+
+matches:
+
+  - trigger: :ten
+    replace: Ŧ
+
+  - trigger: :lem
+    replace: Ł

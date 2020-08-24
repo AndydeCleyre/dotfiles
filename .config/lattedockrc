@@ -19,10 +19,10 @@ Icon=
 Output=0
 
 [Action_0/Command_2]
-Commandline[$e]=gwenview %s
-Description=View with Gwenview
+Commandline[$e]=~/Code/browser.py %s
+Description=View with browser.py
 Enabled=true
-Icon=gwenview
+Icon=
 Output=0
 
 [Action_1]
@@ -61,14 +61,21 @@ Output=2
 [Action_3]
 Automatic=true
 Description=Absolute path
-Number of commands=1
-Regexp=^/[^\\n]+
+Number of commands=2
+Regexp=^(file://)?/[^\\n]+
 
 [Action_3/Command_0]
-Commandline[$e]=gwenview %s
-Description=View with Gwenview
+Commandline[$e]=qview $$(sed -E 's-^file://--' <<< %s)
+Description=View with qview
 Enabled=true
-Icon=gwenview
+Icon=qview
+Output=0
+
+[Action_3/Command_1]
+Commandline[$e]=xclip -sel clip -t image/png < $$(sed -E 's-^file://--' <<< %s)
+Description=Copy as PNG
+Enabled=true
+Icon=
 Output=0
 
 [Action_4]
@@ -84,17 +91,23 @@ Enabled=true
 Icon=
 Output=1
 
+[Action_5]
+Automatic=true
+Description=Local filepath
+Number of commands=0
+Regexp=^(/|file://)
+
 [ActionsWidget]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0cAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAB+QAAAAEAAAAAAAABTgAAAAEAAAAAAAAD6AAAAABk
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5IAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAB+QAAAAEAAAAAAAABmQAAAAEAAAAAAAAD6AAAAABk
 
 [ConfigDialog]
-Height 1080=594
-Width 1920=1038
+Height 1080=569
+Width 1920=774
 
 [EditActionDialog]
-ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzIAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAAB0QAAAAEAAAAAAAAAswAAAAEAAAAAAAAArgAAAAEAAAAAAAAD6AAAAABk
-Height 1080=505
-Width 1920=863
+ColumnState=AAAA/wAAAAAAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA/YAAAADAAEAAQAAAAAAAAAAAAAAAGT/////AAAAAQAAAAAAAAADAAACTwAAAAEAAAAAAAAAswAAAAEAAAAAAAAA9AAAAAEAAAAAAAAD6AAAAABk
+Height 1080=513
+Width 1920=1059
 
 [FileDialogSize]
 Height 1080=1035
@@ -104,16 +117,30 @@ Width 1920=1254
 Number of Actions=5
 
 [KFileDialog Settings]
-Recent Files[$e]=folder_open.svg,file:///usr/share/icons/Papirus-Dark/16x16/places/folder_open.svg
-Recent URLs[$e]=file:///usr/share/icons/Papirus-Dark/,file:///usr/share/icons/Papirus-Dark/16x16/places/
+Recent Files[$e]=file:$HOME/Downloads/latte-desktop.layout.latte,file:///usr/share/icons/Papirus-Dark/16x16/places/folder_open.svg
+Recent URLs[$e]=file:$HOME/Downloads/
+listViewIconSize=0
 
 [KPropertiesDialog]
-Height 1080=521
-Width 1920=469
+Height 1080=513
+Width 1920=531
+
+[LatteSettingsDialog]
+downloadWindowSize=800,550
+windowSize=879,686
+
+[LatteSettingsDialog][TabLayouts]
+columnWidths=48,172,101,0
+sortColumn=3
+sortOrder=0
+
+[Open-with settings]
+CompletionMode=1
+History=mpv
 
 [PlasmaRunnerManager]
-LaunchCounts=1 services_flameshot.desktop
-pluginWhiteList=Dictionary,services,shell,org.kde.windowedwidgets,org.kde.datetime,baloosearch,locations,unitconverter
+LaunchCounts=1 services_qtfm.desktop,1 services_org.kde.konsole.desktop,1 services_flameshot.desktop
+pluginWhiteList=desktopsessions,services,places,PowerDevil,calculator,unitconverter
 
 [PlasmaThemeExtended]
 outlineWidth=1
@@ -124,16 +151,20 @@ userSetPlasmaThemeRoundness=0
 11=HDMI2
 12=eDP-1
 13=HDMI-2
+14=eDP-1-1
+15=HDMI-1-2
 
 [UniversalSettings]
-badges3DStyle=false
+badges3DStyle=true
 canDisableBorders=false
-currentLayout=My Layout
+currentLayout=Desktop
 downloadWindowSize=800,550
-lastNonAssignedLayout=My Layout
+hiddenConfigurationWindowsAreDeleted=true
+inAdvancedModeForEditSettings=false
+lastNonAssignedLayout=Desktop
 launchers=
-layoutsColumnWidths=126,109,89,0
-layoutsWindowSize=700,608
+layoutsColumnWidths=
+layoutsWindowSize=700,450
 memoryUsage=0
 metaPressAndHoldEnabled=true
 mouseSensitivity=2
@@ -141,3 +172,6 @@ screenTrackerInterval=2500
 showInfoWindow=true
 unifiedGlobalShortcuts=true
 version=2
+
+[UniversalSettings][ScreenScales]
+eDP-1=1;1.08

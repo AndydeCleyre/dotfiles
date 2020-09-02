@@ -37,6 +37,7 @@ hoverAction=PreviewWindows
 isInLatteDock=true
 launchers=multi;*;2;file:///usr/share/applications/firefox.desktop;file:///usr/share/applications/org.kde.dolphin.desktop
 launchers59=applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop,applications:telegramdesktop.desktop,applications:firefox.desktop,applications:sublime_text.desktop,applications:org.kde.konversation.desktop,applications:systemsettings.desktop
+manualScrollTasksType=Disabled
 modifierClickAction=ToggleMinimized
 showOnlyCurrentActivity=false
 
@@ -521,7 +522,7 @@ widget_show_timer=false
 
 [Containments][4][Applets][7][Configuration][Google Calendar]
 access_token=[redacted]
-access_token_expires_at=563893214
+access_token_expires_at=1304339638
 access_token_type=Bearer
 calendar_id_list=[redacted]
 calendar_list=[redacted]
@@ -571,6 +572,8 @@ PreloadWeight=0
 alignment=2
 alignmentUpgraded=true
 appletOrder=137;105;7;156;98;123;62;142;157;154;11;144;127;146;121;133
+appletShadowsEnabled=false
+backgroundRadius=100
 dragActiveWindowEnabled=true
 durationTime=x3
 iconSize=32
@@ -579,7 +582,7 @@ maxLength=92
 offset=8
 panelPosition=Right
 panelSize=100
-panelTransparency=60
+panelTransparency=80
 proportionIconSize=3
 screenEdgeMargin=6
 shadowsUpgraded=true
@@ -630,7 +633,7 @@ DialogWidth=960
 boldLabelForCurrent=true
 indicatorStyle=4
 invertWheelSwitch=true
-labelFont=Iosevka Term Custom
+labelFont=Iosevka Term Custom Medium
 labelSize=29
 labelStyle=0
 plusButtonSymbol=+
@@ -650,6 +653,7 @@ DialogWidth=1120
 groupingStrategy=0
 maxStripes=3
 showOnlyCurrentActivity=false
+showToolTips=false
 wheelEnabled=false
 
 [Containments][41][ConfigDialog]
@@ -661,13 +665,15 @@ PreloadWeight=0
 
 [Containments][41][General]
 advanced=true
+alignment=2
 alignmentUpgraded=true
-appletOrder=152;44
-appletShadowsEnabled=false
+appletOrder=44;152
+backgroundRadius=21
 durationTime=x3
 iconSize=16
 inConfigureAppletsMode=true
-maxLength=80
+maxLength=90
+offset=10
 panelSize=100
 panelTransparency=60
 proportionIconSize=4.5

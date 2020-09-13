@@ -1,5 +1,8 @@
 precmd () { rehash }
 
+unalias run-help 2>/dev/null || true
+autoload -Uz run-help
+
 autoload -Uz url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic

@@ -1,36 +1,4 @@
-() {
-    local p10kpath=DISABLED
-    # local p10kpath=~/Code/plugins/powerlevel10k/powerlevel10k.zsh-theme
-    local agkozakpath=~/Code/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
-    if [[ -r $p10kpath ]]; then
-        . ~/.cache/p10k-instant-prompt-$USERNAME.zsh 2>/dev/null
-        . $p10kpath
-        . ~/.p10k.zsh 2>/dev/null
-        POWERLEVEL9K_VIRTUALENV_GENERIC_NAMES=()
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs pyenv virtualenv background_jobs vpn_ip time command_execution_time newline prompt_char)
-        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-        POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='%B>>%b'
-        POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_CONTENT_EXPANSION='%B>>%b'
-        PROMPT2='%B%F{yellow}……%f%b '
-        POWERLEVEL9K_SHORTEN_DELIMITER=…
-        POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=3
-        POWERLEVEL9K_DIR_MAX_LENGTH=80
-        POWERLEVEL9K_STATUS_ERROR=true
-        POWERLEVEL9K_VIRTUALENV_FOREGROUND=5
-        POWERLEVEL9K_PYENV_FOREGROUND=5
-        POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=true
-        POWERLEVEL9K_VIRTUALENV_SHOW_WITH_PYENV=true
-        POWERLEVEL9K_TIME_FORMAT='%D{%L:%M:%S}'
-        POWERLEVEL9K_VPN_IP_FOREGROUND=2
-        POWERLEVEL9K_VPN_IP_VISUAL_IDENTIFIER_EXPANSION=
-    elif [[ -r $agkozakpath ]]; then
-        AGKOZAK_LEFT_PROMPT_ONLY=1
-        AGKOZAK_PROMPT_DIRTRIM=4
-        . $agkozakpath
-    else
-        . ~/.theme.zshrc
-    fi
-}
+. ~/.theme.zshrc
 
 . /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 
@@ -195,43 +163,6 @@ pw () {  # [<filter-word>...]
                 # new_path.name | green, '', sep='\n'
             # )
             # old_path.move(new_path)
-# }
-
-
-# () {  # Always choose first session, the long way
-    # if [[ ! $TMUX ]]; then
-        # local sessions=(${(f)$(tmux ls -F '#S' 2>/dev/null)}) REPLY
-        # if [[ $sessions ]]; then
-            # local session=$sessions[1]
-            # if read -t 3 -k "?Attach to tmux session [Yn]? "; then
-                # if [[ $REPLY == $'\n' || $REPLY:l == y ]]; then
-                    # tmux a -t $session
-                # fi
-            # fi
-        # elif read -t 3 -k "?New tmux session [Yn]? "; then
-            # if [[ $REPLY == $'\n' || $REPLY:l == y ]]; then
-                # tmux
-            # fi
-        # fi
-    # fi
-# }
-
-# () {  # Choose any session
-    # if [[ ! $TMUX ]]; then
-        # local sessions=(${(f)$(tmux ls -F '#S' 2>/dev/null)}) REPLY
-        # if [[ $sessions ]]; then
-            # sessions+=('No, thank you.')
-            # local session=$(fzf --phony --reverse --prompt='Attach to tmux session?' <<<${(F)sessions})
-            # if [[ $session && $session != 'No, thank you.' ]]; then
-                # tmux a -t $session
-            # fi
-        # elif read -t 3 -k "?New tmux session [Yn]? "; then
-            # if [[ $REPLY == $'\n' || $REPLY:l == y ]]; then
-                # tmux
-            # fi
-        # fi
-        # clear
-    # fi
 # }
 
 () {  # Assume always 1 or 0 sessions

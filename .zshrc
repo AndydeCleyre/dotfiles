@@ -5,10 +5,10 @@
 () {
     local zshzpath=~/Code/plugins/zsh/zsh-z/zsh-z.plugin.zsh
     ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 ZSHZ_UNCOMMON=1 . $zshzpath 2>/dev/null
-}
 
-. /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null \
-|| . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+    local fshpath=~/Code/plugins/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    . $fshpath 2>/dev/null
+}
 
 . ~/.editor.zshrc
 . ~/.zsh.zshrc

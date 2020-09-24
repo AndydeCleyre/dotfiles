@@ -17,3 +17,6 @@
 [submodule "Code/plugins/plasma/applet-window-title"]
 	path = Code/plugins/plasma/applet-window-title
 	url = git@github.com:psifidotos/applet-window-title
+[submodule "Code/plugins/zsh/fast-syntax-highlighting"]
+	path = Code/plugins/zsh/fast-syntax-highlighting
+	url = git@github.com:zdharma/fast-syntax-highlighting

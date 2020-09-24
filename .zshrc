@@ -3,7 +3,7 @@
 . /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 
 () {
-    local zshzpath=/home/andy/Code/plugins/zsh-z/zsh-z.plugin.zsh
+    local zshzpath=~/Code/plugins/zsh/zsh-z/zsh-z.plugin.zsh
     ZSHZ_CMD=j ZSHZ_NO_RESOLVE_SYMLINKS=1 ZSHZ_UNCOMMON=1 . $zshzpath 2>/dev/null
 }
 

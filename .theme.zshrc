@@ -1,8 +1,8 @@
 () {
     local usual_distro='Arch Linux' usual_host='Ingram' usual_user='andy'
 
-    local agkozakpath=~/Code/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
-    local p10kpath=~/Code/plugins/powerlevel10k/powerlevel10k.zsh-theme
+    local agkozakpath=~/Code/plugins/zsh/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+    local p10kpath=~/Code/plugins/zsh/powerlevel10k/powerlevel10k.zsh-theme
 
     # comment one to *enable* it, or *neither* to use the fallback theme defined below:
     # agkozakpath=/DISABLED
@@ -21,7 +21,7 @@
         . $p10kpath
         . ~/.p10k.zsh 2>/dev/null
         POWERLEVEL9K_VIRTUALENV_GENERIC_NAMES=()
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs pyenv virtualenv background_jobs vpn_ip time command_execution_time newline prompt_char)
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs pyenv virtualenv background_jobs vpn_ip command_execution_time newline prompt_char)
         POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
         POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_CONTENT_EXPANSION='%B->%b'
         POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_CONTENT_EXPANSION='%B->%b'

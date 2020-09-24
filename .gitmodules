@@ -14,3 +14,6 @@
 [submodule "Code/plugins/zsh-z"]
 	path = Code/plugins/zsh-z
 	url = git@github.com:agkozak/zsh-z
+[submodule "Code/plugins/plasma/applet-window-title"]
+	path = Code/plugins/plasma/applet-window-title
+	url = git@github.com:psifidotos/applet-window-title

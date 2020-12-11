@@ -1,0 +1,17 @@
+roles:
+  monospace:
+  - Iosevka Term Custom
+  - Symbols Nerd Font
+  - JoyPixels
+  serif:
+  - Quando
+  - Symbols Nerd Font
+  - JoyPixels
+  sans-serif:
+  - Baloo 2 Medium
+  - Convergence
+  - Symbols Nerd Font
+  - JoyPixels
+  emoji:
+  - Symbols Nerd Font
+  - JoyPixels

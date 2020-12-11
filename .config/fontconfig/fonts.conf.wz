@@ -1,0 +1,27 @@
+@require(roles)
+<?xml version='1.0'?>
+<!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+<fontconfig>
+
+    <dir>~/.fonts</dir>
+    <dir>/usr/share/fonts</dir>
+
+    <match target="font">
+        <edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit>
+        <edit mode="assign" name="autohint">  <bool>false</bool></edit>
+        <edit mode="assign" name="rgba">     <const>rgb</const></edit>
+        <edit mode="assign" name="hinting">   <bool>false</bool></edit>
+        <edit mode="assign" name="hintstyle"><const>hintnone</const></edit>
+    </match>
+@for role, prefs in roles.items():
+
+    <match target="pattern">
+        <test qual="any" name="family"><string>@role</string></test>
+        <edit name="family" mode="assign" binding="same"><string>@{prefs[0]}</string></edit>
+        @for pref in prefs[1:]:
+        <edit name="family" mode="append" binding="weak"><string>@pref</string></edit>
+        @end
+    </match>
+@end
+
+</fontconfig>

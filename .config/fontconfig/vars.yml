@@ -8,10 +8,17 @@ roles:
   - Symbols Nerd Font
   - JoyPixels
   sans-serif:
-  - Baloo 2 Medium
+  # - Barlow Medium
+  # - Baloo 2 Medium
   - Convergence
   - Symbols Nerd Font
   - JoyPixels
   emoji:
   - Symbols Nerd Font
   - JoyPixels
+options:
+  autohint: 'false'
+  hinting: 'false'
+  hintstyle: hintnone
+  lcdfilter: lcddefault
+  rgba: rgb

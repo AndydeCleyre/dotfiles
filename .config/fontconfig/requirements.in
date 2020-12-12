@@ -1,2 +1,2 @@
-wheezy.template
+wheezy.template>=3.0.3
 yamlpath

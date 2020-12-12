@@ -1,4 +1,4 @@
-@require(roles)
+@require(roles, options)
 <?xml version='1.0'?>
 <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
 <fontconfig>
@@ -7,13 +7,12 @@
     <dir>/usr/share/fonts</dir>
 
     <match target="font">
-        <edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit>
-        <edit mode="assign" name="autohint">  <bool>false</bool></edit>
-        <edit mode="assign" name="rgba">     <const>rgb</const></edit>
-        <edit mode="assign" name="hinting">   <bool>false</bool></edit>
-        <edit mode="assign" name="hintstyle"><const>hintnone</const></edit>
+        @for key, val in options.items():
+        @(otype = 'bool' if val in ('true', 'false') else 'const')\
+        <edit mode="assign" name="@key"><@otype>@val</@otype></edit>
+        @end
     </match>
-@for role, prefs in roles.items():
+    @for role, prefs in roles.items():
 
     <match target="pattern">
         <test qual="any" name="family"><string>@role</string></test>
@@ -22,6 +21,6 @@
         <edit name="family" mode="append" binding="weak"><string>@pref</string></edit>
         @end
     </match>
-@end
+    @end
 
 </fontconfig>

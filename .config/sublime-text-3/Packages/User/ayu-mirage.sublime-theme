@@ -1,0 +1,122 @@
+[
+    {
+        "class": "auto_complete",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "icon_folder",
+        "layer0.tint": "#262c2e",
+        "layer2.tint": "#dea050"
+    },
+    {
+        "class": "label_control",
+        "font.face": "Convergence",
+        "font.size": "20"
+    },
+    {
+        "class": "mini_quick_panel_row",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "overlay_control",
+        "layer2.tint": "#222222"
+    },
+    {
+        "class": "panel_control",
+        "layer0.tint": "#262c2e"
+    },
+    {
+        "class": "popup_control",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "quick_panel",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "quick_panel_label",
+        "font.face": "Convergence",
+        "font.size": 24,
+        "fg": "#c2b790",
+        "match_fg": "#8ec07c",
+        "selected_fg": "#a94d37",
+        "selected_match_fg": "#709d3d"
+    },
+    {
+        "class": "quick_panel_path_label",
+        "font.face": "Convergence",
+        "font.size": "20"
+    },
+    {
+        "class": "quick_panel_row",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "scroll_bar_control",
+        "layer0.tint": "#222222",
+        "layer2.tint": "#222222"
+    },
+    {
+        "class": "sidebar_container",
+        "layer0.tint": "#262c2e",
+        "layer1.tint": "#a94d37"
+    },
+    {
+        "class": "sidebar_heading",
+        "font.face": "Convergence",
+        "font.size": "20",
+        "color": "#a87b60"
+    },
+    {
+        "class": "sidebar_label",
+        "font.face": "Convergence",
+        "font.size": "20",
+        "fg": "#c2b790"
+    },
+    {
+        "class": "status_bar",
+        "layer0.tint": "#262c2e"
+    },
+    {
+        "class": "tab_control",
+        "layer0.tint": "#262c2e",
+        "layer1.tint": "#a94d37",
+        "layer2.tint": "#a94d37",
+        "layer3.tint": "#a94d37"
+    },
+    {
+        "class": "tab_label",
+        "font.face": "Convergence",
+        "font.size": "20"
+    },
+    {
+        "class": "tabset_control",
+        "tab_height": 36,
+        "tab_width": 50,
+        "layer0.tint": "#262c2e",
+        "layer1.tint": "#a94d37",
+        "layer2.tint": "#a94d37"
+    },
+    {
+        "class": "text_line_control",
+        "layer0.tint": "#222222",
+        "layer1.tint": "#a94d37"
+    },
+    {
+        "class": "title_bar",
+        "bg": "#262c2e"
+    },
+    {
+        "class": "tool_tip_control",
+        "layer0.tint": "#222222"
+    },
+    {
+        "class": "tool_tip_label_control",
+        "color": "#c2b790",
+        "font.size": 24
+    },
+    {
+        "class": "tree_row",
+        "layer0.tint": "#783627"
+    }
+]

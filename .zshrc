@@ -176,3 +176,5 @@ pw () {  # [<filter-word>...]
         clear
     fi
 }
+
+if (( ${+functions[p10k]} )) p10k finalize  # See .theme.zshrc

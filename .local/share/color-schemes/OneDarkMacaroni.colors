@@ -56,7 +56,7 @@ ForegroundInactive=109,148,141
 ForegroundLink=222,160,80
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=160,224,87
+ForegroundNormal=167,219,167
 ForegroundPositive=112,157,61
 ForegroundVisited=112,157,61
 
@@ -98,13 +98,13 @@ ForegroundInactive=109,148,141
 ForegroundLink=222,160,80
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=167,219,167
+ForegroundNormal=184,187,38
 ForegroundPositive=112,157,61
 ForegroundVisited=112,157,61
 
 [General]
 ColorScheme=Breeze Dark
-Name=One Dark Macaroni
+Name=OneDarkMacaroni
 shadeSortColumn=true
 
 [KDE]

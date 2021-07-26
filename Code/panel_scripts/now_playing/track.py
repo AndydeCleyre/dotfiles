@@ -2,7 +2,6 @@
 #!/usr/bin/env python3
 import re
 import sys
-
 from collections import defaultdict
 from contextlib import suppress
 from random import choice
@@ -10,29 +9,27 @@ from random import choice
 import httpx
 from plumbum import CommandNotFound, ProcessExecutionError, local
 from plumbum.cmd import notify_send, playerctl
-
 from vault import LASTFM_API_KEY, LASTFM_USER
-
 
 MAX_WIDTH = 24
 
-PLAYER_BLACKLIST_REGEXP = r'Gwenview|plasma-browser-integration|mpv|chromium\.instance'
+PLAYER_BLACKLIST_REGEXP = r'Gwenview|plasma-browser-integration|mpv|(chromium|firefox)\.instance'
 
 STATUS_ICONS = {
-    'Playing': '▶',
+    # 'Playing': '▶',
     # 'Playing': '⏵',
     # 'Playing': '',
     # 'Playing': '契',
-    # 'Playing': '',
+    'Playing': '',
     # 'Playing': '',
     # 'Playing': '奈',
     # 'Playing': '',
     # 'Playing': '金',
     # 'Playing': '喇',
 
-    'Paused': '⏸',
+    # 'Paused': '⏸',
     # 'Paused': '',
-    # 'Paused': '',
+    'Paused': '',
     # 'Paused': '懶',
     # 'Paused': '',
     # 'Paused': '',
@@ -42,16 +39,17 @@ STATUS_ICONS = {
     # 'Paused': '',
 
     # 'Stopped': '⏹',
-    'Stopped': '栗',
+    # 'Stopped': '栗',
     # 'Stopped': '',
+    'Stopped': '',
     # 'Stopped': '',
     # 'Stopped': '',
     # 'Stopped': 'ﭥ',
     # 'Stopped': 'ﭦ',
 
-    'Last.fm': '',
+    # 'Last.fm': '',
     # 'Last.fm': '',
-    # 'Last.fm': '',
+    'Last.fm': '',
 
     'NetworkError': '',
 }
@@ -117,10 +115,7 @@ def resize(txt, size, pre='~', post='~', ellipsis='random', placement='center'):
     if ellipsis == 'random':
         ellipsis = choice(('center', 'end'))
     if free >= 0:
-        if placement == 'center':
-            body = f"{txt:^{size}}"
-        elif placement == 'end':
-            body = f"{txt:>{size}}"
+        body = {'center': f"{txt:^{size}}", 'end': f"{txt:>{size}}"}[placement]
     elif ellipsis == 'end':
         body = f"{txt[:size - 1]}…"
     elif ellipsis == 'center':
@@ -133,24 +128,24 @@ def simplify_title(title):
     stabilized = title
     while True:
         title = re.sub(
-            r'( \[?feat(\.|uring) [^\]]+(\]|$))?'
-            r'( \(?feat(\.|uring) [^\)]+(\)|$))?'
+            r'( \[?feat(\.|uring)? [^\]]+(\]|$))?'
+            r'( \(?feat(\.|uring)? [^\)]+(\)|$))?'
             r'( \(with [^\)]+\))?'
             r'( \(Instrumental\))?'
+            r'( \(Bonus Track\))?'
             r'( \[Extended\])?'
             r'( \([^\)]*Edit\))?'
-            r'( \([^\)]*Version\))?'
+            r'( \([^\)]*Version[^\)]*\))?'
             r'( \([^\)]*[Mm]ix\))?'
-            r'( \[[^\]]*[Mm]ix\])?'
             r'( \[[^\]]+ vs\. [^\]]+\])?'
             r'$', '', title
         )
         title = re.sub(
-            r' +- +(.*('
+            r' +- +(.*(\(?'
                 r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|'
                 r'Bonus Track|Edit|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|'
-                r'Instrumental|Rework|Take|Vocals?|\d{4}|Dub'
-            r'))?', ' - ', title
+                r'Instrumental|Rework|Take|Vocals?|\d{4}|Dub|Demo'
+            r'\)?))?', ' - ', title
         ).rstrip('- ')
         if title == stabilized:
             break
@@ -162,6 +157,7 @@ def notify(details):
     if details:
         # TODO: use notify-send.py so we can use --action
         # TODO: action: launch lyrics in new konsole window
+        # TODO: action: launch last.fm wiki in new konsole window
         notify_send(
             '-a', "Music",
             details['status'],
@@ -187,6 +183,8 @@ def display(details):
         details['artist']
         or STATUS_ICONS.get(details['status'], details['status'])
     )
+    if '-d' in sys.argv:
+        from IPython import embed; embed(colors='Neutral')
     rotation = [artist] * 2 + [title] * 3
     size = min(MAX_WIDTH, max(len(artist), len(title)))
     pre = (

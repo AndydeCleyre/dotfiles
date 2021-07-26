@@ -1,25 +1,42 @@
 [Common]
 OutlineCloseButton=false
-ShadowSize=ShadowMedium
+ShadowColor=226,169,100
+ShadowSize=ShadowSmall
+ShadowStrength=51
 
 [Style]
-MenuOpacity=80
+MenuOpacity=90
 MnemonicsMode=MN_ALWAYS
 ScrollBarAddLineButtons=0
 ScrollBarSubLineButtons=0
 
 [Windeco]
 ButtonSize=ButtonSmall
-DrawBackgroundGradient=true
-DrawSizeGrip=false
+ButtonStyle=BreezeStyle
+DrawBackgroundGradient=false
+DrawBorderOnMaximizedWindows=true
+DrawSizeGrip=true
+DrawTitleBarSeparator=false
 MacOSButtons=false
 TitleAlignment=AlignLeft
-TitleBarFont=Share,18,-1,5,50,0,0,0,0,0
+TitleBarFont=Rambla,15,-1,5,50,0,0,0,0,0
 
 [Windeco Exception 0]
-BorderSize=1
+BorderSize=0
 Enabled=true
 ExceptionPattern=konsole
+ExceptionType=0
+FlatTitleBar=false
+HideTitleBar=false
+IsDialog=false
+Mask=0
+OpacityOverride=90
+OpaqueTitleBar=false
+
+[Windeco Exception 1]
+BorderSize=0
+Enabled=true
+ExceptionPattern=Alacritty
 ExceptionType=0
 FlatTitleBar=false
 HideTitleBar=false

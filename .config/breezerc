@@ -2,7 +2,7 @@
 OutlineCloseButton=false
 ShadowColor=226,169,100
 ShadowSize=ShadowSmall
-ShadowStrength=51
+ShadowStrength=77
 
 [Style]
 MenuOpacity=90
@@ -19,7 +19,7 @@ DrawSizeGrip=true
 DrawTitleBarSeparator=false
 MacOSButtons=false
 TitleAlignment=AlignLeft
-TitleBarFont=Rambla,15,-1,5,50,0,0,0,0,0
+TitleBarFont=Iosevka Quasi Proportional Custom MdEx,15,-1,5,57,1,0,0,0,0
 
 [Windeco Exception 0]
 BorderSize=0

@@ -3,7 +3,7 @@
 <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
 <fontconfig>
 
-    <dir>~/.fonts</dir>
+    <dir>~/.local/share/fonts</dir>
     <dir>/usr/share/fonts</dir>
 
     <match target="font">

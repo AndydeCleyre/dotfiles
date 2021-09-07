@@ -3,19 +3,32 @@ roles:
   - Iosevka Term Custom
   - Symbols Nerd Font
   - JoyPixels
-  serif:
-  - Quando
+  - Untitled1
+  ui-monospace:
+  - Iosevka Term Custom
   - Symbols Nerd Font
   - JoyPixels
+  - Untitled1
+  serif:
+  - Faustina
+  - Andada Pro
+  # - Quando
+  - Symbols Nerd Font
+  - JoyPixels
+  - Untitled1
   sans-serif:
+  - Iosevka Quasi Proportional Custom MdEx
+  # - Convergence
+  # - Rambla
   # - Barlow Medium
   # - Baloo 2 Medium
-  - Convergence
   - Symbols Nerd Font
   - JoyPixels
+  - Untitled1
   emoji:
   - Symbols Nerd Font
   - JoyPixels
+  - Untitled1
 options:
   autohint: 'false'
   hinting: 'false'

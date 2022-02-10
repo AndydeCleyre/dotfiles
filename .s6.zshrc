@@ -38,4 +38,6 @@ _essex () {
             "1:Commands:($cmds)"
     fi
 }
-compdef _essex essex 2>/dev/null
+if type compdef &>/dev/null; then
+  compdef _essex essex
+fi

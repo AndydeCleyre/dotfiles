@@ -2,27 +2,22 @@
 
 alias spacman="sudo pacman"
 alias update-mirrors="sudo reflector --save /etc/pacman.d/mirrorlist --sort score --country 'United States' --country 'Canada' --latest 30 -p http"
-alias y="yay"
+# alias y="yay"
+alias y="paru"
 alias yc="sudo DIFFPROG='sudo -u andy env SUDO_EDITOR=meld sudoedit' pacdiff"
 ycl () { yay -G $1 && cd ${1#*/} }
 alias yg="ycl"
 
-__pkgdesc () {  # <pkgname>
-    pacman -Qi "$1" | grep -E '^Description\s+:' | sed -E 's/.+:\s+(.+)/\1/'
-}
-
 why () {  # <pkgname...>
-    for pkg in $@; do
-        pactree -r $pkg
-        __pkgdesc $pkg
-    done
+    for 1; {
+        pactree -r $1
+        pacman -Qi $1 \
+        | grep -E '^Description\s+:' \
+        | sed -E 's/[^:]+:\s+(.+)/\1/'
+    }
 }
-_why () { _alternative "arguments:Installed Packages:($(pacman -Qq))" }
-compdef _why why
 
 alias whose="pacman -Qo"
-_whose () { _alternative 'arguments:Files:_files' 'arguments:Commands:_files -W /bin' }
-compdef _whose whose
 
 when () {  # <pkgname-filter>
     ((( $+commands[rainbow] )) &&
@@ -41,17 +36,29 @@ when () {  # <pkgname-filter>
         grep -aEi "ed [^ ]*$1" /var/log/pacman.log
 }
             # --bold '(?<= -> )[^ ]+(?=\)$)' \
-_when () {
-    local repos=($(pacman-conf --repo-list) AUR)
-    _arguments '1:All Packages:(${$(yay -Pc):|repos})'
-}
-compdef _when when yg
 
 # alias what="pactree -c"
 
 where () {  # pkgname
     (pacman -Qql "$@" || pkgfile -lq "$@") | grep -P -v "/$"
 }
-_where () { _alternative 'arguments:All Packages:_pacman_completions_all_packages' }
-compdef _where where
-alias what="where"
+# alias what="where"
+
+if type compdef &>/dev/null; then
+
+    _why () { _alternative "arguments:Installed Packages:($(pacman -Qq))" }
+    compdef _why why
+
+    _whose () { _alternative 'arguments:Files:_files' 'arguments:Commands:_files -W /bin' }
+    compdef _whose whose
+
+    _when () {
+        local repos=($(pacman-conf --repo-list) AUR)
+        _arguments '1:All Packages:(${$(yay -Pc):|repos})'
+    }
+    compdef _when when yg
+
+    _where () { _alternative 'arguments:All Packages:_pacman_completions_all_packages' }
+    compdef _where where
+
+fi

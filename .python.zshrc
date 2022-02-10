@@ -1,10 +1,11 @@
+PYTHONNOUSERSITE=1
+
 () {
-    local zpypath=~/Code/zpy/zpy.plugin.zsh
-    # local zpypath=~/Code/plugins/zsh/zpy/zpy.plugin.zsh
+    # local zpypath=~/Code/zpy/zpy.plugin.zsh
+    local zpypath=~/Code/plugins/zsh/zpy/zpy.plugin.zsh
     . $zpypath
 }
-alias ii="ipython"
-alias i="ptipython"
+alias i="ipython"
 pyenv-init () { eval "$(pyenv init - zsh)" }
 
 # This was the slowest-running single command in my zshrc by an order of magnitude:
@@ -26,13 +27,31 @@ alias define="cambrinary -w"
 alias so="socli -iq"
 alias sopy="socli -i -t python -q"
 m () {
-    # mansnip $@ | lh -S man
-    mansnip $@ | bat -p -l man | less
+  # mansnip $@ | lh -S man
+  mansnip $@ | bat -p -l man | less
 }
 mz () {
-    if [[ $@ ]]; then
-        m zshall $@
-    else
-        man zshall
-    fi
+  if [[ $@ ]] {
+    # m zshall $@
+    mansnip zshall $@ | bat -p -l man | less
+  } else {
+    man zshall
+  }
+}
+wk () {  # <word-or-phrase>
+  emulate -L zsh
+  local json="$(ddgr -n 3 -x --json 'site:en.wiktionary.org' "$1")"
+  for 1 ( 0 1 2 ) {
+    print -rP -- "%B%U$(yaml-get -p $1.title <<<$json)%u%b $(yaml-get -p $1.url <<<$json)"
+    print
+    yaml-get -p $1.abstract <<<$json
+    print
+  }
+}
+without () {  # [<yamlpath>=sops]
+  if [[ -t 1 ]] {
+    yaml-set -g "${1:-sops}" -D | hs yml
+  } else {
+    yaml-set -g "${1:-sops}" -D
+  }
 }

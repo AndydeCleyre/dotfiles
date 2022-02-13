@@ -1,0 +1,15 @@
+{
+
+  default_flags: ig
+
+  verbs: [
+
+    {
+      internal: ":print_path"
+      key: "enter"
+      leave_broot: true
+    }
+
+  ]
+
+}

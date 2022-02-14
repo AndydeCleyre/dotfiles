@@ -28,7 +28,7 @@ l () {  # [<less-arg>...] [<doc>[:<line-num>] (or read stdin)]
 
   local doc linenum
   doc=${@[-1]%:<->##}
-  if [[ $doc != ${@[-1]} ]] linenum=${@[-1]#${doc}:}
+  if [[ $doc != ${@[-1]} ]]  linenum=${@[-1]#${doc}:}
 
   LESS=${LESS:-JRWXij.3} less ${linenum:++${linenum}} ${linenum:+-N} ${@[1,-2]} ${doc}
 }
@@ -83,44 +83,51 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
   local hi
   case $syntax {
     md)
-      for hi (
-        $commands[mdcat]
-        $commands[glow]
-      ) {
-        if [[ -x $hi ]] {
-          # remove (-S <syntax>)
-          if (( syntax_idx )) argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
-          # specify glow style to ensure it passes style though pipes (to less)
-          if [[ $hi:t == glow ]] argv=(-s dark $@)
+      for hi ( rich mdcat glow ) {
+        if (( $+commands[$hi] )) {
+
+          # remove (-S <syntax>):
+          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+
+          case $hi {
+            rich)   argv=(--force-terminal --markdown $@)  ;;
+            # ensure it passes style though pipes to a pager:
+            glow)   argv=(-s dark $@)     ;;
+            # don't try to fetch remote images:
+            mdcat)  argv=(--local $@)     ;;
+          }
+          
           $hi $@
           return
         }
       }
     ;;
     rst)
-      if (( $+commands[pandoc] )) {
+      if (( $+commands[rich] )) {
+
+        # remove (-S <syntax>):
+        if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+
+        rich --force-terminal --rst $@
+        return
+      } elif (( $+commands[pandoc] )) {
         if (( $+commands[mdcat] )) || (( $+commands[glow] )) {
+
           # remove (-S <syntax>)
-          if (( syntax_idx )) argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+
           for 1 { $0 -S md =(pandoc $1 --to commonmark) }
       	  return
         }
       }
     ;;
     diff)
-      for hi (
-        $commands[delta]
-        $commands[diff-so-fancy]
-        $commands[diff-highlight]
-        /usr/local/opt/git/share/git-core/contrib/diff-highlight/diff-highlight
-        /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
-        /usr/share/doc/git/contrib/diff-highlight
-        /usr/share/git-core/contrib/diff-highlight
-        /usr/share/git/diff-highlight/diff-highlight
-      ) {
-        if [[ -x $hi ]] {
+      for hi ( riff delta diff-so-fancy colordiff ) {
+        if (( $+commands[$hi] )) {
+
           # remove (-S <syntax>)
-          if (( syntax_idx )) argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+
           # delta will use BAT_THEME
           BAT_THEME=${BAT_THEME:-ansi} \
           $hi $@
@@ -130,13 +137,7 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
     ;;
   }
   if (( $+commands[highlight] )) {
-    local themes=(
-      aiseered
-      blacknblue
-      bluegreen
-      ekvoli
-      navy
-    )
+    local themes=(aiseered blacknblue bluegreen ekvoli navy)
 
     local h_args=(-O truecolor -s ${themes[RANDOM % $#themes + 1]} -t 4 --force --stdout $@)
 
@@ -148,19 +149,19 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
 
     if [[ ! -t 0 ]] {
       local content=$(<&0)
-      if [[ $content ]] highlight $h_args <<<$content
+      if [[ $content ]]  highlight $h_args <<<$content
     } else {
       highlight $h_args
     }
   } elif (( $+commands[bat] )) {
-    if (( syntax_idx )) argv[$syntax_idx]=-l
+    if (( syntax_idx ))  argv[$syntax_idx]=-l
     bat -p --paging never --color always $@
   } elif (( $+commands[batcat] )) {
-    if (( syntax_idx )) argv[$syntax_idx]=-l
+    if (( syntax_idx ))  argv[$syntax_idx]=-l
     batcat -p --paging never --color always $@
   } else {
     # remove (-S <syntax>)
-    if (( syntax_idx )) argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
+    if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
     cat $@
   }
 }
@@ -176,14 +177,14 @@ lh () {  # [<doc>[:<line-num>]] [-S <syntax>] [<h-arg>...]
 
   # syntax can be specified before doc as well
   local doc_idx=1 syntax_idx=${@[(I)-S]}
-  if [[ $syntax_idx == 1 ]] doc_idx=3
+  if [[ $syntax_idx == 1 ]]  doc_idx=3
 
   # strip the optional :<line-num> from <doc>
   local doc=${@[$doc_idx]%:<->##}
 
   # extract <line_num> to pass to less
   local linenum
-  if [[ $doc != ${@[$doc_idx]} ]] linenum=${@[$doc_idx]#${doc}:}
+  if [[ $doc != ${@[$doc_idx]} ]]  linenum=${@[$doc_idx]#${doc}:}
 
   h ${doc} ${@[0,$doc_idx-1]} ${@[$doc_idx+1,-1]} | LESS=${LESS:-JRWXij.3} less ${linenum:++${linenum}} ${linenum:+-N}
 }

@@ -59,19 +59,21 @@ hi () {  # [<highlight-arg>...]
   highlight -O truecolor -s ${themes[RANDOM % $#themes + 1]} -t 4 --force --stdout $@
 }
 
-alias hs="h -S"  # <syntax> [<file> (or read stdin)]
+alias hs="h -s"  # <syntax> [<file> (or read stdin)]
 
-h () {  # [-S <syntax>] [<doc>... (or read stdin)]
+h () {  # [-s <syntax>] [<doc>... (or read stdin)]
 # TODO: support (in each case either translate and forward, or strip):
 # highlight args: -m <num>, -l
 # will need to update lh afterward
   emulate -L zsh -o extendedglob
   rehash
 
-  # get syntax if passed with -S, or if first arg is md/rst file
-  local syntax syntax_idx=${@[(I)-S]}
+  # get syntax if first arg is md/rst file,
+  # or pop if passed with -[Ss]
+  local syntax syntax_idx=${@[(I)-[Ss]]}
   if (( syntax_idx )) {
     syntax=${@[$syntax_idx+1]}
+    argv=($@[1,$syntax_idx-1] $@[$syntax_idx+2,-1])
   } else {
     case $1 {
       *(#i).rst)  syntax=rst  ;;
@@ -86,14 +88,21 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
       for hi ( rich mdcat glow ) {
         if (( $+commands[$hi] )) {
 
-          # remove (-S <syntax>):
-          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
-
           case $hi {
-            rich)   argv=(--force-terminal --markdown $@)  ;;
+            rich)
+              local r_args=(--force-terminal --markdown)
+              if [[ ! -t 0  ]] {
+                rich $r_args -
+              } else {
+                for 1 { rich $r_args $1 }
+              }
+              return
+            ;;
+
             # ensure it passes style though pipes to a pager:
             glow)   argv=(-s dark $@)     ;;
-            # don't try to fetch remote images:
+
+            # do not fetch remote images:
             mdcat)  argv=(--local $@)     ;;
           }
           
@@ -104,19 +113,18 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
     ;;
     rst)
       if (( $+commands[rich] )) {
-
-        # remove (-S <syntax>):
-        if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
-
-        rich --force-terminal --rst $@
+        local r_args=(--force-terminal --rst)
+        if [[ ! -t 0  ]] {
+          rich $r_args -
+        } else {
+          for 1 { rich $r_args $1 }
+        }
         return
+
       } elif (( $+commands[pandoc] )) {
         if (( $+commands[mdcat] )) || (( $+commands[glow] )) {
 
-          # remove (-S <syntax>)
-          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
-
-          for 1 { $0 -S md =(pandoc $1 --to commonmark) }
+          for 1 { $0 -s md =(pandoc $1 --to commonmark) }
       	  return
         }
       }
@@ -124,9 +132,6 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
     diff)
       for hi ( riff delta diff-so-fancy colordiff ) {
         if (( $+commands[$hi] )) {
-
-          # remove (-S <syntax>)
-          if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
 
           # delta will use BAT_THEME
           BAT_THEME=${BAT_THEME:-ansi} \
@@ -136,10 +141,12 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
       }
     ;;
   }
+
   if (( $+commands[highlight] )) {
     local themes=(aiseered blacknblue bluegreen ekvoli navy)
 
     local h_args=(-O truecolor -s ${themes[RANDOM % $#themes + 1]} -t 4 --force --stdout $@)
+    if [[ $syntax ]]  h_args+=(-S $syntax)
 
     # Empty input can yield unwanted newlines as output from highlight.
     # https://gitlab.com/saalen/highlight/-/issues/147
@@ -153,15 +160,24 @@ h () {  # [-S <syntax>] [<doc>... (or read stdin)]
     } else {
       highlight $h_args
     }
+
   } elif (( $+commands[bat] )) {
-    if (( syntax_idx ))  argv[$syntax_idx]=-l
+    if [[ $syntax ]]  argv+=(-l $syntax)
     bat -p --paging never --color always $@
   } elif (( $+commands[batcat] )) {
-    if (( syntax_idx ))  argv[$syntax_idx]=-l
+    if [[ $syntax ]]  argv+=(-l $syntax)
     batcat -p --paging never --color always $@
+
+  } elif (( $+commands[rich] )) {
+    local r_args=(--force-terminal)
+    if [[ $syntax ]]  r_args+=(--lexer $syntax)
+
+    if [[ ! -t 0  ]] {
+      rich $r_args -
+    } else {
+      for 1 { rich $r_args $1 }
+    }
   } else {
-    # remove (-S <syntax>)
-    if (( syntax_idx ))  argv=($@[0,$syntax_idx-1] $@[$syntax_idx+2,-1])
     cat $@
   }
 }
@@ -172,11 +188,11 @@ alias bs="b -l"   # <syntax> <file>; <cmd> | bs <syntax>
 
 alias plain="sed 's/\x1b\[[0-9;]*m//g'"  # <cmd> | plain
 
-lh () {  # [<doc>[:<line-num>]] [-S <syntax>] [<h-arg>...]
+lh () {  # [<doc>[:<line-num>]] [-s <syntax>] [<h-arg>...]
   emulate -L zsh -o extendedglob
 
   # syntax can be specified before doc as well
-  local doc_idx=1 syntax_idx=${@[(I)-S]}
+  local doc_idx=1 syntax_idx=${@[(I)-[Ss]]}
   if [[ $syntax_idx == 1 ]]  doc_idx=3
 
   # strip the optional :<line-num> from <doc>

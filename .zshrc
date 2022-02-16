@@ -412,14 +412,7 @@ if (( $+functions[compdef] )) {
   compdef _please please
 }
 
-() {  # Assume always 1 or 0 sessions
-    if [[ ! $TMUX ]]; then
-        local REPLY
-        if read -t 3 -k "?Attach to tmux session [Yn]? "; then
-            if [[ $REPLY == $'\n' || $REPLY:l == y ]] tmux a || tmux
-        fi
-        clear
-    fi
-}
+# Always join (or create) the tmux session:
+if ! [[ $TERM =~ ^tmux- ]] && (( $+commands[tmux] )) { tmux a || tmux }
 
 if (( ${+functions[p10k]} )) p10k finalize  # See .theme.zshrc

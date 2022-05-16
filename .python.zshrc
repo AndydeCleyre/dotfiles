@@ -1,12 +1,13 @@
 PYTHONNOUSERSITE=1
 
 () {
-    # local zpypath=~/Code/zpy/zpy.plugin.zsh
-    local zpypath=~/Code/plugins/zsh/zpy/zpy.plugin.zsh
-    . $zpypath
+    local zpypath=~/Code/zpy/zpy.plugin.zsh
+    # local zpypath=~/Code/plugins/zsh/zpy/zpy.plugin.zsh
+    if [[ -r $zpypath ]] . $zpypath
 }
 alias i="ipython"
-pyenv-init () { eval "$(pyenv init - zsh)" }
+
+alias pie="pip install -e ."
 
 # This was the slowest-running single command in my zshrc by an order of magnitude:
 # eval "$(pip completion -z)"
@@ -33,7 +34,7 @@ m () {
 mz () {
   if [[ $@ ]] {
     # m zshall $@
-    mansnip zshall $@ | bat -p -l man | less
+    mansnip zshall $@
   } else {
     man zshall
   }
@@ -54,4 +55,8 @@ without () {  # [<yamlpath>=sops]
   } else {
     yaml-set -g "${1:-sops}" -D
   }
+}
+dropout () {  # [<url>=<clipboard>]
+  emulate -L zsh
+  yt-dlp --referer 'https://www.dropout.tv/' -nf 'http-540p' "${@:-$(xclip -sel clip -o)}"
 }

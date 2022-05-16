@@ -1,15 +1,23 @@
+#########################################
+# Docs:                                 #
+# - https://dystroy.org/broot/conf_file #
+# - hjson docs: https://hjson.github.io #
+#########################################
+
 {
 
+  # Do show: gitignored files, git info, file sizes
   default_flags: igs
-  show_selection_mark: true
+
   icon_theme: vscode
+  show_selection_mark: true
+  true_colors: true
 
   verbs: [
 
-    {
-      internal: ":quit"
-      key: "ctrl-c"
-    }
+    ##############
+    # Navigation #
+    ##############
 
     {
       internal: ":up_tree"
@@ -24,7 +32,17 @@
     {
       internal: ":focus"
       key: "alt-down"
+      shortcut: go
     }
+
+    {
+      internal: ":focus ~"
+      shortcut: ~
+    }
+
+    #########
+    # Panes #
+    #########
 
     {
       internal: ":toggle_second_tree"
@@ -32,26 +50,29 @@
     }
 
     {
-      internal: ":focus"
-      shortcut: go
+      cmd: ":toggle_stage;:next_match"
+      key: "tab"
     }
 
     {
       external: "tmux splitw"
+      set_working_dir: true
       key: "f4"
       shortcut: z
-      invocation: shell_pane
       leave_broot: false
-      set_working_dir: true
     }
 
     {
       external: zsh
-      shortcut: zsh
-      invocation: shell_popover
-      leave_broot: false
       set_working_dir: true
+      key: ctrl-t
+      shortcut: zsh      
+      leave_broot: false
     }
+
+    #########
+    # Files #
+    #########
 
     {
       external: "touch {directory}/{new_file}"
@@ -62,14 +83,13 @@
     {
       external: "$EDITOR {file}"
       shortcut: e
-      invocation: edit
       leave_broot: false
     }
 
     {
       external: "subl {file}"
       shortcut: eg
-      invocation: edit_gui
+      invocation: subl
       leave_broot: false
     }
 
@@ -80,24 +100,33 @@
     }
 
     {
-      external: "dolphin {directory}"
-      invocation: dolphin
+      execution: "cp -r {file} {parent}/{file-stem}-{version}{file-dot-extension}"
+      key: ctrl-b
+      invocation: "backup {version}"
       leave_broot: false
+      auto_exec: false
     }
 
-    {
-      external: "zsh -ic \"git diff {file} | lh -S diff\""
-      shortcut: gd
-      invocation: git_diff
-      leave_broot: false
-      set_working_dir: true
-    }
+    #######
+    # Git #
+    #######
 
     {
-      external: "meld {file}"
+      external: "git difftool -y {file}"
       invocation: meld
       leave_broot: false
     }
+
+    {
+      external: "zsh -ic \"git diff {file} | lh -s diff\""
+      shortcut: gd
+      set_working_dir: true
+      leave_broot: false
+    }
+
+    ##########
+    # Pagers #
+    ##########
 
     {
       external: "less -+F {file}"
@@ -117,6 +146,24 @@
       leave_broot: false
     }
 
+    ##############
+    # Miscellany #
+    ##############
+
+    {
+      # https://github.com/Canop/broot/issues/530
+      external: "xdg-open {file}"
+      key: enter
+      apply_to: file
+      leave_broot: false
+    }
+
+    {
+      external: "dolphin {directory}"
+      invocation: dolphin
+      leave_broot: false
+    }
+
     # {
       # TODO: ...
       # external: "zsh -c 'xclip -sel clip <<<{file}'"
@@ -131,8 +178,9 @@
 
   skin: {
     # https://dystroy.org/broot/skins/#gruvbox
-    default: rgb(235, 219, 178) none / rgb(189, 174, 147) rgb(40, 40, 40)
+    default: rgb(235, 219, 178) none / rgb(189, 174, 147) none
     tree: rgb(168, 153, 132) None / rgb(102, 92, 84) None
+    parent: rgb(235, 219, 178) none / rgb(189, 174, 147) none Italic
     file: None None / None  None Italic
     directory: rgb(131, 165, 152) None Bold / rgb(131, 165, 152) None
     exe: rgb(184, 187, 38) None

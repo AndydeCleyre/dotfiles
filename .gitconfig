@@ -1,21 +1,14 @@
 [user]
     name = Andy Kluger
-    email = andykluger@gmail.com
-[credential]
-    helper = cache
-[push]
-    default = simple
-[ghi]
-    token = [redacted]
-[core]
-    pager = delta | less --tabs=4 -FRXij.5
-[interactive]
-    diffFilter = delta --color-only
-[color]
-    ui = true
-[github]
-	user = andydecleyre
+    email = AndyKluger@gmail.com
 [pull]
-	rebase = false
+    rebase = false
 [merge]
-	tool = meld
+    tool = meld
+[pager]
+    diff = riff
+    show = riff
+[interactive]
+    diffFilter = riff
+[core]
+    excludesfile = /home/andy/.gitignore

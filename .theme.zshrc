@@ -1,11 +1,14 @@
-setopt promptsubst
+setopt promptsubst transientrprompt
 
 () {
   emulate -L zsh
 
   local usual_distro='Arch Linux' usual_host='Ingram' usual_user='andy'
-  # local ptime='%D{%L:%M}'
   local ptime='$(dt)'  # dozenal time
+  # local ptime='%D{%L:%M}'
+
+  local ptime_bubble='%F{black}%K{black}%F{green}'$ptime'%F{black}%k%f'
+  local tmux_bubbles='${(j::)${(f)"$(tmux lsw -F "%F{black#}%f%K{black#}#{?#{==:#{pane_tty},$TTY},%F{white#},%F{blue#}}#{?#{!=:#W,zsh},#W,%%}#{?#{!=:#{window_panes},1},+,}%k%F{black#}%f" 2>/dev/null)"}}'
 
   local agkozakpath p10kpath
   agkozakpath=~/Code/plugins/zsh/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
@@ -17,16 +20,15 @@ setopt promptsubst
     } else {
       AGKOZAK_USER_HOST_DISPLAY=0
     }
-    AGKOZAK_CUSTOM_SYMBOLS=('⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
+    AGKOZAK_CUSTOM_SYMBOLS=('⇣⇡' '⇣' '⇡' '+' 'x' '!' '' '?' '$')
     AGKOZAK_LEFT_PROMPT_ONLY=1
     AGKOZAK_PROMPT_CHAR=('%F{white}%B->>%b%f' '#' ':')
     AGKOZAK_PROMPT_DIRTRIM=4
     AGKOZAK_PROMPT_DIRTRIM_STRING=…
-    # if (( $+commands[tmux] )) {
     if [[ $TMUX ]] && [[ $TMUX != *tmate* ]] {
-      AGKOZAK_CUSTOM_RPROMPT='${(j: :)${(f)"$(tmux lsw -F "#{?#{==:#{pane_tty},$TTY},%B%F{white#},%F{blue#}}#{?#{!=:#W,zsh},#W,%%}#{?#{!=:#{window_panes},1},+,}%f%b" 2>/dev/null)"}} %F{green}'$ptime'%f'
+      AGKOZAK_CUSTOM_RPROMPT="${tmux_bubbles}${ptime_bubble}"
     } else {
-      AGKOZAK_CUSTOM_RPROMPT='%F{green}'$ptime'%f'
+      AGKOZAK_CUSTOM_RPROMPT=$ptime_bubble
     }
 
     . $agkozakpath
@@ -100,12 +102,13 @@ PROMPT2='%B%F{blue}->…%f%b '
 dt () {
   emulate -L zsh
 
-  local h_m=(${(s: :)${(%):-%D{%L %M}}})
+  local ten=Ŧ lem=Ł
 
-  local hour=${h_m[1]:s/10/Ŧ/:s/11/Ł/:s/12/0/}
+  local h_m=(${(s: :)${(%):-%D{%L %M}}})
+  local hour=${h_m[1]:s/10/$ten/:s/11/$lem/:s/12/0/}
   local -i minute=${h_m[2]}
 
-  local fivers="${$(( minute/5 )):s/10/Ŧ/:s/11/Ł/}"
+  local fivers=${$(( minute/5 )):s/10/$ten/:s/11/$lem/}
   local spillover="${$(( minute%5 )):/0}"
 
   print -r -- "${hour}.${fivers}${spillover:+:}${spillover}"

@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/bin/zsh
 
-terminal=${1:-konsole}
-# terminal=${1:-alacritty}
-if [[ $(xprop -id $(xdotool getactivewindow) WM_CLASS) =~ \"$terminal\" ]]; then
-    xdotool getactivewindow windowminimize
-else
-    wmctrl -xR $terminal
-fi
+terminal=wezterm-gui
+wm_class=org.wezfurlong.wezterm
 
-pgrep -u "$(whoami)" -x $terminal || exec $terminal &
+if [[ $(xprop -id $(xdotool getactivewindow) WM_CLASS) =~ \"$wm_class\" ]] {
+  xdotool getactivewindow windowminimize
+} else {
+  wmctrl -xR $wm_class
+}
+
+pgrep -u $USER -x $terminal || exec $terminal &

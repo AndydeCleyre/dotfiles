@@ -90,7 +90,7 @@ h () {  # [-s <syntax>] [<doc>... (or read stdin)]
 
           case $hi {
             rich)
-              local r_args=(--force-terminal --markdown)
+              local r_args=(--force-terminal --no-wrap -W $(( COLUMNS-4 )) --markdown)
               if [[ ! -t 0  ]] {
                 rich $r_args -
               } else {
@@ -113,7 +113,7 @@ h () {  # [-s <syntax>] [<doc>... (or read stdin)]
     ;;
     rst)
       if (( $+commands[rich] )) {
-        local r_args=(--force-terminal --rst)
+        local r_args=(--force-terminal --no-wrap -W $(( COLUMNS-4 )) --rst)
         if [[ ! -t 0  ]] {
           rich $r_args -
         } else {
@@ -169,7 +169,7 @@ h () {  # [-s <syntax>] [<doc>... (or read stdin)]
     batcat -p --paging never --color always $@
 
   } elif (( $+commands[rich] )) {
-    local r_args=(--force-terminal)
+    local r_args=(--force-terminal --no-wrap -W $(( COLUMNS-4 )))
     if [[ $syntax ]]  r_args+=(--lexer $syntax)
 
     if [[ ! -t 0  ]] {

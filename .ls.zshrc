@@ -1,6 +1,6 @@
 if (( $+commands[exa] )) {
-  alias ls="exa --binary --octal-permissions --no-permissions --git --time-style iso"
-  alias recent="exa --binary --octal-permissions --no-permissions --git --time-style iso -snew"
+  alias ls="exa --binary --octal-permissions --no-permissions --git --icons"
+  alias recent="exa --binary --octal-permissions --no-permissions --git -snew --icons"
 } else {
   alias ls="ls --color=auto"
   alias recent="ls -rt"

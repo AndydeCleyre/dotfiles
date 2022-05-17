@@ -166,7 +166,7 @@ multibind .zle_select-and-end '^[[1;2F' '^[[1;6B'  # shift+end; ctrl+shift+down
   # Credit: romkatv/z4h
   emulate -L zsh
   for 1 ( chpwd $chpwd_functions precmd $precmd_functions ) {
-    if (( $+functions[$1] )) $1 &>/dev/null
+    if (( $+functions[$1] ))  $1 &>/dev/null
   }
   zle .reset-prompt
   zle -R
@@ -188,7 +188,7 @@ bindkey '^[[1;3A' .zle_cd-up  # alt+up
 .zle_cd-rotate () {
   emulate -L zsh
   while (( $#dirstack )) && ! { pushd -q $1 &>/dev/null } { popd -q $1 }
-  if (( $#dirstack )) .zle_redraw-prompt
+  if (( $#dirstack ))  .zle_redraw-prompt
 }
 
 .zle_cd-back () { .zle_cd-rotate +1 }

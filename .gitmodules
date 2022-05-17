@@ -20,3 +20,6 @@
 [submodule "Code/plugins/zsh/fast-syntax-highlighting"]
 	path = Code/plugins/zsh/fast-syntax-highlighting
 	url = git@github.com:zdharma/fast-syntax-highlighting
+[submodule "Code/plugins/zsh/zsh-completions"]
+	path = Code/plugins/zsh/zsh-completions
+	url = git@github.com:zsh-users/zsh-completions

@@ -3,12 +3,14 @@ anyio==3.3.0
 beautifulsoup4==4.9.3
     # via -r requirements.in
 certifi==2021.5.30
-    # via httpx
+    # via
+    #   httpcore
+    #   httpx
 h11==0.12.0
     # via httpcore
-httpcore==0.13.6
+httpcore==0.15.0
     # via httpx
-httpx==0.18.2
+httpx==0.23.0
     # via -r requirements.in
 idna==3.2
     # via

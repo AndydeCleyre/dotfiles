@@ -23,3 +23,6 @@
 [submodule "Code/plugins/zsh/zsh-completions"]
 	path = Code/plugins/zsh/zsh-completions
 	url = git@github.com:zsh-users/zsh-completions
+[submodule ".config/broot"]
+	path = .config/broot
+	url = git@github.com:AndydeCleyre/dotfiles-broot

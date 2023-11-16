@@ -1,12 +1,18 @@
 [submodule "Code/plugins/plasma/applet-window-title"]
-	path = Code/plugins/plasma/applet-window-title
-	url = git@github.com:psifidotos/applet-window-title
+  path = Code/plugins/plasma/applet-window-title
+  url = git@github.com:psifidotos/applet-window-title
 [submodule ".config/broot"]
-	path = .config/broot
-	url = git@github.com:AndydeCleyre/dotfiles-broot
+  path = .config/broot
+  url = git@github.com:AndydeCleyre/dotfiles-broot
+  branch = master
 [submodule ".config/mpv"]
-	path = .config/mpv
-	url = https://github.com/AndydeCleyre/dotfiles-mpv
+  path = .config/mpv
+  url = https://github.com/AndydeCleyre/dotfiles-mpv
+  branch = main
 [submodule ".config/tmux"]
-	path = .config/tmux
-	url = https://github.com/AndydeCleyre/dotfiles-tmux
+  path = .config/tmux
+  url = https://github.com/AndydeCleyre/dotfiles-tmux
+  branch = main
+[submodule ".config/zsh"]
+	path = .config/zsh
+	url = https://github.com/AndydeCleyre/dotfiles-zsh

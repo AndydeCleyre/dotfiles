@@ -7,3 +7,6 @@
 [submodule ".config/mpv"]
 	path = .config/mpv
 	url = https://github.com/AndydeCleyre/dotfiles-mpv
+[submodule ".config/tmux"]
+	path = .config/tmux
+	url = https://github.com/AndydeCleyre/dotfiles-tmux

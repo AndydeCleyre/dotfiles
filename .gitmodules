@@ -26,3 +26,6 @@
 [submodule ".config/broot"]
 	path = .config/broot
 	url = git@github.com:AndydeCleyre/dotfiles-broot
+[submodule ".config/mpv"]
+	path = .config/mpv
+	url = https://github.com/AndydeCleyre/dotfiles-mpv

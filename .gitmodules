@@ -1,28 +1,6 @@
-[submodule "Code/plugins/extrakto"]
-	path = Code/plugins/tmux/extrakto
-	url = git@github.com:laktak/extrakto
-[submodule "Code/plugins/agkozak-zsh-prompt"]
-	path = Code/plugins/zsh/agkozak-zsh-prompt
-	url = git@github.com:agkozak/agkozak-zsh-prompt
-[submodule "Code/plugins/powerlevel10k"]
-	path = Code/plugins/zsh/powerlevel10k
-	url = git@github.com:romkatv/powerlevel10k
-[submodule "Code/plugins/zpy"]
-	path = Code/plugins/zsh/zpy
-	url = git@github.com:andydecleyre/zpy
-	branch = develop
-[submodule "Code/plugins/zsh-z"]
-	path = Code/plugins/zsh/zsh-z
-	url = git@github.com:agkozak/zsh-z
 [submodule "Code/plugins/plasma/applet-window-title"]
 	path = Code/plugins/plasma/applet-window-title
 	url = git@github.com:psifidotos/applet-window-title
-[submodule "Code/plugins/zsh/fast-syntax-highlighting"]
-	path = Code/plugins/zsh/fast-syntax-highlighting
-	url = git@github.com:zdharma/fast-syntax-highlighting
-[submodule "Code/plugins/zsh/zsh-completions"]
-	path = Code/plugins/zsh/zsh-completions
-	url = git@github.com:zsh-users/zsh-completions
 [submodule ".config/broot"]
 	path = .config/broot
 	url = git@github.com:AndydeCleyre/dotfiles-broot

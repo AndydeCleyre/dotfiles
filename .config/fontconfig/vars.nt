@@ -1,0 +1,56 @@
+roles:
+  monospace:
+    - Iosevka Term Custom
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+  ui-monospace:
+    - Iosevka Term Custom
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+  serif:
+    - Typey McTypeface
+    - Kelvinch
+    - Alegreya
+    - Andada Pro
+    - Brawler
+    - Caladea
+    - Fraunces
+    - Quando
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+  sans-serif:
+    - Iosevka Quasi Proportional Extension Only Custom
+    - Convergence
+    - Rambla
+    - Barlow Medium
+    - Baloo 2 Medium
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+  emoji:
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+options:
+  autohint: false
+  hinting: false
+  hintstyle: hintnone
+  lcdfilter: lcddefault
+  rgba: rgb
+features:
+  - FRAC
+  - THND
+  # - TXTR

@@ -1,4 +1,4 @@
-@require(roles, options)
+@require(roles, options, features)
 <?xml version='1.0'?>
 <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
 <fontconfig>
@@ -7,6 +7,11 @@
     <dir>/usr/share/fonts</dir>
 
     <match target="font">
+
+        @for feature in features:
+        <edit name="fontfeatures" mode="append"><string>@feature on</string></edit>
+        @end
+
         @for key, val in options.items():
         @(otype = 'bool' if val in ('true', 'false') else 'const')\
         <edit mode="assign" name="@key"><@otype>@val</@otype></edit>

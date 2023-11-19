@@ -3,8 +3,10 @@
 connected_color=$(python3 -c "print(''.join(hex(int(i))[2:] for i in '$(kreadconfig5 --group Colors:Button --key ForegroundActive)'.split(',')))")
 mullvad_status () {
     local mullvad_status=$(mullvad status)
+
     local is_connected=
-    if [[ $mullvad_status =~ '.*: Connected to (WireGuard|OpenVPN) .*' ]] is_connected=1
+    if [[ $mullvad_status =~ '.*Connected to .*' ]]  is_connected=1
+
     if [[ $1 == --click ]] {
         if [[ $is_connected ]] {
             mullvad disconnect

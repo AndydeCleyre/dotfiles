@@ -1,3 +1,4 @@
+#!/home/andy/.local/share/venvs/e0d1492fd6264f3f69c421b308c813d6/venv/bin/python
 #!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 import re
@@ -41,9 +42,9 @@ STATUS_ICONS = {
     # 'Stopped': '⏹',
     # 'Stopped': '栗',
     # 'Stopped': '',
-    'Stopped': '',
+    # 'Stopped': '',
     # 'Stopped': '',
-    # 'Stopped': '',
+    'Stopped': '',
     # 'Stopped': 'ﭥ',
     # 'Stopped': 'ﭦ',
 
@@ -144,7 +145,7 @@ def simplify_title(title):
             r' +- +(.*(\(?'
                 r'Remaster(ed)?|Single|Stereo|Mono|Long|Re-Record(ed|ing)|Acoustic|'
                 r'Bonus Track|Edit|Live( [Aa]t .*)?|Version|([Rr]e?|N\.)?[Mm]i?x|'
-                r'Instrumental|Rework|Take|Vocals?|\d{4}|Dub|Demo'
+                r'Instrumental|Rework|Take|Vocals?|\d{4}|Dub|Demo|Outtake'
             r'\)?))?', ' - ', title
         ).rstrip('- ')
         if title == stabilized:

@@ -1,6 +1,7 @@
 roles:
   monospace:
     - Iosevka Term Custom
+    - Fantasque Sans Mono
     - Symbols Nerd Font
     - NanumGothicCoding
     - OpenMoji
@@ -8,6 +9,7 @@ roles:
     - Untitled1
   ui-monospace:
     - Iosevka Term Custom
+    - Fantasque Sans Mono
     - Symbols Nerd Font
     - NanumGothicCoding
     - OpenMoji
@@ -28,7 +30,7 @@ roles:
     - JoyPixels
     - Untitled1
   sans-serif:
-    - Iosevka Quasi Proportional Extension Only Custom
+    - Iosevka QP Custom
     - Convergence
     - Rambla
     - Barlow Medium

@@ -1,0 +1,46 @@
+langs:
+  ini:
+    shebang: ^\[.*\]$
+    extensions:
+      - in
+    names:
+      - dev-requirements.txt
+      - doc-requirements.txt
+      - local-requirements.txt
+      - ops-requirements.txt
+      - requirements.txt
+      - test-requirements.txt
+  json:
+    shebang: ^\{$
+    extensions:
+      - sublime-settings
+  makefile:
+    names:
+      - Makefile
+  python:
+    extensions:
+      - enaml
+      - ipy
+      - pyj
+  sh:
+    shebang: ^#!/bin/execlineb($| .*)
+    extensions:
+      - install
+      - pkgbuild
+      - zsh-theme
+      - zshrc
+    names:
+      - PKGBUILD
+  toml:
+    extensions:
+      - toml.wz
+    names:
+      - Pipfile
+      - Cargo.lock
+  xml:
+    shebang: ^<\?xml .*>$
+    extensions:
+      - ui
+  yml:
+    extensions:
+      - yml.wz

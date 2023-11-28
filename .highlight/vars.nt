@@ -28,6 +28,7 @@ langs:
       - install
       - pkgbuild
       - zsh-theme
+      - zshenv
       - zshrc
     names:
       - PKGBUILD

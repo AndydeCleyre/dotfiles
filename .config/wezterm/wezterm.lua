@@ -19,6 +19,7 @@ return {
   font_size = 24,
   font = wezterm.font_with_fallback({
     "Iosevka Term Custom",
+    "Fantasque Sans Mono",
     "Symbols Nerd Font",
     "Untitled1",
     "NanumGothicCoding",

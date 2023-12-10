@@ -22,7 +22,7 @@ langs:
       - enaml
       - ipy
       - pyj
-  sh:
+  shellscript:
     shebang: ^#!/bin/execlineb($| .*)
     extensions:
       - install
@@ -32,6 +32,7 @@ langs:
       - zshrc
     names:
       - PKGBUILD
+      - activate
   toml:
     extensions:
       - toml.wz

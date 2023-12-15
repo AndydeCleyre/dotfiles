@@ -1,51 +1,3 @@
-roles:
-  monospace:
-    - Iosevka Term Custom
-    - Fantasque Sans Mono
-    - Symbols Nerd Font
-    - NanumGothicCoding
-    - OpenMoji
-    - JoyPixels
-    - Untitled1
-  ui-monospace:
-    - Iosevka Term Custom
-    - Fantasque Sans Mono
-    - Symbols Nerd Font
-    - NanumGothicCoding
-    - OpenMoji
-    - JoyPixels
-    - Untitled1
-  serif:
-    - Typey McTypeface
-    - Kelvinch
-    - Alegreya
-    - Andada Pro
-    - Brawler
-    - Caladea
-    - Fraunces
-    - Quando
-    - Symbols Nerd Font
-    - NanumGothicCoding
-    - OpenMoji
-    - JoyPixels
-    - Untitled1
-  sans-serif:
-    - Iosevka QP Custom
-    - Convergence
-    - Rambla
-    - Barlow Medium
-    - Baloo 2 Medium
-    - Symbols Nerd Font
-    - NanumGothicCoding
-    - OpenMoji
-    - JoyPixels
-    - Untitled1
-  emoji:
-    - Symbols Nerd Font
-    - NanumGothicCoding
-    - OpenMoji
-    - JoyPixels
-    - Untitled1
 options:
   autohint: false
   hinting: false
@@ -55,4 +7,44 @@ options:
 features:
   - FRAC
   - THND
-  # - TXTR
+  - TXTR
+roles:
+  emoji:
+    - Symbols Nerd Font
+    - NanumGothicCoding
+    - OpenMoji
+    - JoyPixels
+    - Untitled1
+  monospace:
+    - Iosevka Term Custom
+    - Sudo
+    - 0xProto
+    - Fantasque Sans Mono
+    - Nimbus Mono PS
+    - Ubuntu Mono
+  sans-serif:
+    - Iosevka QP Custom
+    - Convergence
+    - Sudo UI
+    - Rambla
+    - Mooli
+    - Ubuntu
+    - Baloo 2 Medium
+    - Barlow Medium
+  serif:
+    - Typey McTypeface
+    # TODO: sort these:
+    - Alegreya
+    - Andada Pro
+    - Goudy Bookletter 1911
+    - Alice
+    - Fraunces
+    - Quando
+    - Caladea
+    - Brawler
+    - Linden Hill
+    - Averia Serif
+    - Newsreader 16pt
+    - Kelvinch
+    - YoungSerif
+    - Libre Baskerville

@@ -17,34 +17,40 @@ roles:
     - Untitled1
   monospace:
     - Iosevka Term Custom
-    - Sudo
     - 0xProto
+    - Sudo
     - Fantasque Sans Mono
-    - Nimbus Mono PS
     - Ubuntu Mono
+    - Nimbus Mono PS
+    # The rest have noticeably worse character coverage:
+    - Maple Mono
   sans-serif:
     - Iosevka QP Custom
-    - Convergence
     - Sudo UI
-    - Rambla
-    - Mooli
     - Ubuntu
     - Baloo 2 Medium
     - Barlow Medium
+    # The rest have noticeably worse character coverage:
+    - Convergence
+    - Atkinson Hyperlegible
+    - PT Sans
   serif:
+    # test words: DEPENDENCIES bikes
     - Typey McTypeface
-    # TODO: sort these:
+    - Kelvinch
     - Alegreya
     - Andada Pro
-    - Goudy Bookletter 1911
-    - Alice
     - Fraunces
     - Quando
-    - Caladea
-    - Brawler
-    - Linden Hill
-    - Averia Serif
+    # - Caladea
     - Newsreader 16pt
-    - Kelvinch
     - YoungSerif
     - Libre Baskerville
+    # Great in small amounts, tiresome for extended content:
+    - Milonga
+    # The rest have noticeably worse character coverage:
+    - Namdhinggo
+    - Annapurna SIL
+    - Alice
+    - Brawler
+    - Averia Serif

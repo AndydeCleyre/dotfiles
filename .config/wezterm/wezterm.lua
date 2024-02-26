@@ -28,6 +28,7 @@ return {
     "Fantasque Sans Mono",
     "Ubuntu Mono",
     "Nimbus Mono PS",
+    "Maple Mono",
     "Symbols Nerd Font",
     "NanumGothicCoding",
     "OpenMoji",

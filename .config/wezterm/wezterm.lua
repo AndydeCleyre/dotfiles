@@ -8,7 +8,7 @@ local wezterm = require 'wezterm'
 -- local scheme = wezterm.get_builtin_color_schemes()["Red Planet"]
 local scheme = wezterm.get_builtin_color_schemes()["One Dark (Gogh)"]
 
-scheme.background = "#1f1f28"
+scheme.background = "#16161d"
 scheme.ansi[8] = "#dea050"
 scheme.brights[8] = "#de9231"
 
@@ -32,8 +32,7 @@ return {
     "Symbols Nerd Font",
     "NanumGothicCoding",
     "OpenMoji",
-    "JoyPixels",
-    "Untitled1"
+    "JoyPixels"
   }),
   harfbuzz_features = { 'kern', 'liga', 'clig', 'thnd', 'frac', 'txtr' },
 

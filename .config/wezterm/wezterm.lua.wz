@@ -1,0 +1,58 @@
+@require(scheme, fonts, keys, misc)
+local wezterm = require 'wezterm'
+
+local scheme = wezterm.get_builtin_color_schemes()["@{scheme['base']}"]
+
+@for prop, val in scheme['overrides'].items():
+scheme.@{prop} = "@{val}"
+@end
+return {
+  color_schemes = { ["ConfiguredColors"] = scheme },
+  color_scheme = "ConfiguredColors",
+
+  window_background_opacity = @{scheme['opacity']},
+  default_cursor_style = "@{scheme['cursor']}",
+  animation_fps = @{scheme['fps']},
+  @for cfg, val in misc.items():
+  @(quoted = val if val in ('true', 'false') else f'"{val}"')\
+  @{cfg} = @{quoted},
+  @end
+
+  font_size = @{fonts['size']},
+  font = wezterm.font_with_fallback({
+    @for family in fonts['families']['main']:
+    "@{family}",
+    @end
+  }),
+  font_rules = {
+    @if 'italic' in fonts['families']:
+    {
+      intensity = 'Bold',
+      italic = true,
+      font = wezterm.font {
+        family = "@{fonts['families']['italic']}",
+        weight = "Bold",
+        style = "Italic",
+      }
+    },
+    {
+      italic = true,
+      font = wezterm.font {
+        family = "@{fonts['families']['italic']}",
+        style = "Italic",
+      }
+    }
+    @end
+  },
+  harfbuzz_features = {
+    @for feature in fonts['features']:
+    "@{feature}",
+    @end
+  },
+
+  keys = {
+    @for keybind in keys:
+    { key = "@{keybind['key']}", mods = "@{keybind['mods']}", action = wezterm.action.@{keybind['action']} },
+    @end
+  },
+}

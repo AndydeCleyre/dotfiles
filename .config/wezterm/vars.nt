@@ -1,0 +1,63 @@
+scheme:
+  base: One Dark (Gogh)
+  # base: Guezwhoz
+  # base: Hacktober
+  # base: kanagawabones
+  # base: Popping and Locking
+  # base: Doom Peacock
+  # base: Red Planet
+  overrides:
+    background: #16161d
+    ansi[8]: #dea050
+    brights[8]: #de9231
+    cursor_fg: #8080c6
+    # does cursor_fg work?
+  opacity: 1.0
+  fps: 30
+  cursor: SteadyBar
+fonts:
+  size: 24
+  families:
+    italic: 0xProto
+    main:
+      - Iosevka Term Custom Extended
+      - Iosevka Term Custom
+      - 0xProto
+      - Sudo
+      - Fantasque Sans Mono
+      - Ubuntu Mono
+      - Maple Mono
+      - Symbols Nerd Font
+      - NanumGothicCoding
+      - SerenityOS Emoji
+      - OpenMoji Color
+      - JoyPixels
+  features:
+    - clig
+    - frac
+    - kern
+    - liga
+    - thnd
+    - txtr
+keys:
+  -
+    action: IncreaseFontSize
+    mods: CTRL
+    key: =
+  -
+    action: DecreaseFontSize
+    mods: CTRL
+    key: -
+  -
+    action: ResetFontSize
+    mods: CTRL
+    key: 0
+  -
+    action: PasteFrom 'Clipboard'
+    mods: SHIFT|CTRL
+    key: v
+misc:
+  canonicalize_pasted_newlines: LineFeed
+  check_for_updates: false
+  disable_default_key_bindings: true
+  enable_tab_bar: false

@@ -53,7 +53,7 @@ keys:
     mods: CTRL
     key: 0
   -
-    action: PasteFrom 'Clipboard'
+    action: PasteFrom "Clipboard"
     mods: SHIFT|CTRL
     key: v
 misc:

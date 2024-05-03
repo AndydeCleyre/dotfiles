@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require "wezterm"
 
 local scheme = wezterm.get_builtin_color_schemes()["One Dark (Gogh)"]
 
@@ -64,6 +64,6 @@ return {
     { key = "=", mods = "CTRL", action = wezterm.action.IncreaseFontSize },
     { key = "-", mods = "CTRL", action = wezterm.action.DecreaseFontSize },
     { key = "0", mods = "CTRL", action = wezterm.action.ResetFontSize },
-    { key = "v", mods = "SHIFT|CTRL", action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = "v", mods = "SHIFT|CTRL", action = wezterm.action.PasteFrom "Clipboard" },
   },
 }

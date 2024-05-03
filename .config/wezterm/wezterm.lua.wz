@@ -1,5 +1,5 @@
 @require(scheme, fonts, keys, misc)
-local wezterm = require 'wezterm'
+local wezterm = require "wezterm"
 
 local scheme = wezterm.get_builtin_color_schemes()["@{scheme['base']}"]
 

@@ -27,7 +27,7 @@ return {
   font_rules = {
     @if 'italic' in fonts['families']:
     {
-      intensity = 'Bold',
+      intensity = "Bold",
       italic = true,
       font = wezterm.font {
         family = "@{fonts['families']['italic']}",

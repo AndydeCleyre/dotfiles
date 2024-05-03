@@ -35,7 +35,7 @@ return {
   }),
   font_rules = {
     {
-      intensity = 'Bold',
+      intensity = "Bold",
       italic = true,
       font = wezterm.font {
         family = "0xProto",

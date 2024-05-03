@@ -12,16 +12,15 @@ roles:
   emoji:
     - Symbols Nerd Font
     - NanumGothicCoding
-    - OpenMoji
+    - SerenityOS Emoji
+    - OpenMoji Color
     - JoyPixels
-    - Untitled1
   monospace:
     - Iosevka Term Custom
     - 0xProto
     - Sudo
     - Fantasque Sans Mono
     - Ubuntu Mono
-    - Nimbus Mono PS
     # The rest have noticeably worse character coverage:
     - Maple Mono
   sans-serif:
@@ -41,13 +40,14 @@ roles:
     - Alegreya
     - Andada Pro
     - Fraunces
+    - Enriqueta
     - Quando
-    # - Caladea
+    - Caladea
     - Newsreader 16pt
     - YoungSerif
     - Libre Baskerville
     # Great in small amounts, tiresome for extended content:
-    - Milonga
+    # - Milonga
     # The rest have noticeably worse character coverage:
     - Namdhinggo
     - Annapurna SIL

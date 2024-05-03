@@ -1,4 +1,7 @@
 langs:
+  factor:
+    extensions:
+      - factor-rc
   ini:
     shebang: ^\[.*\]$
     extensions:
@@ -33,6 +36,9 @@ langs:
     names:
       - PKGBUILD
       - activate
+  sql:
+    extensions:
+      - prql
   toml:
     extensions:
       - toml.wz
@@ -43,6 +49,7 @@ langs:
     shebang: ^<\?xml .*>$
     extensions:
       - ui
-  yml:
+  yaml:
     extensions:
       - yml.wz
+      - hjson

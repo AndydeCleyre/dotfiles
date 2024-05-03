@@ -1,0 +1,2 @@
+: vars.nt                     |> ^t^ nt2json %f >%o     |> %B.json
+: filetypes.conf.wz vars.json |> wheezy.template %f >%o |> %1B

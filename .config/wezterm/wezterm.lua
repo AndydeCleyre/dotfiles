@@ -5,7 +5,7 @@ local scheme = wezterm.get_builtin_color_schemes()["One Dark (Gogh)"]
 scheme.background = "#16161d"
 scheme.ansi[8] = "#dea050"
 scheme.brights[8] = "#de9231"
-scheme.cursor_fg = "#8080c6"
+scheme.cursor_bg = "#ff8bf0"
 return {
   color_schemes = { ["ConfiguredColors"] = scheme },
   color_scheme = "ConfiguredColors",

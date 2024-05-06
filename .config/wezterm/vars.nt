@@ -1,7 +1,5 @@
 scheme:
   base: One Dark (Gogh)
-  # base: Guezwhoz
-  # base: Hacktober
   # base: kanagawabones
   # base: Popping and Locking
   # base: Doom Peacock
@@ -10,8 +8,7 @@ scheme:
     background: #16161d
     ansi[8]: #dea050
     brights[8]: #de9231
-    cursor_fg: #8080c6
-    # does cursor_fg work?
+    cursor_bg: #ff8bf0
   opacity: 1.0
   fps: 30
   cursor: SteadyBar

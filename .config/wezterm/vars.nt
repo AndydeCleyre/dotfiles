@@ -1,9 +1,10 @@
 scheme:
-  base: One Dark (Gogh)
-  # base: kanagawabones
-  # base: Popping and Locking
-  # base: Doom Peacock
-  # base: Red Planet
+  bases:
+    - One Dark (Gogh)
+    - kanagawabones
+    - Popping and Locking
+    - Doom Peacock
+    - Red Planet
   overrides:
     background: #16161d
     ansi[8]: #dea050

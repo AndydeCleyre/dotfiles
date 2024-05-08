@@ -1,6 +1,14 @@
 local wezterm = require "wezterm"
 
-local scheme = wezterm.get_builtin_color_schemes()["One Dark (Gogh)"]
+local scheme_bases = {
+  "One Dark (Gogh)",
+  "kanagawabones",
+  "Popping and Locking",
+  "Doom Peacock",
+  "Red Planet",
+}
+local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
+local scheme = wezterm.get_builtin_color_schemes()[scheme_base]
 
 scheme.background = "#16161d"
 scheme.ansi[8] = "#dea050"

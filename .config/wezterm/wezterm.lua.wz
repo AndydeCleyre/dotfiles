@@ -1,7 +1,13 @@
 @require(scheme, fonts, keys, misc)
 local wezterm = require "wezterm"
 
-local scheme = wezterm.get_builtin_color_schemes()["@{scheme['base']}"]
+local scheme_bases = {
+@for base in scheme['bases']:
+  "@{base}",
+@end
+}
+local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
+local scheme = wezterm.get_builtin_color_schemes()[scheme_base]
 
 @for prop, val in scheme['overrides'].items():
 scheme.@{prop} = "@{val}"

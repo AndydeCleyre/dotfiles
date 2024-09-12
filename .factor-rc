@@ -45,14 +45,6 @@ IN: prettyprint
 IN: ui.tools.listener
 
 ! Up and Down to navigate history:
-! TODO: remove update-command-map definition when Factor > 0.99
-: update-command-map ( class group pairs -- )
-  pick
-  [ commands ]
-  [ of ]
-  [ '[ _ assoc-union ] change-commands drop ]
-  [ update-gestures ]
-  quad* ;
 interactor "completion" {
   { T{ key-down f f "UP"   } recall-previous }
   { T{ key-down f f "DOWN" } recall-next     }

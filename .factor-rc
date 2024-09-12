@@ -8,8 +8,10 @@ USING:
   namespaces
   prettyprint.config
   sequences
-  ui.commands ui.gadgets.editors ui.gestures ui.theme.switching ui.tools.listener.completion
-  vectors vocabs.loader ;
+  ui.commands ui.gadgets.editors ui.gadgets.worlds ui.gestures
+  ui.theme.switching ui.tools.listener.completion
+  vectors vocabs.loader
+  words ;
 
 ! -- Simple options --
 EDITOR: editors.sublime
@@ -66,11 +68,27 @@ listener-gadget "custom" f {
   { T{ key-down f { C+ } "l" } clear-output }
 } define-command-map
 
+! Make Shift+ also work for copy/paste/cut:
+world "gestures" word-prop H{
+  {
+    T{ key-down { mods { C+ } } { sym "C" } }
+    [ \ copy-action send-action ]
+  }
+  {
+    T{ key-down { mods { C+ } } { sym "V" } }
+    [ \ paste-action send-action ]
+  }
+  {
+    T{ key-down { mods { C+ } } { sym "X" } }
+    [ \ cut-action send-action ]
+  }
+} assoc-union! drop
+
 ! -- Load extra vocabs (and docs) --
 IN: scratchpad
 USING:
   combinators.extras combinators.short-circuit.smart
-  math.combinatorics
+  math.combinatorics math.extras
   sequences.extras sets splitting splitting.extras ;
 
 ! -- Short prompt --

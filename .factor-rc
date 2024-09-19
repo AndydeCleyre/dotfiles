@@ -14,7 +14,7 @@ USING:
   words ;
 
 ! -- Simple options --
-EDITOR: editors.sublime
+EDITOR: editors.zed
 2 tab-size set
 
 ! -- Make it legible --
@@ -80,6 +80,7 @@ world "gestures" word-prop H{
 IN: scratchpad
 USING:
   combinators.extras combinators.short-circuit.smart
+  grouping.extras
   math.combinatorics math.extras
   sequences.extras sets splitting splitting.extras ;
 

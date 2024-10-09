@@ -1,6 +1,6 @@
 [General]
-ColorScheme=OneDarkMacaroni
-Name=OneDarkMacaroni
+ColorScheme=PurpleMacaroni
+Name=PurpleMacaroni
 shadeSortColumn=true
 
 [WM]
@@ -41,7 +41,7 @@ ForegroundVisited=112,157,61
 
 [Colors:Selection]
 BackgroundAlternate=38,44,46
-BackgroundNormal=100,0,77
+BackgroundNormal=87,43,79
 DecorationFocus=169,77,55
 DecorationHover=255,139,240
 ForegroundActive=218,68,83

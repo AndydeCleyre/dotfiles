@@ -4,6 +4,7 @@ USING:
   editors
   io
   kernel
+  listener
   memory
   namespaces
   prettyprint.config
@@ -77,12 +78,14 @@ world "gestures" word-prop H{
 } assoc-union! drop
 
 ! -- Load extra vocabs (and docs) --
-IN: scratchpad
-USING:
-  combinators.extras combinators.short-circuit.smart
-  grouping.extras
-  math.combinatorics math.extras
-  sequences.extras sets splitting splitting.extras ;
+interactive-vocabs [
+  {
+    "combinators.extras" "combinators.short-circuit.smart"
+    "grouping.extras"
+    "make" "math.combinatorics" "math.extras"
+    "sequences.extras" "sets" "splitting" "splitting.extras"
+  } append
+] change-global
 
 ! -- Short prompt --
 IN: listener

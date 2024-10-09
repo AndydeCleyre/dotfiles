@@ -1,14 +1,17 @@
 [user]
-    name = Andy Kluger
-    email = AndyKluger@gmail.com
+  name = Andy Kluger
+  email = AndyKluger@gmail.com
 [pull]
-    rebase = false
+  rebase = false
 [merge]
-    tool = meld
+  tool = meld
 [pager]
-    diff = riff
-    show = riff
+  diff = riff
+  show = riff
+  log = riff
 [interactive]
-    diffFilter = riff
+  diffFilter = riff --color=on
 [core]
-    excludesfile = /home/andy/.gitignore
+  excludesfile = /home/andy/.gitignore
+[init]
+  defaultBranch = main

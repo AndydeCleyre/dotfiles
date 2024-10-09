@@ -1,6 +1,3 @@
-[submodule "Code/plugins/plasma/applet-window-title"]
-  path = Code/plugins/plasma/applet-window-title
-  url = git@github.com:psifidotos/applet-window-title
 [submodule ".config/broot"]
   path = .config/broot
   url = git@github.com:AndydeCleyre/dotfiles-broot
@@ -14,5 +11,6 @@
   url = https://github.com/AndydeCleyre/dotfiles-tmux
   branch = main
 [submodule ".config/zsh"]
-	path = .config/zsh
-	url = https://github.com/AndydeCleyre/dotfiles-zsh
+  path = .config/zsh
+  url = https://github.com/AndydeCleyre/dotfiles-zsh
+  branch = main

@@ -25,6 +25,9 @@ langs:
       - enaml
       - ipy
       - pyj
+  qml:
+    extensions:
+      - slint
   shellscript:
     shebang: ^#!/bin/execlineb($| .*)
     extensions:

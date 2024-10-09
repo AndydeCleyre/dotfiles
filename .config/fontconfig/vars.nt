@@ -12,6 +12,7 @@ roles:
   emoji:
     - Symbols Nerd Font
     - NanumGothicCoding
+    - Twemoji
     - SerenityOS Emoji
     - OpenMoji Color
     - JoyPixels
@@ -21,18 +22,31 @@ roles:
     - Sudo
     - Fantasque Sans Mono
     - Ubuntu Mono
+    - LXGW WenKai Mono TC
+    # TODO: maybe bump up LXGW
     # The rest have noticeably worse character coverage:
     - Maple Mono
   sans-serif:
     - Iosevka QP Custom
     - Sudo UI
+    - Cadman
+    - Andika
     - Ubuntu
     - Baloo 2 Medium
     - Barlow Medium
+    - Lexend
+    # TODO: bump lexend up, probably
+    - LXGW WenKai TC
+    # TODO: maybe bump up LXGW
+    - Suse
+    # TODO: maybe bump up Suse
     # The rest have noticeably worse character coverage:
     - Convergence
     - Atkinson Hyperlegible
     - PT Sans
+    - Inclusive Sans
+    - Reforma 2018
+    # TODO: maybe bump up reforma
   serif:
     # test words: DEPENDENCIES bikes
     - Typey McTypeface
@@ -46,6 +60,9 @@ roles:
     - Newsreader 16pt
     - YoungSerif
     - Libre Baskerville
+    - Redaction
+    - Charis SIL
+    # TODO: bump redaction and charis up, probably
     # Great in small amounts, tiresome for extended content:
     # - Milonga
     # The rest have noticeably worse character coverage:

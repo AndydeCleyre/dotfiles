@@ -10,10 +10,10 @@ local scheme_bases = {
 local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
 local scheme = wezterm.get_builtin_color_schemes()[scheme_base]
 
-scheme.background = "#16161d"
-scheme.ansi[8] = "#dea050"
-scheme.brights[8] = "#de9231"
-scheme.cursor_bg = "#ff8bf0"
+scheme.background = "#1e201f"
+scheme.ansi[8] = "#e29997"
+scheme.brights[8] = "#ff7e7a"
+scheme.cursor_bg = "#f69c9b"
 return {
   color_schemes = { ["ConfiguredColors"] = scheme },
   color_scheme = "ConfiguredColors",
@@ -28,36 +28,23 @@ return {
 
   font_size = 24,
   font = wezterm.font_with_fallback({
-    "Iosevka Term Custom Extended",
     "Iosevka Term Custom",
+    "Iosevka Term Custom SmEx",
+    "Iosevka Term Custom Extended",
     "0xProto",
     "Sudo",
     "Fantasque Sans Mono",
     "Ubuntu Mono",
+    "LXGW WenKai Mono TC",
     "Maple Mono",
     "Symbols Nerd Font",
     "NanumGothicCoding",
+    "Twemoji",
     "SerenityOS Emoji",
     "OpenMoji Color",
     "JoyPixels",
   }),
   font_rules = {
-    {
-      intensity = "Bold",
-      italic = true,
-      font = wezterm.font {
-        family = "0xProto",
-        weight = "Bold",
-        style = "Italic",
-      }
-    },
-    {
-      italic = true,
-      font = wezterm.font {
-        family = "0xProto",
-        style = "Italic",
-      }
-    }
   },
   harfbuzz_features = {
     "clig",

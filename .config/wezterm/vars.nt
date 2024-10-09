@@ -6,27 +6,31 @@ scheme:
     - Doom Peacock
     - Red Planet
   overrides:
-    background: #16161d
-    ansi[8]: #dea050
-    brights[8]: #de9231
-    cursor_bg: #ff8bf0
+    background: #1e201f
+    ansi[8]: #e29997
+    brights[8]: #ff7e7a
+    cursor_bg: #f69c9b
   opacity: 1.0
   fps: 30
   cursor: SteadyBar
 fonts:
   size: 24
   families:
-    italic: 0xProto
+    # italic: 0xProto
     main:
-      - Iosevka Term Custom Extended
       - Iosevka Term Custom
+      - Iosevka Term Custom SmEx
+      - Iosevka Term Custom Extended
       - 0xProto
       - Sudo
       - Fantasque Sans Mono
       - Ubuntu Mono
+      - LXGW WenKai Mono TC
+      # LXGW problematic? with ellipses or bubbles?
       - Maple Mono
       - Symbols Nerd Font
       - NanumGothicCoding
+      - Twemoji
       - SerenityOS Emoji
       - OpenMoji Color
       - JoyPixels

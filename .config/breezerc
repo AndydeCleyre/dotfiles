@@ -1,8 +1,8 @@
 [Common]
 OutlineCloseButton=false
 ShadowColor=226,169,100
-ShadowSize=ShadowSmall
-ShadowStrength=77
+ShadowSize=ShadowVeryLarge
+ShadowStrength=89
 
 [Style]
 MenuOpacity=90
@@ -20,27 +20,3 @@ DrawTitleBarSeparator=false
 MacOSButtons=false
 TitleAlignment=AlignLeft
 TitleBarFont=Iosevka Quasi Proportional Custom MdEx,15,-1,5,57,1,0,0,0,0
-
-[Windeco Exception 0]
-BorderSize=0
-Enabled=true
-ExceptionPattern=konsole
-ExceptionType=0
-FlatTitleBar=false
-HideTitleBar=false
-IsDialog=false
-Mask=0
-OpacityOverride=90
-OpaqueTitleBar=false
-
-[Windeco Exception 1]
-BorderSize=0
-Enabled=true
-ExceptionPattern=Alacritty
-ExceptionType=0
-FlatTitleBar=false
-HideTitleBar=false
-IsDialog=false
-Mask=0
-OpacityOverride=90
-OpaqueTitleBar=false

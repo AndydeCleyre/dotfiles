@@ -1,32 +1,13 @@
 {
-    "*.html": {
-        "tabsize": 2
+    "*.py": {
+        "tabsize": 4
     },
-    "*.pug": {
-        "tabsize": 2
-    },
-    "*.yml": {
-        "tabsize": 2
-    },
-    "autosu": true,
     "colorcolumn": 89,
-    "colorscheme": "gruvbox-macaronitime-tc",
-    "fastdirty": true,
-    "fmt-onsave": false,
-    "hidehelp": false,
-    "ignorecase": true,
-    "matchbrace": false,
-    "matchbraceleft": false,
-    "pluginchannels": [
-        "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
-    ],
-    "pluginrepos": [],
+    "colorscheme": "gruvbox-kanagawa-macaroni-tc",
+    "mkparents": true,
+    "parsecursor": true,
     "rmtrailingws": true,
     "savecursor": true,
-    "softwrap": true,
-    "splitBottom": true,
-    "splitRight": true,
-    "tabstospaces": true,
-    "termtitle": true,
-    "trimdiff": false
+    "tabsize": 2,
+    "tabstospaces": true
 }

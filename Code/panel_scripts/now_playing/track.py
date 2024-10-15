@@ -129,14 +129,15 @@ def simplify_title(title):
     stabilized = title
     while True:
         title = re.sub(
-            r'( \[?feat(\.|uring)? [^\]]+(\]|$))?'
-            r'( \(?feat(\.|uring)? [^\)]+(\)|$))?'
+            r'( \[?[Ff]eat(\.|uring)? [^\]]+(\]|$))?'
+            r'( \(?[Ff]eat(\.|uring)? [^\)]+(\)|$))?'
             r'( \(with [^\)]+\))?'
             r'( \(Instrumental\))?'
             r'( \(Bonus Track\))?'
             r'( \[Extended\])?'
             r'( \([^\)]*Edit\))?'
             r'( \([^\)]*Version[^\)]*\))?'
+            r'( \[[^\]]*Version[^\]]*\])?'
             r'( \([^\)]*[Mm]ix\))?'
             r'( \[[^\]]+ vs\. [^\]]+\])?'
             r'$', '', title

@@ -1,0 +1,5 @@
+matches:
+  - trigger: :adc
+    replace: AndydeCleyre
+  - trigger: :ak
+    replace: AndyKluger@gmail.com

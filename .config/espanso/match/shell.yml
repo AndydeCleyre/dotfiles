@@ -1,0 +1,49 @@
+matches:
+  - trigger: :pf
+    replace: "printf '%s\\n' "
+  - trigger: :pl
+    replace: "print -rl -- "
+  - trigger: :fzf
+    replace: fzf --reverse -m -0
+  - trigger: :gr
+    replace: '"$(git rev-parse --show-toplevel)"'
+  - trigger: :here
+    replace: '"$(dirname "$0")"'
+  - trigger: :gh
+    replace: https://github.com/
+  - trigger: :repo
+    replace: '{{sshrepo}}'
+    vars:
+      - name: sshrepo
+        type: shell
+        params:
+          cmd: xclip -sel clip -o | sed -E 's-^(https?|git)://github\.com/-git@github.com:-'
+  - trigger: :dn
+    replace: /dev/null
+  - trigger: :em
+    replace: "emulate -L zsh"
+  - trigger: :diff
+    replace: |
+      tmpfile=$(mktemp)
+      targetfile=$|$
+      cp "$targetfile" "$tmpfile"
+
+      DO_THING "$tmpfile"
+
+      if command -v riff >/dev/null 2>&1; then
+        riff --no-pager --color on "$targetfile" "$tmpfile"
+      elif command -v delta >/dev/null 2>&1; then
+        delta --paging never "$targetfile" "$tmpfile" || true
+      elif command -v diff-so-fancy >/dev/null 2>&1; then
+        diff -u "$targetfile" "$tmpfile" | diff-so-fancy
+      elif command -v colordiff >/dev/null 2>&1; then
+        colordiff --color=always "$targetfile" "$tmpfile" || true
+      else
+        diff -u "$targetfile" "$tmpfile" || true
+      fi
+
+      mv -i "$tmpfile" "$targetfile"
+
+      if [ -e "$tmpfile" ]; then
+        rm "$tmpfile"
+      fi

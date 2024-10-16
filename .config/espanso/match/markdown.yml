@@ -1,0 +1,41 @@
+matches:
+  - trigger: :details
+    replace: |
+      <details>
+      <summary>$|$</summary>
+
+      ```
+      ```
+
+      </details>
+
+  - trigger: :``
+    replace: |-
+      ```$|$
+      ```
+
+  - trigger: :indent
+    replace: "{{indented}}"
+    vars:
+      - name: numform
+        type: form
+        params:
+          layout: "Number of spaces: [[num]]"
+      - name: indented
+        type: shell
+        params:
+          trim: false
+          cmd: xclip -sel clip -o | sed "s/^/$(printf '%{{numform.num}}s')/g"
+
+  - trigger: :dedent
+    replace: "{{dedented}}"
+    vars:
+      - name: numform
+        type: form
+        params:
+          layout: "Number of spaces: [[num]]"
+      - name: dedented
+        type: shell
+        params:
+          trim: false
+          cmd: xclip -sel clip -o | sed "s/^$(printf '%{{numform.num}}s')//g"

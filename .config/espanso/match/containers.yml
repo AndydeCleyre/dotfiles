@@ -1,0 +1,19 @@
+matches:
+  - trigger: :alpine
+    replace: 'apk add git zsh{,-vcs} sudo && adduser -G wheel -D dev && echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/dev'
+  - trigger: :arch
+    replace: 'pacman -S --needed --noconfirm zsh git base-devel && useradd -m -G wheel dev && echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/dev && cd /home/dev && sudo -u dev curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/paru-bin.tar.gz && sudo -u dev tar xf paru-bin.tar.gz && cd paru-bin && sudo -u dev makepkg -si --noconfirm && cd /home/dev && rm -r paru-bin.tar.gz paru-bin'
+  - trigger: :adduser
+    replace: 'if type addgroup 2>/dev/null; then addgroup wheel; fi; if adduser --help 2>&1 | grep -q BusyBox; then adduser -G wheel -D dev; else useradd -G wheel -m dev; fi; echo "%wheel ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers.d/dev || echo "You may want to install sudo"'
+  - trigger: :pacapt
+    replace: if type wget 2>/dev/null; then wget -O /usr/local/bin/pacman https://github.com/icy/pacapt/raw/ng/pacapt; else curl -L -o /usr/local/bin/pacman https://github.com/icy/pacapt/raw/ng/pacapt; fi; chmod 755 /usr/local/bin/pacman
+  - trigger: :dnf
+    replace: "dnf --setopt=install_weak_deps=False install "
+  - trigger: :apt
+    replace: "apt --no-install-recommends install "
+  - trigger: :term
+    replace: export TERM=xterm-256color
+  - trigger: :quay
+    replace: quay.io/andykluger/
+  - trigger: :zsh
+    replace: mkdir -p ~/.config && git clone https://github.com/AndydeCleyre/dotfiles-zsh ~/.config/zsh && ln -s ~/.config/zsh/.zshenv ~/ && exec zsh

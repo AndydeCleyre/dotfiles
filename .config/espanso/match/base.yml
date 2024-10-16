@@ -1,0 +1,12 @@
+# https://espanso.org/docs/
+matches:
+  - trigger: :now
+    replace: '{{timestamp}}'
+    vars:
+      - name: timestamp
+        type: date
+        params:
+          format: '%Y.%m.%d %I:%M %P'
+
+  - trigger: :--
+    replace: '-- $|$ --'

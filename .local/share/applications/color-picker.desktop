@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Color Picker
-Exec=plasmawindowed org.kde.plasma.colorpicker
-GenericName=Color Picker
-Icon=kcolorchooser
-Categories=Qt;KDE;Graphics;Office;
-Comment=Pick colors

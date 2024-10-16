@@ -11,7 +11,7 @@ USING:
   sequences
   ui.commands ui.gadgets.editors ui.gadgets.worlds ui.gestures
   ui.theme.switching ui.tools.listener.completion
-  vectors vocabs.loader
+  vectors vocabs vocabs.loader
   words ;
 
 ! -- Simple options --
@@ -84,7 +84,7 @@ interactive-vocabs [
     "grouping.extras"
     "make" "math.combinatorics" "math.extras"
     "sequences.extras" "sets" "splitting" "splitting.extras"
-  } append
+  } [ require-all ] [ append ] bi
 ] change-global
 
 ! -- Short prompt --

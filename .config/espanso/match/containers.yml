@@ -17,3 +17,5 @@ matches:
     replace: quay.io/andykluger/
   - trigger: :zsh
     replace: mkdir -p ~/.config && git clone https://github.com/AndydeCleyre/dotfiles-zsh ~/.config/zsh && ln -s ~/.config/zsh/.zshenv ~/ && exec zsh
+  - trigger: :pod
+    replace: podman run -it -e TERM=$TERM --net=host --rm docker.io/library/

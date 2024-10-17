@@ -2,12 +2,14 @@
     "*.py": {
         "tabsize": 4
     },
+    "autosu": true,
     "colorcolumn": 89,
     "colorscheme": "gruvbox-kanagawa-macaroni-tc",
     "mkparents": true,
     "parsecursor": true,
     "rmtrailingws": true,
     "savecursor": true,
+    "sucmd": "doas",
     "tabsize": 2,
     "tabstospaces": true
 }

@@ -100,6 +100,4 @@ save
 !
 ! -- or --
 !
-! $ factor -run=bootstrap.image
-! $ factor -i=boot.unix-x86.64.image
-! $ cp factor.image factor.image.fresh
+! $ factor -run=bootstrap.image && factor -i=boot.unix-x86.64.image && cp factor.image factor.image.fresh

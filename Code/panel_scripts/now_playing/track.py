@@ -1,4 +1,3 @@
-#!/home/andy/.local/share/venvs/e0d1492fd6264f3f69c421b308c813d6/venv/bin/python
 #!/home/andy/.local/bin/vpy
 #!/usr/bin/env python3
 import re
@@ -202,3 +201,5 @@ if __name__ == '__main__':
         notify(details)
     else:
         display(details)
+
+

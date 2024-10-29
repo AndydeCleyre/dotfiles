@@ -23,6 +23,7 @@ return {
   animation_fps = 30,
   canonicalize_pasted_newlines = "LineFeed",
   check_for_updates = false,
+  custom_block_glyphs = false,
   disable_default_key_bindings = true,
   enable_tab_bar = false,
 

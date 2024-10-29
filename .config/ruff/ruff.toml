@@ -1,0 +1,22 @@
+line-length = 99
+
+[format]
+quote-style = "preserve"
+skip-magic-trailing-comma = true
+
+[lint]
+select = ["ALL"]
+ignore = ["BLE", "COM812", "EM", "FIX", "ISC001", "PERF203", "PGH003", "Q000", "T20", "TD002", "TD003", "TRY003", "TRY302"]
+
+[lint.flake8-annotations]
+suppress-none-returning = true
+
+[lint.isort]
+combine-as-imports = true
+split-on-trailing-comma = false
+
+[lint.pydocstyle]
+convention = "pep257"
+
+[lint.pylint]
+max-args = 6

@@ -7,7 +7,7 @@ matches:
     replace: "#!/usr/bin/env vpy\n"
   - trigger: ":dbg"
     replace: "from IPython import embed; embed(colors='Neutral')"
-  - trigger: ":plum"
+  - trigger: ":bum"
     replace: |-
       from plumbum import local, CommandNotFound, ProcessExecutionError
       from plumbum.cli import Application, SwitchAttr, Flag, Range, Set, ExistingFile, ExistingDirectory

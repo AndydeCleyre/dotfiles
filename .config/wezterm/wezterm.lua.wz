@@ -7,7 +7,7 @@ local scheme_bases = {
 @end
 }
 local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
-local scheme = wezterm.get_builtin_color_schemes()[scheme_base]
+local scheme = wezterm.color.get_builtin_schemes()[scheme_base]
 
 @for prop, val in scheme['overrides'].items():
 scheme.@{prop} = "@{val}"

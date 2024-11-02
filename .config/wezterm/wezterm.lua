@@ -8,7 +8,7 @@ local scheme_bases = {
   "Red Planet",
 }
 local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
-local scheme = wezterm.get_builtin_color_schemes()[scheme_base]
+local scheme = wezterm.color.get_builtin_schemes()[scheme_base]
 
 scheme.background = "#1e201f"
 scheme.ansi[8] = "#e29997"

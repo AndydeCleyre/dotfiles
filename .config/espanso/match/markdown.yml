@@ -14,28 +14,20 @@ matches:
       ```$|$
       ```
 
-  - trigger: :indent
+  - regex: :in(?P<depth>\d)
     replace: "{{indented}}"
     vars:
-      - name: numform
-        type: form
-        params:
-          layout: "Number of spaces: [[num]]"
       - name: indented
         type: shell
         params:
           trim: false
-          cmd: xclip -sel clip -o | sed "s/^/$(printf '%{{numform.num}}s')/g"
+          cmd: xclip -sel clip -o | sed "s/^/$(printf '%{{depth}}s')/g"
 
-  - trigger: :dedent
+  - regex: :de(?P<depth>\d)
     replace: "{{dedented}}"
     vars:
-      - name: numform
-        type: form
-        params:
-          layout: "Number of spaces: [[num]]"
       - name: dedented
         type: shell
         params:
           trim: false
-          cmd: xclip -sel clip -o | sed "s/^$(printf '%{{numform.num}}s')//g"
+          cmd: xclip -sel clip -o | sed "s/^$(printf '%{{depth}}s')//g"

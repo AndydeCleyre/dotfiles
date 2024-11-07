@@ -22,6 +22,8 @@ matches:
     replace: /dev/null
   - trigger: :em
     replace: "emulate -L zsh"
+  - trigger: :lines
+    replace: ${(f)"$($|$)"}
   - trigger: :diff
     replace: |
       tmpfile=$(mktemp)

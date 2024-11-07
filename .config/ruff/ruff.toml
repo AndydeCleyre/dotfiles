@@ -6,7 +6,7 @@ skip-magic-trailing-comma = true
 
 [lint]
 select = ["ALL"]
-ignore = ["BLE", "COM812", "EM", "FIX", "ISC001", "PERF203", "PGH003", "Q000", "T20", "TD002", "TD003", "TRY003", "TRY302"]
+ignore = ["BLE", "COM812", "EM", "FIX", "ISC001", "PERF203", "PGH003", "Q000", "T20", "TD002", "TD003", "TRY003", "TRY203"]
 
 [lint.flake8-annotations]
 suppress-none-returning = true

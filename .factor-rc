@@ -1,5 +1,7 @@
 USING:
-  accessors arrays assocs
+  accessors
+  arrays
+  assocs
   combinators.extras
   editors
   io
@@ -9,9 +11,16 @@ USING:
   namespaces
   prettyprint.config
   sequences
-  ui.commands ui.gadgets.editors ui.gadgets.worlds ui.gestures
-  ui.theme.switching ui.tools.listener.completion
-  vectors vocabs vocabs.loader
+  ui.commands
+  ui.gadgets.editors
+  ui.gadgets.worlds
+  ui.gestures
+  ui.theme.base16
+  ui.theme.switching
+  ui.tools.listener.completion
+  vectors
+  vocabs
+  vocabs.loader
   words ;
 
 ! -- Simple options --
@@ -20,6 +29,7 @@ EDITOR: editors.zed
 
 ! -- Make it legible --
 dark-mode
+! "ayu-dark" base16-theme-name set-global base16-mode
 IN: fonts
 CONSTANT: default-font-size 32
 "help.stylesheet" reload
@@ -83,6 +93,7 @@ interactive-vocabs [
     "combinators.extras" "combinators.short-circuit.smart"
     "grouping.extras"
     "make" "math.combinatorics" "math.extras"
+    "path-finding"
     "sequences.extras" "sets" "splitting" "splitting.extras"
   } [ require-all ] [ append ] bi
 ] change-global

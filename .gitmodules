@@ -14,3 +14,6 @@
   path = .config/zsh
   url = https://github.com/AndydeCleyre/dotfiles-zsh
   branch = main
+[submodule ".config/espanso"]
+	path = .config/espanso
+	url = https://github.com/AndydeCleyre/dotfiles-espanso

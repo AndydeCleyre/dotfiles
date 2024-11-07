@@ -1,3 +1,0 @@
-filter_class: ^dev\.zed\.Zed$
-key_delay: 4
-backend: clipboard

@@ -10,10 +10,10 @@ local scheme_bases = {
 local scheme_base = scheme_bases[math.random(1, #scheme_bases)]
 local scheme = wezterm.color.get_builtin_schemes()[scheme_base]
 
-scheme.background = "#1e201f"
-scheme.ansi[8] = "#e29997"
-scheme.brights[8] = "#ff7e7a"
-scheme.cursor_bg = "#f69c9b"
+scheme.background = "#16161d"
+scheme.ansi[8] = "#dea050"
+scheme.brights[8] = "#ffa52f"
+scheme.cursor_bg = "#ff8bf0"
 return {
   color_schemes = { ["ConfiguredColors"] = scheme },
   color_scheme = "ConfiguredColors",

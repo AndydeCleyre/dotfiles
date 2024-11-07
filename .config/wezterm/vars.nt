@@ -6,10 +6,10 @@ scheme:
     - Doom Peacock
     - Red Planet
   overrides:
-    background: #1e201f
-    ansi[8]: #e29997
-    brights[8]: #ff7e7a
-    cursor_bg: #f69c9b
+    background: #16161d
+    ansi[8]: #dea050
+    brights[8]: #ffa52f
+    cursor_bg: #ff8bf0
   opacity: 1.0
   fps: 30
   cursor: SteadyBar

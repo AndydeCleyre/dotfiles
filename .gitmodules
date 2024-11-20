@@ -17,3 +17,6 @@
 [submodule ".config/espanso"]
 	path = .config/espanso
 	url = https://github.com/AndydeCleyre/dotfiles-espanso
+[submodule ".config/fontconfig"]
+	path = .config/fontconfig
+	url = https://github.com/AndydeCleyre/dotfiles-fontconfig

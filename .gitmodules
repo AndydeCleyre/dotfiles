@@ -23,5 +23,9 @@
   url = https://github.com/AndydeCleyre/dotfiles-fontconfig
   branch = main
 [submodule ".config/wezterm"]
-	path = .config/wezterm
-	url = https://github.com/AndydeCleyre/dotfiles-wezterm
+  path = .config/wezterm
+  url = https://github.com/AndydeCleyre/dotfiles-wezterm
+  branch = main
+[submodule ".highlight"]
+	path = .highlight
+	url = https://github.com/AndydeCleyre/dotfiles-highlight

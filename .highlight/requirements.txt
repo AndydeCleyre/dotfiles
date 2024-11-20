@@ -1,2 +1,0 @@
-wheezy.template>=3.0.3
-nt2

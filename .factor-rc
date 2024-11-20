@@ -2,7 +2,6 @@ USING:
   accessors
   arrays
   assocs
-  combinators.extras
   editors
   io
   kernel
@@ -15,12 +14,12 @@ USING:
   ui.gadgets.editors
   ui.gadgets.worlds
   ui.gestures
-  ui.theme.base16
+!  ui.theme.base16
   ui.theme.switching
   ui.tools.listener.completion
+  ui.tools.theme
   vectors
   vocabs
-  vocabs.loader
   words ;
 
 ! -- Simple options --
@@ -30,9 +29,7 @@ EDITOR: editors.zed
 ! -- Make it legible --
 dark-mode
 ! "ayu-dark" base16-theme-name set-global base16-mode
-IN: fonts
-CONSTANT: default-font-size 32
-"help.stylesheet" reload
+32 set-tools-font-size
 
 ! -- Cell-style horizontal Data Stack display --
 ! Credit: John Benediktsson (thanks!)

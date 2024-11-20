@@ -22,12 +22,15 @@ fonts:
       - Iosevka Term Custom SmEx
       - Iosevka Term Custom Extended
       - 0xProto
-      - Sudo
+      # - Sudo
+      # Sudo shadows some Nerd Font symbols
       - Fantasque Sans Mono
       - Ubuntu Mono
-      - LXGW WenKai Mono TC
+      # - LXGW WenKai Mono TC
       # LXGW problematic? with ellipses or bubbles?
       - Maple Mono
+      - Share Tech Mono
+      - Symbols Nerd Font Mono
       - Symbols Nerd Font
       - NanumGothicCoding
       - Twemoji

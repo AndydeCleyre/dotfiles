@@ -27,5 +27,9 @@
   url = https://github.com/AndydeCleyre/dotfiles-wezterm
   branch = main
 [submodule ".highlight"]
-	path = .highlight
-	url = https://github.com/AndydeCleyre/dotfiles-highlight
+  path = .highlight
+  url = https://github.com/AndydeCleyre/dotfiles-highlight
+  branch = main
+[submodule ".config/micro"]
+	path = .config/micro
+	url = https://github.com/AndydeCleyre/dotfiles-micro

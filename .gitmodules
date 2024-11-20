@@ -31,5 +31,6 @@
   url = https://github.com/AndydeCleyre/dotfiles-highlight
   branch = main
 [submodule ".config/micro"]
-	path = .config/micro
-	url = https://github.com/AndydeCleyre/dotfiles-micro
+  path = .config/micro
+  url = https://github.com/AndydeCleyre/dotfiles-micro
+  branch = main

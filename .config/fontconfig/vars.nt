@@ -10,6 +10,7 @@ features:
   - TXTR
 roles:
   emoji:
+    - Symbols Nerd Font Mono
     - Symbols Nerd Font
     - NanumGothicCoding
     - Twemoji
@@ -19,13 +20,15 @@ roles:
   monospace:
     - Iosevka Term Custom
     - 0xProto
-    - Sudo
+    # - Sudo
+    # Sudo shadows some Nerd Font symbols
     - Fantasque Sans Mono
     - Ubuntu Mono
-    - LXGW WenKai Mono TC
-    # TODO: maybe bump up LXGW
     # The rest have noticeably worse character coverage:
+    # - LXGW WenKai Mono TC
+    # LXGW has trouble with some symbols maybe, like ellipsis
     - Maple Mono
+    - Share Tech Mono
   sans-serif:
     - Iosevka QP Custom
     - Sudo UI
@@ -40,11 +43,13 @@ roles:
     # TODO: maybe bump up LXGW
     - Suse
     # TODO: maybe bump up Suse
-    # The rest have noticeably worse character coverage:
+    # -- The rest have noticeably worse character coverage --
     - Convergence
+    - Blogger Sans
     - Atkinson Hyperlegible
     - PT Sans
     - Inclusive Sans
+    - Capriola
     - Reforma 2018
     # TODO: maybe bump up reforma
   serif:

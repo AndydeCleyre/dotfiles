@@ -15,8 +15,13 @@
   url = https://github.com/AndydeCleyre/dotfiles-zsh
   branch = main
 [submodule ".config/espanso"]
-	path = .config/espanso
-	url = https://github.com/AndydeCleyre/dotfiles-espanso
+  path = .config/espanso
+  url = https://github.com/AndydeCleyre/dotfiles-espanso
+  branch = main
 [submodule ".config/fontconfig"]
-	path = .config/fontconfig
-	url = https://github.com/AndydeCleyre/dotfiles-fontconfig
+  path = .config/fontconfig
+  url = https://github.com/AndydeCleyre/dotfiles-fontconfig
+  branch = main
+[submodule ".config/wezterm"]
+	path = .config/wezterm
+	url = https://github.com/AndydeCleyre/dotfiles-wezterm

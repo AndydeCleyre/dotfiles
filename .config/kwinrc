@@ -1,10 +1,8 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize,kwin.upd:animation-speed,kwin.upd:desktop-grid-click-behavior,kwin.upd:no-swap-encourage,kwin.upd:make-translucency-effect-disabled-by-default,kwin.upd:remove-flip-switch-effect,kwin.upd:remove-cover-switch-effect,kwin.upd:remove-cubeslide-effect,kwin.upd:remove-xrender-backend,kwin.upd:enable-scale-effect-by-default
 
 [Compositing]
-AnimationSpeed=1
 Backend=OpenGL
-Enabled=true
 GLColorCorrection=false
 GLCore=false
 GLPlatformInterface=glx
@@ -13,17 +11,17 @@ GLTextureFilter=2
 HiddenPreviews=5
 OpenGLIsUnsafe=false
 UnredirectFullscreen=false
-WindowsBlockCompositing=true
+WindowsBlockCompositing=false
 XRenderSmoothScale=false
 
 [Desktops]
-Id_1=1aa2f323-b76b-46b0-bd7b-b06bc99a5628
-Id_2=773b0475-d91f-4e0c-84f2-382475a12737
-Number=2
-Rows=2
+Id_1=dc8858ea-9279-4c13-91d3-de73f103758e
+Number=1
+Rows=1
 
 [Effect-Blur]
 BlurStrength=4
+NoiseStrength=14
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -39,7 +37,7 @@ DontSlidePanels=false
 UseWindowMoving=true
 
 [Effect-DesktopGrid]
-BorderActivate=3
+BorderActivate=1
 
 [Effect-DimInactive]
 DimByGroup=false
@@ -56,20 +54,25 @@ GlideAngle=0
 Color=255,128,0
 LineWidth=10
 
+[Effect-Overview]
+LayoutMode=0
+
 [Effect-PresentWindows]
-BorderActivate=7
-BorderActivateAll=1
-BorderActivateClass=5
+BorderActivateAll=9
+BorderActivateClass=3
 LayoutMode=2
 RightButtonWindow=3
 
 [Effect-Resize]
 TextureScale=false
 
+[Effect-Slide]
+Duration=900
+
 [Effect-Zoom]
 EnableFocusTracking=true
 MouseTracking=1
-ZoomFactor=1.05
+ZoomFactor=1.6500000000000006
 
 [Effect-kwin4_effect_translucency]
 ComboboxPopups=96
@@ -81,8 +84,6 @@ TornOffMenus=80
 
 [ElectricBorders]
 Bottom=None
-BottomLeft=None
-BottomRight=None
 Left=None
 Right=None
 Top=None
@@ -91,18 +92,19 @@ TopRight=None
 
 [ModifierOnlyShortcuts]
 Alt=com.github.zren.PlasmaHUD,/PlasmaHUD,com.github.zren.PlasmaHUD,toggleHUD
+Meta=org.kde.kglobalaccel,/component/kwin,,invokeShortcut,ShowDesktopGrid
 
 [MouseBindings]
 CommandActiveTitlebar1=Raise
-CommandActiveTitlebar2=Shade
+CommandActiveTitlebar2=Minimize
 CommandActiveTitlebar3=Operations menu
 CommandAll1=Move
-CommandAll2=Toggle raise and lower
+CommandAll2=Nothing
 CommandAll3=Resize
 CommandAllKey=Alt
 CommandAllWheel=Change Opacity
 CommandInactiveTitlebar1=Activate and raise
-CommandInactiveTitlebar2=Shade
+CommandInactiveTitlebar2=Minimize
 CommandInactiveTitlebar3=Operations menu
 CommandTitlebarWheel=Shade/Unshade
 CommandWindow1=Activate, raise and pass click
@@ -110,13 +112,18 @@ CommandWindow2=Activate and pass click
 CommandWindow3=Activate and pass click
 CommandWindowWheel=Scroll
 
+[NightColor]
+Active=true
+LatitudeAuto=45.9968
+LongitudeAuto=24.997
+
 [PlasmaRunnerManager]
 LaunchCounts=
 
 [Plugins]
 activatelattelaunchermenuEnabled=false
 blurEnabled=true
-contrastEnabled=false
+contrastEnabled=true
 coverswitchEnabled=true
 desktopchangeosdEnabled=true
 diminactiveEnabled=true
@@ -124,14 +131,15 @@ enforcedecoEnabled=true
 glideEnabled=true
 highlightwindowEnabled=true
 invertEnabled=true
+karouselEnabled=false
 kwin-script-tilingEnabled=false
 kwin4_effect_dialogparentEnabled=false
+kwin4_effect_maximizeEnabled=false
 kwinOverviewEnabled=false
 minimizeallEnabled=false
 mousemarkEnabled=true
 quarter-tilingEnabled=false
 sheetEnabled=true
-slidebackEnabled=true
 sticky-window-snapping-zrenEnabled=true
 sticky-window-snappingEnabled=false
 synchronizeskipswitcherEnabled=false
@@ -141,7 +149,6 @@ wobblywindowsEnabled=true
 
 [Script-desktopchangeosd]
 PopupHideDelay=1000
-TextOnly=false
 
 [Script-kwin-script-tiling]
 userActive=false
@@ -152,15 +159,13 @@ count=0
 
 [TabBox]
 ActivitiesMode=0
-ApplicationsMode=1
-BorderActivate=9
 BorderAlternativeActivate=9
 DelayTime=0
 DesktopLayout=org.kde.breeze.desktop
 DesktopListLayout=org.kde.breeze.desktop
 DesktopMode=0
 HighlightWindows=true
-LayoutName=big_icons
+LayoutName=thumbnail_grid
 MinimizedMode=0
 MultiScreenMode=0
 ShowDesktopMode=0
@@ -172,7 +177,7 @@ ActivitiesMode=0
 ApplicationsMode=0
 DesktopMode=1
 HighlightWindows=true
-LayoutName=present_windows
+LayoutName=
 MinimizedMode=0
 MultiScreenMode=0
 ShowDesktopMode=0
@@ -191,7 +196,7 @@ ClickRaise=true
 DelayFocusInterval=300
 ElectricBorderCooldown=400
 ElectricBorderCornerRatio=0.25
-ElectricBorderDelay=350
+ElectricBorderDelay=50
 ElectricBorderMaximize=true
 ElectricBorderTiling=true
 ElectricBorders=0
@@ -204,10 +209,9 @@ MaximizeButtonLeftClickCommand=Maximize
 MaximizeButtonMiddleClickCommand=Maximize (vertical only)
 MaximizeButtonRightClickCommand=Maximize (horizontal only)
 NextFocusPrefersMouse=false
-Placement=Smart
+Placement=ZeroCornered
 RollOverDesktops=true
 SeparateScreenFocus=false
-ShadeHover=true
 ShadeHoverInterval=250
 SnapOnlyWhenOverlapping=false
 TitlebarDoubleClickCommand=Maximize (vertical only)
@@ -215,8 +219,9 @@ WindowSnapZone=10
 
 [org.kde.kdecoration2]
 BorderSize=None
-ButtonsOnLeft=XN
-ButtonsOnRight=SFLX
+BorderSizeAuto=false
+ButtonsOnLeft=X
+ButtonsOnRight=LSFX
 CloseOnDoubleClickOnMenu=false
 library=org.kde.breeze
-theme=
+theme=Breeze

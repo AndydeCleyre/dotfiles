@@ -23,7 +23,7 @@ USING:
   words ;
 
 ! -- Simple options --
-EDITOR: editors.zed
+EDITOR: editors.sublime
 2 tab-size set
 
 ! -- Make it legible --

@@ -1,0 +1,60 @@
+[
+    { "keys": ["ctrl+v"],           "command": "paste_and_indent" },
+
+    { "keys": ["ctrl+e"],           "command": "show_overlay", "args": {"overlay": "command_palette"} },
+    { "keys": ["ctrl+alt+s"],       "command": "toggle_side_bar" },
+    { "keys": ["f1"],               "command": "toggle_side_bar" },
+
+    { "keys": ["alt+up"],           "command": "swap_line_up" },
+    { "keys": ["alt+down"],         "command": "swap_line_down" },
+    { "keys": ["ctrl+d"],           "command": "duplicate_line" },
+
+    { "keys": ["alt+m"],            "command": "split_selection_into_lines" },
+    { "keys": ["alt+n"],            "command": "find_under_expand" },
+    { "keys": ["alt+x"],            "command": "find_under_expand_skip" },
+
+    { "keys": ["alt+1"],            "command": "set_layout", "args": { "cols": [0.0, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1]] } },
+    { "keys": ["alt+2"],            "command": "set_layout", "args": { "cols": [0.0, 0.5, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1]] } },
+    { "keys": ["alt+3"],            "command": "set_layout", "args": { "cols": [0.0, 0.33, 0.66, 1.0], "rows": [0.0, 1.0], "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]] } },
+
+    { "keys": ["alt+right"],        "command": "focus_neighboring_group" },
+    { "keys": ["alt+shift+right"],  "command": "move_to_neighboring_group" },
+    { "keys": ["alt+left"],         "command": "focus_neighboring_group", "args": {"forward": false} },
+    { "keys": ["alt+shift+left"],   "command": "move_to_neighboring_group", "args": {"forward": false} },
+
+    { "keys": ["ctrl+."],           "command": "codeium_accept_completion" },
+
+
+    { "keys": ["tab"], "command": "insert", "args": {"characters": "\t"} },
+    { "keys": ["tab"], "command": "auto_complete", "args": {"mini": true, "default": "\t", "commit_single": true},
+        "context":
+        [
+            { "key": "auto_complete_visible", "operand": false },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "setting.tab_completion", "operator": "equal", "operand": true },
+            { "key": "preceding_text", "operator": "regex_match", "operand": ".*\\w", "match_all": true },
+        ]
+    },
+    { "keys": ["tab"], "command": "reindent", "context":
+        [
+            { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+            { "key": "preceding_text", "operator": "regex_match", "operand": "^$", "match_all": true },
+            { "key": "following_text", "operator": "regex_match", "operand": "^$", "match_all": true }
+        ]
+    },
+    { "keys": ["tab"], "command": "indent", "context":
+        [{ "key": "text", "operator": "regex_contains", "operand": "\n" }]
+    },
+    { "keys": ["tab"], "command": "move", "args": {"by": "lines", "forward": true}, "context":
+        [
+            { "key": "overlay_has_focus", "operator": "equal", "operand": true  }
+        ]
+    },
+    { "keys": ["tab"], "command": "next_field", "context":
+        [{ "key": "has_next_field", "operator": "equal", "operand": true }]
+    },
+    { "keys": ["tab"], "command": "commit_completion", "context":
+        [{ "key": "auto_complete_visible" }]
+    }
+]

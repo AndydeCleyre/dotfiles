@@ -1,0 +1,56 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+    "always_show_minimap_viewport": true,
+    "auto_complete_commit_on_tab": true,
+    "bold_folder_labels": true,
+    "caret_extra_bottom": 1,
+    "caret_extra_top": 1,
+    "caret_extra_width": 1,
+    "caret_style": "phase",
+    "control_character_style": "names",
+    "draw_unicode_white_space": "all",
+    "draw_white_space": ["all_tabs", "trailing", "isolated"],
+    "ensure_newline_at_eof_on_save": true,
+    "fade_fold_buttons": false,
+    "font_face": "Andysevka",
+    // "font_face": "Iosevka Term Custom",
+    // "font_face": "0xProto",
+    // "font_face": "Maple Mono",
+    // "font_face": "Sudo",
+    // "font_face": "Fantasque Sans Mono",
+    // "font_face": "Ubuntu Mono",
+    // "font_face": "Share Tech Mono",
+    "font_options": ["dlig"],
+    "theme_font_options": ["dlig"],
+    "font_size": 16,
+    "hardware_acceleration": "opengl",
+    "ignored_packages":
+    [
+        "Vintage",
+    ],
+    "indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+    "rulers":
+    [
+        100
+    ],
+    "show_encoding": true,
+    "tab_size": 2,
+    "theme": "ayu-dark-KanagawaMacaroni.sublime-theme",
+    "theme_accent_orange": true,
+    "theme_font_xl": true,
+    "theme_icons_materialized": true,
+    "theme_sidebar_folder_arrow": true,
+    "theme_size_xl": true,
+    "theme_tab_selected_underlined": true,
+    "translate_tabs_to_spaces": true,
+    "trim_trailing_white_space_on_save": "not_on_caret",
+    "ui_scale": 1.6,
+    "update_check": false,
+    "color_scheme": "ayu-dark-KanagawaMacaroniTrit.sublime-color-scheme",
+    "index_files": false,
+}

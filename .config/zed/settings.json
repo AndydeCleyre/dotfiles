@@ -1,0 +1,155 @@
+{
+  "show_inline_completions": false,
+  "assistant": {
+    // "enabled": false,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "base_keymap": "SublimeText",
+  "buffer_font_family": "Iosevka Custom",
+  "buffer_font_fallbacks": [
+    "Andysevka Term",
+    "Iosevka Term Custom",
+    "0xProto",
+    "Maple Mono",
+    "Sudo",
+    "Fantasque Sans Mono",
+    "Ubuntu Mono",
+    // "LXGW WenKai Mono TC",
+    "Symbols Nerd Font",
+    "NanumGothicCoding",
+    "Fluent Emoji Color",
+    "Fluent Emoji Flat",
+    "Twemoji",
+    "Twitter Color Emoji",
+    "SerenityOS Emoji",
+    "OpenMoji Color",
+    "JoyPixels"
+  ],
+  "buffer_font_size": 28,
+  "buffer_line_height": {
+    "custom": 1.25
+  },
+  "chat_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "dock": "right",
+    "button": false
+  },
+  "features": {
+    "inline_completion_provider": "supermaven"
+    // "inline_completion_provider": "none"
+  },
+  "file_types": { "ini": ["desktop"] },
+  "format_on_save": "off",
+  // "git": {
+  //   "inline_blame": {
+  //     "show_commit_summary": true
+  //   }
+  // },
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "active_line_width": 2
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "off",
+      "formatter": [
+        // https://github.com/zed-industries/zed/issues/15544
+        // {
+        //   "external": {
+        //     "command": "ssort",
+        //     "arguments": ["-"]
+        //   }
+        // },
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "tab_size": 4
+    }
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "remove_trailing_whitespace_on_save": true,
+  // "show_inline_completions": false,
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false
+  },
+  "tab_size": 2,
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "telemetry": {
+    "metrics": true
+  },
+  "terminal": {
+    "button": false
+  },
+  "theme": "Ayu Mirage",
+  "toolbar": {
+    // I might enable breadcrumbs if I could put them in the status bar and hide the "title" bar with:
+    //   - sign-in (don't want)
+    //   - branches (should be in status bar)
+    //   - recent projects (don't want)
+    //   - app menu (should export global menu / don't want)
+    //   - settings menu (should be part of global menu / don't want)
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "ui_font_family": "Iosevka QP Custom",
+  "ui_font_falllbacks": [
+    "Andysevka QP",
+    "Iosevka QP Custom",
+    "Sudo UI",
+    "Cadman",
+    "Andika",
+    "Ubuntu",
+    "Baloo 2 Medium",
+    "Barlow Medium",
+    "Lexend",
+    "LXGW WenKai TC",
+    "Suse",
+    "Convergence",
+    "Atkinson Hyperlegible",
+    "PT Sans",
+    "Inclusive Sans",
+    "Reforma 2018",
+    "Symbols Nerd Font",
+    "NanumGothicCoding",
+    "Twemoji",
+    "SerenityOS Emoji",
+    "OpenMoji Color",
+    "JoyPixels"
+  ],
+  "ui_font_size": 22
+}
+// Until or unless https://github.com/zed-industries/zed/issues/14165 is fixed,
+// an environment variable must be set.
+// Best method will vary based on DE:
+//
+// -- KDE Plasma --
+// $ mkdir -p ~/.config/plasma-workspace/env
+// $ echo 'export ZED_WINDOW_DECORATIONS=server' >>~/.config/plasma-workspace/env/zed.sh

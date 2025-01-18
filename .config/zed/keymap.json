@@ -1,0 +1,33 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "f1": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-m": "editor::SplitSelectionIntoLines",
+      "alt-n": "editor::SelectNext",
+      "alt-x": ["editor::SelectNext", { "replace_newest": true }],
+      "ctrl-d": "editor::DuplicateLineDown",
+      "ctrl-k": "editor::DeleteLine",
+      "ctrl-shift-{": "editor::Fold",
+      "ctrl-shift-}": "editor::UnfoldLines"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "alt-2": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-left": ["workspace::ActivatePaneInDirection", "Left"],
+      "alt-right": ["workspace::ActivatePaneInDirection", "Right"]
+    }
+  }
+]

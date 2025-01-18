@@ -1,0 +1,6 @@
+*.sublime-project
+.tsk
+_
+__pycache__
+mise.local.toml
+pyrightconfig.json

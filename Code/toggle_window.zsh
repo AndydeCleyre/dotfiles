@@ -8,12 +8,16 @@
 
 # -- Examples --
 # ./toggle_window.zsh dolphin
+
 # ./toggle_window.zsh wezterm-gui org.wezfurlong.wezterm
+
 # ./toggle_window.zsh firefox firefox firefox-bin
+
+# ./toggle_window.zsh telegram-desktop
+
 # ./toggle_window.zsh \
 #   'flatpak run --branch=stable --arch=x86_64 --command=telegram-desktop --file-forwarding org.telegram.desktop' \
-#   telegram-desktop telegram-deskto
-# Yes, "telegram-deskto" without a final p. Hmm.
+#   telegram-desktop telegram-desktop
 
 # -- Dependencies --
 # - procps (pgrep)
@@ -31,4 +35,4 @@ if [[ $(xprop -id $(xdotool getactivewindow) WM_CLASS) =~ \"$wm_class\" ]] {
   wmctrl -xR $wm_class || true
 }
 
-pgrep -u $USER -x $check_cmd || exec $launch_cmd &
+pgrep -u $USER -x ${check_cmd[1,15]} || exec $launch_cmd &

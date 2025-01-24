@@ -1,6 +1,6 @@
 [submodule ".config/broot"]
   path = .config/broot
-  url = git@github.com:AndydeCleyre/dotfiles-broot
+  url = https://github.com.AndydeCleyre/dotfiles-broot
   branch = master
 [submodule ".config/mpv"]
   path = .config/mpv
@@ -33,4 +33,8 @@
 [submodule ".config/micro"]
   path = .config/micro
   url = https://github.com/AndydeCleyre/dotfiles-micro
+  branch = main
+[submodule ".config/aconfmgr"]
+  path = .config/aconfmgr
+  url = https://github.com/AndydeCleyre/dotfiles-aconfmgr
   branch = main

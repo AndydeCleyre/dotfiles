@@ -17,7 +17,7 @@ USING:
 !  ui.theme.base16
   ui.theme.switching
   ui.tools.listener.completion
-  ui.tools.theme
+!  ui.tools.theme
   vectors
   vocabs
   words ;
@@ -29,7 +29,7 @@ EDITOR: editors.sublime
 ! -- Make it legible --
 dark-mode
 ! "ayu-dark" base16-theme-name set-global base16-mode
-32 set-tools-font-size
+! 32 set-tools-font-size
 
 ! -- Cell-style horizontal Data Stack display --
 ! Credit: John Benediktsson (thanks!)
@@ -100,7 +100,7 @@ IN: listener
 : prompt ( -- str ) "🦖" ;
 
 ! -- Write to image --
-save
+! save
 
 ! -- If anything goes wrong --
 !

@@ -20,9 +20,7 @@ keybind = ctrl+shift+v=paste_from_clipboard
 confirm-close-surface = false
 cursor-style = bar
 cursor-style-blink = true
-gtk-adwaita = false
-gtk-titlebar = false
-window-decoration = true
+window-decoration = server
 window-padding-y = 10
 
 font-size = 18

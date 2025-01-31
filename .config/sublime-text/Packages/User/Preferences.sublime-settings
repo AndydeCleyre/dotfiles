@@ -24,7 +24,7 @@
     // "font_face": "Share Tech Mono",
     "font_options": ["dlig"],
     "theme_font_options": ["dlig"],
-    "font_size": 16,
+    "font_size": 12,
     "hardware_acceleration": "opengl",
     "ignored_packages":
     [
@@ -52,6 +52,6 @@
     "trim_trailing_white_space_on_save": "not_on_caret",
     "ui_scale": 1.6,
     "update_check": false,
-    "color_scheme": "ayu-dark-KanagawaMacaroniTrit.sublime-color-scheme",
+    "color_scheme": "ayu-dark-KanagawaMacaroni.sublime-color-scheme",
     "index_files": false,
 }

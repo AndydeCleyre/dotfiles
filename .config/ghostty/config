@@ -25,7 +25,10 @@ gtk-titlebar = false
 window-decoration = true
 window-padding-y = 10
 
-font-size = 24
+font-size = 18
+font-feature = FRAC
+font-feature = THND
+font-feature = TXTR
 font-family = Andysevka Term
 font-family = Iosevka Term Custom
 font-family = 0xProto

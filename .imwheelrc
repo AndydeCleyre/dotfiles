@@ -1,0 +1,3 @@
+".*"
+  Super_L, Up, Super_L|equal
+  Super_L, Down, Super_L|minus

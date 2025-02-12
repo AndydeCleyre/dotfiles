@@ -1,0 +1,13 @@
+[Unit]
+Description=IMWheel
+Wants=display-manager.service
+After=display-manager.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/imwheel -d
+ExecStop=/usr/bin/pkill imwheel
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical-session.target

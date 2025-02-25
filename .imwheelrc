@@ -1,5 +1,0 @@
-".*"
-  Super_L,   Up,   Super_L|equal
-  Super_L,   Down, Super_L|minus
-  Control_L, Up,   Control_L|Button4
-  Control_L, Down, Control_L|Button5

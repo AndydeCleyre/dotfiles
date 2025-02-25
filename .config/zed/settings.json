@@ -100,6 +100,7 @@
   },
   "remove_trailing_whitespace_on_save": true,
   // "show_inline_completions": false,
+  "show_tab_bar_buttons": false,
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": false

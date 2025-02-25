@@ -2,6 +2,8 @@
   {
     "context": "Workspace",
     "bindings": {
+      "ctrl-p": "file_finder::Toggle",
+      "ctrl-shift-g": "project_symbols::Toggle",
       "f1": "workspace::ToggleRightDock"
     }
   },

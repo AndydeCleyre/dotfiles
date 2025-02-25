@@ -22,6 +22,8 @@
     { "keys": ["alt+left"],         "command": "focus_neighboring_group", "args": {"forward": false} },
     { "keys": ["alt+shift+left"],   "command": "move_to_neighboring_group", "args": {"forward": false} },
 
+    { "keys": ["ctrl+shift+g"],     "command": "goto_symbol_in_project" },
+
     { "keys": ["ctrl+."],           "command": "codeium_accept_completion" },
 
 

@@ -30,6 +30,7 @@ font-feature = TXTR
 font-family = Andysevka Term
 font-family = Iosevka Term Custom
 font-family = 0xProto
+font-family = 0xProto Nerd Font
 font-family = Maple Mono
 # font-family = Sudo
 # Sudo currently has bad spacing with nerd font symbols and other weird issues

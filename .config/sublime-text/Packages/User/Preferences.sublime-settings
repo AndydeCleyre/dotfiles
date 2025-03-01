@@ -39,6 +39,7 @@
     [
         100
     ],
+    "shift_tab_unindent": true,
     "show_encoding": true,
     "tab_size": 2,
     "theme": "ayu-dark-KanagawaMacaroni.sublime-theme",

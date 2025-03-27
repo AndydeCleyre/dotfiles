@@ -5,6 +5,7 @@
   rebase = false
 [merge]
   tool = meld
+  useAutoMerge = true
 [pager]
   diff = riff
   show = riff

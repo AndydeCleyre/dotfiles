@@ -1,5 +1,5 @@
 {
-  "show_inline_completions": false,
+  "show_edit_predictions": false,
   "assistant": {
     // "enabled": false,
     "default_model": {
@@ -48,7 +48,7 @@
     "button": false
   },
   "features": {
-    "inline_completion_provider": "supermaven"
+    "edit_prediction_provider": "supermaven"
     // "inline_completion_provider": "none"
   },
   "file_types": { "ini": ["desktop"] },

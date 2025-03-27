@@ -14,8 +14,8 @@
     "ensure_newline_at_eof_on_save": true,
     "fade_fold_buttons": false,
     "font_face": "Andysevka",
-    // "font_face": "Iosevka Term Custom",
     // "font_face": "0xProto",
+    // "font_face": "0xProto Nerd Font",
     // "font_face": "Maple Mono",
     // "font_face": "Sudo",
     // "font_face": "Fantasque Sans Mono",
@@ -24,7 +24,7 @@
     // "font_face": "Share Tech Mono",
     "font_options": ["dlig"],
     "theme_font_options": ["dlig"],
-    "font_size": 12,
+    "font_size": 10,
     "hardware_acceleration": "opengl",
     "ignored_packages":
     [

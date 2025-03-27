@@ -1,5 +1,6 @@
 [
-    { "keys": ["ctrl+v"],           "command": "paste_and_indent" },
+    // { "keys": ["ctrl+v"],           "command": "paste_and_indent" },
+    { "keys": ["ctrl+v"],           "command": "paste" },
 
     { "keys": ["ctrl+e"],           "command": "show_overlay", "args": {"overlay": "command_palette"} },
     { "keys": ["ctrl+alt+s"],       "command": "toggle_side_bar" },

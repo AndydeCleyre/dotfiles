@@ -6,8 +6,8 @@ theme = kanagawabones
 
 cursor-color = #ff8bf0
 background = #16161d
-background-opacity = 0.95
-# background-opacity = 1
+# background-opacity = 0.95
+background-opacity = 1
 palette = 7=#dea050
 palette = 15=#ffa52f
 
@@ -29,10 +29,10 @@ font-feature = THND
 font-feature = TXTR
 font-family = Andysevka Term
 font-family = 0xProto
-font-family = 0xProto Nerd Font
+# font-family = 0xProto Nerd Font
 font-family = Maple Mono
-# font-family = Sudo
-# Sudo currently has bad spacing with nerd font symbols and other weird issues
+font-family = Sudo
+# Sudo MAY have bad spacing with nerd font symbols, check it out
 font-family = Fantasque Sans Mono
 font-family = Ubuntu Mono
 font-family = Comic Mono

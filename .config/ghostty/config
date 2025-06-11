@@ -1,4 +1,6 @@
-theme = kanagawabones
+# theme = kanagawabones
+theme = ayu
+# theme = Ayu Mirage
 
 cursor-color = #ff8bf0
 background = #16161d

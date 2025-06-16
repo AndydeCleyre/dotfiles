@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=~/.local/share/window-shortcuts/toggle-window.zsh dolphin
+Name=toggle Dolphin
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true

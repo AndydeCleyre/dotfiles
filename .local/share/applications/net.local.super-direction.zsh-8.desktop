@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=~/.local/share/window-shortcuts/super-direction.zsh --shift DOWN
+Name=super+shift+down
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true

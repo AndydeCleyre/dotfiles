@@ -26,7 +26,7 @@ if [[ $1 == --shift ]] {
 }
 
 floating=
-if [[ $(xprop -id "$(xdotool getactivewindow)" _NET_WM_STATE) != *_NET_WM_STATE_(BELOW|MAXIMIZED)* ]]  floating=1
+if [[ $(xprop -id "$(xdotool getactivewindow)" _NET_WM_STATE) != *_NET_WM_STATE_(BELOW|MAXIMIZED|FULLSCREEN)* ]]  floating=1
 
 direction=$1
 if [[ $direction != (RIGHT|LEFT|UP|DOWN) ]]  usage

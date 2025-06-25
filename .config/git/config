@@ -12,7 +12,5 @@
   log = riff
 [interactive]
   diffFilter = riff --color=on
-[core]
-  excludesfile = /home/andy/.gitignore
 [init]
   defaultBranch = main

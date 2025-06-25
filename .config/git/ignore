@@ -4,3 +4,4 @@ _
 __pycache__
 mise.local.toml
 pyrightconfig.json
+# local-requirements.txt

@@ -1,11 +1,37 @@
+[ButtonBehaviour]
+LockCloseButtonBehaviourActive=false
+LockCloseButtonBehaviourInactive=false
+ShowBackgroundOnHoverActive=false
+ShowBackgroundOnHoverInactive=false
+
+[ButtonColors]
+ButtonBackgroundColorsActive=TitleBarTextNegativeClose
+ButtonBackgroundColorsInactive=AccentNegativeClose
+ButtonBackgroundOpacityActive=100
+ButtonBackgroundOpacityInactive=100
+ButtonIconColorsActive=TitleBarTextNegativeClose
+ButtonIconColorsInactive=TitleBarTextNegativeClose
+ButtonIconOpacityInactive=100
+ButtonOverrideColorsActiveClose={"BackgroundHover":["NegativeText"],"IconNormal":["NegativeText"],"OutlineHover":["NegativeText"]}
+ButtonOverrideColorsInactiveClose={"BackgroundHover":["NegativeText"],"IconNormal":["NegativeText"],"OutlineHover":["NegativeText"]}
+CloseButtonIconColorActive=AsSelected
+CloseButtonIconColorInactive=AsSelected
+UseHoverAccentInactive=true
+
 [ButtonSizing]
 FullHeightButtonWidthMarginLeft=1
 FullHeightButtonWidthMarginRight=1
 LockFullHeightButtonWidthMargins=true
 
+[ShadowStyle]
+ShadowColor=222,160,80
+ShadowSize=ShadowSmall
+ShadowStrength=102
+
 [Style]
 ButtonGradient=true
 DockWidgetDrawFrame=true
+MenuOpacity=90
 MnemonicsMode=MN_ALWAYS
 SidePanelDrawFrame=true
 SplitterProxyEnabled=true
@@ -15,14 +41,14 @@ WindowDragMode=WD_FULL
 TitleAlignment=AlignLeft
 
 [Windeco]
-ButtonIconStyle=StyleOxygen
+ButtonIconStyle=StyleSystemIconTheme
 
 [WindowOutlineStyle]
 ThinWindowOutlineCustomColorActive=109,148,141
 ThinWindowOutlineCustomColorInactive=109,148,141
 ThinWindowOutlineStyleInactive=WindowOutlineCustomColor
 ThinWindowOutlineThickness=4
-WindowOutlineAccentColorOpacityActive=90
+WindowOutlineAccentColorOpacityActive=100
 WindowOutlineAccentWithContrastOpacityInactive=70
 WindowOutlineCustomColorOpacityActive=100
-WindowOutlineCustomColorOpacityInactive=90
+WindowOutlineCustomColorOpacityInactive=100

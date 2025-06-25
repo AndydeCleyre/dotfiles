@@ -1,6 +1,6 @@
 [Desktop Entry]
 Exec=~/.local/share/window-shortcuts/toggle-window.zsh dolphin
-Name=toggle Dolphin
+Name=Toggle Dolphin
 NoDisplay=true
 StartupNotify=false
 Type=Application

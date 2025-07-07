@@ -25,6 +25,7 @@ font-size = 18
 font-feature = FRAC
 font-feature = THND
 font-feature = TXTR
+freetype-load-flags = no-hinting
 font-family = Andysevka Term
 font-family = 0xProto
 # font-family = 0xProto Nerd Font

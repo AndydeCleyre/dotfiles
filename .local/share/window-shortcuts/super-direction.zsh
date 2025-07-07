@@ -6,22 +6,29 @@
 # - x11-utils (xprop)
 # - xdotool
 
+# -- Useful Commands --
+# qdbus6 org.kde.kglobalaccel /component/kwin shortcutNames
+
 this=$0
 
 usage () {
-  print -rlu2 'Usage:' "  $this [--shift|--swipe] RIGHT|LEFT|UP|DOWN"
+  print -rlu2 'Usage:' "  $this [--shift|--swipe|--pinch] RIGHT|LEFT|UP|DOWN"
   return 1
 }
 
-if [[ $1 != (--(shift|swipe)|RIGHT|LEFT|UP|DOWN) ]]  usage
+if [[ $1 != (--(shift|swipe|pinch)|RIGHT|LEFT|UP|DOWN) ]]  usage
 
 shift=
 swipe=
+pinch=
 if [[ $1 == --shift ]] {
   shift=1
   shift
 } elif [[ $1 == --swipe ]] {
   swipe=1
+  shift
+} elif [[ $1 == --pinch ]] {
+  pinch=1
   shift
 }
 
@@ -60,6 +67,13 @@ karousel-move () {  # RIGHT|LEFT|UP|DOWN
   }
 }
 
+karousel-resize () {  # RIGHT|LEFT
+  case $1 {
+    RIGHT) kwin-do karousel-column-width-increase ;;
+    LEFT)  kwin-do karousel-column-width-decrease ;;
+  }
+}
+
 kwin-move () {  # RIGHT|LEFT|UP|DOWN
   case $1 {
     RIGHT) kwin-do "Window Pack ${(C)1}" ;;
@@ -79,7 +93,7 @@ kwin-resize () {  # RIGHT|LEFT|UP|DOWN
 }
 
 if [[ $floating ]] {
-  if [[ $shift ]] {
+  if [[ $shift || $pinch ]] {
     kwin-resize $direction
   } else {
     kwin-move $direction
@@ -87,6 +101,8 @@ if [[ $floating ]] {
 } else {
   if [[ $shift ]] {
     karousel-move $direction
+  } elif [[ $pinch ]] {
+    karousel-resize $direction
   } else {
     karousel-focus $direction
   }

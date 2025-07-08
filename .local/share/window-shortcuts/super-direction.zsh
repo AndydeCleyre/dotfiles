@@ -12,11 +12,11 @@
 this=$0
 
 usage () {
-  print -rlu2 'Usage:' "  $this [--shift|--swipe|--pinch] RIGHT|LEFT|UP|DOWN"
+  print -rlu2 'Usage:' "  $this [--shift|--swipe|--pinch] RIGHT|LEFT|UP|DOWN|HOLD"
   return 1
 }
 
-if [[ $1 != (--(shift|swipe|pinch)|RIGHT|LEFT|UP|DOWN) ]]  usage
+if [[ $1 != (--(shift|swipe|pinch)|RIGHT|LEFT|UP|DOWN|HOLD) ]]  usage
 
 shift=
 swipe=
@@ -33,10 +33,21 @@ if [[ $1 == --shift ]] {
 }
 
 floating=
-if [[ $(xprop -id "$(xdotool getactivewindow)" _NET_WM_STATE) != *_NET_WM_STATE_(BELOW|MAXIMIZED|FULLSCREEN)* ]]  floating=1
+if [[ $(xprop -id "$(xdotool getactivewindow)" _NET_WM_STATE) != *_NET_WM_STATE_(BELOW|FULLSCREEN)* ]]  floating=1
 
 direction=$1
-if [[ $direction != (RIGHT|LEFT|UP|DOWN) ]]  usage
+if [[ $direction != (RIGHT|LEFT|UP|DOWN|HOLD) ]]  usage
+
+kwin-do () { qdbus6 org.kde.kglobalaccel /component/kwin invokeShortcut $1 }
+
+if [[ $direction == HOLD ]] {
+  if [[ $floating ]] {
+    kwin-do 'Window Maximize Vertical'
+  } else {
+    kwin-do karousel-cycle-preset-widths
+  }
+  return
+}
 
 if [[ ! $floating ]] && [[ $swipe ]] {
   case $direction {
@@ -46,8 +57,6 @@ if [[ ! $floating ]] && [[ $swipe ]] {
     DOWN)  direction=UP    ;;
   }
 }
-
-kwin-do () { qdbus6 org.kde.kglobalaccel /component/kwin invokeShortcut $1 }
 
 karousel-focus () {  # RIGHT|LEFT|UP|DOWN
   case $1 {

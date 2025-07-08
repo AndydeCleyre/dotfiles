@@ -12,11 +12,11 @@
 this=$0
 
 usage () {
-  print -rlu2 'Usage:' "  $this [--shift|--swipe|--pinch] RIGHT|LEFT|UP|DOWN|HOLD"
+  print -rlu2 'Usage:' "  $this [--shift|--swipe|--pinch] RIGHT|LEFT|UP|DOWN|SPACE"
   return 1
 }
 
-if [[ $1 != (--(shift|swipe|pinch)|RIGHT|LEFT|UP|DOWN|HOLD) ]]  usage
+if [[ $1 != (--(shift|swipe|pinch)|RIGHT|LEFT|UP|DOWN|SPACE) ]]  usage
 
 shift=
 swipe=
@@ -36,11 +36,11 @@ floating=
 if [[ $(xprop -id "$(xdotool getactivewindow)" _NET_WM_STATE) != *_NET_WM_STATE_(BELOW|FULLSCREEN)* ]]  floating=1
 
 direction=$1
-if [[ $direction != (RIGHT|LEFT|UP|DOWN|HOLD) ]]  usage
+if [[ $direction != (RIGHT|LEFT|UP|DOWN|SPACE) ]]  usage
 
 kwin-do () { qdbus6 org.kde.kglobalaccel /component/kwin invokeShortcut $1 }
 
-if [[ $direction == HOLD ]] {
+if [[ $direction == SPACE ]] {
   if [[ $floating ]] {
     kwin-do 'Window Maximize Vertical'
   } else {

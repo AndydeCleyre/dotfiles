@@ -1,6 +1,10 @@
 #!/bin/sh
 set -ef
 
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate --shims)"
+fi
+
 case $1 in
     --check)
         if command -v ugrep+ >/dev/null 2>&1; then

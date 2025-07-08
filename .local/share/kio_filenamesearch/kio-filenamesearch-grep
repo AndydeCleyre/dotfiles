@@ -1,9 +1,7 @@
 #!/bin/sh
 set -ef
 
-if command -v mise >/dev/null 2>&1; then
-    eval "$(mise activate --shims)"
-fi
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 case $1 in
     --check)

@@ -1,0 +1,44 @@
+#!/bin/sh
+set -ef
+
+case $1 in
+    --check)
+        if command -v ugrep+ >/dev/null 2>&1; then
+            exit 0
+        elif command -v ugrep >/dev/null 2>&1; then
+            exit 0
+        else
+            exit 127
+        fi
+        ;;
+
+    --run)
+        REQUIRED_OPTIONS="--dereference-recursive --files-with-matches --no-messages --null --pretty=never"
+
+        # --hidden:        Don't skip hidden files and directories.
+        # --line-buffered: Show each result in Dolphin as soon as it is found.
+        # --perl-regexp:   Interpret search pattern with PCRE2.
+        # --smart-case:    Ignore case when search pattern is lower case.
+        OPTIONS="--hidden --line-buffered --perl-regexp --smart-case"
+
+        # --jobs=2:                 Limit search to 2 threads. Remove this to get maximum performance on SSD, but it will hurt performance badly on HDD.
+        # --no-dereference:         Don't follow symlinks.
+        # --ignore-files:           Abide .gitignore settings.
+        # --ignore-files=.ignore:   Abide .ignore settings.
+
+        if command -v ugrep+ >/dev/null 2>&1; then
+            # shellcheck disable=SC2086
+            exec ugrep+ $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+        elif command -v ugrep >/dev/null 2>&1; then
+            # shellcheck disable=SC2086
+            exec ugrep $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+        else
+            exit 127
+        fi
+        ;;
+
+    *)
+        echo "Invalid argument: $1" >&2
+        exit 1
+        ;;
+esac
